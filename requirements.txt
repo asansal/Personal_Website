@@ -1,0 +1,21 @@
+# --- Core Framework ---
+streamlit
+pandas
+numpy
+
+# --- AI & Chatbot (Gemini) ---
+google-generativeai
+
+# --- Visualization (Data Science) ---
+plotly
+matplotlib
+seaborn
+
+# --- Bioinformatics Specific ---
+# Incluimos esto para que puedas hacer una demo rápida de
+# lectura de secuencias o estructuras si lo necesitas.
+biopython
+
+# --- Utilities ---
+# Para manejo de peticiones si fuera necesario conectar con APIs externas
+requests
