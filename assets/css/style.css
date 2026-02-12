@@ -1,0 +1,71 @@
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* --- General Typography --- */
+html, body, [class*="css"]  {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* --- Main Container Adjustments --- */
+/* Reduces the massive top padding standard in Streamlit apps */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* --- Custom Cards for Experience/Projects --- */
+/* Use this class later in st.markdown for boxes */
+.card {
+    background-color: #f0f2f6; /* Light gray suitable for light mode */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Profile Image Styling --- */
+/* Makes the profile picture circular and adds a border */
+img[data-testid="stImage"] {
+    border-radius: 50%;
+    border: 3px solid #4CAF50; /* Green accent for "Bio" feel */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* --- Custom Button Styling (Download CV) --- */
+/* Targets the download button specifically if possible, or general buttons */
+div.stButton > button:first-child {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+}
+
+div.stButton > button:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+
+/* --- Sidebar Fine-tuning --- */
+[data-testid="stSidebar"] {
+    background-color: #f9f9f9;
+    border-right: 1px solid #e0e0e0;
+}
+
+/* --- Dark Mode Support (Optional override) --- */
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #262730;
+        color: white;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #111;
+        border-right: 1px solid #333;
+    }
+}
