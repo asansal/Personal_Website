@@ -10,6 +10,8 @@ SECRETS_PATH = BASE_DIR / ".streamlit" / "secrets.toml"
 CONFIG_PATH = BASE_DIR / "config" / "languages.json"
 LOCALES_DIR = BASE_DIR / "locales"
 SOURCE_FILE = LOCALES_DIR / "es.json"
+AI_MODEL_FAST = "gemini-2.5-flash"
+AI_MODEL_SMART = "gemini-2.5-pro"
 
 # Diccionario maestro de soporte (puedes añadir más aquí)
 SUPPORTED_LANGUAGES = {
@@ -48,7 +50,7 @@ def save_json(path, data):
 
 def translate_content(source_data, target_lang_name):
     """Llama a Gemini para traducir."""
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel(AI_MODEL_FAST)
     prompt = f"""
     Role: Professional Technical Translator.
     Task: Translate the JSON values from Spanish to {target_lang_name}.

@@ -1,0 +1,49 @@
+{
+  "role": "Data Scientist & Bioinformatiker",
+  "about_title": "Über mich",
+  "about_text": "Datenwissenschaftler mit fundierter biotechnologischer Grundlage. Mit über 4 Jahren Forschungserfahrung (Deutschland und Spanien) verbinde ich die Welt der biologischen Daten mit fortschrittlichen Machine Learning-Lösungen.",
+  "skills_title": "Technischer Stack",
+  "skills": {
+    "ds": [
+      "Python (Pandas, Scikit-learn)",
+      "Machine Learning & KI",
+      "SQL / NoSQL"
+    ],
+    "bio": [
+      "R & Bioconductor",
+      "Genomik / Transkriptomik",
+      "Bash Scripting"
+    ],
+    "tools": [
+      "Git & GitHub",
+      "Docker",
+      "Streamlit / Dash"
+    ]
+  },
+  "experience_title": "Berufserfahrung",
+  "experience": [
+    {
+      "period": "2025 - Heute",
+      "role": "Data Science & KI",
+      "place": "Nuclio Digital School (Master)"
+    },
+    {
+      "period": "2022 - 2025",
+      "role": "Bioinformatik-Forscher",
+      "place": "CBM (CSIC-UAM) - Forschungsgruppe Leishmania Genexpression"
+    },
+    {
+      "period": "2020 - 2022",
+      "role": "Research Assistant",
+      "place": "Universität Konstanz (Deutschland) - AG Kroth"
+    }
+  ],
+  "projects_title": "Ausgewählte Projekte",
+  "tabs": [
+    "🧬 Bioinformatik",
+    "🤖 Machine Learning"
+  ],
+  "chatbot_title": "💬 KI-Assistent",
+  "chatbot_desc": "Fragen Sie mich nach meiner Erfahrung, meinen Fähigkeiten oder meinem Technologie-Stack.",
+  "cv_button": "Lebenslauf herunterladen"
+}

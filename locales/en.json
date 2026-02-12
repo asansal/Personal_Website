@@ -1,0 +1,49 @@
+{
+  "role": "Data Scientist & Bioinformatician",
+  "about_title": "About Me",
+  "about_text": "Data Scientist with a strong foundation in Biotechnology. With over 4 years of research experience (Germany and Spain), I bridge the world of biological data with advanced Machine Learning solutions.",
+  "skills_title": "Technical Stack",
+  "skills": {
+    "ds": [
+      "Python (Pandas, Scikit-learn)",
+      "Machine Learning & AI",
+      "SQL / NoSQL"
+    ],
+    "bio": [
+      "R & Bioconductor",
+      "Genomics / Transcriptomics",
+      "Bash Scripting"
+    ],
+    "tools": [
+      "Git & GitHub",
+      "Docker",
+      "Streamlit / Dash"
+    ]
+  },
+  "experience_title": "Professional Experience",
+  "experience": [
+    {
+      "period": "2025 - Present",
+      "role": "Data Science & AI",
+      "place": "Nuclio Digital School (Master's)"
+    },
+    {
+      "period": "2022 - 2025",
+      "role": "Bioinformatics Researcher",
+      "place": "CBM (CSIC-UAM) - Leishmania Gene Expression Group"
+    },
+    {
+      "period": "2020 - 2022",
+      "role": "Research Assistant",
+      "place": "Universität Konstanz (Germany) - AG Kroth"
+    }
+  ],
+  "projects_title": "Featured Projects",
+  "tabs": [
+    "🧬 Bioinformatics",
+    "🤖 Machine Learning"
+  ],
+  "chatbot_title": "💬 AI Assistant",
+  "chatbot_desc": "Ask me about my experience, skills, or tech stack.",
+  "cv_button": "Download CV"
+}
