@@ -1,0 +1,27 @@
+# --- Python & Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+.venv/
+
+# --- Streamlit Specific ---
+# This is CRITICAL: never upload your API keys
+.streamlit/secrets.toml
+
+# --- IDE & OS Metadata ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Data & Sensitive Files ---
+# If you have heavy csv files, ignore them or use Git LFS
+# data/*.csv
+# !data/personal_knowledge.csv  <-- Uncomment to force include specific small files
+
+# --- PDF Generation Artifacts (optional) ---
+*.log
+*.tmp
