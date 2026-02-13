@@ -1,71 +1,713 @@
-/* --- Google Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+/* ============================================
+   ULTRA PROFESSIONAL PORTFOLIO DESIGN
+   Fondos dinámicos visuales + diseño diferencial
+   ============================================ */
 
-/* --- General Typography --- */
-html, body, [class*="css"]  {
-    font-family: 'Roboto', sans-serif;
+/* --- IMPORT ELEGANT FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Crimson+Pro:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Alternativa fuentes modernas elegantes:
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+*/
+
+/* --- ROOT VARIABLES --- */
+:root {
+    /* Colores principales */
+    --primary-color: #00d4aa;
+    --secondary-color: #0066cc;
+    --accent-color: #4CAF50;
+    --accent-purple: #9d4edd;
+    --dark-base: #0a0e27;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-hover: rgba(255, 255, 255, 0.09);
+    
+    /* Tipografía elegante */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-elegant: 'Cormorant Garamond', serif;
+    
+    /* Efectos */
+    --text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --border-radius: 20px;
+    --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --glow: 0 0 30px rgba(76, 175, 80, 0.3);
 }
 
-/* --- Main Container Adjustments --- */
-/* Reduces the massive top padding standard in Streamlit apps */
-.block-container {
+/* --- GLOBAL STYLES --- */
+* {
+    font-family: var(--font-body);
+}
+
+html, body {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* --- BASE BACKGROUND (Animated Particles) --- */
+.stApp {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Capa de partículas flotantes */
+.stApp::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0, 212, 170, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(157, 78, 221, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(76, 175, 80, 0.04) 0%, transparent 40%);
+    animation: particleFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+/* Grid de cristal subtle */
+.stApp::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, 
+            transparent, 
+            transparent 100px, 
+            rgba(255, 255, 255, 0.01) 100px, 
+            rgba(255, 255, 255, 0.01) 101px),
+        repeating-linear-gradient(90deg, 
+            transparent, 
+            transparent 100px, 
+            rgba(255, 255, 255, 0.01) 100px, 
+            rgba(255, 255, 255, 0.01) 101px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- REMOVE STREAMLIT DEFAULT LINK ICONS --- */
+/* Esto elimina los cuadrados con enlaces que aparecen en los títulos */
+.stMarkdown h1 a, 
+.stMarkdown h2 a, 
+.stMarkdown h3 a,
+.stMarkdown h4 a,
+.stMarkdown h5 a,
+.stMarkdown h6 a {
+    display: none !important;
+}
+
+.stMarkdown h1:hover .stMarkdown h1 a,
+.stMarkdown h2:hover .stMarkdown h2 a,
+.stMarkdown h3:hover .stMarkdown h3 a {
+    display: none !important;
+}
+
+/* --- MAIN CONTENT CONTAINER --- */
+.main .block-container {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    max-width: 1400px;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- SIDEBAR ULTRA ELEGANT --- */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, 
+        rgba(10, 14, 39, 0.98) 0%, 
+        rgba(26, 26, 46, 0.97) 50%,
+        rgba(22, 33, 62, 0.96) 100%
+    );
+    backdrop-filter: blur(30px) saturate(200%);
+    border-right: 1px solid rgba(0, 212, 170, 0.15);
+    box-shadow: 
+        4px 0 30px rgba(0, 0, 0, 0.5),
+        inset -1px 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-testid="stSidebar"] > div:first-child {
     padding-top: 2rem;
-    padding-bottom: 2rem;
 }
 
-/* --- Custom Cards for Experience/Projects --- */
-/* Use this class later in st.markdown for boxes */
+/* --- PROFILE IMAGE (Vertical optimized) --- */
+[data-testid="stSidebar"] img[data-testid="stImage"] {
+    border-radius: 24px;
+    border: 3px solid transparent;
+    background: linear-gradient(var(--dark-base), var(--dark-base)) padding-box,
+                linear-gradient(135deg, var(--accent-color), var(--accent-purple)) border-box;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(76, 175, 80, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    width: 100% !important;
+    max-width: 240px;
+    height: auto !important;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 2rem auto;
+    filter: brightness(1.05) contrast(1.1);
+}
+
+[data-testid="stSidebar"] img[data-testid="stImage"]:hover {
+    transform: scale(1.02) translateY(-6px) rotateZ(-1deg);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(76, 175, 80, 0.4);
+    filter: brightness(1.1) contrast(1.15);
+}
+
+/* --- SIDEBAR TYPOGRAPHY --- */
+[data-testid="stSidebar"] h1 {
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem !important;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    text-shadow: var(--text-shadow);
+    letter-spacing: -0.02em;
+}
+
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] .stMarkdown {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    font-family: var(--font-display);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+/* --- SOCIAL LINKS WITH SVG ICONS --- */
+.social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    border-radius: 12px;
+    color: var(--accent-color) !important;
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    background: rgba(76, 175, 80, 0.15);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+    color: #66BB6A !important;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* --- BUTTONS (CV DOWNLOAD) --- */
+.stDownloadButton button,
+div.stButton > button {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #45a049 100%);
+    color: white;
+    border-radius: 14px;
+    border: none;
+    padding: 0.75rem 1.8rem;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    box-shadow: 
+        0 6px 20px rgba(76, 175, 80, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.stDownloadButton button::before,
+div.stButton > button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: var(--transition);
+}
+
+.stDownloadButton button:hover::before,
+div.stButton > button:hover::before {
+    left: 100%;
+}
+
+.stDownloadButton button:hover,
+div.stButton > button:hover {
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 10px 30px rgba(76, 175, 80, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* --- RADIO BUTTONS --- */
+[data-testid="stSidebar"] .stRadio > label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-family: var(--font-body);
+}
+
+/* --- HEADERS & TYPOGRAPHY (Main Content) --- */
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: var(--text-shadow);
+    letter-spacing: -0.03em;
+}
+
+h1 {
+    font-size: 3.5rem !important;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, 
+        #ffffff 0%, 
+        rgba(0, 212, 170, 0.9) 50%,
+        rgba(157, 78, 221, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(0, 212, 170, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
+    }
+}
+
+h2 {
+    font-size: 2.5rem !important;
+    margin: 4rem 0 2rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid transparent;
+    background: linear-gradient(90deg, 
+        rgba(76, 175, 80, 0.5) 0%, 
+        transparent 50%) bottom left / 100% 2px no-repeat;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    animation: lineGrow 2s ease-out;
+}
+
+@keyframes lineGrow {
+    from { width: 0; }
+    to { width: 100px; }
+}
+
+h3 {
+    font-size: 1.6rem !important;
+    color: var(--accent-color);
+    margin-bottom: 0.8rem;
+}
+
+p, li {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    font-family: var(--font-body);
+    font-weight: 300;
+}
+
+/* --- ABOUT SECTION (Elegant Text, No Expander) --- */
+.about-section {
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 170, 0.05) 0%, 
+        rgba(157, 78, 221, 0.03) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius);
+    padding: 3rem;
+    margin: 2rem 0 3rem 0;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(76, 175, 80, 0.08) 0%, 
+        transparent 70%);
+    animation: aboutGlow 8s ease-in-out infinite;
+}
+
+@keyframes aboutGlow {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, -20px); }
+}
+
+.about-section h2 {
+    font-family: var(--font-elegant);
+    font-size: 2.8rem !important;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: none;
+}
+
+.about-section h2::after {
+    display: none;
+}
+
+.about-section p {
+    font-family: var(--font-elegant);
+    font-size: 1.25rem;
+    line-height: 2;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+}
+
+.about-section .quote {
+    font-style: italic;
+    font-size: 1.15rem;
+    color: rgba(0, 212, 170, 0.9);
+    margin-top: 1.5rem;
+    padding-left: 2rem;
+    border-left: 3px solid var(--accent-color);
+}
+
+/* --- INFO BOX --- */
+.stAlert {
+    background: var(--card-bg);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(15px);
+    color: rgba(255, 255, 255, 0.9) !important;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* --- SKILLS SECTION (Colorful backgrounds) --- */
+.skills-section {
+    position: relative;
+    padding: 2rem 0;
+}
+
+[data-testid="column"] {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: var(--transition);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fondos diferentes por columna */
+[data-testid="column"]:nth-child(1) {
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 170, 0.08) 0%, 
+        rgba(0, 212, 170, 0.02) 100%);
+}
+
+[data-testid="column"]:nth-child(2) {
+    background: linear-gradient(135deg, 
+        rgba(157, 78, 221, 0.08) 0%, 
+        rgba(157, 78, 221, 0.02) 100%);
+}
+
+[data-testid="column"]:nth-child(3) {
+    background: linear-gradient(135deg, 
+        rgba(76, 175, 80, 0.08) 0%, 
+        rgba(76, 175, 80, 0.02) 100%);
+}
+
+[data-testid="column"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--accent-color), 
+        var(--accent-purple));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+[data-testid="column"]:hover {
+    background: var(--card-hover);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(76, 175, 80, 0.15);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+[data-testid="column"]:hover::before {
+    opacity: 1;
+}
+
+[data-testid="column"] h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem !important;
+    font-family: var(--font-display);
+}
+
+/* --- EXPERIENCE CARDS --- */
 .card {
-    background-color: #f0f2f6; /* Light gray suitable for light mode */
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.04) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        var(--accent-color), 
+        var(--accent-purple));
+    opacity: 0;
+    transition: var(--transition);
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateX(10px) translateY(-5px);
+    box-shadow: 
+        -5px 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(76, 175, 80, 0.15);
+    border-color: rgba(76, 175, 80, 0.3);
 }
 
-/* --- Profile Image Styling --- */
-/* Makes the profile picture circular and adds a border */
-img[data-testid="stImage"] {
-    border-radius: 50%;
-    border: 3px solid #4CAF50; /* Green accent for "Bio" feel */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.card:hover::before {
+    opacity: 1;
 }
 
-/* --- Custom Button Styling (Download CV) --- */
-/* Targets the download button specifically if possible, or general buttons */
-div.stButton > button:first-child {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 8px;
+.card h3 {
+    color: #ffffff !important;
+    margin-bottom: 0.6rem;
+    font-size: 1.5rem !important;
+    font-family: var(--font-display);
+}
+
+.card p {
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.9;
+}
+
+/* Tech Stack Tags */
+.card span {
+    background: rgba(76, 175, 80, 0.12) !important;
+    color: #66BB6A !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    font-size: 0.9em !important;
+    font-weight: 500 !important;
+    border: 1px solid rgba(76, 175, 80, 0.25) !important;
+    display: inline-block;
+    margin: 6px 6px 6px 0;
+    transition: var(--transition);
+    font-family: var(--font-body);
+}
+
+.card span:hover {
+    background: rgba(76, 175, 80, 0.2) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* --- TABS (PROJECTS) --- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 12px;
+    background: var(--card-bg);
+    padding: 0.8rem;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: transparent;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    font-family: var(--font-body);
+    padding: 0.8rem 1.5rem;
+    transition: var(--transition);
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background: rgba(76, 175, 80, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, 
+        var(--accent-color), 
+        var(--accent-purple)) !important;
+    color: white !important;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* --- ANIMATIONS --- */
+.element-container {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- DIVIDERS --- */
+hr {
     border: none;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
+    border-top: 1px solid rgba(76, 175, 80, 0.15);
+    margin: 3.5rem 0;
+    opacity: 0.6;
+    position: relative;
 }
 
-div.stButton > button:hover {
-    background-color: #45a049;
-    border-color: #45a049;
+hr::after {
+    content: '◆';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-base);
+    padding: 0 15px;
+    color: var(--accent-color);
+    font-size: 1.2rem;
 }
 
-/* --- Sidebar Fine-tuning --- */
-[data-testid="stSidebar"] {
-    background-color: #f9f9f9;
-    border-right: 1px solid #e0e0e0;
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
 }
 
-/* --- Dark Mode Support (Optional override) --- */
-@media (prefers-color-scheme: dark) {
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+        var(--accent-color), 
+        var(--accent-purple));
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, 
+        #66BB6A, 
+        #b388eb);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    h2 {
+        font-size: 2rem !important;
+    }
+    
+    .about-section {
+        padding: 2rem;
+    }
+    
     .card {
-        background-color: #262730;
-        color: white;
+        padding: 1.8rem;
     }
-    [data-testid="stSidebar"] {
-        background-color: #111;
-        border-right: 1px solid #333;
-    }
+}
+
+/* --- LOADING SPINNER --- */
+.stSpinner > div {
+    border-color: var(--accent-color) transparent transparent transparent;
 }
