@@ -1,3 +1,5 @@
 [server]
-fileWatcherType = "none"
+sslCertFile = "cert.pem"
+sslKeyFile = "key.pem"
 headless = true
+fileWatcherType = "none" # Mantenemos esto del arreglo anterior
