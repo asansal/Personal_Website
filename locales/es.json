@@ -301,7 +301,7 @@
             "type": "Certificación Profesional"
           },
           {
-            "name": "ICH Good Clinical Practice (GCP) E6 (R3) ",
+            "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
             "issuer": "The Global Health Network",
             "year": "2025",
             "type": "Certificación Técnica"
@@ -357,7 +357,7 @@
         },
         {
           "title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom",
-          "authors": "A. Sánchez-Salvador, M. de Vega ",
+          "authors": "A. Sánchez-Salvador, M. de Vega",
           "journal": "Biomolecules",
           "year": "2020",
           "doi": "10.3390/biom10020203",
