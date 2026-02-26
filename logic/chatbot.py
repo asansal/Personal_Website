@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-from google import genai
+import google.genai as genai
 import json
 import html as _html
 import os
@@ -67,24 +67,22 @@ def get_system_instruction(context_data: str) -> str:
 
 
 # --- SERVER-SIDE CHAT (Python fallback) ---
-def query_gemini(user_input: str, knowledge_context: str, api_key: str) -> str:
+def query_gemini(user_input: str, knowledge_context: str) -> str:
     """
     Envía la pregunta del usuario junto con el system prompt a Gemini Flash.
     Usado para llamadas server-side (testing, integraciones). El popup del
     portfolio llama a Gemini directamente desde JavaScript para mayor fluidez.
     """
-    if not api_key:
-        return "Error: API Key no configurada."
+    model = genai.GenerativeModel('gemini-1.5-flash')
+    system_instruction = get_system_instruction(knowledge_context)
+
     try:
-        client   = genai.Client(api_key=api_key)
-        prompt   = f"{get_system_instruction(knowledge_context)}\n\nUser Question: {user_input}"
-        response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=prompt,
+        response = model.generate_content(
+            f"{system_instruction}\n\nUser Question: {user_input}"
         )
         return response.text
-    except Exception as e:
-        return f"Lo siento, hubo un error de conexión. Por favor intenta más tarde. ({e})"
+    except Exception:
+        return "Lo siento, hubo un error de conexión. Por favor intenta más tarde."
 
 
 # --- CHATBOT POPUP INJECTION ---
