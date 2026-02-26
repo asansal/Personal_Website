@@ -369,7 +369,6 @@
     "chatbot_config": {
       "title": "Asistente Virtual",
       "welcome_message": "Bienvenido. Soy el asistente virtual de Alejandro Sánchez. Puede consultarme sobre su experiencia profesional, proyectos de Data Science, competencias técnicas o disponibilidad para nuevas oportunidades.",
-      "cv_download_text": "Descargar CV",
       "suggestions": [
         "¿Cuál es tu experiencia en Machine Learning?",
         "Cuéntame sobre tus proyectos de Data Science",
@@ -377,6 +376,7 @@
         "¿Cuál es tu disponibilidad para proyectos?"
       ]
     },
+    "cv_download_text": "Descargar CV",
     "contact_section": {
       "title": "Contacto Profesional",
       "cta": "¿Interesado en colaborar?",

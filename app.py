@@ -97,7 +97,7 @@ with st.sidebar:
     st.divider()
 
     # ── Descarga de CVs según idioma ───────────────────────────────
-    st.subheader(texts.get("chatbot_config", {}).get("cv_download_text", "Download CV"))
+    st.subheader(texts.get("cv_download_text", "Download CV"))
 
     cvs = {
         "en": [
