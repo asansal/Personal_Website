@@ -10,7 +10,7 @@ import os
 # --- CHATBOT INITIALIZATION ---
 def initialize_chatbot() -> str | None:
     """
-    Loads API key from secrets and configures the Generative AI model.
+    Loads API key from secrets and sets it as an environment variable.
     Returns the API key if successful, otherwise None.
     """
     try:
@@ -22,12 +22,7 @@ def initialize_chatbot() -> str | None:
         st.error("Google API Key no encontrada. Configura .streamlit/secrets.toml con GOOGLE_API_KEY.")
         return None
 
-    try:
-        genai.configure(api_key=api_key)
-    except Exception as e:
-        st.error(f"Error al configurar la API de Google GenAI: {e}")
-        return None
-
+    os.environ['GOOGLE_API_KEY'] = api_key
     return api_key
 
 
@@ -97,7 +92,7 @@ def query_gemini(user_input: str, knowledge_context: str) -> str:
     Usado para llamadas server-side (testing, integraciones). El popup del
     portfolio llama a Gemini directamente desde JavaScript para mayor fluidez.
     """
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     system_instruction = get_system_instruction(knowledge_context)
 
     try:
@@ -353,7 +348,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             // ── 3. LÓGICA DEL CHAT ───────────────────────────────────────────
             const GEMINI_API_KEY = {api_key_js};
             const SYSTEM_PROMPT  = {system_prompt_js};
-            const GEMINI_URL     = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + GEMINI_API_KEY;
+            const GEMINI_URL     = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" + GEMINI_API_KEY;
 
             let conversationHistory = [];
             let typingElement       = null;
