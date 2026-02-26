@@ -61,8 +61,6 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
 def get_system_instruction(context_data: str) -> str:
     """
     Construye el system prompt que se enviará al modelo.
-    Usada tanto por query_gemini() como por inject_chatbot_popup()
-    para las llamadas directas desde el navegador vía API REST.
     """
     return f"""
     You are the AI Assistant for a professional portfolio website.
@@ -85,23 +83,23 @@ def get_system_instruction(context_data: str) -> str:
     """
 
 
-# --- SERVER-SIDE CHAT (Python fallback) ---
+# --- SERVER-SIDE CHAT (llamada Python → Gemini) ---
 def query_gemini(user_input: str, knowledge_context: str) -> str:
     """
-    Envía la pregunta del usuario junto con el system prompt a Gemini Flash.
-    Usado para llamadas server-side (testing, integraciones). El popup del
-    portfolio llama a Gemini directamente desde JavaScript para mayor fluidez.
+    Envía la pregunta del usuario a Gemini Flash desde Python.
+    Esta función es la única que llama a la API; el popup JS ya no
+    llama directamente a Gemini, sino que delega en este backend.
     """
-    model = genai.GenerativeModel('gemini-2.5-flash')
-    system_instruction = get_system_instruction(knowledge_context)
-
     try:
-        response = model.generate_content(
-            f"{system_instruction}\n\nUser Question: {user_input}"
+        client = genai.Client()
+        system_instruction = get_system_instruction(knowledge_context)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=f"{system_instruction}\n\nUser Question: {user_input}",
         )
         return response.text
-    except Exception:
-        return "Lo siento, hubo un error de conexión. Por favor intenta más tarde."
+    except Exception as e:
+        return f"Lo siento, hubo un error al procesar tu pregunta. Por favor intenta más tarde. (Detalle: {e})"
 
 
 # --- CHATBOT POPUP INJECTION ---
@@ -109,23 +107,18 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     """
     Inyecta el chatbot flotante en la aplicación Streamlit.
 
-    Estrategia: todo el HTML, CSS y JS se genera dentro de un único
-    components.html() con height=0. El JS se encarga de inyectar los
-    elementos visuales directamente en window.parent.document.body,
-    evitando así que Streamlit procese o corte el HTML del popup.
-
-    Args:
-        bot_config: Diccionario con 'title' y 'welcome_message'.
-        kb_text:    Texto de la base de conocimiento (contexto para el LLM).
-        api_key:    Clave de la API de Gemini.
+    Estrategia actualizada:
+    - El popup HTML/CSS se inyecta en window.parent.document (como antes).
+    - Al enviar un mensaje, el JS escribe en un st.text_input oculto
+      (aria-label = '__cb_input__') y simula un Enter para forzar el rerun
+      de Streamlit. Python llama a Gemini y guarda la respuesta en un
+      <div id="cb-py-response" data-id="N"> oculto.
+    - El JS hace polling de ese div hasta que data-id cambia, y entonces
+      muestra la respuesta en el popup. Sin llamadas directas a la API
+      desde el navegador → sin problemas de CORS ni de claves expuestas.
     """
-    # Escapar valores que van dentro de template literals JS
     bot_title   = _html.escape(bot_config.get('title',           'AI Assistant'))
     bot_welcome = _html.escape(bot_config.get('welcome_message', 'Pregúntame sobre mi experiencia, habilidades y proyectos.'))
-
-    # json.dumps garantiza escape correcto para insertar en JS
-    system_prompt_js = json.dumps(get_system_instruction(kb_text))
-    api_key_js       = json.dumps(api_key)
 
     components.html(f"""
     <script>
@@ -345,20 +338,21 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             `;
             doc.body.appendChild(root);
 
-            // ── 3. LÓGICA DEL CHAT ───────────────────────────────────────────
-            const GEMINI_API_KEY = {api_key_js};
-            const SYSTEM_PROMPT  = {system_prompt_js};
-            const GEMINI_URL     = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" + GEMINI_API_KEY;
-
-            let conversationHistory = [];
-            let typingElement       = null;
+            // ── 3. LÓGICA DEL CHAT (bridge a Python) ────────────────────────
+            //
+            // En lugar de llamar a la API de Gemini desde el navegador,
+            // escribimos en el st.text_input oculto de Streamlit
+            // (aria-label = '__cb_input__'), simulamos un Enter para que
+            // Streamlit haga rerun y llame a Gemini en Python, y luego
+            // hacemos polling del div #cb-py-response hasta que cambia
+            // su data-id, señal de que la respuesta está lista.
+            //
+            let typingElement = null;
 
             // Toggle popup
             doc.getElementById('chatbotTrigger').addEventListener('click', function() {{
                 doc.getElementById('chatbotPopup').classList.toggle('active');
             }});
-
-            // Cerrar popup
             doc.getElementById('chatbotCloseBtn').addEventListener('click', function() {{
                 doc.getElementById('chatbotPopup').classList.remove('active');
             }});
@@ -378,45 +372,80 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 sendMessage();
             }});
 
-            async function sendMessage(suggestion) {{
+            // ── Escribe en el input oculto de Streamlit y simula Enter ──────
+            function triggerStreamlitInput(message) {{
+                // Streamlit identifica el widget por su aria-label
+                const stInput = doc.querySelector('input[aria-label="__cb_input__"]');
+                if (!stInput) {{
+                    console.warn('[Chatbot] No se encontró el input bridge de Streamlit.');
+                    return false;
+                }}
+                // Usamos el setter nativo para que React detecte el cambio
+                const nativeSetter = Object.getOwnPropertyDescriptor(
+                    window.parent.HTMLInputElement.prototype, 'value'
+                ).set;
+                nativeSetter.call(stInput, message);
+                stInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
+                // Simular Enter para que Streamlit haga submit del widget
+                ['keydown','keypress','keyup'].forEach(function(evtType) {{
+                    stInput.dispatchEvent(new KeyboardEvent(evtType, {{
+                        key: 'Enter', code: 'Enter', keyCode: 13,
+                        charCode: 13, which: 13, bubbles: true
+                    }}));
+                }});
+                return true;
+            }}
+
+            function sendMessage(suggestion) {{
                 const message = (suggestion !== undefined ? suggestion : inputEl.value).trim();
                 if (!message) return;
 
                 addMessage(message, 'user');
                 inputEl.value    = '';
                 inputEl.disabled = true;
-
-                conversationHistory.push({{ role: "user", parts: [{{ text: message }}] }});
                 showTypingIndicator();
 
-                try {{
-                    const response = await fetch(GEMINI_URL, {{
-                        method:  'POST',
-                        headers: {{ 'Content-Type': 'application/json' }},
-                        body: JSON.stringify({{
-                            system_instruction: {{ parts: [{{ text: SYSTEM_PROMPT }}] }},
-                            contents:           conversationHistory,
-                            generationConfig:   {{ temperature: 0.3, maxOutputTokens: 800 }}
-                        }})
-                    }});
+                // Leer el data-id actual del div de respuesta Python
+                const responseDiv = doc.getElementById('cb-py-response');
+                const baseId = responseDiv
+                    ? parseInt(responseDiv.getAttribute('data-id') || '0', 10)
+                    : 0;
 
-                    if (!response.ok) throw new Error("HTTP " + response.status);
-
-                    const data     = await response.json();
-                    const botReply = data.candidates[0].content.parts[0].text;
-
-                    conversationHistory.push({{ role: "model", parts: [{{ text: botReply }}] }});
+                // Disparar el rerun de Streamlit
+                const ok = triggerStreamlitInput(message);
+                if (!ok) {{
                     hideTypingIndicator();
-                    addMessage(botReply, 'bot');
-
-                }} catch (error) {{
-                    hideTypingIndicator();
-                    addMessage("Lo siento, hubo un error de conexión. Por favor intenta de nuevo.", 'bot');
-                    conversationHistory.pop();
-                }} finally {{
+                    addMessage('Error interno: no se pudo conectar con el servidor.', 'bot');
                     inputEl.disabled = false;
-                    inputEl.focus();
+                    return;
                 }}
+
+                // Polling hasta que data-id > baseId (respuesta nueva)
+                let elapsed = 0;
+                const maxWait = 60000;  // 60 s máximo
+                const interval = setInterval(function() {{
+                    elapsed += 500;
+                    const rd = doc.getElementById('cb-py-response');
+                    if (rd) {{
+                        const newId = parseInt(rd.getAttribute('data-id') || '0', 10);
+                        if (newId > baseId) {{
+                            clearInterval(interval);
+                            hideTypingIndicator();
+                            // Leer el texto escapado (el div usa textContent, no innerHTML)
+                            const botReply = rd.textContent || rd.innerText || '';
+                            addMessage(botReply.trim(), 'bot');
+                            inputEl.disabled = false;
+                            inputEl.focus();
+                            return;
+                        }}
+                    }}
+                    if (elapsed >= maxWait) {{
+                        clearInterval(interval);
+                        hideTypingIndicator();
+                        addMessage('Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.', 'bot');
+                        inputEl.disabled = false;
+                    }}
+                }}, 500);
             }}
 
             function addMessage(text, type) {{
