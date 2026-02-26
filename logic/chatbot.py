@@ -1,10 +1,34 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-import google.genai as genai
+import google.generativeai as genai
 import json
 import html as _html
 import os
+
+
+# --- CHATBOT INITIALIZATION ---
+def initialize_chatbot() -> str | None:
+    """
+    Loads API key from secrets and configures the Generative AI model.
+    Returns the API key if successful, otherwise None.
+    """
+    try:
+        api_key = st.secrets["GOOGLE_API_KEY"]
+    except (FileNotFoundError, KeyError):
+        api_key = os.getenv("GOOGLE_API_KEY", "")
+
+    if not api_key:
+        st.error("Google API Key no encontrada. Configura .streamlit/secrets.toml con GOOGLE_API_KEY.")
+        return None
+
+    try:
+        genai.configure(api_key=api_key)
+    except Exception as e:
+        st.error(f"Error al configurar la API de Google GenAI: {e}")
+        return None
+
+    return api_key
 
 
 # --- KNOWLEDGE BASE LOADING ---

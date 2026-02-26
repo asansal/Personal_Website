@@ -1,8 +1,6 @@
 import streamlit as st
-import google.genai as genai
-import os
 
-from logic.chatbot import load_knowledge_base, inject_chatbot_popup
+from logic.chatbot import load_knowledge_base, inject_chatbot_popup, initialize_chatbot
 from logic.utils import load_css
 
 
@@ -19,17 +17,10 @@ st.set_page_config(
 load_css("assets/css/style.css")
 
 
-# --- CONFIGURATION ---
-try:
-    GENAI_API_KEY = st.secrets["GOOGLE_API_KEY"]
-except (FileNotFoundError, KeyError):
-    GENAI_API_KEY = os.getenv("GOOGLE_API_KEY", "")
-
+# --- CHATBOT INITIALIZATION ---
+GENAI_API_KEY = initialize_chatbot()
 if not GENAI_API_KEY:
-    st.error("Google API Key no encontrada. Configura .streamlit/secrets.toml con GOOGLE_API_KEY.")
     st.stop()
-
-genai.configure(api_key=GENAI_API_KEY)
 
 
 # --- PAGE CONTENT ---
