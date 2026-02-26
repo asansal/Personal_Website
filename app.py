@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import html as _html
 import streamlit.components.v1 as components
 from logic import utils, chatbot
 
@@ -37,6 +38,12 @@ def load_config():
         return {"es": {"name": "Español", "flag": "🇪🇸"}}
 
 def inject_chatbot_popup(bot_config, kb_text, api_key):
+    # Escapar valores del JSON antes de incrustarlos en el HTML.
+    # Si el texto contiene ", ', < o > (muy habitual en JSON) el parser
+    # de Streamlit rompe el HTML y renderiza el resto como texto plano.
+    bot_title   = _html.escape(bot_config.get('title',           'AI Assistant'))
+    bot_welcome = _html.escape(bot_config.get('welcome_message', 'Pregúntame sobre mi experiencia, habilidades y proyectos.'))
+
     system_prompt_js = json.dumps(chatbot.get_system_instruction(kb_text))
     api_key_js       = json.dumps(api_key)
 
@@ -188,7 +195,7 @@ def inject_chatbot_popup(bot_config, kb_text, api_key):
             <div class="chatbot-header-content">
                 <div class="chatbot-avatar">🤖</div>
                 <div>
-                    <h3>{bot_config.get('title', 'AI Assistant')}</h3>
+                    <h3>{bot_title}</h3>
                     <div class="status"><div class="status-dot"></div><span>Online</span></div>
                 </div>
             </div>
@@ -204,7 +211,7 @@ def inject_chatbot_popup(bot_config, kb_text, api_key):
         <div class="chatbot-body" id="chatbotBody">
             <div class="welcome-message">
                 <h4>👋 ¡Bienvenido!</h4>
-                <p>{bot_config.get('welcome_message', 'Pregúntame sobre mi experiencia, habilidades y proyectos.')}</p>
+                <p>{bot_welcome}</p>
             </div>
         </div>
 
