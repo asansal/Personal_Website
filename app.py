@@ -1,6 +1,10 @@
 import streamlit as st
 import os
-from logic.chatbot import load_knowledge_base, initialize_chatbot
+from logic.chatbot import (
+    load_knowledge_base,
+    initialize_chatbot,
+    inject_chatbot_popup,
+)
 from logic.utils import (
     load_css,
     load_localization,
@@ -366,3 +370,16 @@ with st.container():
             f'</div>',
             unsafe_allow_html=True,
         )
+
+# --- CHATBOT POPUP ---
+if GENAI_API_KEY:
+    # Cargar la base de conocimiento y la configuración del bot
+    knowledge_base_text = load_knowledge_base()
+    bot_config = texts.get("chatbot_config", {})
+
+    # Inyectar el HTML/JS del popup del chatbot
+    inject_chatbot_popup(
+        bot_config=bot_config,
+        kb_text=knowledge_base_text,
+        api_key=GENAI_API_KEY,
+    )
