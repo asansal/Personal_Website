@@ -1,7 +1,6 @@
 import streamlit as st
-import html as _html
 import os
-from logic.chatbot import load_knowledge_base, inject_chatbot_popup, initialize_chatbot, query_gemini
+from logic.chatbot import load_knowledge_base, initialize_chatbot
 from logic.utils import (
     load_css,
     load_localization,
@@ -34,25 +33,24 @@ load_css("assets/css/style.css")
 # --- CHATBOT INITIALIZATION ---
 GENAI_API_KEY = initialize_chatbot()
 if not GENAI_API_KEY:
-    st.stop()
+    st.warning("⚠️ Chatbot no disponible: API key no configurada. El resto de la web funciona con normalidad.")
+    # No se detiene la app — el chatbot es un feature secundario
 
-# ─────────────────────────────────────────────────────────────────
-# CHAT BRIDGE: procesa mensajes pendientes del popup antes del render
-# ─────────────────────────────────────────────────────────────────
-knowledge_base_text = load_knowledge_base()
-
-if st.session_state.get("__cb_pending__") and knowledge_base_text:
-    pending_msg = st.session_state["__cb_pending__"]
-    bot_response = query_gemini(pending_msg, knowledge_base_text)
-    st.session_state["__cb_response__"] = bot_response
-    st.session_state["__cb_resp_id__"] = st.session_state.get("__cb_resp_id__", 0) + 1
-    # Limpiar el pending para no re-procesar en el próximo rerun
-    st.session_state["__cb_pending__"] = ""
+# --- SEO META DESCRIPTION ---
+seo_data = texts.get("seo", {})
+meta_desc = seo_data.get("meta_description", "")
+keywords = ", ".join(seo_data.get("keywords", []))
+if meta_desc:
+    st.markdown(
+        f'<meta name="description" content="{meta_desc}">'
+        f'<meta name="keywords" content="{keywords}">',
+        unsafe_allow_html=True,
+    )
 
 # --- SIDEBAR ---
 with st.sidebar:
     # ── Selector de idioma (arriba del todo) ──────────────────────
-    st.subheader("🌐 Idioma / Language")
+    st.subheader("Idioma / Language")
 
     # Crear lista de opciones para el selectbox
     lang_options = {f"{info['flag']} {info['name']}": code for code, info in languages.items()}
@@ -86,13 +84,26 @@ with st.sidebar:
     )
     st.title(profile_data.get("name", ""))
     st.write(profile_data.get("role", ""))
-    st.write(f"📍 {profile_data.get('location', '')}")
+    st.write(profile_data.get('location', ''))
 
     socials = profile_data.get("socials", {})
-    social_links_html = "".join(
-        [f'<a href="{link}" target="_blank" class="social-link">{icon.capitalize()}</a>' for icon, link in socials.items()]
-    )
+    social_links_html = ""
+    for icon, link in socials.items():
+        href = f"mailto:{link}" if icon == "email" else link
+        target = "" if icon == "email" else 'target="_blank"'
+        social_links_html += f'<a href="{href}" {target} class="social-link">{icon.capitalize()}</a>'
     st.markdown(f'<div class="social-links-container">{social_links_html}</div>', unsafe_allow_html=True)
+
+    # ── Badge de disponibilidad (estilo sutil) ─────────────────────
+    availability_text = profile_data.get("availability", "")
+    if availability_text:
+        st.markdown(
+            f'<div style="margin-top:10px;">'
+            f'<span style="background:#1F7033;color:#9DCCA9;padding:3px 9px;border-radius:4px;font-size:0.75em;letter-spacing:0.02em;">'
+            f'&#9679; {availability_text}'
+            f'</span></div>',
+            unsafe_allow_html=True,
+        )
 
     st.divider()
 
@@ -121,7 +132,7 @@ with st.sidebar:
         pdf_bytes = read_pdf_byte_stream(cv["path"])
         if pdf_bytes:
             st.download_button(
-                label=f"📄 {cv['label']}",
+                label=cv['label'],
                 data=pdf_bytes,
                 file_name=os.path.basename(cv["path"]),
                 mime="application/octet-stream",
@@ -176,11 +187,22 @@ st.divider()
 exp_data = texts.get("experience_section", {})
 with st.container():
     st.header(exp_data.get("title", "Experience"))
-    for item in exp_data.get("items", []):
+    # Ordenar por periodo descendente (full-time primero, luego freelance/capstone)
+    exp_items = sorted(
+        exp_data.get("items", []),
+        key=lambda x: x.get("period", "").split(" - ")[-1],
+        reverse=True,
+    )
+    for item in exp_items:
         with st.expander(f"**{item.get('role')}** at **{item.get('company')}** | {item.get('period')}", expanded=True):
-            st.markdown(f"_{item.get('location')}_ - _{item.get('type')}_")
+            st.markdown(f"_{item.get('location')}_ — _{item.get('type')}_")
             st.markdown(item.get("description", ""))
             st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
+            achievements = item.get("achievements", [])
+            if achievements:
+                st.markdown("**Logros principales:**")
+                for achievement in achievements:
+                    st.markdown(f"- {achievement}")
 
 st.divider()
 
@@ -215,7 +237,7 @@ with st.container():
                     for highlight in item.get("highlights", []):
                         st.markdown(f"- {highlight}")
                 if item.get("link"):
-                    st.markdown(f"🔗 [View on GitHub]({item.get('link')})")
+                    st.markdown(f"[Ver en GitHub]({item.get('link')})")
 st.divider()
 
 # Publications section
@@ -228,7 +250,7 @@ with st.container():
             st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
             st.write(item.get("description", ""))
             if item.get("doi"):
-                st.markdown(f"🔗 [View Publication (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
+                    st.markdown(f"[Ver publicación (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
 st.divider()
 
 # Certifications section
@@ -245,7 +267,13 @@ with st.container():
             cols = st.columns(len(lang_items))
             for i, item in enumerate(lang_items):
                 with cols[i]:
-                    st.metric(label=item.get('language'), value=item.get('level'), delta=item.get('proficiency', None))
+                    # delta_color="off" elimina la flecha verde/roja que no tiene sentido semántico
+                    st.metric(
+                        label=item.get('language'),
+                        value=item.get('level'),
+                        delta=item.get('proficiency', None),
+                        delta_color="off",
+                    )
 
     st.markdown("---") # Visual separator
 
@@ -266,64 +294,75 @@ with st.container():
 
     availability = contact_data.get("availability", "")
     if availability:
-        st.info(f"{availability}2026.")
+        st.markdown(
+            f'<div style="margin:12px 0;">'
+            f'<span style="background:#1F7033;color:#9DCCA9;padding:6px 14px;border-radius:6px;font-size:0.9em;display:inline-block;">'
+            f'&#9679; {availability}'
+            f'</span></div>',
+            unsafe_allow_html=True,
+        )
 
     socials = contact_data.get("contact_methods", {})
     if socials:
-        copy_feedback_text = texts.get("email_copied_feedback", "Copied!")
+        copy_feedback_text = texts.get("email_copied_feedback", "¡Copiado!")
+        email_tooltip = texts.get('copy_email_tooltip', 'Copiar email al portapapeles')
+
+        # JS robusto con fallback execCommand para entornos sin HTTPS o sin Clipboard API
         js = f"""
         <script>
-        function copyToClipboard(text, feedbackId) {{
-            navigator.clipboard.writeText(text).then(function() {{
+        function copyEmailRobust(text, feedbackId) {{
+            function showFeedback() {{
                 var feedback = document.getElementById(feedbackId);
                 if (feedback) {{
-                    feedback.innerText = `{copy_feedback_text}`;
+                    feedback.innerText = '{copy_feedback_text}';
                     feedback.style.display = 'inline';
-                    setTimeout(function(){{ feedback.style.display = 'none'; }}, 2000);
+                    setTimeout(function() {{ feedback.style.display = 'none'; }}, 2500);
                 }}
-            }}, function(err) {{
-                console.error('Could not copy text: ', err);
-            }});
+            }}
+            if (navigator.clipboard && window.isSecureContext) {{
+                navigator.clipboard.writeText(text).then(showFeedback, function() {{
+                    fallbackCopy(text, showFeedback);
+                }});
+            }} else {{
+                fallbackCopy(text, showFeedback);
+            }}
+        }}
+        function fallbackCopy(text, callback) {{
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {{ document.execCommand('copy'); if (callback) callback(); }}
+            catch (e) {{ console.error('Copy failed:', e); }}
+            document.body.removeChild(textarea);
         }}
         </script>
         """
         st.markdown(js, unsafe_allow_html=True)
 
         links_html_parts = []
-        email_tooltip = texts.get('copy_email_tooltip', 'Copy email to clipboard')
         for key, value in socials.items():
             if key == "email":
-                html = f'<a href="#" onclick="copyToClipboard(\'{value}\', \'copy-feedback-contact\'); return false;" class="social-link" title="{email_tooltip}">{key.capitalize()}</a>'
+                html = (
+                    f'<a href="mailto:{value}" '
+                    f'onclick="copyEmailRobust(\'{value}\', \'copy-feedback-contact\'); return true;" '
+                    f'class="social-link" title="{email_tooltip}">'
+                    f'{key.capitalize()}</a>'
+                )
                 links_html_parts.append(html)
             else:
                 html = f'<a href="{value}" target="_blank" class="social-link">{key.capitalize()}</a>'
                 links_html_parts.append(html)
 
-        feedback_html = '<span id="copy-feedback-contact" style="display:none; color:green; margin-left:10px;"></span>'
+        feedback_html = '<span id="copy-feedback-contact" style="display:none; color:green; margin-left:10px; font-weight:bold;"></span>'
         links_html = " | ".join(links_html_parts)
-        st.markdown(f'<div class="social-links-container">{links_html}{feedback_html}</div>', unsafe_allow_html=True)
-
-# ─────────────────────────────────────────────────────────────────
-# CHAT BRIDGE: input oculto que el popup JS escribe para hacer rerun
-# ─────────────────────────────────────────────────────────────────
-# El popup JS detecta este input por su aria-label y lo escribe
-# antes de simular Enter → Streamlit hace rerun → Python llama a Gemini
-# → la respuesta aparece en el div oculto → JS la lee y la muestra.
-cb_input_val = st.text_input(
-    "__cb_input__",
-    key="__cb_pending__",
-    label_visibility="collapsed",
-)
-
-# Div oculto con la última respuesta del bot (el JS lo lee con polling)
-resp_id   = st.session_state.get("__cb_resp_id__", 0)
-resp_text = _html.escape(st.session_state.get("__cb_response__", ""))
-st.markdown(
-    f'<div id="cb-py-response" data-id="{resp_id}" style="display:none">{resp_text}</div>',
-    unsafe_allow_html=True,
-)
-
-# --- CHATBOT POPUP INJECTION ---
-if knowledge_base_text:
-    bot_config = texts.get("chatbot_config", {})
-    inject_chatbot_popup(bot_config, knowledge_base_text, GENAI_API_KEY)
+        # Centrado y con separador superior
+        st.markdown(
+            f'<div style="text-align:center; margin-top:24px; padding-top:20px; border-top:1px solid #e0e0e0;">'
+            f'{links_html}{feedback_html}'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
