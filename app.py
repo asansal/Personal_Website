@@ -1,6 +1,5 @@
 import streamlit as st
 import json
-import streamlit.components.v1 as components
 from logic import utils, chatbot
 
 # --- PAGE CONFIGURATION ---
@@ -13,6 +12,13 @@ st.set_page_config(
 
 # --- LOAD STYLES ---
 utils.load_css("assets/css/style.css")
+
+# --- API KEY ---
+# Leída aquí para poder pasarla al chatbot popup (JS necesita llamar a Gemini directamente)
+try:
+    GENAI_API_KEY = st.secrets["GOOGLE_API_KEY"]
+except Exception:
+    GENAI_API_KEY = ""
 
 # --- HELPER FUNCTIONS ---
 def load_localization(lang_code):
@@ -32,10 +38,22 @@ def load_config():
     except FileNotFoundError:
         return {"es": {"name": "Español", "flag": "🇪🇸"}}
 
-def inject_chatbot_popup(bot_config, kb_text):
-    """Inyecta el chatbot popup flotante con diseño profesional"""
+def inject_chatbot_popup(bot_config, kb_text, api_key):
+    """
+    Inyecta el chatbot popup flotante con diseño profesional.
     
-    # JavaScript para comunicación bidireccional
+    CORRECCIÓN CLAVE: Usa st.markdown() en lugar de components.html() para que
+    position:fixed funcione en el DOM principal y no quede atrapado en un iframe.
+    
+    La llamada a Gemini se hace directamente desde JS para evitar el ciclo
+    de re-render de Streamlit y que el chat sea fluido.
+    """
+    
+    # Preparamos el system prompt y la API key de forma segura para JS
+    # json.dumps escapa automáticamente caracteres problemáticos (backticks, $, etc.)
+    system_prompt_js = json.dumps(chatbot.get_system_instruction(kb_text))
+    api_key_js = json.dumps(api_key)
+    
     popup_html = f"""
     <style>
     /* CHATBOT POPUP STYLES */
@@ -495,10 +513,20 @@ def inject_chatbot_popup(bot_config, kb_text):
     </div>
     
     <script>
-    // Estado del chat
-    let chatHistory = [];
-    
-    // Toggle chatbot
+    // -------------------------------------------------------
+    // CONFIGURACIÓN: API key y system prompt inyectados
+    // de forma segura desde Python mediante json.dumps()
+    // -------------------------------------------------------
+    const GEMINI_API_KEY = {api_key_js};
+    const SYSTEM_PROMPT  = {system_prompt_js};
+    const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + GEMINI_API_KEY;
+
+    // Historial de conversación para soporte multi-turno
+    let conversationHistory = [];
+
+    // -------------------------------------------------------
+    // Toggle del popup
+    // -------------------------------------------------------
     document.getElementById('chatbotTrigger').addEventListener('click', function() {{
         const popup = document.getElementById('chatbotPopup');
         popup.classList.toggle('active');
@@ -508,6 +536,9 @@ def inject_chatbot_popup(bot_config, kb_text):
         document.getElementById('chatbotPopup').classList.remove('active');
     }});
     
+    // -------------------------------------------------------
+    // Chips de sugerencias rápidas
+    // -------------------------------------------------------
     function sendSuggestion(text) {{
         document.getElementById('chatbot-input').value = text;
         sendMessage();
@@ -519,42 +550,74 @@ def inject_chatbot_popup(bot_config, kb_text):
         }}
     }}
     
+    // -------------------------------------------------------
+    // Envío del mensaje y llamada DIRECTA a Gemini API
+    // -------------------------------------------------------
     async function sendMessage() {{
         const input = document.getElementById('chatbot-input');
         const message = input.value.trim();
         
         if (message === '') return;
         
+        // Renderizar mensaje del usuario
         addMessage(message, 'user');
         input.value = '';
+        input.disabled = true;
+        
+        // Añadir al historial (formato Gemini: role "user" / "model")
+        conversationHistory.push({{
+            role: "user",
+            parts: [{{ text: message }}]
+        }});
         
         showTypingIndicator();
         
         try {{
-            // Enviar mensaje a Streamlit para procesarlo
-            const response = await fetch('/component/chatbot.query_gemini', {{
+            const response = await fetch(GEMINI_URL, {{
                 method: 'POST',
                 headers: {{ 'Content-Type': 'application/json' }},
-                body: JSON.stringify({{ 
-                    query: message,
-                    kb_text: `{kb_text.replace('`', '\\`')[:1000]}`  // Primeros 1000 chars
+                body: JSON.stringify({{
+                    system_instruction: {{
+                        parts: [{{ text: SYSTEM_PROMPT }}]
+                    }},
+                    contents: conversationHistory,
+                    generationConfig: {{
+                        temperature: 0.3,
+                        maxOutputTokens: 800
+                    }}
                 }})
             }});
             
-            hideTypingIndicator();
+            if (!response.ok) {{
+                throw new Error("HTTP " + response.status);
+            }}
             
-            // Simulación de respuesta (en producción esto vendría del backend)
-            setTimeout(() => {{
-                const botResponse = "Gracias por tu pregunta. Estoy aquí para ayudarte con información sobre mi experiencia en Data Science, AI y Bioinformática.";
-                addMessage(botResponse, 'bot');
-            }}, 500);
+            const data = await response.json();
+            const botReply = data.candidates[0].content.parts[0].text;
+            
+            // Guardar respuesta en el historial
+            conversationHistory.push({{
+                role: "model",
+                parts: [{{ text: botReply }}]
+            }});
+            
+            hideTypingIndicator();
+            addMessage(botReply, 'bot');
             
         }} catch (error) {{
             hideTypingIndicator();
-            addMessage("Lo siento, hubo un error. Por favor intenta de nuevo.", 'bot');
+            addMessage("Lo siento, hubo un error de conexión. Por favor intenta de nuevo.", 'bot');
+            // Si falló, quitamos el último mensaje del usuario del historial
+            conversationHistory.pop();
+        }} finally {{
+            input.disabled = false;
+            input.focus();
         }}
     }}
     
+    // -------------------------------------------------------
+    // Helpers de UI
+    // -------------------------------------------------------
     function addMessage(text, type) {{
         const chatBody = document.getElementById('chatbotBody');
         const messageDiv = document.createElement('div');
@@ -573,8 +636,6 @@ def inject_chatbot_popup(bot_config, kb_text):
         chatBody.appendChild(messageDiv);
         
         chatBody.scrollTop = chatBody.scrollHeight;
-        
-        chatHistory.push({{ role: type, content: text }});
     }}
     
     let typingElement = null;
@@ -610,7 +671,151 @@ def inject_chatbot_popup(bot_config, kb_text):
     </script>
     """
     
-    components.html(popup_html, height=0)
+    # -------------------------------------------------------
+    # CORRECCIÓN PRINCIPAL: st.markdown() en lugar de
+    # components.html(height=0). El HTML se inyecta en el
+    # DOM principal → position:fixed funciona correctamente.
+    # -------------------------------------------------------
+# --- Parte 1: HTML + CSS al DOM principal (position:fixed funciona aquí) ---
+    st.markdown(popup_html_sin_script, unsafe_allow_html=True)
+
+    # --- Parte 2: JS en components.html, accede al DOM principal via window.parent.document ---
+    components.html(f"""
+    <script>
+    (function() {{
+        // Apuntamos al documento PADRE (el DOM principal de Streamlit)
+        const doc = window.parent.document;
+
+        const GEMINI_API_KEY = {api_key_js};
+        const SYSTEM_PROMPT  = {system_prompt_js};
+        const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + GEMINI_API_KEY;
+
+        let conversationHistory = [];
+        let typingElement = null;
+
+        // Toggle del popup
+        doc.getElementById('chatbotTrigger').addEventListener('click', function() {{
+            doc.getElementById('chatbotPopup').classList.toggle('active');
+        }});
+
+        doc.getElementById('closeChat').addEventListener('click', function() {{
+            doc.getElementById('chatbotPopup').classList.remove('active');
+        }});
+
+        // Chips de sugerencias — redefinimos en el scope del padre
+        window.parent.sendSuggestion = function(text) {{
+            doc.getElementById('chatbot-input').value = text;
+            window.parent.sendMessage();
+        }};
+
+        window.parent.handleEnter = function(event) {{
+            if (event.key === 'Enter') window.parent.sendMessage();
+        }};
+
+        window.parent.sendMessage = async function() {{
+            const input = doc.getElementById('chatbot-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+            input.disabled = true;
+
+            conversationHistory.push({{
+                role: "user",
+                parts: [{{ text: message }}]
+            }});
+
+            showTypingIndicator();
+
+            try {{
+                const response = await fetch(GEMINI_URL, {{
+                    method: 'POST',
+                    headers: {{ 'Content-Type': 'application/json' }},
+                    body: JSON.stringify({{
+                        system_instruction: {{
+                            parts: [{{ text: SYSTEM_PROMPT }}]
+                        }},
+                        contents: conversationHistory,
+                        generationConfig: {{
+                            temperature: 0.3,
+                            maxOutputTokens: 800
+                        }}
+                    }})
+                }});
+
+                if (!response.ok) throw new Error("HTTP " + response.status);
+
+                const data = await response.json();
+                const botReply = data.candidates[0].content.parts[0].text;
+
+                conversationHistory.push({{
+                    role: "model",
+                    parts: [{{ text: botReply }}]
+                }});
+
+                hideTypingIndicator();
+                addMessage(botReply, 'bot');
+
+            }} catch (error) {{
+                hideTypingIndicator();
+                addMessage("Lo siento, hubo un error de conexión. Por favor intenta de nuevo.", 'bot');
+                conversationHistory.pop();
+            }} finally {{
+                input.disabled = false;
+                input.focus();
+            }}
+        }};
+
+        function addMessage(text, type) {{
+            const chatBody = doc.getElementById('chatbotBody');
+            const messageDiv = doc.createElement('div');
+            messageDiv.className = `chat-message ${{type}}`;
+
+            const avatar = doc.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = type === 'bot' ? '🤖' : '👤';
+
+            const bubble = doc.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = text;
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(bubble);
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }}
+
+        function showTypingIndicator() {{
+            const chatBody = doc.getElementById('chatbotBody');
+            const messageDiv = doc.createElement('div');
+            messageDiv.className = 'chat-message bot';
+            messageDiv.id = 'typing-indicator';
+
+            const avatar = doc.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = '🤖';
+
+            const typingDiv = doc.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(typingDiv);
+            chatBody.appendChild(messageDiv);
+            typingElement = messageDiv;
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }}
+
+        function hideTypingIndicator() {{
+            if (typingElement) {{
+                typingElement.remove();
+                typingElement = null;
+            }}
+        }}
+    }})();
+    </script>
+    """, height=0)
 
 # ============================================
 # MAIN APP LOGIC
@@ -671,7 +876,6 @@ with st.sidebar:
     st.markdown("---")
 
 # 1. Definir los archivos según el idioma seleccionado
-    # Asumimos que la variable 'selected_lang' viene del selectbox que tienes más arriba
     if selected_lang == 'es':
         cv_options = {
             "Data Scientist": "assets/files/CV_Data_Science_ES_2026_Alejandro_Sanchez.pdf",
@@ -690,7 +894,6 @@ with st.sidebar:
         }
 
     # 2. Selector de versión (Data Scientist vs Analyst)
-    # Usamos key única para evitar errores de duplicidad de widgets si recarga
     selected_cv_key = st.radio(
         "Perfil", 
         list(cv_options.keys()),
@@ -705,7 +908,6 @@ with st.sidebar:
         st.download_button(
             label=texts.get('chatbot_config', {}).get('cv_download_text', 'Descargar CV'),
             data=pdf_data,
-            # El nombre del archivo al descargar se adapta automáticamente
             file_name=current_cv_path.split("/")[-1], 
             mime="application/pdf",
         )
@@ -813,7 +1015,6 @@ st.header(proj_sec.get('title', 'Proyectos'))
 
 projects = proj_sec.get('items', [])
 if projects:
-    # Agrupar por tipo o categoría
     project_types = list(set([p.get('type', p.get('category', 'General')) for p in projects]))
     tabs = st.tabs(project_types)
 
@@ -821,7 +1022,6 @@ if projects:
         with tabs[i]:
             type_projects = [p for p in projects if p.get('type', p.get('category', 'General')) == p_type]
             for idx, p in enumerate(type_projects):
-                # Highlights si existen
                 highlights_html = ""
                 if 'highlights' in p and p['highlights']:
                     highlights_html = "<div style='margin-top: 1rem; padding: 1rem; background: rgba(76, 175, 80, 0.05); border-left: 3px solid var(--accent-color); border-radius: 8px;'>"
@@ -830,7 +1030,6 @@ if projects:
                         highlights_html += f"<li style='margin-bottom: 0.4rem;'>{highlight}</li>"
                     highlights_html += "</ul></div>"
                 
-                # Year y link
                 year_info = f" <span style='color: #999;'>({p['year']})</span>" if 'year' in p else ""
                 link_html = f"<a href='{p['link']}' target='_blank' style='color: var(--accent-color); text-decoration: none;'>Ver proyecto →</a>" if p.get('link') else ""
                 
@@ -853,7 +1052,6 @@ edu_sec = texts.get('education_section', {})
 st.header(edu_sec.get('title', 'Educación'))
 
 for item in edu_sec.get('items', []):
-    # Highlights si existen
     highlights_html = ""
     if 'highlights' in item and item['highlights']:
         highlights_html = "<ul style='margin-top: 0.8rem; margin-left: 1.5rem; color: rgba(255,255,255,0.75); font-size: 0.95rem;'>"
@@ -861,7 +1059,6 @@ for item in edu_sec.get('items', []):
             highlights_html += f"<li style='margin-bottom: 0.4rem;'>{highlight}</li>"
         highlights_html += "</ul>"
     
-    # Location y type si existen
     meta = ""
     if 'location' in item:
         meta += f" <span style='color: #999; font-size: 0.9rem;'>• {item['location']}</span>"
@@ -929,9 +1126,10 @@ if pubs_sec and 'items' in pubs_sec:
         """, unsafe_allow_html=True)
 
 # --- INJECT CHATBOT POPUP ---
+# CORRECCIÓN: se pasa api_key para que JS pueda llamar a Gemini directamente
 bot_config = texts.get('chatbot_config', {})
 kb_text = chatbot.load_knowledge_base()
-inject_chatbot_popup(bot_config, kb_text)
+inject_chatbot_popup(bot_config, kb_text, api_key=GENAI_API_KEY)
 
 # --- FOOTER ---
 st.markdown("---")

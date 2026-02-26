@@ -5,15 +5,14 @@ import os
 
 # --- CONFIGURATION ---
 # Load API Key from Streamlit secrets
-# Ensure your .streamlit/secrets.toml has [general] or just GOOGLE_API_KEY
 try:
     GENAI_API_KEY = st.secrets["GOOGLE_API_KEY"]
-except FileNotFoundError:
-    # Fallback for local testing without secrets file (not recommended for prod)
-    GENAI_API_KEY = os.getenv("GOOGLE_API_KEY")
+except (FileNotFoundError, KeyError):
+    # Fallback para testing local sin secrets file
+    GENAI_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
 if not GENAI_API_KEY:
-    st.error("Google API Key not found. Please configure .streamlit/secrets.toml")
+    st.error("Google API Key no encontrada. Configura .streamlit/secrets.toml con GOOGLE_API_KEY.")
     st.stop()
 
 genai.configure(api_key=GENAI_API_KEY)
@@ -22,22 +21,19 @@ genai.configure(api_key=GENAI_API_KEY)
 @st.cache_data
 def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     """
-    Loads the CSV knowledge base and converts it into a structured text format
-    that the LLM can understand as context.
+    Carga el CSV de conocimiento y lo convierte en texto estructurado
+    que el LLM puede entender como contexto.
     
-    Expected CSV columns: Category, Topic, Content
+    Columnas esperadas en el CSV: Category, Topic, Content
     """
     try:
         df = pd.read_csv(file_path)
         
-        # Check if required columns exist
         required_columns = ["Category", "Topic", "Content"]
         if not all(col in df.columns for col in required_columns):
-            st.error(f"CSV format error. Required columns: {required_columns}")
+            st.error(f"Error de formato en el CSV. Columnas requeridas: {required_columns}")
             return ""
 
-        # Convert dataframe to a string representation for the prompt context
-        # Format: [Category] Topic: Content
         context_text = ""
         for _, row in df.iterrows():
             context_text += f"[{row['Category']}] {row['Topic']}: {row['Content']}\n"
@@ -45,16 +41,20 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
         return context_text
         
     except FileNotFoundError:
-        st.error(f"Knowledge base file not found at: {file_path}")
+        st.error(f"Archivo de conocimiento no encontrado en: {file_path}")
         return ""
     except Exception as e:
-        st.error(f"Error loading knowledge base: {e}")
+        st.error(f"Error cargando la base de conocimiento: {e}")
         return ""
 
 # --- SYSTEM PROMPT DEFINITION ---
 def get_system_instruction(context_data: str) -> str:
     """
-    Constructs the rigid system prompt to prevent hallucinations.
+    Construye el system prompt que se enviará al modelo.
+    
+    Esta función es usada tanto por query_gemini() (llamadas desde Python)
+    como por inject_chatbot_popup() en app.py (la inyecta en JS para 
+    llamadas directas al API REST de Gemini desde el navegador).
     """
     return f"""
     You are the AI Assistant for a professional portfolio website. 
@@ -77,22 +77,18 @@ def get_system_instruction(context_data: str) -> str:
     """
 
 # --- MAIN CHAT FUNCTION ---
-def query_gemini(user_input: str, knowledge_context: str):
+def query_gemini(user_input: str, knowledge_context: str) -> str:
     """
-    Sends the user query along with the system instruction to Gemini Flash.
-    """
-    # Initialize the model (Gemini 1.5 Flash is efficient for this)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    Envía la pregunta del usuario junto con el system prompt a Gemini Flash.
     
-    # Construct the full prompt
+    Nota: Esta función se usa para llamadas desde Python (e.g., testing, 
+    integraciones server-side). El chatbot popup del portfolio llama a 
+    Gemini directamente desde JavaScript para mayor fluidez.
+    """
+    model = genai.GenerativeModel('gemini-1.5-flash')
     system_instruction = get_system_instruction(knowledge_context)
     
-    # We use a chat session logic or simple generation depending on needs.
-    # For a simple Q&A, generate_content is sufficient and stateless (cheaper).
-    # If we wanted memory of the conversation, we would use start_chat.
-    
     try:
-        # Combining system instruction + user query is a common pattern for 1-shot Q&A
         response = model.generate_content(
             f"{system_instruction}\n\nUser Question: {user_input}"
         )
