@@ -381,43 +381,42 @@ with st.container():
             unsafe_allow_html=True,
         )
 
-# --- CHATBOT BACKEND BRIDGE ---
-# This section handles the logic for receiving a query from the frontend JS,
-# calling the Gemini backend, and storing the response for the JS to poll.
+st.divider()
 
-def handle_chatbot_query():
-    """Callback function to process user input from the chatbot."""
-    if st.session_state.cb_input:
-        user_query = st.session_state.cb_input
-        st.session_state.cb_input = ""  # Clear after processing
-
-        kb_text = load_knowledge_base()
-        response = query_gemini(user_query, kb_text)
-
-        st.session_state.chatbot_query_id += 1
-        st.session_state.chatbot_response = response
-
-# Hidden input widget that the JS popup writes to. The on_change callback
-# triggers the Python logic to run.
-st.text_input(
-    "__cb_input__",
-    key="cb_input",
-    on_change=handle_chatbot_query,
-    label_visibility="collapsed",
-)
-
-# Hidden div that holds the response from Python. JS polls this element
-# for changes to its 'data-id' attribute to know when a new response is ready.
-# We use html.escape to prevent potential XSS issues from the LLM response.
-st.markdown(
-    f'<div id="cb-py-response" data-id="{st.session_state.chatbot_query_id}">'
-    f'{_html.escape(st.session_state.chatbot_response)}</div>',
-    unsafe_allow_html=True,
-)
-
-
-# --- CHATBOT POPUP ---
+# --- CHATBOT BACKEND BRIDGE & POPUP ---
 if GENAI_API_KEY:
+    # This section handles the logic for receiving a query from the frontend JS,
+    # calling the Gemini backend, and storing the response for the JS to poll.
+    def handle_chatbot_query():
+        """Callback function to process user input from the chatbot."""
+        if st.session_state.cb_input:
+            user_query = st.session_state.cb_input
+            st.session_state.cb_input = ""  # Clear after processing
+
+            kb_text = load_knowledge_base()
+            response = query_gemini(user_query, kb_text)
+
+            st.session_state.chatbot_query_id += 1
+            st.session_state.chatbot_response = response
+
+    # Hidden input widget that the JS popup writes to. The on_change callback
+    # triggers the Python logic to run.
+    st.text_input(
+        "__cb_input__",
+        key="cb_input",
+        on_change=handle_chatbot_query,
+        label_visibility="collapsed",
+    )
+
+    # Hidden div that holds the response from Python. JS polls this element
+    # for changes to its 'data-id' attribute to know when a new response is ready.
+    # We use html.escape to prevent potential XSS issues from the LLM response.
+    st.markdown(
+        f'<div id="cb-py-response" data-id="{st.session_state.chatbot_query_id}">'
+        f'{_html.escape(st.session_state.chatbot_response)}</div>',
+        unsafe_allow_html=True,
+    )
+
     # Cargar la base de conocimiento y la configuración del bot
     knowledge_base_text = load_knowledge_base()
     bot_config = texts.get("chatbot_config", {})
