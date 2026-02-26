@@ -53,15 +53,27 @@ if st.session_state.get("__cb_pending__") and knowledge_base_text:
 with st.sidebar:
     # ── Selector de idioma (arriba del todo) ──────────────────────
     st.subheader("🌐 Idioma / Language")
-    lang_cols = st.columns(len(languages))
-    for i, (lang_code, lang_info) in enumerate(languages.items()):
-        if lang_cols[i].button(
-            f"{lang_info['flag']} {lang_info['name']}",
-            key=f"lang_btn_{lang_code}",
-            use_container_width=True,
-        ):
-            st.session_state.lang = lang_code
-            st.rerun()
+
+    # Crear lista de opciones para el selectbox
+    lang_options = {f"{info['flag']} {info['name']}": code for code, info in languages.items()}
+    # Obtener el nombre de la opción actual
+    current_lang_name = next(
+        (name for name, code in lang_options.items() if code == st.session_state.lang),
+        list(lang_options.keys())[0]  # Fallback
+    )
+
+    selected_lang_name = st.selectbox(
+        "Select a language",
+        options=list(lang_options.keys()),
+        index=list(lang_options.keys()).index(current_lang_name),
+        label_visibility="collapsed",
+    )
+
+    selected_lang_code = lang_options[selected_lang_name]
+
+    if selected_lang_code != st.session_state.lang:
+        st.session_state.lang = selected_lang_code
+        st.rerun()
 
     st.divider()
 
@@ -127,6 +139,39 @@ with st.container():
     st.header(about_data.get("title", "About Me"))
     st.write(about_data.get("text_long", ""))
 
+st.divider()
+
+# Value Proposition section
+value_prop_data = texts.get("value_proposition", {})
+with st.container():
+    st.header(value_prop_data.get("title", "Value Proposition"))
+    points = value_prop_data.get("points", [])
+    if points:
+        num_cols = min(len(points), 4)
+        cols = st.columns(num_cols)
+        for i, point in enumerate(points):
+            with cols[i % num_cols]:
+                st.subheader(point.get('title', ''))
+                st.write(point.get("description", ""))
+
+st.divider()
+
+# Skills section
+skills_data = texts.get("skills_section", {})
+with st.container():
+    st.header(skills_data.get("title", "Technical Skills"))
+    categories = skills_data.get("categories", [])
+    if categories:
+        num_cols = min(len(categories), 2)
+        cols = st.columns(num_cols)
+        for i, category in enumerate(categories):
+            with cols[i % num_cols]:
+                st.subheader(category.get('name', ''))
+                for item in category.get("items", []):
+                    st.markdown(f"- {item}")
+
+st.divider()
+
 # Experience section
 exp_data = texts.get("experience_section", {})
 with st.container():
@@ -137,18 +182,96 @@ with st.container():
             st.markdown(item.get("description", ""))
             st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
 
+st.divider()
+
+# Education section
+education_data = texts.get("education_section", {})
+with st.container():
+    st.header(education_data.get("title", "Education"))
+    for item in education_data.get("items", []):
+        with st.expander(f"**{item.get('degree')}** - {item.get('institution')} ({item.get('year')})", expanded=False):
+            st.markdown(f"_{item.get('location')}_ - _{item.get('type')}_")
+            if item.get("highlights"):
+                for highlight in item.get("highlights", []):
+                    st.markdown(f"- {highlight}")
+st.divider()
+
 # Projects section
 projects_data = texts.get("projects_section", {})
 with st.container():
     st.header(projects_data.get("title", "Projects"))
-    for item in projects_data.get("items", []):
-        st.subheader(item.get("title"))
-        st.markdown(f"**{item.get('type')}** - {item.get('year')}")
-        st.write(item.get("description"))
-        st.markdown(f"**Tech:** `{'`, `'.join(item.get('tech', []))}`")
-        if item.get("link"):
-            st.markdown(f"[View Project]({item.get('link')})")
-        st.divider()
+    project_items = projects_data.get("items", [])
+    if project_items:
+        project_titles = [item.get("title", f"Project {i+1}") for i, item in enumerate(project_items)]
+        tabs = st.tabs(project_titles)
+
+        for tab, item in zip(tabs, project_items):
+            with tab:
+                st.markdown(f"##### {item.get('type')} - {item.get('year')}")
+                st.write(item.get("description"))
+                st.markdown(f"**Tech:** `{'`, `'.join(item.get('tech', []))}`")
+                if item.get("highlights"):
+                    st.markdown("<h6>Highlights:</h6>", unsafe_allow_html=True)
+                    for highlight in item.get("highlights", []):
+                        st.markdown(f"- {highlight}")
+                if item.get("link"):
+                    st.markdown(f"🔗 [View on GitHub]({item.get('link')})")
+st.divider()
+
+# Publications section
+pubs_data = texts.get("publications_section", {})
+with st.container():
+    st.header(pubs_data.get("title", "Publications"))
+    for item in pubs_data.get("items", []):
+        with st.expander(f"**{item.get('title')}**", expanded=False):
+            st.markdown(f"_{item.get('authors')}_")
+            st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
+            st.write(item.get("description", ""))
+            if item.get("doi"):
+                st.markdown(f"🔗 [View Publication (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
+st.divider()
+
+# Certifications section
+cert_data = texts.get("certifications_section", {})
+with st.container():
+    st.header(cert_data.get("title", "Certifications"))
+
+    # Languages
+    lang_data = cert_data.get("languages", {})
+    if lang_data:
+        st.subheader(lang_data.get("title", "Languages"))
+        lang_items = lang_data.get("items", [])
+        if lang_items:
+            cols = st.columns(len(lang_items))
+            for i, item in enumerate(lang_items):
+                with cols[i]:
+                    st.metric(label=item.get('language'), value=item.get('level'), delta=item.get('proficiency', None))
+
+    st.markdown("---") # Visual separator
+
+    # Technical Certifications
+    tech_cert_data = cert_data.get("certifications", {})
+    if tech_cert_data:
+        st.subheader(tech_cert_data.get("title", "Technical Certifications"))
+        for item in tech_cert_data.get("items", []):
+            st.markdown(f"- **{item.get('name')}** - _{item.get('issuer')}_ ({item.get('year')})")
+st.divider()
+
+# Contact Section
+contact_data = texts.get("contact_section", {})
+with st.container():
+    st.header(contact_data.get("title", "Contact"))
+    st.subheader(contact_data.get("cta"))
+    st.write(contact_data.get("description"))
+
+    availability = contact_data.get("availability", "")
+    if availability:
+        st.info(f"{availability}2026.")
+
+    socials = contact_data.get("contact_methods", {})
+    if socials:
+        links = " | ".join([f'<a href="{value}" target="_blank">{key.capitalize()}</a>' for key, value in socials.items()])
+        st.markdown(f'<div class="social-links-container">{links}</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────────
 # CHAT BRIDGE: input oculto que el popup JS escribe para hacer rerun
