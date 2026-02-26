@@ -92,7 +92,7 @@ def query_gemini(user_input: str, knowledge_context: str) -> str:
     Usado para llamadas server-side (testing, integraciones). El popup del
     portfolio llama a Gemini directamente desde JavaScript para mayor fluidez.
     """
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
     system_instruction = get_system_instruction(knowledge_context)
 
     try:
