@@ -270,8 +270,38 @@ with st.container():
 
     socials = contact_data.get("contact_methods", {})
     if socials:
-        links = " | ".join([f'<a href="{value}" target="_blank">{key.capitalize()}</a>' for key, value in socials.items()])
-        st.markdown(f'<div class="social-links-container">{links}</div>', unsafe_allow_html=True)
+        copy_feedback_text = texts.get("email_copied_feedback", "Copied!")
+        js = f"""
+        <script>
+        function copyToClipboard(text, feedbackId) {{
+            navigator.clipboard.writeText(text).then(function() {{
+                var feedback = document.getElementById(feedbackId);
+                if (feedback) {{
+                    feedback.innerText = `{copy_feedback_text}`;
+                    feedback.style.display = 'inline';
+                    setTimeout(function(){{ feedback.style.display = 'none'; }}, 2000);
+                }}
+            }}, function(err) {{
+                console.error('Could not copy text: ', err);
+            }});
+        }}
+        </script>
+        """
+        st.markdown(js, unsafe_allow_html=True)
+
+        links_html_parts = []
+        email_tooltip = texts.get('copy_email_tooltip', 'Copy email to clipboard')
+        for key, value in socials.items():
+            if key == "email":
+                html = f'<a href="#" onclick="copyToClipboard(\'{value}\', \'copy-feedback-contact\'); return false;" class="social-link" title="{email_tooltip}">{key.capitalize()}</a>'
+                links_html_parts.append(html)
+            else:
+                html = f'<a href="{value}" target="_blank" class="social-link">{key.capitalize()}</a>'
+                links_html_parts.append(html)
+
+        feedback_html = '<span id="copy-feedback-contact" style="display:none; color:green; margin-left:10px;"></span>'
+        links_html = " | ".join(links_html_parts)
+        st.markdown(f'<div class="social-links-container">{links_html}{feedback_html}</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────────
 # CHAT BRIDGE: input oculto que el popup JS escribe para hacer rerun

@@ -394,4 +394,7 @@
       "meta_description": "Data Scientist con experiencia en Machine Learning, Bioinformática e Ingeniería de Datos. Especializado en análisis predictivo, visualización y automatización de procesos.",
       "keywords": ["Data Scientist", "Machine Learning", "Python", "Bioinformática", "Data Analytics", "Madrid", "SQL", "Power BI"]
     }
-  }
+  },
+  "copy_email_tooltip": "Copiar email al portapapeles",
+  "email_copied_feedback": "¡Email copiado!"
+}
