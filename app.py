@@ -1,9 +1,11 @@
 import streamlit as st
 import os
+import html as _html
 from logic.chatbot import (
     load_knowledge_base,
     initialize_chatbot,
     inject_chatbot_popup,
+    query_gemini,
 )
 from logic.utils import (
     load_css,
@@ -17,6 +19,14 @@ from logic.utils import (
 languages = load_config()
 if "lang" not in st.session_state:
     st.session_state.lang = "es"  # Default language
+
+# ── Chatbot Session State ──────────────────────────────────────
+if "chatbot_query_id" not in st.session_state:
+    st.session_state.chatbot_query_id = 0
+if "chatbot_response" not in st.session_state:
+    st.session_state.chatbot_response = ""
+if "cb_input" not in st.session_state:
+    st.session_state.cb_input = ""
 
 texts = load_localization(st.session_state.lang)
 if not texts:
@@ -370,6 +380,41 @@ with st.container():
             f'</div>',
             unsafe_allow_html=True,
         )
+
+# --- CHATBOT BACKEND BRIDGE ---
+# This section handles the logic for receiving a query from the frontend JS,
+# calling the Gemini backend, and storing the response for the JS to poll.
+
+def handle_chatbot_query():
+    """Callback function to process user input from the chatbot."""
+    if st.session_state.cb_input:
+        user_query = st.session_state.cb_input
+        st.session_state.cb_input = ""  # Clear after processing
+
+        kb_text = load_knowledge_base()
+        response = query_gemini(user_query, kb_text)
+
+        st.session_state.chatbot_query_id += 1
+        st.session_state.chatbot_response = response
+
+# Hidden input widget that the JS popup writes to. The on_change callback
+# triggers the Python logic to run.
+st.text_input(
+    "__cb_input__",
+    key="cb_input",
+    on_change=handle_chatbot_query,
+    label_visibility="collapsed",
+)
+
+# Hidden div that holds the response from Python. JS polls this element
+# for changes to its 'data-id' attribute to know when a new response is ready.
+# We use html.escape to prevent potential XSS issues from the LLM response.
+st.markdown(
+    f'<div id="cb-py-response" data-id="{st.session_state.chatbot_query_id}">'
+    f'{_html.escape(st.session_state.chatbot_response)}</div>',
+    unsafe_allow_html=True,
+)
+
 
 # --- CHATBOT POPUP ---
 if GENAI_API_KEY:

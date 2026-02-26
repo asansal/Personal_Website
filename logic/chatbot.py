@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-from google import genai
+import google.generativeai as genai
 import json
 import html as _html
 import os
@@ -91,15 +91,21 @@ def query_gemini(user_input: str, knowledge_context: str) -> str:
     llama directamente a Gemini, sino que delega en este backend.
     """
     try:
-        client = genai.Client()
+        # La clave API se configura a través de la variable de entorno
+        # que se establece en initialize_chatbot()
+        genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+
         system_instruction = get_system_instruction(knowledge_context)
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=f"{system_instruction}\n\nUser Question: {user_input}",
+        model = genai.GenerativeModel(
+            model_name="gemini-1.5-flash-latest",
+            system_instruction=system_instruction,
         )
+        response = model.generate_content(user_input)
         return response.text
     except Exception as e:
-        return f"Lo siento, hubo un error al procesar tu pregunta. Por favor intenta más tarde. (Detalle: {e})"
+        # Log del error para debugging en el servidor
+        st.error(f"Chatbot Gemini Error: {e}")
+        return "Lo siento, hubo un error al procesar tu pregunta. Por favor intenta más tarde."
 
 
 # --- CHATBOT POPUP INJECTION ---
