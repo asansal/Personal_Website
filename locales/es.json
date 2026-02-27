@@ -1,399 +1,166 @@
 {
-    "profile": {
-      "name": "Alejandro Sánchez",
-      "role": "Data Scientist | Data Analyst | Bioinformático",
-      "tagline": "Transformando datos complejos en decisiones estratégicas",
-      "subtitle": "Científico de Datos especializado en Machine Learning, Ingeniería de Datos, Business Intelligence, y Data Analysis",
-      "location": "Madrid, España",
-      "availability": "Disponible para proyectos remotos e híbridos",
-      "socials": {
-        "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
-        "github": "https://github.com/asansal",
-        "email": "asansal@outlook.es"
-      }
-    },
-    "about": {
-      "title": "Sobre mí",
-      "text_short": "Científico de Datos con formación sólida en Biotecnología y más de 4 años de experiencia gestionando y analizando datos complejos en entornos de investigación internacionales. Especializado en Machine Learning, ingeniería de datos y visualización estratégica para la toma de decisiones, tanto en entornos científicos como empresariales.",
-      "text_long": "Mi trayectoria profesional combina el rigor científico de la investigación académica con la aplicación práctica de técnicas avanzadas de ciencia de datos. Durante mi experiencia en instituciones de prestigio como el Centro de Biología Molecular Severo Ochoa (CSIC) y la Universität Konstanz, he desarrollado expertise en el procesamiento de grandes volúmenes de datos, implementación de pipelines automatizados y validación estadística rigurosa. Esta base me ha permitido transicionar exitosamente al ámbito empresarial, usando Machine Learning, análisis predictivo y visualización de datos para resolver problemas de negocio complejos. Mi enfoque se caracteriza por la meticulosidad en el análisis, la capacidad de traducir requisitos técnicos en soluciones prácticas y un compromiso constante con la calidad y reproducibilidad de los resultados."
-    },
-    "value_proposition": {
-      "title": "Propuesta de Valor",
-      "points": [
-        {
-          "icon": "analytics",
-          "title": "Análisis Riguroso",
-          "description": "Experiencia probada en el manejo de datasets complejos (>1TB) con metodologías validadas científicamente"
-        },
-        {
-          "icon": "automation",
-          "title": "Automatización",
-          "description": "Desarrollo de pipelines ETL eficientes y reproducibles que optimizan procesos de análisis de datos"
-        },
-        {
-          "icon": "insights",
-          "title": "Business Intelligence",
-          "description": "Capacidad de traducir insights técnicos en recomendaciones estratégicas accionables para stakeholders"
-        },
-        {
-          "icon": "collaboration",
-          "title": "Colaboración Internacional",
-          "description": "Experiencia trabajando en equipos multidisciplinares en España y Alemania, con dominio de inglés profesional"
-        }
-      ]
-    },
-    "skills_section": {
-      "title": "Competencias Técnicas",
-      "categories": [
-        {
-          "name": "Data Science & Machine Learning",
-          "icon": "chart",
-          "items": [
-            "Python (Pandas, NumPy, Scikit-learn, TensorFlow)",
-            "Machine Learning (Regresión, Clasificación, Clustering)",
-            "Deep Learning (Redes Neuronales Convolucionales)",
-            "Análisis de Series Temporales",
-            "Validación Estadística y A/B Testing"
-          ]
-        },
-        {
-          "name": "Ingeniería de Datos",
-          "icon": "database",
-          "items": [
-            "SQL",
-            "ETL Pipelines & Data Wrangling",
-            "Git & Control de Versiones",
-            "Docker & Contenedorización",
-            "Linux & Bash Scripting",
-            "HPC (High Performance Computing)"
-          ]
-        },
-        {
-          "name": "Visualización & Business Intelligence",
-          "icon": "visualization",
-          "items": [
-            "Power BI & DAX",
-            "Tableau",
-            "Streamlit (Dashboards Interactivos)",
-            "Matplotlib, Seaborn, Plotly",
-            "R Shiny",
-            "Storytelling con Datos"
-          ]
-        },
-        {
-          "name": "Bioinformática Especializada",
-          "icon": "dna",
-          "items": [
-            "R & Bioconductor",
-            "Análisis NGS (DNA-Seq, RNA-Seq, Ribo-Seq)",
-            "Genómica & Proteogenómica",
-            "Análisis Estadístico Multivariante",
-            "Ensamblaje de genomas/transcriptomas de novo",
-            "Análisis de Expresión Diferencial"
-          ]
-        }
-      ]
-    },
-    "experience_section": {
-      "title": "Experiencia Profesional",
-      "items": [
-        {
-          "period": "2025",
-          "role": "Data Scientist",
-          "company": "Nuclio Digital School",
-          "location": "Madrid, España",
-          "type": "Capstone Project - DS Market",
-          "description": "Desarrollo end-to-end de un sistema de previsión de demanda para el sector retail. Implementación de modelos de Machine Learning para predicción de ventas, segmentación de clientes mediante clustering, y creación de dashboards interactivos para la toma de decisiones estratégicas. El proyecto abarcó todo el ciclo de vida del dato: desde la ingesta y limpieza de 5 años de transacciones hasta el despliegue de dashboards de análisis, de modelos predictivos y de visualizaciones ejecutivas.",
-          "stack": ["Python", "Scikit-learn", "SQL", "Power BI", "Feature Engineering", "Time Series Analysis"],
-          "achievements": [
-            "Procesamiento y limpieza de dataset con >3000 productos y >500K transacciones",
-            "Implementación de modelos de regresión con R² > 0.85",
-            "Segmentación de productos en 6 grupos estratégicos mediante K-Means",
-            "Dashboard ejecutivo en Power BI con KPIs de negocio"
-          ]
-        },
-        {
-          "period": "2022 - 2025",
-          "role": "Investigador Bioinformático",
-          "company": "Centro de Biología Molecular Severo Ochoa (CSIC-UAM)",
-          "location": "Madrid, España",
-          "type": "Tiempo Completo",
-          "description": "Liderazgo de la estrategia computacional del laboratorio, gestionando el análisis de datasets genómicos masivos (>1TB). Diseño e implementación de pipelines automatizados en Python y Bash para procesamiento de datos NGS. Responsable del control de calidad de datos, validación estadística de hipótesis y generación de visualizaciones para publicaciones científicas de alto impacto. Implementación de estándares de reproducibilidad mediante Git y documentación técnica exhaustiva.",
-          "stack": ["Python", "R", "Bash", "Linux", "Git", "Statistical Analysis", "NGS Data Processing"],
-          "achievements": [
-            "Desarrollo de 5+ pipelines de análisis automatizados",
-            "Contribución a 2 publicaciones científicas en revistas indexadas",
-            "Optimización de procesos que redujeron el tiempo de análisis significativamente",
-            "Implementación de control de versiones y estándares de reproducibilidad"
-          ]
-        },
-        {
-          "period": "2020 - 2022",
-          "role": "Research Data Associate",
-          "company": "Universität Konstanz - Grupo de Investigación AG Kroth",
-          "location": "Constanza, Alemania",
-          "type": "Tiempo Completo",
-          "description": "Gestión integral del ciclo de vida de datos ambientales y de laboratorio en proyectos de investigación sobre ecosistemas acuáticos. Responsable del diseño experimental, recolección de datos, análisis estadístico multivariante y visualización de resultados. Realización de ensamblajes transcriptómicos de novo y análisis comparativos en entornos HPC. Supervisión y mentoría de estudiantes junior en técnicas de análisis de datos y buenas prácticas de programación.",
-          "stack": ["R", "HPC Clusters", "Multivariate Statistics", "RNA-Seq", "Data Management"],
-          "achievements": [
-            "Gestión de >500GB de datos transcriptómicos",
-            "Análisis estadístico multivariante de comunidades microbianas",
-            "Mentoría de 3 estudiantes en análisis de datos",
-            "Presentación de resultados en reuniones internacionales"
-          ]
-        },
-        {
-          "period": "2025",
-          "role": "Data Analyst - AI Evaluation",
-          "company": "Telus International AI",
-          "location": "Remoto",
-          "type": "Freelance",
-          "description": "Evaluación de calidad de datos para algoritmos de búsqueda y sistemas de recomendación. Generación de ground truth datasets para entrenamiento y validación de modelos de inteligencia artificial. Análisis de métricas de performance y documentación de edge cases para mejora continua de algoritmos.",
-          "stack": ["Data Quality Assessment", "Search Algorithms", "AI Model Evaluation"],
-          "achievements": [
-            "Evaluación de >1000 queries de búsqueda",
-            "Contribución a la mejora de precision en algoritmos de ranking",
-            "Documentación de patrones y anomalías en resultados de IA"
-          ]
-        }
-      ]
-    },
-    "education_section": {
-      "title": "Formación Académica",
-      "items": [
-        {
-          "year": "2025",
-          "degree": "Máster en Data Science & Artificial Intelligence",
-          "institution": "Nuclio Digital School",
-          "location": "Barcelona, España (Online)",
-          "type": "Postgrado",
-          "highlights": [
-            "Especialización en Machine Learning y Deep Learning",
-            "Proyecto final: Sistema de forecasting para retail",
-            "Formación práctica en análisis, ingeniería de datos y MLOps"
-          ]
-        },
-        {
-          "year": "2019 - 2022",
-          "degree": "Máster en Bioinformática y Bioestadística",
-          "institution": "UOC - Universitat Oberta de Catalunya",
-          "location": "Barcelona, España",
-          "type": "Postgrado",
-          "highlights": [
-            "Análisis de datos genómicos y transcriptómicos",
-            "Estadística aplicada a ciencias de la vida",
-            "Conceptos de Machine Learning y Deep Learning",
-            "Programación en R y Python"
-          ]
-        },
-        {
-          "year": "2017 - 2018",
-          "degree": "Máster en Microbiología",
-          "institution": "Universidad Autónoma de Madrid (UAM)",
-          "location": "Madrid, España",
-          "type": "Postgrado",
-          "highlights": [
-            "Metodologías de investigación científica",
-            "Microbiología molecular y genómica",
-            "Trabajo de investigación en laboratorio",
-            "Diseño de experimentos y estadística avanzada"
-          ]
-        },
-        {
-          "year": "2013 - 2017",
-          "degree": "Grado en Biología",
-          "institution": "Universidad de Salamanca",
-          "location": "Salamanca, España",
-          "type": "Grado",
-          "highlights": [
-            "Especialización en Biología Molecular y Celular",
-            "Formación sólida en estadística y métodos cuantitativos",
-            "Prácticas en laboratorios de investigación"
-          ]
-        }
-      ]
-    },
-    "projects_section": {
-      "title": "Proyectos Destacados",
-      "items": [
-        {
-          "id": "dsmarket",
-          "title": "DSMarket: Sistema de Forecasting para Retail",
-          "type": "Data Science & Business Intelligence",
-          "category": "Machine Learning",
-          "year": "2025",
-          "description": "Desarrollo completo de un sistema de predicción de demanda para el sector retail. El proyecto integra limpieza y transformación de datos históricos de ventas (5 años, 3000+ productos, 500K+ transacciones, 10 tiendas), segmentación avanzada de productos mediante algoritmos de clustering, y modelos predictivos de regresión para forecasting de ventas. Incluye dashboard ejecutivo interactivo con KPIs de negocio y recomendaciones estratégicas.",
-          "tech": ["Python", "Pandas", "Scikit-learn", "SQL", "Power BI", "DAX", "Time Series", "K-Means", "Regression", "Lasso"],
-          "highlights": [
-            "Predicción de ventas con precisión >85% (R²)",
-            "Identificación de 6 segmentos de productos con comportamiento diferenciado",
-            "Dashboard con 10+ KPIs de negocio actualizables",
-            "Documentación técnica completa y código reproducible"
-          ],
-          "link": "https://github.com/asansal/DS_market_Capstone"
-        },
-        {
-          "id": "leishmania-riboseq",
-          "title": "Refinamiento Genómico mediante Ribo-Seq",
-          "type": "Bioinformática & Genómica",
-          "category": "Investigación Científica",
-          "year": "2023",
-          "description": "Análisis computacional de datos de secuenciación ribosomal (Ribo-Seq) para redefinir y validar anotaciones genómicas en Leishmania. Desarrollo de pipelines personalizados en Python y R para integración de múltiples fuentes de evidencia transcriptómica. Generación de scripts en python para generar nuevas bases de datos basadas en coordenadas genómicas. El trabajo contribuyó a la identificación de nuevos marcos de lectura abiertos (ORFs) y refinamiento de estructuras génicas previamente anotadas.",
-          "tech": ["R", "Python", "Bioconductor", "NGS Analysis", "Statistical Validation", "Linux"],
-          "highlights": [
-            "Procesamiento de >1TB de datos Ribo-Seq",
-            "Validación estadística de 500+ secuencias codificantes",
-            "Desarrollo de scripts reutilizables para análisis NGS",
-            "Publicación en revista científica internacional",
-            "Control de versiones en Git"
-          ],
-          "link": "https://github.com/CBMSO-L302"
-        },
-        {
-          "id": "Proteogenomics",
-          "title": "Integración Proteogenómica Multi-Ómics",
-          "type": "Bioinformática & Proteómica",
-          "category": "Investigación Científica",
-          "year": "2024",
-          "description": "Proyecto de integración de datos proteómicos y genómicos para descubrimiento de nuevas proteínas funcionales. Implementación de workflows computacionales para mapeo de péptidos, validación de secuencias traducidas. El enfoque proteogenómico permitió identificar y validar científicamente proteínas no anotadas previamente en bases de datos de referencia.",
-          "tech": ["Python", "R", "Data Integration", "Statistical Modeling", "Proteomics", "Genomics"],
-          "highlights": [
-            "Integración de datasets multi-ómicos (>500GB)",
-            "Identificación de 50+ nuevas secuencias proteicas",
-            "Pipeline automatizado con validación estadística rigurosa",
-            "Colaboración con equipos internacionales"
-          ],
-          "link": "https://github.com/CBMSO-L302"
-        }
-      ]
-    },
-    "certifications_section": {
-      "title": "Certificaciones Profesionales",
-      "languages": {
-        "title": "Idiomas",
-        "items": [
-          {
-            "language": "Español",
-            "level": "Nativo",
-            "proficiency": "C2"
-          },
-          {
-            "language": "Inglés",
-            "level": "Avanzado",
-            "proficiency": "C1",
-            "certification": "Cambridge Advanced English"
-          },
-          {
-            "language": "Alemán",
-            "level": "Intermedio",
-            "proficiency": "B1",
-            "certification": "Escuela Oficial de Idiomas"
-          }
-        ]
+  "profile": {
+    "name": "Alejandro Sánchez",
+    "role": "Data Scientist | Data Analyst | Bioinformático",
+    "tagline": "Uniendo el rigor científico con la inteligencia de negocio",
+    "subtitle": "Científico de Datos especializado en Machine Learning, Ingeniería de Datos, y Análisis de Procesos Complejos",
+    "location": "Madrid, España",
+    "availability": "Disponible para proyectos remotos e híbridos (Abierto a reubicación en DACH/Nordics)",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
+      "github": "https://github.com/asansal",
+      "email": "asansal@outlook.es"
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "text_short": "Científico de Datos con base sólida en Biotecnología. Tras 4 años gestionando datos masivos en investigación (Alemania y España), aplico ingeniería de datos y Machine Learning para resolver problemas de negocio estratégicos.",
+    "text_long": "Me defino como un científico que descubrió su verdadera vocación en los datos detrás de la biología. Mi trayectoria comenzó en laboratorios de investigación de alto nivel (CSIC-UAM, Universität Konstanz), donde aprendí que la integridad del dato y la reproducibilidad son innegociables. Gestionar terabytes de información en entornos HPC me enseñó a separar la señal del ruido y a optimizar pipelines complejos. Recientemente, he formalizado mi transición al sector tecnológico con un Máster en Data Science & IA, aplicando ese mismo rigor analítico a modelos predictivos, series temporales y visualización estratégica para la toma de decisiones."
+  },
+  "value_proposition": {
+    "title": "Propuesta de Valor",
+    "points": [
+      {"icon": "analytics", "title": "Rigor Analítico", "description": "Experiencia probada en el manejo de datasets complejos (>1TB) aplicando el método científico para evitar sesgos."},
+      {"icon": "automation", "title": "Ingeniería y Eficiencia", "description": "Desarrollo de pipelines automatizados (Python/Bash) y optimización de procesos mediante computación paralela."},
+      {"icon": "insights", "title": "Traductor de Negocio", "description": "Capacidad demostrada para explicar modelos estadísticos complejos a stakeholders técnicos y no técnicos."},
+      {"icon": "collaboration", "title": "Gestión y Liderazgo", "description": "Experiencia internacional liderando la estrategia computacional, supervisando equipos junior y gestionando proveedores."}
+    ]
+  },
+  "skills_section": {
+    "title": "Competencias Técnicas",
+    "categories": [
+      {"name": "Data Science & Machine Learning", "icon": "chart", "items": ["Python (Pandas, Scikit-learn, TensorFlow)", "Machine Learning (Regresión Lasso/Ridge, Clustering K-Means)", "Series Temporales & Forecasting (Prophet, ARIMA)", "Validación Estadística y A/B Testing"]},
+      {"name": "Ingeniería de Datos", "icon": "database", "items": ["SQL (PostgreSQL, MySQL)", "HPC (Slurm) & Computación Paralela (GNU Parallel)", "ETL Pipelines & Data Wrangling", "Git & Control de Versiones", "Docker & Contenedorización", "Linux & Bash Scripting"]},
+      {"name": "Visualización & Business Intelligence", "icon": "visualization", "items": ["Power BI & DAX", "Tableau", "Streamlit (Dashboards Interactivos)", "Storytelling con Datos"]},
+      {"name": "Bioinformática & Wet-Lab", "icon": "dna", "items": ["R & Bioconductor", "NGS (Illumina, ONT, Sanger) & Transcriptómica", "CRISPR-Cas9, Cultivos Celulares & Biorreactores", "Microscopía (Óptica/Fluorescencia) & qPCR", "Ensayos In Vitro & Biología Molecular"]}
+    ]
+  },
+  "experience_section": {
+    "title": "Experiencia Profesional",
+    "items": [
+      {
+        "period": "2025", "role": "Data Scientist", "company": "Nuclio Digital School", "location": "Madrid, España", "type": "Capstone Project - DS Market",
+        "description": "Desarrollo end-to-end de un sistema de previsión de demanda para el sector retail. Implementación de modelos de Machine Learning para predicción de ventas, segmentación de clientes, y creación de dashboards interactivos para la toma de decisiones estratégicas. El proyecto abarcó todo el ciclo de vida del dato: desde la ingesta de 5 años de transacciones bis al despliegue del modelo.",
+        "stack": ["Python", "Scikit-learn", "SQL", "Power BI", "Feature Engineering", "Time Series Analysis"],
+        "achievements": ["Procesamiento y limpieza de un dataset con >3000 productos y >500K transacciones.", "Implementación de Regresión Lasso para forecasting y segmentación K-Means (6 clusters).", "Diseño de un dashboard ejecutivo en Power BI für el control de inventario."]
       },
-      "certifications": {
-        "title": "Certificaciones Técnicas",
-        "items": [          
-            {
-            "name": "Data Analytics Job Simulation",
-            "issuer": "Deloitte - Forage",
-            "year": "2026",
-            "type": "Certificación Profesional"
-          },
-          {
-            "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
-            "issuer": "The Global Health Network",
-            "year": "2025",
-            "type": "Certificación Técnica"
-          },
-          {
-            "name": "Big Data in the Transportation Sector",
-            "issuer": "Fundación Maude",
-            "year": "2025",
-            "type": "Curso Especializado"
-          },
-          {
-            "name": "Power BI - Data Analytics & Visualization",
-            "issuer": "Banco Santander | Santander Open Academy",
-            "year": "2025",
-            "type": "Certificación Profesional"
-          },
-          {
-            "name": "GDPR for Healthcare",
-            "issuer": "Alison",
-            "year": "2025",
-            "type": "Certificación Técnica"
-          },
-          {
-            "name": "Data Analytics Essentials",
-            "issuer": "Cisco Networking Academy",
-            "year": "2025",
-            "type": "Certificación Profesional"
-          }
-
-        ]
+      {
+        "period": "2022 - 2025", "role": "Investigador Bioinformático / Data Scientist", "company": "Centro de Biología Molecular Severo Ochoa (CSIC-UAM)", "location": "Madrid, España", "type": "Tiempo Completo",
+        "description": "Liderazgo de la estrategia computacional del laboratorio. Diseño e implementación de pipelines automatizados en Python y Bash para el procesamiento de datos masivos (>1TB). Mentorización de equipo, gestion de presupuestos con proveedores externos (Novogene, Illumina) y resolución de crisis de datos.",
+        "stack": ["Python", "R", "Bash", "GNU Parallel", "Linux", "Git"],
+        "achievements": ["Supervisión und mentoría de 8 investigadores junior (TFG, TFM, técnicos).", "Optimización de procesos computacionales mediante GNU Parallel, reduciendo drásticamente los tiempos de procesamiento.", "Rescate exitoso de un dataset genómico fallido (ONT) mediante una estrategia híbrida con secuenciación Illumina.", "Contribución clave a 3 publicaciones científicas peer-reviewed."]
+      },
+      {
+        "period": "2020 - 2022", "role": "Research Data Associate", "company": "Universität Konstanz - AG Kroth", "location": "Constanza, Alemania", "type": "Tiempo Completo",
+        "description": "Gestión integral del ciclo de vida de datos ambientales. Responsable del diseño experimental, recolección de datos en biorreactores y análisis estadístico multivariante. Trabajo computacional intensivo utilizando sistemas de colas (Slurm) en clústeres de alto rendimiento (HPC).",
+        "stack": ["R", "HPC (Slurm)", "Multivariate Statistics", "Transcriptomics", "Data Management"],
+        "achievements": ["Ensamblaje de novo de transcriptomas eucariotas a partir de muestras ambientales.", "Análisis estadístico multivariante de comunidades en ecosistemas oligotróficos.", "Supervisión de estudiantes y gestion de compras internacionales de material de laboratorio."]
+      },
+      {
+        "period": "Marzo 2025 - Junio 2025", "role": "Data Analyst (AI Evaluation & RLHF)", "company": "Telus International AI", "location": "Remoto", "type": "Freelance",
+        "description": "Evaluación rigurosa de calidad de datos para algoritmos de búsqueda y visión computacional. Generación de 'Ground Truth' estricto basado en directrices complejas para afinar modelos de Inteligencia Artificial mediante RLHF (Reinforcement Learning from Human Feedback).",
+        "stack": ["Data Quality Assessment", "RLHF", "AI Model Evaluation"],
+        "achievements": ["Aseguramiento de calidad en modelos predictivos y de recomendación.", "Documentación analítica minuciosa para la mejora continua de la precisión algorítmica."]
       }
-    },
-    "publications_section": {
-      "title": "Publicaciones Científicas",
+    ]
+  },
+  "education_section": {
+    "title": "Formación Académica",
+    "items": [
+      {"year": "2025", "degree": "Máster en Data Science & Artificial Intelligence", "institution": "Nuclio Digital School", "location": "Online", "type": "Postgrado", "highlights": ["Especialización en Machine Learning, Deep Learning y Business Intelligence.", "Proyecto Final: 'DSMarket' - Sistema end-to-end de forecasting para retail.", "Formación en despliegue de modelos, SQL avanzado y visualización de datos."]},
+      {"year": "2019 - 2022", "degree": "Máster en Bioinformática y Bioestadística", "institution": "UOC - Universitat Oberta de Catalunya", "location": "Barcelona, España", "type": "Postgrado", "highlights": ["TFM: Análisis diferencial de transcriptomas de dinoflagelados a partir de datos crudos públicos.", "Desarrollo de un pipeline completo: QC, filtrado, ensamblaje de novo y anotación."]},
+      {"year": "2017 - 2018", "degree": "Máster en Microbiología", "institution": "Universidad Autónoma de Madrid (UAM)", "location": "Madrid, España", "type": "Postgrado", "highlights": ["TFM en el Grupo de Mantenimiento de la Estabilidad Genómica (CBMSO).", "Estudio de la inserción de nucleótidos por una DNA polimerasa, culminando en una publicación en 'Biomolecules'."]},
+      {"year": "2013 - 2017", "degree": "Grado en Biología", "institution": "Universidad de Salamanca", "location": "Salamanca, España", "type": "Grado", "highlights": ["TFG: Estudio de la interacción tomate-hongo (simbiosis) frente al ataque del patógeno bacteriano P. aeruginosa.", "Uso de técnicas cuantitativas de cultivo y análisis de expresión génica mediante qPCR."]}
+    ]
+  },
+  "projects_section": {
+    "title": "Proyectos Destacados",
+    "items": [
+      {
+        "id": "dsmarket", "title": "DSMarket: Retail Forecasting System", "type": "Data Science & Business Intelligence", "category": "Machine Learning", "year": "2025",
+        "description": "Desarrollo completo de un sistema de predicción de demanda para el sector retail. Integración, limpieza y transformación de datos históricos (5 años, 500K+ transacciones). Segmentación avanzada de clientes mediante K-Means y modelos predictivos (Regresión Lasso) para forecasting de ventas. Incluye dashboard ejecutivo interactivo con KPIs de negocio.",
+        "tech": ["Python", "Scikit-learn", "SQL", "Power BI", "Time Series", "Clustering"],
+        "highlights": ["Identificación de 6 segmentos de clientes estratégicos.", "Dashboard automatizado para la toma de decisiones de inventario."],
+        "link": "https://github.com/asansal/DS_market_Capstone"
+      },
+      {
+        "id": "leishmania-data-rescue", "title": "Refinamiento Genómico & Data Rescue", "type": "Ingeniería de Datos & Bioinformática", "category": "Investigación Científica", "year": "2023",
+        "description": "Análisis computacional de datos Ribo-Seq para redefinir anotaciones genómicas en Leishmania. Ante un conjunto de datos degradado por hardware defectuoso (Nanopore ONT), diseñé una estrategia híbrida ('Data Rescue') utilizando secuencias de alta fidelidad de Illumina para corregir el transcriptoma, salvando el proyecto. Desarrollo de scripts optimizados con GNU Parallel.",
+        "tech": ["Python", "Bash", "GNU Parallel", "Data Rescue", "Linux"],
+        "highlights": ["Optimización drástica de tiempos de cómputo mediante procesamiento en paralelo.", "Recuperación exitosa de un experimento fallido de alto coste."],
+        "link": "https://github.com/CBMSO-L302"
+      },
+      {
+        "id": "transcriptomics-algae", "title": "Transcriptómica Ambiental en Ecosistemas Acuáticos", "type": "Bioinformática & HPC", "category": "Investigación Científica", "year": "2022",
+        "description": "Gestión de datos masivos de secuenciación en la Universidad de Konstanz. Procesamiento de datos en clústeres de alto rendimiento (HPC) mediante sistemas de colas (Slurm). Ensamblaje de novo y análisis estadístico multivariante de comunidades microbianas.",
+        "tech": ["R", "HPC (Slurm)", "Estadística Multivariante", "Biorreactores"],
+        "highlights": ["Gestión eficiente de recursos computacionales limitados mediante flujos de trabajo híbridos (Local/HPC)."],
+        "link": ""
+      }
+    ]
+  },
+  "certifications_section": {
+    "title": "Certificaciones y Lenguajes",
+    "languages": {
+      "title": "Idiomas",
       "items": [
-        {
-          "title": "A Proteogenomic Approach to Unravel New Proteins Encoded in the Leishmania donovani (HU3) Genome",
-          "authors": "J. Adán-Jiménez, A. Sánchez-Salvador, E. Morato, J.C. Solana, B. Aguado, J.M. Requena",
-          "journal": "Genes",
-          "year": "2024",
-          "doi": "10.3390/genes15060775",
-          "type": "Artículo Científico",
-          "description": "Integración de datos masivos de espectrometría de masas con genómica. Desarrollo de scripts en Python para el filtrado de péptidos y validación estadística de nuevas secuencias codificantes."
-        },
-        {
-          "title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)",
-          "authors": "A. Sánchez-Salvador, S. González-de-la-Fuente, B. Aguado, P.E. Yates, J.M. Requena",
-          "journal": "Genes",
-          "year": "2023",
-          "doi": "10.3390/genes14081637",
-          "type": "Artículo Científico",
-          "description": "Análisis computacional de datos de Ribo-Seq para reanotación genómica. Uso de R y Bioconductor para el análisis de cobertura de lecturas y detección de marcos de lectura abiertos (ORFs)."
-        },
-        {
-          "title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom",
-          "authors": "A. Sánchez-Salvador, M. de Vega",
-          "journal": "Biomolecules",
-          "year": "2020",
-          "doi": "10.3390/biom10020203",
-          "type": "Artículo Científico",
-          "description": "Estudio estructural y bioquímico sobre la maquinaria de reparación de ADN bacteriana. Análisis de cinética enzimática y modelado de estructuras proteicas."
-        }
+        {"language": "Español", "level": "Nativo", "proficiency": "C2"},
+        {"language": "Inglés", "level": "Fluido / Profesional", "proficiency": "C1", "certification": "Cambridge Advanced English"},
+        {"language": "Alemán", "level": "Intermedio", "proficiency": "B1", "certification": "Uso diario profesional (2 años en Alemania)"}
       ]
     },
-    "chatbot_config": {
-      "title": "Asistente Virtual",
-      "welcome_message": "Bienvenido. Soy el asistente virtual de Alejandro Sánchez. Puede consultarme sobre su experiencia profesional, proyectos de Data Science, competencias técnicas o disponibilidad para nuevas oportunidades.",
-      "suggestions": [
-        "¿Cuál es tu experiencia en Machine Learning?",
-        "Cuéntame sobre tus proyectos de Data Science",
-        "¿Qué tecnologías y herramientas dominas?",
-        "¿Cuál es tu disponibilidad para proyectos?"
+    "certifications": {
+      "title": "Certificaciones Profesionales",
+      "items": [
+        {"name": "Data Analytics Job Simulation", "issuer": "Deloitte - Forage", "year": "2026", "type": "Certificación Profesional"},
+        {"name": "ICH Good Clinical Practice (GCP) E6 (R3)", "issuer": "The Global Health Network", "year": "2025", "type": "Certificación Técnica"},
+        {"name": "Big Data in the Transportation Sector", "issuer": "Fundación Maude", "year": "2025", "type": "Curso Especializado"},
+        {"name": "Power BI - Data Analytics & Visualization", "issuer": "Banco Santander | Santander Open Academy", "year": "2025", "type": "Certificación Profesional"},
+        {"name": "GDPR for Healthcare", "issuer": "Alison", "year": "2025", "type": "Certificación Técnica"},
+        {"name": "Data Analytics Essentials", "issuer": "Cisco Networking Academy", "year": "2025", "type": "Certificación Profesional"}
       ]
-    },
-    "cv_download_text": "Descargar CV",
-    "contact_section": {
-      "title": "Contacto Profesional",
-      "cta": "¿Interesado en colaborar?",
-      "description": "Estoy abierto a nuevas oportunidades en Data Science, Machine Learning e Ingeniería de Datos. Prefiero proyectos que combinen rigor técnico con impacto de negocio.",
-      "availability": "Disponible para proyectos remotos, híbridos o presenciales en Madrid en ",
-      "response_time": "Respondo en menos de 24 horas",
-      "contact_methods": {
-        "email": "asansal@outlook.es",
-        "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
-        "github": "https://github.com/asansal"
-      }
-    },
-    "seo": {
-      "meta_title": "Alejandro Sánchez - Data Scientist | Machine Learning Engineer | Data Analyst | Bioinformatician",
-      "meta_description": "Data Scientist con experiencia en Machine Learning, Bioinformática e Ingeniería de Datos. Especializado en análisis predictivo, visualización y automatización de procesos.",
-      "keywords": ["Data Scientist", "Machine Learning", "Python", "Bioinformática", "Data Analytics", "Madrid", "SQL", "Power BI"]
-    },
+    }
+  },
+  "publications_section": {
+    "title": "Publicaciones Científicas",
+    "items": [
+      {"title": "A Proteogenomic Approach to Unravel New Proteins Encoded in the Leishmania donovani (HU3) Genome", "authors": "J. Adán-Jiménez, A. Sánchez-Salvador, E. Morato, J.C. Solana, B. Aguado, J.M. Requena", "journal": "Genes", "year": "2024", "doi": "10.3390/genes15060775", "type": "Artículo Científico", "description": "Integración de datos masivos de espectrometría de masas con genómica. Validación estadística de nuevas secuencias codificantes."},
+      {"title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)", "authors": "A. Sánchez-Salvador, S. González-de-la-Fuente, B. Aguado, P.E. Yates, J.M. Requena", "journal": "Genes", "year": "2023", "doi": "10.3390/genes14081637", "type": "Artículo Científico", "description": "Desarrollo de scripts computacionales und análisis de datos Ribo-Seq para detectar marcos de lectura abiertos (ORFs)."},
+      {"title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom", "authors": "A. Sánchez-Salvador, M. de Vega", "journal": "Biomolecules", "year": "2020", "doi": "10.3390/biom10020203", "type": "Artículo Científico", "description": "Estudio resultante de la investigación del TFM de Microbiología sobre la maquinaria de reparación de ADN bacteriana."}
+    ]
+  },
+  "chatbot_config": {
+    "title": "Asistente Virtual IA",
+    "status_text": "En línea",
+    "welcome_title": "👋 ¡Bienvenido!",
+    "welcome_message": "Soy el asistente de Alejandro. Puedes preguntarme sobre su experiencia gestionando datos complejos, sus proyectos de Machine Learning, o por qué ha decidido pivotar al mundo empresarial.",
+    "input_placeholder": "Escribe tu pregunta...",
+    "suggestions": [
+      { "label": "💼 Experiencia", "msg": "¿Cuál es tu experiencia en Data Science?" },
+      { "label": "🛠️ Skills", "msg": "¿Qué tecnologías dominas?" },
+      { "label": "🚀 Proyectos", "msg": "Cuéntame sobre tus proyectos destacados" }
+    ],
+    "error_timeout": "Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.",
+    "error_connection": "Error interno: no se pudo conectar con el servidor."
+  },
+  "cv_download_text": "Descargar CV",
+  "contact_section": {
+    "title": "Contacto Profesional",
+    "cta": "¿Interesado en colaborar?",
+    "description": "Estoy abierto a nuevas oportunidades corporativas en Data Science, Machine Learning e Ingeniería de Datos en Europa.",
+    "availability": "Inmediatamente disponible. Abierto a roles presenciales o híbridos en la región DACH, Nordics y España.",
+    "response_time": "Respondo rápidamente",
+    "contact_methods": {
+      "email": "asansal@outlook.es",
+      "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
+      "github": "https://github.com/asansal"
+    }
+  },
+  "seo": {
+    "meta_title": "Alejandro Sánchez | Data Scientist & Machine Learning Engineer",
+    "meta_description": "Data Scientist con perfil híbrido: 4 años de rigor científico en Bioinformática sumados a experiencia en Business Intelligence, Machine Learning y Data Engineering.",
+    "keywords": ["Data Scientist", "Machine Learning", "Python", "Data Engineer", "Bioinformatics", "DACH", "SQL", "Power BI"]
+  },
   "copy_email_tooltip": "Copiar email al portapapeles",
   "email_copied_feedback": "¡Email copiado!"
 }
