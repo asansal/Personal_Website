@@ -1,7 +1,7 @@
 import os
 import json
 import argparse
-import google.generativeai as genai
+from google import genai
 from pathlib import Path
 
 # --- CONFIGURATION ---
@@ -48,9 +48,8 @@ def save_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-def translate_content(source_data, target_lang_name):
+def translate_content(client, source_data, target_lang_name):
     """Llama a Gemini para traducir."""
-    model = genai.GenerativeModel(AI_MODEL_FAST)
     prompt = f"""
     Role: Professional Technical Translator.
     Task: Translate the JSON values from Spanish to {target_lang_name}.
@@ -66,7 +65,7 @@ def translate_content(source_data, target_lang_name):
     {json.dumps(source_data, indent=2, ensure_ascii=False)}
     """
     try:
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(model=AI_MODEL_FAST, contents=prompt)
         clean_text = response.text.replace("```json", "").replace("```", "").strip()
         return json.loads(clean_text)
     except Exception as e:
@@ -91,14 +90,14 @@ def update_config_file(lang_code):
     save_json(CONFIG_PATH, config)
     print(f"📝 Configuración actualizada: {lang_code} añadido a languages.json")
 
-def process_language(lang_code, source_data, is_update=False):
+def process_language(client, lang_code, source_data, is_update=False):
     """Función core que gestiona la traducción y guardado."""
     target_info = SUPPORTED_LANGUAGES.get(lang_code, {"name": lang_code})
     target_name = target_info["name"]
     
     print(f"⏳ {'Actualizando' if is_update else 'Generando'} {target_name} ({lang_code})...")
     
-    translated_data = translate_content(source_data, target_name)
+    translated_data = translate_content(client, source_data, target_name)
     
     if translated_data:
         target_path = LOCALES_DIR / f"{lang_code}.json"
@@ -121,7 +120,7 @@ def main():
     if not api_key:
         print("❌ Error: Falta API Key.")
         return
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     # 2. Cargar Fuente
     if not SOURCE_FILE.exists():
@@ -131,14 +130,14 @@ def main():
 
     # 3. Ejecutar lógica
     if args.add:
-        process_language(args.add, source_data)
+        process_language(client, args.add, source_data)
     
     elif args.update:
         config = load_json(CONFIG_PATH)
         print(f"🔄 Actualizando {len(config) - 1} idiomas (excluyendo 'es')...") # -1 por el español
         for lang_code in config:
             if lang_code == "es": continue # Saltamos la fuente
-            process_language(lang_code, source_data, is_update=True)
+            process_language(client, lang_code, source_data, is_update=True)
 
 if __name__ == "__main__":
     main()
