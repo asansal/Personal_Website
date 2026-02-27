@@ -388,13 +388,12 @@ if GENAI_API_KEY:
     # This section handles the logic for receiving a query from the frontend JS,
     # calling the Gemini backend, and storing the response for the JS to poll.
     def handle_chatbot_query():
-        """Callback function to process user input from the chatbot."""
         if st.session_state.cb_input:
             user_query = st.session_state.cb_input
-            st.session_state.cb_input = ""  # Clear after processing
+            st.session_state.cb_input = ""
 
             kb_text = load_knowledge_base()
-            response = query_gemini(user_query, kb_text)
+            response = query_gemini(user_query, kb_text, lang=st.session_state.lang)  # ← añadir lang
 
             st.session_state.chatbot_query_id += 1
             st.session_state.chatbot_response = response

@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-import google.generativeai as genai
+from google import genai
 import json
 import html as _html
 import os
@@ -58,7 +58,10 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
 
 
 # --- SYSTEM PROMPT ---
-def get_system_instruction(context_data: str) -> str:
+def get_system_instruction(context_data: str, lang: str = "es") -> str:
+    lang_names = {"es": "Spanish", "en": "English", "de": "German"}
+    response_lang = lang_names.get(lang, "English")
+
     """
     Construye el system prompt que se enviará al modelo.
     """
@@ -74,36 +77,32 @@ def get_system_instruction(context_data: str) -> str:
     1. **Strict Grounding:** Answer ONLY using the information provided in the CONTEXT above.
     2. **No Hallucinations:** If the answer is not in the context, do NOT make it up. Instead, politely say: "Lo siento, no tengo esa información específica en mi base de datos actual. ¿Te gustaría contactar directamente por email para preguntar?"
     3. **Tone:** Be friendly, humble, but professional and structured. Avoid being overly enthusiastic or robotic.
-    4. **Language:** Respond in the same language as the user's question (likely Spanish or English).
+    4. **Language:** Respond in {response_lang} by default (can be ES, EN or DE), or in the language the user writes in.
     5. **CVs & Links:** If the context contains a URL (e.g., for a CV), present it clearly to the user.
 
     ### RESTRICTIONS:
     - Do not mention that you are an AI model developed by Google unless asked.
     - Do not give advice outside the scope of the resume/portfolio.
+    - Do not use filler phrases like "Of course", "Sure!", "Certainly", "Claro", "Por supuesto",
+      "I hope this helps", "Espero que te sea útil", "Feel free to ask", or any similar opener/closer.
+      Go directly to the answer.
     """
 
 
 # --- SERVER-SIDE CHAT (llamada Python → Gemini) ---
-def query_gemini(user_input: str, knowledge_context: str) -> str:
-    """
-    Envía la pregunta del usuario a Gemini Flash desde Python.
-    Esta función es la única que llama a la API; el popup JS ya no
-    llama directamente a Gemini, sino que delega en este backend.
-    """
+def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> str:
     try:
-        # La clave API se configura a través de la variable de entorno
-        # que se establece en initialize_chatbot()
-        genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-
-        system_instruction = get_system_instruction(knowledge_context)
-        model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash-latest",
-            system_instruction=system_instruction,
+        client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
+        system_instruction = get_system_instruction(knowledge_context, lang)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=user_input,
+            config=genai.types.GenerateContentConfig(
+                system_instruction=system_instruction,
+            )
         )
-        response = model.generate_content(user_input)
         return response.text
     except Exception as e:
-        # Log del error para debugging en el servidor
         st.error(f"Chatbot Gemini Error: {e}")
         return "Lo siento, hubo un error al procesar tu pregunta. Por favor intenta más tarde."
 
@@ -112,26 +111,34 @@ def query_gemini(user_input: str, knowledge_context: str) -> str:
 def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     """
     Inyecta el chatbot flotante en la aplicación Streamlit.
+    Todos los textos se leen desde bot_config (cargado del JSON de localización),
+    por lo que el popup se adapta automáticamente al idioma seleccionado.
 
-    Estrategia actualizada:
-    - El popup HTML/CSS se inyecta en window.parent.document (como antes).
-    - Al enviar un mensaje, el JS escribe en un st.text_input oculto
-      (aria-label = '__cb_input__') y simula un Enter para forzar el rerun
-      de Streamlit. Python llama a Gemini y guarda la respuesta en un
-      <div id="cb-py-response" data-id="N"> oculto.
-    - El JS hace polling de ese div hasta que data-id cambia, y entonces
-      muestra la respuesta en el popup. Sin llamadas directas a la API
-      desde el navegador → sin problemas de CORS ni de claves expuestas.
+    Estrategia:
+    - HTML y CSS se inyectan solo una vez (guardados por id).
+    - Los event listeners se re-adjuntan SIEMPRE fuera del guard del DOM,
+      usando cloneNode para evitar duplicados. Esto permite que el popup
+      sobreviva a reruns de Streamlit (ej: cambio de idioma).
     """
-    bot_title   = _html.escape(bot_config.get('title',           'AI Assistant'))
-    bot_welcome = _html.escape(bot_config.get('welcome_message', 'Pregúntame sobre mi experiencia, habilidades y proyectos.'))
+    # ── Textos desde el JSON de localización ─────────────────────────────────
+    bot_title         = _html.escape(bot_config.get("title",             "AI Assistant"))
+    status_text       = _html.escape(bot_config.get("status_text",       "Online"))
+    welcome_title     = _html.escape(bot_config.get("welcome_title",     "👋 Welcome!"))
+    welcome_message   = json.dumps(bot_config.get("welcome_message",   "Ask me anything."))
+    input_placeholder = _html.escape(bot_config.get("input_placeholder", "Type your question..."))
+    error_timeout     = _html.escape(bot_config.get("error_timeout",     "Response timed out. Please try again."))
+    error_connection  = _html.escape(bot_config.get("error_connection",  "Internal error: could not reach the server."))
+
+    # Suggestions: lista de {label, msg} serializada a JSON para usarla en JS
+    raw_suggestions = bot_config.get("suggestions", [])
+    suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
 
     components.html(f"""
     <script>
     (function() {{
         const doc = window.parent.document;
 
-        // ── 1. INYECTAR CSS ──────────────────────────────────────────────────
+        // ── 1. INYECTAR CSS (solo una vez) ───────────────────────────────────
         if (!doc.getElementById('chatbot-injected-styles')) {{
             const style = doc.createElement('style');
             style.id = 'chatbot-injected-styles';
@@ -287,7 +294,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             doc.head.appendChild(style);
         }}
 
-        // ── 2. INYECTAR HTML ─────────────────────────────────────────────────
+        // ── 2. INYECTAR HTML (solo una vez) ──────────────────────────────────
         if (!doc.getElementById('chatbot-root')) {{
             const root = doc.createElement('div');
             root.id = 'chatbot-root';
@@ -306,33 +313,29 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                         <div class="chatbot-header-content">
                             <div class="chatbot-avatar">🤖</div>
                             <div>
-                                <h3>{bot_title}</h3>
+                                <h3 id="chatbotTitle">{bot_title}</h3>
                                 <div class="status">
                                     <div class="status-dot"></div>
-                                    <span>Online</span>
+                                    <span id="chatbotStatusText">{status_text}</span>
                                 </div>
                             </div>
                         </div>
                         <button class="chatbot-close-btn" id="chatbotCloseBtn">&times;</button>
                     </div>
 
-                    <div class="quick-suggestions" id="chatbotSuggestions">
-                        <button class="suggestion-chip" data-msg="¿Cuál es tu experiencia en Data Science?">💼 Experiencia</button>
-                        <button class="suggestion-chip" data-msg="¿Qué tecnologías dominas?">🛠️ Skills</button>
-                        <button class="suggestion-chip" data-msg="Cuéntame sobre tus proyectos">🚀 Proyectos</button>
-                    </div>
+                    <div class="quick-suggestions" id="chatbotSuggestions"></div>
 
                     <div class="chatbot-body" id="chatbotBody">
-                        <div class="chatbot-welcome">
-                            <h4>👋 ¡Bienvenido!</h4>
-                            <p>{bot_welcome}</p>
+                        <div class="chatbot-welcome" id="chatbotWelcome">
+                            <h4 id="chatbotWelcomeTitle">{welcome_title}</h4>
+                            <p id="chatbotWelcomeMsg">{welcome_message}</p>
                         </div>
                     </div>
 
                     <div class="chatbot-footer">
                         <div class="chatbot-input-container">
                             <input type="text" id="chatbot-text-input"
-                                   placeholder="Escribe tu pregunta..." autocomplete="off"/>
+                                   placeholder="{input_placeholder}" autocomplete="off"/>
                             <button class="chatbot-send-btn" id="chatbotSendBtn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -343,160 +346,204 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 </div>
             `;
             doc.body.appendChild(root);
+        }}
 
-            // ── 3. LÓGICA DEL CHAT (bridge a Python) ────────────────────────
-            //
-            // En lugar de llamar a la API de Gemini desde el navegador,
-            // escribimos en el st.text_input oculto de Streamlit
-            // (aria-label = '__cb_input__'), simulamos un Enter para que
-            // Streamlit haga rerun y llame a Gemini en Python, y luego
-            // hacemos polling del div #cb-py-response hasta que cambia
-            // su data-id, señal de que la respuesta está lista.
-            //
-            let typingElement = null;
+        // ── 3. ACTUALIZAR TEXTOS LOCALIZADOS (siempre, en cada rerun) ────────
+        //
+        // Aunque el DOM no se recrea, los textos deben refrescarse cuando
+        // el usuario cambia de idioma y Streamlit hace rerun.
+        //
+        const suggestions = {suggestions_json};
 
-            // Toggle popup
-            doc.getElementById('chatbotTrigger').addEventListener('click', function() {{
-                doc.getElementById('chatbotPopup').classList.toggle('active');
+        const titleEl = doc.getElementById('chatbotTitle');
+        if (titleEl) titleEl.textContent = '{bot_title}';
+
+        const statusEl = doc.getElementById('chatbotStatusText');
+        if (statusEl) statusEl.textContent = '{status_text}';
+
+        const welcomeTitleEl = doc.getElementById('chatbotWelcomeTitle');
+        if (welcomeTitleEl) welcomeTitleEl.textContent = '{welcome_title}';
+
+        const welcomeMsgEl = doc.getElementById('chatbotWelcomeMsg');
+        if (welcomeMsgEl) welcomeMsgEl.textContent = '{welcome_message}';
+
+        const inputEl2 = doc.getElementById('chatbot-text-input');
+        if (inputEl2) inputEl2.placeholder = '{input_placeholder}';
+
+        // Reconstruir los chips de sugerencias con el idioma actual
+        const suggestionsContainer = doc.getElementById('chatbotSuggestions');
+        if (suggestionsContainer) {{
+            suggestionsContainer.innerHTML = '';
+            suggestions.forEach(function(s) {{
+                const btn = doc.createElement('button');
+                btn.className    = 'suggestion-chip';
+                btn.dataset.msg  = s.msg;
+                btn.textContent  = s.label;
+                suggestionsContainer.appendChild(btn);
             }});
-            doc.getElementById('chatbotCloseBtn').addEventListener('click', function() {{
-                doc.getElementById('chatbotPopup').classList.remove('active');
-            }});
+        }}
 
-            // Chips de sugerencias
-            doc.getElementById('chatbotSuggestions').addEventListener('click', function(e) {{
-                const chip = e.target.closest('.suggestion-chip');
-                if (chip) sendMessage(chip.dataset.msg);
-            }});
+        // ── 4. RE-ADJUNTAR EVENTOS (siempre, en cada rerun) ──────────────────
+        //
+        // Usamos cloneNode + replaceChild para eliminar listeners anteriores
+        // antes de añadir los nuevos, evitando duplicados acumulados.
+        //
+        let typingElement = null;
 
-            // Input + botón enviar
-            const inputEl = doc.getElementById('chatbot-text-input');
-            inputEl.addEventListener('keypress', function(e) {{
+        function reattach(id, event, handler) {{
+            const el = doc.getElementById(id);
+            if (!el) return;
+            const clone = el.cloneNode(true);
+            el.parentNode.replaceChild(clone, el);
+            doc.getElementById(id).addEventListener(event, handler);
+        }}
+
+        reattach('chatbotTrigger', 'click', function() {{
+            doc.getElementById('chatbotPopup').classList.toggle('active');
+        }});
+
+        reattach('chatbotCloseBtn', 'click', function() {{
+            doc.getElementById('chatbotPopup').classList.remove('active');
+        }});
+
+        reattach('chatbotSendBtn', 'click', function() {{
+            sendMessage();
+        }});
+
+        reattach('chatbotSuggestions', 'click', function(e) {{
+            const chip = e.target.closest('.suggestion-chip');
+            if (chip) sendMessage(chip.dataset.msg);
+        }});
+
+        // El input necesita tratamiento especial para preservar el valor escrito
+        const inputEl = doc.getElementById('chatbot-text-input');
+        if (inputEl) {{
+            const savedValue    = inputEl.value;
+            const savedDisabled = inputEl.disabled;
+            const newInput = inputEl.cloneNode(true);
+            inputEl.parentNode.replaceChild(newInput, inputEl);
+            const freshInput = doc.getElementById('chatbot-text-input');
+            freshInput.value       = savedValue;
+            freshInput.disabled    = savedDisabled;
+            freshInput.placeholder = '{input_placeholder}';
+            freshInput.addEventListener('keypress', function(e) {{
                 if (e.key === 'Enter' && !e.shiftKey) {{ e.preventDefault(); sendMessage(); }}
             }});
-            doc.getElementById('chatbotSendBtn').addEventListener('click', function() {{
-                sendMessage();
-            }});
+        }}
 
-            // ── Escribe en el input oculto de Streamlit y simula Enter ──────
-            function triggerStreamlitInput(message) {{
-                // Streamlit identifica el widget por su aria-label
-                const stInput = doc.querySelector('input[aria-label="__cb_input__"]');
-                if (!stInput) {{
-                    console.warn('[Chatbot] No se encontró el input bridge de Streamlit.');
-                    return false;
-                }}
-                // Usamos el setter nativo para que React detecte el cambio
-                const nativeSetter = Object.getOwnPropertyDescriptor(
-                    window.parent.HTMLInputElement.prototype, 'value'
-                ).set;
-                nativeSetter.call(stInput, message);
-                stInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                // Simular Enter para que Streamlit haga submit del widget
-                ['keydown','keypress','keyup'].forEach(function(evtType) {{
-                    stInput.dispatchEvent(new KeyboardEvent(evtType, {{
-                        key: 'Enter', code: 'Enter', keyCode: 13,
-                        charCode: 13, which: 13, bubbles: true
-                    }}));
-                }});
-                return true;
+        // ── 5. LÓGICA DEL CHAT (bridge a Python) ─────────────────────────────
+
+        function triggerStreamlitInput(message) {{
+            const stInput = doc.querySelector('input[aria-label="__cb_input__"]');
+            if (!stInput) {{
+                console.warn('[Chatbot] No se encontró el input bridge de Streamlit.');
+                return false;
+            }}
+            const nativeSetter = Object.getOwnPropertyDescriptor(
+                window.parent.HTMLInputElement.prototype, 'value'
+            ).set;
+            nativeSetter.call(stInput, message);
+            stInput.dispatchEvent(new Event('input', {{ bubbles: true }}));
+            ['keydown','keypress','keyup'].forEach(function(evtType) {{
+                stInput.dispatchEvent(new KeyboardEvent(evtType, {{
+                    key: 'Enter', code: 'Enter', keyCode: 13,
+                    charCode: 13, which: 13, bubbles: true
+                }}));
+            }});
+            return true;
+        }}
+
+        function sendMessage(suggestion) {{
+            const activeInput = doc.getElementById('chatbot-text-input');
+            const message = (suggestion !== undefined ? suggestion : activeInput.value).trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            activeInput.value    = '';
+            activeInput.disabled = true;
+            showTypingIndicator();
+
+            const responseDiv = doc.getElementById('cb-py-response');
+            const baseId = responseDiv
+                ? parseInt(responseDiv.getAttribute('data-id') || '0', 10)
+                : 0;
+
+            const ok = triggerStreamlitInput(message);
+            if (!ok) {{
+                hideTypingIndicator();
+                addMessage('{error_connection}', 'bot');
+                activeInput.disabled = false;
+                return;
             }}
 
-            function sendMessage(suggestion) {{
-                const message = (suggestion !== undefined ? suggestion : inputEl.value).trim();
-                if (!message) return;
-
-                addMessage(message, 'user');
-                inputEl.value    = '';
-                inputEl.disabled = true;
-                showTypingIndicator();
-
-                // Leer el data-id actual del div de respuesta Python
-                const responseDiv = doc.getElementById('cb-py-response');
-                const baseId = responseDiv
-                    ? parseInt(responseDiv.getAttribute('data-id') || '0', 10)
-                    : 0;
-
-                // Disparar el rerun de Streamlit
-                const ok = triggerStreamlitInput(message);
-                if (!ok) {{
-                    hideTypingIndicator();
-                    addMessage('Error interno: no se pudo conectar con el servidor.', 'bot');
-                    inputEl.disabled = false;
-                    return;
-                }}
-
-                // Polling hasta que data-id > baseId (respuesta nueva)
-                let elapsed = 0;
-                const maxWait = 60000;  // 60 s máximo
-                const interval = setInterval(function() {{
-                    elapsed += 500;
-                    const rd = doc.getElementById('cb-py-response');
-                    if (rd) {{
-                        const newId = parseInt(rd.getAttribute('data-id') || '0', 10);
-                        if (newId > baseId) {{
-                            clearInterval(interval);
-                            hideTypingIndicator();
-                            // Leer el texto escapado (el div usa textContent, no innerHTML)
-                            const botReply = rd.textContent || rd.innerText || '';
-                            addMessage(botReply.trim(), 'bot');
-                            inputEl.disabled = false;
-                            inputEl.focus();
-                            return;
-                        }}
-                    }}
-                    if (elapsed >= maxWait) {{
+            let elapsed = 0;
+            const maxWait = 60000;
+            const interval = setInterval(function() {{
+                elapsed += 500;
+                const rd = doc.getElementById('cb-py-response');
+                if (rd) {{
+                    const newId = parseInt(rd.getAttribute('data-id') || '0', 10);
+                    if (newId > baseId) {{
                         clearInterval(interval);
                         hideTypingIndicator();
-                        addMessage('Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.', 'bot');
-                        inputEl.disabled = false;
+                        const botReply = rd.textContent || rd.innerText || '';
+                        addMessage(botReply.trim(), 'bot');
+                        activeInput.disabled = false;
+                        activeInput.focus();
+                        return;
                     }}
-                }}, 500);
-            }}
+                }}
+                if (elapsed >= maxWait) {{
+                    clearInterval(interval);
+                    hideTypingIndicator();
+                    addMessage('{error_timeout}', 'bot');
+                    activeInput.disabled = false;
+                }}
+            }}, 500);
+        }}
 
-            function addMessage(text, type) {{
-                const chatBody   = doc.getElementById('chatbotBody');
-                const messageDiv = doc.createElement('div');
-                messageDiv.className = 'chat-message ' + type;
+        function addMessage(text, type) {{
+            const chatBody   = doc.getElementById('chatbotBody');
+            const messageDiv = doc.createElement('div');
+            messageDiv.className = 'chat-message ' + type;
 
-                const avatar       = doc.createElement('div');
-                avatar.className   = 'message-avatar';
-                avatar.textContent = type === 'bot' ? '🤖' : '👤';
+            const avatar       = doc.createElement('div');
+            avatar.className   = 'message-avatar';
+            avatar.textContent = type === 'bot' ? '🤖' : '👤';
 
-                const bubble       = doc.createElement('div');
-                bubble.className   = 'message-bubble';
-                bubble.textContent = text;
+            const bubble       = doc.createElement('div');
+            bubble.className   = 'message-bubble';
+            bubble.textContent = text;
 
-                messageDiv.appendChild(avatar);
-                messageDiv.appendChild(bubble);
-                chatBody.appendChild(messageDiv);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }}
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(bubble);
+            chatBody.appendChild(messageDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }}
 
-            function showTypingIndicator() {{
-                const chatBody   = doc.getElementById('chatbotBody');
-                const messageDiv = doc.createElement('div');
-                messageDiv.className = 'chat-message bot';
-                messageDiv.id        = 'chatbot-typing-row';
+        function showTypingIndicator() {{
+            const chatBody   = doc.getElementById('chatbotBody');
+            const messageDiv = doc.createElement('div');
+            messageDiv.className = 'chat-message bot';
+            messageDiv.id        = 'chatbot-typing-row';
 
-                const avatar       = doc.createElement('div');
-                avatar.className   = 'message-avatar';
-                avatar.textContent = '🤖';
+            const avatar       = doc.createElement('div');
+            avatar.className   = 'message-avatar';
+            avatar.textContent = '🤖';
 
-                const typingDiv     = doc.createElement('div');
-                typingDiv.className = 'chatbot-typing';
-                typingDiv.innerHTML = '<div class="chatbot-typing-dot"></div><div class="chatbot-typing-dot"></div><div class="chatbot-typing-dot"></div>';
+            const typingDiv     = doc.createElement('div');
+            typingDiv.className = 'chatbot-typing';
+            typingDiv.innerHTML = '<div class="chatbot-typing-dot"></div><div class="chatbot-typing-dot"></div><div class="chatbot-typing-dot"></div>';
 
-                messageDiv.appendChild(avatar);
-                messageDiv.appendChild(typingDiv);
-                chatBody.appendChild(messageDiv);
-                typingElement      = messageDiv;
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }}
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(typingDiv);
+            chatBody.appendChild(messageDiv);
+            typingElement      = messageDiv;
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }}
 
-            function hideTypingIndicator() {{
-                if (typingElement) {{ typingElement.remove(); typingElement = null; }}
-            }}
+        function hideTypingIndicator() {{
+            if (typingElement) {{ typingElement.remove(); typingElement = null; }}
         }}
 
     }})();
