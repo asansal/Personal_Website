@@ -38,7 +38,7 @@ st.set_page_config(
     page_title=texts.get("seo", {}).get("meta_title", "Alejandro Sánchez | Portfolio"),
     page_icon="🤖",
     layout="wide",
-    initial_sidebar_state="expanded",  # ← sidebar abierta por defecto
+    initial_sidebar_state="expanded",  # Sidebar open by default
 )
 
 # --- STYLES ---
@@ -48,7 +48,7 @@ load_css("assets/css/style.css")
 GENAI_API_KEY = initialize_chatbot()
 if not GENAI_API_KEY:
     st.warning("⚠️ Chatbot no disponible: API key no configurada. El resto de la web funciona con normalidad.")
-    # No se detiene la app — el chatbot es un feature secundario
+    # App is not stopped — the chatbot is a secondary feature
 
 # --- SEO META DESCRIPTION ---
 seo_data = texts.get("seo", {})
@@ -63,12 +63,12 @@ if meta_desc:
 
 # --- SIDEBAR ---
 with st.sidebar:
-    # ── Selector de idioma (arriba del todo) ──────────────────────
+    # ── Language Selector ──────────────────────────────────────────
     st.subheader("Idioma / Language")
 
-    # Crear lista de opciones para el selectbox
+    # Create list of options for the selectbox
     lang_options = {f"{info['flag']} {info['name']}": code for code, info in languages.items()}
-    # Obtener el nombre de la opción actual
+    # Get the name of the current option
     current_lang_name = next(
         (name for name, code in lang_options.items() if code == st.session_state.lang),
         list(lang_options.keys())[0]  # Fallback
@@ -89,7 +89,7 @@ with st.sidebar:
 
     st.divider()
 
-    # ── Perfil ─────────────────────────────────────────────────────
+    # ── Profile ────────────────────────────────────────────────────
     profile_data = texts.get("profile", {})
     img_b64 = get_img_as_base64("assets/images/profile.png")
     st.markdown(
@@ -108,7 +108,7 @@ with st.sidebar:
         social_links_html += f'<a href="{href}" {target} class="social-link">{icon.capitalize()}</a>'
     st.markdown(f'<div class="social-links-container">{social_links_html}</div>', unsafe_allow_html=True)
 
-    # ── Badge de disponibilidad (estilo sutil) ─────────────────────
+    # ── Availability Badge ─────────────────────────────────────────
     availability_text = profile_data.get("availability", "")
     if availability_text:
         st.markdown(
@@ -121,37 +121,27 @@ with st.sidebar:
 
     st.divider()
 
-    # ── Descarga de CVs según idioma ───────────────────────────────
-    st.subheader(texts.get("cv_download_text", "Download CV"))
-
-    cvs = {
-        "en": [
-            {"label": "CV Data Scientist (EN)", "path": "assets/files/CV_Data_Science_EN_2026_Alejandro_Sanchez.pdf"},
-            {"label": "CV Data Analyst (EN)",   "path": "assets/files/CV_Data_Analyst_EN_2026_Alejandro_Sanchez.pdf"},
-        ],
-        "es": [
-            # Si tienes CVs en español, añádelos aquí.
-            # Mientras tanto usamos los ingleses como fallback.
-            {"label": "CV Data Scientist (EN)", "path": "assets/files/CV_Data_Science_EN_2026_Alejandro_Sanchez.pdf"},
-            {"label": "CV Data Analyst (EN)",   "path": "assets/files/CV_Data_Analyst_EN_2026_Alejandro_Sanchez.pdf"},
-        ],
-        "de": [
-            {"label": "CV Data Scientist (DE)", "path": "assets/files/CV_DE_Data_Science_2026_Alejandro_Sanchez.pdf"},
-        ],
+    # ── CV Download ────────────────────────────────────────────────
+    # Map languages to their respective CV files
+    cv_files = {
+        "es": "assets/files/CV_ES_Alejandro_Sanchez.pdf",
+        "en": "assets/files/CV_EN_Alejandro_Sanchez.pdf",
+        "de": "assets/files/CV_DE_Alejandro_Sanchez.pdf",
     }
 
-    # Usa el idioma seleccionado; si no hay entrada, cae a inglés
-    cv_lang = st.session_state.lang if st.session_state.lang in cvs else "en"
-    for cv in cvs.get(cv_lang, []):
-        pdf_bytes = read_pdf_byte_stream(cv["path"])
-        if pdf_bytes:
-            st.download_button(
-                label=cv['label'],
-                data=pdf_bytes,
-                file_name=os.path.basename(cv["path"]),
-                mime="application/octet-stream",
-                use_container_width=True,
-            )
+    # Use the selected language; if not available in the mapping, fallback to English
+    cv_lang = st.session_state.lang if st.session_state.lang in cv_files else "en"
+    cv_path = cv_files[cv_lang]
+
+    pdf_bytes = read_pdf_byte_stream(cv_path)
+    if pdf_bytes:
+        st.download_button(
+            label=texts.get("cv_download_text", "Download CV"),
+            data=pdf_bytes,
+            file_name=os.path.basename(cv_path),
+            mime="application/octet-stream",
+            use_container_width=True,
+        )
 
 # --- MAIN CONTENT ---
 st.title(texts.get("profile", {}).get("tagline", ""))
@@ -201,7 +191,7 @@ st.divider()
 exp_data = texts.get("experience_section", {})
 with st.container():
     st.header(exp_data.get("title", "Experience"))
-    # Ordenar por periodo descendente (full-time primero, luego freelance/capstone)
+    # Sort by descending period (full-time first, then freelance/capstone)
     exp_items = sorted(
         exp_data.get("items", []),
         key=lambda x: x.get("period", "").split(" - ")[-1],
@@ -281,7 +271,7 @@ with st.container():
             cols = st.columns(len(lang_items))
             for i, item in enumerate(lang_items):
                 with cols[i]:
-                    # delta_color="off" elimina la flecha verde/roja que no tiene sentido semántico
+                    # delta_color="off" removes the green/red arrow as it has no semantic meaning here
                     st.metric(
                         label=item.get('language'),
                         value=item.get('level'),
@@ -321,7 +311,7 @@ with st.container():
         copy_feedback_text = texts.get("email_copied_feedback", "¡Copiado!")
         email_tooltip = texts.get('copy_email_tooltip', 'Copiar email al portapapeles')
 
-        # JS robusto con fallback execCommand para entornos sin HTTPS o sin Clipboard API
+        # Robust JS with fallback execCommand for environments without HTTPS or Clipboard API
         js = f"""
         <script>
         function copyEmailRobust(text, feedbackId) {{
@@ -373,7 +363,7 @@ with st.container():
 
         feedback_html = '<span id="copy-feedback-contact" style="display:none; color:green; margin-left:10px; font-weight:bold;"></span>'
         links_html = " | ".join(links_html_parts)
-        # Centrado y con separador superior
+        # Centered and with top separator
         st.markdown(
             f'<div style="text-align:center; margin-top:24px; padding-top:20px; border-top:1px solid #e0e0e0;">'
             f'{links_html}{feedback_html}'
@@ -393,7 +383,7 @@ if GENAI_API_KEY:
             st.session_state.cb_input = ""
 
             kb_text = load_knowledge_base()
-            response = query_gemini(user_query, kb_text, lang=st.session_state.lang)  # ← añadir lang
+            response = query_gemini(user_query, kb_text, lang=st.session_state.lang)
 
             st.session_state.chatbot_query_id += 1
             st.session_state.chatbot_response = response
@@ -416,11 +406,11 @@ if GENAI_API_KEY:
         unsafe_allow_html=True,
     )
 
-    # Cargar la base de conocimiento y la configuración del bot
+    # Load knowledge base and bot config
     knowledge_base_text = load_knowledge_base()
     bot_config = texts.get("chatbot_config", {})
 
-    # Inyectar el HTML/JS del popup del chatbot
+    # Inject chatbot popup HTML/JS
     inject_chatbot_popup(
         bot_config=bot_config,
         kb_text=knowledge_base_text,
