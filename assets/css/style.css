@@ -738,7 +738,7 @@ hr::after {
 /* ── BOTÓN FLOTANTE ─────────────────────────────────────── */
 .chatbot-trigger {
     position: fixed !important;
-    bottom: 50px !important;
+    bottom: 70px !important;
     right: 40px !important;
     width: 70px;
     height: 70px;
