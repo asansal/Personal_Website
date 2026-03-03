@@ -30,10 +30,8 @@ def initialize_chatbot() -> str | None:
 @st.cache_data
 def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     """
-    Carga el CSV de conocimiento y lo convierte en texto estructurado
-    que el LLM puede entender como contexto.
-
-    Columnas esperadas en el CSV: Category, Topic, Content
+    Loads the knowledge CSV and converts it into structured text
+    for the LLM to understand as context.
     """
     try:
         df = pd.read_csv(file_path)
@@ -63,7 +61,7 @@ def get_system_instruction(context_data: str, lang: str = "es") -> str:
     response_lang = lang_names.get(lang, "English")
 
     """
-    Construye el system prompt que se enviará al modelo.
+    Builds the system prompt sent to the model.
     """
     return f"""
     You are the AI Assistant for a professional portfolio website.
@@ -89,7 +87,7 @@ def get_system_instruction(context_data: str, lang: str = "es") -> str:
     """
 
 
-# --- SERVER-SIDE CHAT (llamada Python → Gemini) ---
+# --- SERVER-SIDE CHAT ---
 def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> str:
     try:
         client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
@@ -110,17 +108,10 @@ def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> s
 # --- CHATBOT POPUP INJECTION ---
 def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     """
-    Inyecta el chatbot flotante en la aplicación Streamlit.
-    Todos los textos se leen desde bot_config (cargado del JSON de localización),
-    por lo que el popup se adapta automáticamente al idioma seleccionado.
-
-    Estrategia:
-    - HTML y CSS se inyectan solo una vez (guardados por id).
-    - Los event listeners se re-adjuntan SIEMPRE fuera del guard del DOM,
-      usando cloneNode para evitar duplicados. Esto permite que el popup
-      sobreviva a reruns de Streamlit (ej: cambio de idioma).
+    Injects the floating chatbot into the Streamlit app.
+    All texts are read from bot_config (loaded from localization JSON).
+    CSS is adjusted to prevent overlap with Streamlit Cloud UI.
     """
-    # ── Textos desde el JSON de localización ─────────────────────────────────
     bot_title         = _html.escape(bot_config.get("title",             "AI Assistant"))
     status_text       = _html.escape(bot_config.get("status_text",       "Online"))
     welcome_title     = _html.escape(bot_config.get("welcome_title",     "👋 Welcome!"))
@@ -129,7 +120,6 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     error_timeout     = _html.escape(bot_config.get("error_timeout",     "Response timed out. Please try again."))
     error_connection  = _html.escape(bot_config.get("error_connection",  "Internal error: could not reach the server."))
 
-    # Suggestions: lista de {label, msg} serializada a JSON para usarla en JS
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
 
@@ -138,13 +128,12 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     (function() {{
         const doc = window.parent.document;
 
-        // ── 1. INYECTAR CSS (solo una vez) ───────────────────────────────────
         if (!doc.getElementById('chatbot-injected-styles')) {{
             const style = doc.createElement('style');
             style.id = 'chatbot-injected-styles';
             style.textContent = `
                 .chatbot-trigger {{
-                    position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px;
+                    position: fixed; bottom: 80px; right: 30px; width: 70px; height: 70px;
                     background: linear-gradient(135deg, #4CAF50, #00d4aa); border-radius: 50%;
                     display: flex; align-items: center; justify-content: center; cursor: pointer;
                     box-shadow: 0 8px 30px rgba(76,175,80,0.5), 0 0 40px rgba(0,212,170,0.3);
@@ -160,7 +149,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 .chatbot-trigger svg  {{ width: 35px; height: 35px; fill: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }}
 
                 .chatbot-popup {{
-                    position: fixed; bottom: 120px; right: 30px; width: 420px; height: 600px;
+                    position: fixed; bottom: 170px; right: 30px; width: 420px; height: 600px;
                     background: linear-gradient(180deg, rgba(10,14,39,0.98) 0%, rgba(22,33,62,0.96) 100%);
                     border-radius: 24px;
                     box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 60px rgba(76,175,80,0.25), inset 0 1px 2px rgba(255,255,255,0.1);
@@ -287,14 +276,13 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 }}
 
                 @media (max-width: 768px) {{
-                    .chatbot-popup   {{ width: calc(100vw - 30px); height: calc(100vh - 160px); bottom: 15px; right: 15px; }}
-                    .chatbot-trigger {{ bottom: 15px; right: 15px; width: 60px; height: 60px; }}
+                    .chatbot-popup   {{ width: calc(100vw - 30px); height: calc(100vh - 180px); bottom: 85px; right: 15px; }}
+                    .chatbot-trigger {{ bottom: 85px; right: 15px; width: 60px; height: 60px; }}
                 }}
             `;
             doc.head.appendChild(style);
         }}
 
-        // ── 2. INYECTAR HTML (solo una vez) ──────────────────────────────────
         if (!doc.getElementById('chatbot-root')) {{
             const root = doc.createElement('div');
             root.id = 'chatbot-root';
@@ -348,11 +336,6 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             doc.body.appendChild(root);
         }}
 
-        // ── 3. ACTUALIZAR TEXTOS LOCALIZADOS (siempre, en cada rerun) ────────
-        //
-        // Aunque el DOM no se recrea, los textos deben refrescarse cuando
-        // el usuario cambia de idioma y Streamlit hace rerun.
-        //
         const suggestions = {suggestions_json};
 
         const titleEl = doc.getElementById('chatbotTitle');
@@ -370,7 +353,6 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
         const inputEl2 = doc.getElementById('chatbot-text-input');
         if (inputEl2) inputEl2.placeholder = '{input_placeholder}';
 
-        // Reconstruir los chips de sugerencias con el idioma actual
         const suggestionsContainer = doc.getElementById('chatbotSuggestions');
         if (suggestionsContainer) {{
             suggestionsContainer.innerHTML = '';
@@ -383,11 +365,6 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             }});
         }}
 
-        // ── 4. RE-ADJUNTAR EVENTOS (siempre, en cada rerun) ──────────────────
-        //
-        // Usamos cloneNode + replaceChild para eliminar listeners anteriores
-        // antes de añadir los nuevos, evitando duplicados acumulados.
-        //
         let typingElement = null;
 
         function reattach(id, event, handler) {{
@@ -415,7 +392,6 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             if (chip) sendMessage(chip.dataset.msg);
         }});
 
-        // El input necesita tratamiento especial para preservar el valor escrito
         const inputEl = doc.getElementById('chatbot-text-input');
         if (inputEl) {{
             const savedValue    = inputEl.value;
@@ -430,8 +406,6 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 if (e.key === 'Enter' && !e.shiftKey) {{ e.preventDefault(); sendMessage(); }}
             }});
         }}
-
-        // ── 5. LÓGICA DEL CHAT (bridge a Python) ─────────────────────────────
 
         function triggerStreamlitInput(message) {{
             const stInput = doc.querySelector('input[aria-label="__cb_input__"]');

@@ -6,10 +6,6 @@
 /* --- IMPORT ELEGANT FONTS --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Crimson+Pro:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Alternativa fuentes modernas elegantes:
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
-*/
-
 /* --- ROOT VARIABLES --- */
 :root {
     /* Colores principales */
@@ -31,6 +27,19 @@
     --border-radius: 20px;
     --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     --glow: 0 0 30px rgba(76, 175, 80, 0.3);
+}
+
+/* --- REMOVE STREAMLIT BRANDING --- */
+/* Oculta el pie de página por defecto ("Made with Streamlit") */
+footer {
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* Oculta la barra de herramientas superior para un diseño más limpio */
+[data-testid="stToolbar"] {
+    visibility: hidden !important;
+    display: none !important;
 }
 
 /* --- GLOBAL STYLES --- */
