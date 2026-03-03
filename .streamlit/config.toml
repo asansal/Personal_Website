@@ -3,3 +3,22 @@
 #sslKeyFile = "key.pem"
 headless = true
 fileWatcherType = "none" # Mantenemos esto del arreglo anterior
+
+[theme]
+# Forzar el tema oscuro para que coincida perfectamente con el style.css
+base = "dark"
+
+# Color principal (alineado con tu --primary-color)
+primaryColor = "#00d4aa"
+
+# Color de fondo principal (alineado con tu --dark-base)
+backgroundColor = "#0a0e27"
+
+# Color de fondo del menú lateral (sidebar)
+secondaryBackgroundColor = "#16213e"
+
+# Color del texto general
+textColor = "#ffffff"
+
+# Tipografía
+font = "sans serif"
