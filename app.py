@@ -383,6 +383,16 @@ if GENAI_API_KEY:
             st.session_state.cb_input = ""
 
             kb_text = load_knowledge_base()
+            
+            # --- NUEVO: Inyectar contexto dinámico sobre el CV ---
+            kb_text += (
+                f"\n\n[INSTRUCCIÓN DINÁMICA DE LA INTERFAZ]: La página está actualmente "
+                f"en el idioma '{st.session_state.lang}'. Si el usuario te solicita mi CV o currículum, "
+                f"NO intentes generar enlaces. En su lugar, indícale amablemente que puede descargarlo "
+                f"haciendo clic en el botón 'Descargar CV' que se encuentra en el menú lateral izquierdo de la pantalla. "
+                f"Ese botón ya le proporcionará automáticamente el CV en el idioma correcto."
+            )
+
             response = query_gemini(user_query, kb_text, lang=st.session_state.lang)
 
             st.session_state.chatbot_query_id += 1
