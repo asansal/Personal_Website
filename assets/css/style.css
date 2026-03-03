@@ -720,3 +720,10 @@ hr::after {
 .stSpinner > div {
     border-color: var(--accent-color) transparent transparent transparent;
 }
+
+.chatbot-trigger {
+    position: fixed; bottom: 30px; left: 30px !important; right: auto !important; 
+}
+.chatbot-popup {
+    position: fixed; bottom: 120px; left: 30px !important; right: auto !important;
+}
