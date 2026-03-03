@@ -967,7 +967,7 @@ hr::after {
 /* ── MÓVIL ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .chatbot-trigger {
-        bottom: 250px !important;
+        bottom: 60px !important;
         right: 15px !important;
         width: 60px;
         height: 60px;
