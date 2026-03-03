@@ -133,7 +133,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             style.id = 'chatbot-injected-styles';
             style.textContent = `
                 .chatbot-trigger {{
-                    position: fixed; bottom: 200px; right: 30px; width: 70px; height: 70px;
+                    position: fixed; bottom: 250px; right: 50px; width: 60px; height: 80px;
                     background: linear-gradient(135deg, #4CAF50, #00d4aa); border-radius: 50%;
                     display: flex; align-items: center; justify-content: center; cursor: pointer;
                     box-shadow: 0 8px 30px rgba(76,175,80,0.5), 0 0 40px rgba(0,212,170,0.3);
@@ -149,7 +149,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 .chatbot-trigger svg  {{ width: 35px; height: 35px; fill: white; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }}
 
                 .chatbot-popup {{
-                    position: fixed; bottom: 200px; right: 30px; width: 420px; height: 600px;
+                    position: fixed; bottom: 250px; right: 50px; width: 500px; height: 700px;
                     background: linear-gradient(180deg, rgba(10,14,39,0.98) 0%, rgba(22,33,62,0.96) 100%);
                     border-radius: 24px;
                     box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 60px rgba(76,175,80,0.25), inset 0 1px 2px rgba(255,255,255,0.1);
