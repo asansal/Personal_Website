@@ -28,6 +28,7 @@ This project goes a step beyond a traditional static page. I have implemented se
 
 The repository is organized as follows to maintain a clean separation between the interface, logic, and data:
 
+```
 ├── app.py                  # Main entry point for the Streamlit application
 ├── logic/
 │   ├── chatbot.py          # Connection logic for the Gemini API and prompting
@@ -43,7 +44,7 @@ The repository is organized as follows to maintain a clean separation between th
 │   ├── images/             # Photographs and icons
 │   └── files/              # PDF documents (Resumes in different languages)
 └── requirements.txt        # Project dependencies
-
+```
 
 ## Local Installation and Deployment
 
