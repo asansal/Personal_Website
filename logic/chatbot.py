@@ -133,7 +133,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             style.id = 'chatbot-injected-styles';
             style.textContent = `
                 .chatbot-trigger {{
-                    position: fixed; bottom: 110px; right: 30px; width: 70px; height: 70px;
+                    position: fixed; bottom: 200px; right: 30px; width: 70px; height: 70px;
                     background: linear-gradient(135deg, #4CAF50, #00d4aa); border-radius: 50%;
                     display: flex; align-items: center; justify-content: center; cursor: pointer;
                     box-shadow: 0 8px 30px rgba(76,175,80,0.5), 0 0 40px rgba(0,212,170,0.3);
