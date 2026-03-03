@@ -1,6 +1,16 @@
 import streamlit as st
 import os
 import html as _html
+
+# --- PAGE CONFIGURATION ---
+# ¡IMPORTANTE! set_page_config DEBE ser el primer comando de Streamlit.
+st.set_page_config(
+    page_title="Alejandro Sánchez | Portfolio",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 from logic.chatbot import (
     load_knowledge_base,
     initialize_chatbot,
@@ -32,14 +42,6 @@ texts = load_localization(st.session_state.lang)
 if not texts:
     st.error(f"Could not load localization file for '{st.session_state.lang}'. Please ensure 'locales/{st.session_state.lang}.json' exists.")
     st.stop()
-
-# --- PAGE CONFIGURATION ---
-st.set_page_config(
-    page_title=texts.get("seo", {}).get("meta_title", "Alejandro Sánchez | Portfolio"),
-    page_icon="🤖",
-    layout="wide",
-    initial_sidebar_state="expanded",  # Sidebar open by default
-)
 
 # --- STYLES ---
 load_css("assets/css/style.css")
@@ -271,13 +273,9 @@ with st.container():
             cols = st.columns(len(lang_items))
             for i, item in enumerate(lang_items):
                 with cols[i]:
-                    # delta_color="off" removes the green/red arrow as it has no semantic meaning here
-                    st.metric(
-                        label=item.get('language'),
-                        value=item.get('level'),
-                        delta=item.get('proficiency', None),
-                        delta_color="off",
-                    )
+                    # Sustituimos st.metric por markdown para un formato elegante
+                    st.markdown(f"#### {item.get('language')}")
+                    st.markdown(f"_{item.get('level')}_ **({item.get('proficiency')})**")
 
     st.markdown("---") # Visual separator
 
