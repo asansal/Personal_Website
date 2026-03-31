@@ -138,6 +138,7 @@ html, body {
 
 /* --- SIDEBAR ULTRA ELEGANT --- */
 [data-testid="stSidebar"] {
+    z-index: 999 !important;
     background: linear-gradient(180deg, 
         rgba(10, 14, 39, 0.98) 0%, 
         rgba(26, 26, 46, 0.97) 50%,
@@ -155,14 +156,21 @@ html, body {
 }
 
 /* --- SIDEBAR VISIBILITY FIX --- */
-/* Make the native header transparent so it doesn't block the toggle button */
+/* Header transparente y con z-index alto para que el botón quede visible */
 [data-testid="stHeader"] {
     background-color: transparent !important;
+    z-index: 999990 !important;
 }
 
-/* Gently style the collapsed control button without breaking its native positioning */
-[data-testid="collapsedControl"] {
+/* Botón de expandir/colapsar sidebar.
+   Se apunta a ambos selectores: el antiguo (Streamlit <1.35)
+   y el nuevo (Streamlit ≥1.35) para máxima compatibilidad. */
+[data-testid="collapsedControl"],
+[data-testid="stSidebarCollapsedControl"] {
     z-index: 999999 !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     background-color: rgba(10, 14, 39, 0.8) !important;
     border-radius: 8px !important;
     border: 1px solid rgba(0, 212, 170, 0.4) !important;
@@ -170,11 +178,13 @@ html, body {
     transition: var(--transition);
 }
 
-[data-testid="collapsedControl"]:hover {
+[data-testid="collapsedControl"]:hover,
+[data-testid="stSidebarCollapsedControl"]:hover {
     background-color: rgba(0, 212, 170, 0.2) !important;
 }
 
-[data-testid="collapsedControl"] svg {
+[data-testid="collapsedControl"] svg,
+[data-testid="stSidebarCollapsedControl"] svg {
     fill: var(--accent-color) !important;
     color: var(--accent-color) !important;
 }
