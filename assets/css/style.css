@@ -36,25 +36,10 @@ footer {
     display: none !important;
 }
 
-/* Oculta visualmente la barra de herramientas pero SIN display:none.
-   En Streamlit moderno el botón del sidebar vive dentro de stToolbar,
-   así que usar display:none destruye también ese botón.
-   Con visibility:hidden + height:0 lo ocultamos sin romper sus hijos. */
+/* Oculta la barra de herramientas superior para un diseño más limpio */
 [data-testid="stToolbar"] {
     visibility: hidden !important;
-    height: 0 !important;
-    overflow: visible !important;
-}
-
-/* El toggle del sidebar siempre debe ser visible aunque el toolbar esté "oculto" */
-[data-testid="stToolbar"] [data-testid="collapsedControl"],
-[data-testid="stToolbar"] [data-testid="stSidebarCollapsedControl"],
-[data-testid="stToolbar"] button[aria-label*="sidebar"],
-[data-testid="stToolbar"] button[aria-label*="Sidebar"] {
-    visibility: visible !important;
-    display: flex !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
+    display: none !important;
 }
 
 /* --- GLOBAL STYLES --- */
@@ -153,7 +138,6 @@ html, body {
 
 /* --- SIDEBAR ULTRA ELEGANT --- */
 [data-testid="stSidebar"] {
-    z-index: 999 !important;
     background: linear-gradient(180deg, 
         rgba(10, 14, 39, 0.98) 0%, 
         rgba(26, 26, 46, 0.97) 50%,
@@ -168,40 +152,6 @@ html, body {
 
 [data-testid="stSidebar"] > div:first-child {
     padding-top: 2rem;
-}
-
-/* --- SIDEBAR VISIBILITY FIX --- */
-/* Header transparente y con z-index alto para que el botón quede visible */
-[data-testid="stHeader"] {
-    background-color: transparent !important;
-    z-index: 999990 !important;
-}
-
-/* Botón de expandir/colapsar sidebar.
-   Se apunta a ambos selectores: el antiguo (Streamlit <1.35)
-   y el nuevo (Streamlit ≥1.35) para máxima compatibilidad. */
-[data-testid="collapsedControl"],
-[data-testid="stSidebarCollapsedControl"] {
-    z-index: 999999 !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background-color: rgba(10, 14, 39, 0.8) !important;
-    border-radius: 8px !important;
-    border: 1px solid rgba(0, 212, 170, 0.4) !important;
-    margin-top: 15px !important;
-    transition: var(--transition);
-}
-
-[data-testid="collapsedControl"]:hover,
-[data-testid="stSidebarCollapsedControl"]:hover {
-    background-color: rgba(0, 212, 170, 0.2) !important;
-}
-
-[data-testid="collapsedControl"] svg,
-[data-testid="stSidebarCollapsedControl"] svg {
-    fill: var(--accent-color) !important;
-    color: var(--accent-color) !important;
 }
 
 /* --- PROFILE IMAGE (Vertical optimized) --- */
@@ -1024,15 +974,9 @@ hr::after {
     }
 
     .chatbot-popup {
-        /* Width adjustment for mobile margins */
         width: calc(100vw - 30px) !important;
+        height: calc(100vh - 300px) !important;
+        bottom: 330px !important;
         right: 15px !important;
-        
-        /* Lower position to avoid pushing it too far up */
-        bottom: 130px !important;
-        
-        /* More conservative height to prevent top cut-off on mobile browsers */
-        height: 60vh !important;
-        max-height: 480px !important;
     }
 }
