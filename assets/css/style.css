@@ -974,9 +974,15 @@ hr::after {
     }
 
     .chatbot-popup {
+        /* Full width minus 15px margin on each side */
         width: calc(100vw - 30px) !important;
-        height: calc(100vh - 300px) !important;
-        bottom: 330px !important;
         right: 15px !important;
+        
+        /* Positioned just above the trigger button (60px bottom + 60px height + 15px gap) */
+        bottom: 135px !important;
+        
+        /* Dynamic height to fit screen safely without top overflow */
+        height: calc(100vh - 160px) !important;
+        max-height: 80vh !important;
     }
 }
