@@ -36,10 +36,25 @@ footer {
     display: none !important;
 }
 
-/* Oculta la barra de herramientas superior para un diseño más limpio */
+/* Oculta visualmente la barra de herramientas pero SIN display:none.
+   En Streamlit moderno el botón del sidebar vive dentro de stToolbar,
+   así que usar display:none destruye también ese botón.
+   Con visibility:hidden + height:0 lo ocultamos sin romper sus hijos. */
 [data-testid="stToolbar"] {
     visibility: hidden !important;
-    display: none !important;
+    height: 0 !important;
+    overflow: visible !important;
+}
+
+/* El toggle del sidebar siempre debe ser visible aunque el toolbar esté "oculto" */
+[data-testid="stToolbar"] [data-testid="collapsedControl"],
+[data-testid="stToolbar"] [data-testid="stSidebarCollapsedControl"],
+[data-testid="stToolbar"] button[aria-label*="sidebar"],
+[data-testid="stToolbar"] button[aria-label*="Sidebar"] {
+    visibility: visible !important;
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
 }
 
 /* --- GLOBAL STYLES --- */
