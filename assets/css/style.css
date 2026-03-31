@@ -154,29 +154,26 @@ html, body {
     padding-top: 2rem;
 }
 
-/* --- SIDEBAR COLLAPSED TOGGLE FIX --- */
-/* Forces the expand button to be visible, fixed on the screen, and detached from the top header */
+/* --- SIDEBAR VISIBILITY FIX --- */
+/* Make the native header transparent so it doesn't block the toggle button */
+[data-testid="stHeader"] {
+    background-color: transparent !important;
+}
+
+/* Gently style the collapsed control button without breaking its native positioning */
 [data-testid="collapsedControl"] {
-    display: flex !important;
-    position: fixed !important;
-    top: 60px !important;
-    left: 15px !important;
     z-index: 999999 !important;
-    background-color: rgba(10, 14, 39, 0.85) !important;
-    backdrop-filter: blur(10px);
+    background-color: rgba(10, 14, 39, 0.8) !important;
     border-radius: 8px !important;
     border: 1px solid rgba(0, 212, 170, 0.4) !important;
+    margin-top: 15px !important;
     transition: var(--transition);
-    padding: 5px !important;
 }
 
-/* Hover effect for the expand button */
 [data-testid="collapsedControl"]:hover {
     background-color: rgba(0, 212, 170, 0.2) !important;
-    border-color: var(--accent-color) !important;
 }
 
-/* Icon color enforcement */
 [data-testid="collapsedControl"] svg {
     fill: var(--accent-color) !important;
     color: var(--accent-color) !important;
