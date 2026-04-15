@@ -36,31 +36,9 @@ footer {
     display: none !important;
 }
 
-/* Oculta visualmente la barra de herramientas pero SIN display:none.
-   En Streamlit moderno el botón del sidebar vive dentro de stToolbar,
-   así que usar display:none destruye también ese botón.
-   Con visibility:hidden + height:0 lo ocultamos sin romper sus hijos. */
+/* Keep toolbar visible but minimal */
 [data-testid="stToolbar"] {
-    visibility: hidden !important;
-    height: 0 !important;
-    overflow: visible !important;
-}
-
-/* El toggle del sidebar siempre debe ser visible aunque el toolbar esté "oculto" */
-[data-testid="stToolbar"] [data-testid="collapsedControl"],
-[data-testid="stToolbar"] [data-testid="stSidebarCollapsedControl"],
-[data-testid="stToolbar"] [data-testid="stSidebarNavCollapseButton"],
-[data-testid="stToolbar"] button[aria-label*="sidebar"],
-[data-testid="stToolbar"] button[aria-label*="Sidebar"] {
-    visibility: visible !important;
-    display: flex !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
-    /* --- CRITICAL POSITIONING --- */
-    /* This needs to be here to override Streamlit's default positioning */
-    position: fixed !important;
-    top: 0.5rem !important;
-    left: 0.5rem !important;
+    background: transparent !important;
     z-index: 999999 !important;
 }
 
@@ -177,77 +155,86 @@ html, body {
     padding-top: 2rem;
 }
 
-/* --- SIDEBAR VISIBILITY FIX --- */
+/* --- SIDEBAR ALWAYS VISIBLE --- */
+/* Force sidebar to always be expanded */
+[data-testid="stSidebar"] {
+    transform: none !important;
+    visibility: visible !important;
+}
+
+[data-testid="stSidebar"][aria-expanded="false"] {
+    transform: none !important;
+    margin-left: 0 !important;
+}
+
 /* Header: transparente pero presente, con z-index alto */
 [data-testid="stHeader"] {
     background-color: transparent !important;
     z-index: 999990 !important;
-    pointer-events: none !important; /* el header no bloquea clics... */
-}
-[data-testid="stHeader"] * {
-    pointer-events: all !important;  /* ...pero sus hijos sí los reciben */
 }
 
-/* ─── BOTÓN DE DESPLEGAR SIDEBAR ───────────────────────────────────────────
-   Cubrimos TODOS los selectores conocidos en todas las versiones de Streamlit.
-   El botón puede ser el elemento raíz O un hijo directo con <button>.
-   ───────────────────────────────────────────────────────────────────────── */
-
-/* Selectores del contenedor (div/section que envuelve el botón) */
+/* ─── SIDEBAR TOGGLE BUTTON - ALWAYS VISIBLE IN TOP LEFT ─────────────────── */
+/* All possible selectors for the sidebar toggle button */
 [data-testid="collapsedControl"],
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="stSidebarCollapseButton"],
-[data-testid="stSidebarNavCollapseButton"] {
+[data-testid="stSidebarNavCollapseButton"],
+button[kind="header"],
+[data-testid="baseButton-header"],
+[data-testid="stToolbar"] button[aria-label*="sidebar" i],
+[data-testid="stToolbar"] button[aria-label*="navigation" i] {
+    position: fixed !important;
+    top: 1rem !important;
+    left: 1rem !important;
     z-index: 999999 !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: all !important;
-    position: fixed !important;
-    top: 0.5rem !important;
-    left: 0.5rem !important;
     background: rgba(0, 212, 170, 0.15) !important;
     border-radius: 8px !important;
     border: 1px solid rgba(0, 212, 170, 0.5) !important;
-    padding: 4px !important;
+    padding: 8px !important;
     transition: var(--transition);
+    width: auto !important;
+    height: auto !important;
 }
 
-/* El <button> nativo dentro del contenedor */
+/* Button element inside container */
 [data-testid="collapsedControl"] button,
 [data-testid="stSidebarCollapsedControl"] button,
 [data-testid="stSidebarCollapseButton"] button,
-[data-testid="stSidebarNavCollapseButton"] button {
-    z-index: 999999 !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
+[data-testid="stSidebarNavCollapseButton"] button,
+button[kind="header"] button {
     color: var(--primary-color) !important;
     background: transparent !important;
+    border: none !important;
 }
 
-/* SVG / icono de flecha dentro del botón */
+/* SVG icons */
 [data-testid="collapsedControl"] svg,
 [data-testid="stSidebarCollapsedControl"] svg,
 [data-testid="stSidebarCollapseButton"] svg,
-[data-testid="stSidebarNavCollapseButton"] svg {
+[data-testid="stSidebarNavCollapseButton"] svg,
+button[kind="header"] svg,
+[data-testid="baseButton-header"] svg {
     fill: var(--primary-color) !important;
     color: var(--primary-color) !important;
     stroke: var(--primary-color) !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 20px !important;
-    height: 20px !important;
+    width: 24px !important;
+    height: 24px !important;
 }
 
-/* Hover */
+/* Hover state */
 [data-testid="collapsedControl"]:hover,
 [data-testid="stSidebarCollapsedControl"]:hover,
 [data-testid="stSidebarCollapseButton"]:hover,
-[data-testid="stSidebarNavCollapseButton"]:hover {
+[data-testid="stSidebarNavCollapseButton"]:hover,
+button[kind="header"]:hover,
+[data-testid="baseButton-header"]:hover {
     background: rgba(0, 212, 170, 0.3) !important;
     box-shadow: 0 0 16px rgba(0, 212, 170, 0.4) !important;
+    transform: scale(1.05) !important;
 }
 
 /* --- PROFILE IMAGE (Vertical optimized) --- */

@@ -8,6 +8,10 @@ fileWatcherType = "none" # Mantenemos esto del arreglo anterior
 showSidebarNavigation = false
 toolbarMode = "minimal"
 
+[ui]
+hideTopBar = false
+hideSidebarNav = false
+
 [theme]
 # Forzar el tema oscuro para que coincida perfectamente con el style.css
 base = "dark"

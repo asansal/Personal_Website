@@ -11,24 +11,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Force sidebar to stay open with custom CSS
-st.markdown("""
-    <style>
-        [data-testid="stSidebar"][aria-expanded="true"] {
-            min-width: 300px;
-            max-width: 300px;
-        }
-        [data-testid="stSidebar"][aria-expanded="false"] {
-            min-width: 300px;
-            max-width: 300px;
-            margin-left: 0px;
-        }
-        /* Hide the collapse button */
-        button[kind="header"] {
-            display: none;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
 from logic.chatbot import (
     load_knowledge_base,
