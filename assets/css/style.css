@@ -179,8 +179,6 @@ html, body {
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="stSidebarCollapseButton"],
 [data-testid="stSidebarNavCollapseButton"],
-button[kind="header"],
-[data-testid="baseButton-header"],
 [data-testid="stToolbar"] button[aria-label*="sidebar"],
 [data-testid="stToolbar"] button[aria-label*="navigation"],
 [data-testid="stToolbar"] button[aria-label*="Sidebar"],
@@ -206,8 +204,7 @@ button[kind="header"],
 [data-testid="collapsedControl"] button,
 [data-testid="stSidebarCollapsedControl"] button,
 [data-testid="stSidebarCollapseButton"] button,
-[data-testid="stSidebarNavCollapseButton"] button,
-button[kind="header"] button {
+[data-testid="stSidebarNavCollapseButton"] button {
     color: var(--primary-color) !important;
     background: transparent !important;
     border: none !important;
@@ -217,9 +214,7 @@ button[kind="header"] button {
 [data-testid="collapsedControl"] svg,
 [data-testid="stSidebarCollapsedControl"] svg,
 [data-testid="stSidebarCollapseButton"] svg,
-[data-testid="stSidebarNavCollapseButton"] svg,
-button[kind="header"] svg,
-[data-testid="baseButton-header"] svg {
+[data-testid="stSidebarNavCollapseButton"] svg {
     fill: var(--primary-color) !important;
     color: var(--primary-color) !important;
     stroke: var(--primary-color) !important;
@@ -231,9 +226,7 @@ button[kind="header"] svg,
 [data-testid="collapsedControl"]:hover,
 [data-testid="stSidebarCollapsedControl"]:hover,
 [data-testid="stSidebarCollapseButton"]:hover,
-[data-testid="stSidebarNavCollapseButton"]:hover,
-button[kind="header"]:hover,
-[data-testid="baseButton-header"]:hover {
+[data-testid="stSidebarNavCollapseButton"]:hover {
     background: rgba(0, 212, 170, 0.3) !important;
     box-shadow: 0 0 16px rgba(0, 212, 170, 0.4) !important;
     transform: scale(1.05) !important;

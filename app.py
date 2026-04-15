@@ -109,7 +109,7 @@ with st.sidebar:
         href = f"mailto:{link}" if icon == "email" else link
         target = "" if icon == "email" else 'target="_blank"'
         social_links_html += f'<a href="{href}" {target} class="social-link">{icon.capitalize()}</a>'
-    st.markdown(f'<div class="social-links-container">{social_links_html}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="social-links">{social_links_html}</div>', unsafe_allow_html=True)
 
     # ── Availability Badge ─────────────────────────────────────────
     availability_text = profile_data.get("availability", "")
