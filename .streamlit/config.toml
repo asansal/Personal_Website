@@ -4,6 +4,10 @@
 headless = true
 fileWatcherType = "none" # Mantenemos esto del arreglo anterior
 
+[client]
+showSidebarNavigation = false
+toolbarMode = "minimal"
+
 [theme]
 # Forzar el tema oscuro para que coincida perfectamente con el style.css
 base = "dark"
