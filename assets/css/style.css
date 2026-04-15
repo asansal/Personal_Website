@@ -49,6 +49,7 @@ footer {
 /* El toggle del sidebar siempre debe ser visible aunque el toolbar esté "oculto" */
 [data-testid="stToolbar"] [data-testid="collapsedControl"],
 [data-testid="stToolbar"] [data-testid="stSidebarCollapsedControl"],
+[data-testid="stToolbar"] [data-testid="stSidebarNavCollapseButton"],
 [data-testid="stToolbar"] button[aria-label*="sidebar"],
 [data-testid="stToolbar"] button[aria-label*="Sidebar"] {
     visibility: visible !important;
