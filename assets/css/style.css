@@ -189,7 +189,8 @@ html, body {
 /* Selectores del contenedor (div/section que envuelve el botón) */
 [data-testid="collapsedControl"],
 [data-testid="stSidebarCollapsedControl"],
-[data-testid="stSidebarCollapseButton"] {
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stSidebarNavCollapseButton"] {
     z-index: 999999 !important;
     display: flex !important;
     visibility: visible !important;
@@ -208,7 +209,8 @@ html, body {
 /* El <button> nativo dentro del contenedor */
 [data-testid="collapsedControl"] button,
 [data-testid="stSidebarCollapsedControl"] button,
-[data-testid="stSidebarCollapseButton"] button {
+[data-testid="stSidebarCollapseButton"] button,
+[data-testid="stSidebarNavCollapseButton"] button {
     z-index: 999999 !important;
     display: flex !important;
     visibility: visible !important;
@@ -221,7 +223,8 @@ html, body {
 /* SVG / icono de flecha dentro del botón */
 [data-testid="collapsedControl"] svg,
 [data-testid="stSidebarCollapsedControl"] svg,
-[data-testid="stSidebarCollapseButton"] svg {
+[data-testid="stSidebarCollapseButton"] svg,
+[data-testid="stSidebarNavCollapseButton"] svg {
     fill: var(--primary-color) !important;
     color: var(--primary-color) !important;
     stroke: var(--primary-color) !important;
@@ -234,7 +237,8 @@ html, body {
 /* Hover */
 [data-testid="collapsedControl"]:hover,
 [data-testid="stSidebarCollapsedControl"]:hover,
-[data-testid="stSidebarCollapseButton"]:hover {
+[data-testid="stSidebarCollapseButton"]:hover,
+[data-testid="stSidebarNavCollapseButton"]:hover {
     background: rgba(0, 212, 170, 0.3) !important;
     box-shadow: 0 0 16px rgba(0, 212, 170, 0.4) !important;
 }
