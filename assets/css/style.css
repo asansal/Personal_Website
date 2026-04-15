@@ -155,17 +155,6 @@ html, body {
     padding-top: 2rem;
 }
 
-/* --- SIDEBAR ALWAYS VISIBLE --- */
-/* Force sidebar to always be expanded */
-[data-testid="stSidebar"] {
-    transform: none !important;
-    visibility: visible !important;
-}
-
-[data-testid="stSidebar"][aria-expanded="false"] {
-    transform: none !important;
-    margin-left: 0 !important;
-}
 
 /* Header: transparente pero presente, con z-index alto */
 [data-testid="stHeader"] {
