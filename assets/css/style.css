@@ -181,8 +181,10 @@ html, body {
 [data-testid="stSidebarNavCollapseButton"],
 button[kind="header"],
 [data-testid="baseButton-header"],
-[data-testid="stToolbar"] button[aria-label*="sidebar" i],
-[data-testid="stToolbar"] button[aria-label*="navigation" i] {
+[data-testid="stToolbar"] button[aria-label*="sidebar"],
+[data-testid="stToolbar"] button[aria-label*="navigation"],
+[data-testid="stToolbar"] button[aria-label*="Sidebar"],
+[data-testid="stToolbar"] button[aria-label*="Navigation"] {
     position: fixed !important;
     top: 1rem !important;
     left: 1rem !important;
