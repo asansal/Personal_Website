@@ -27,46 +27,97 @@ def initialize_chatbot() -> str | None:
     return api_key
 
 
-# --- KNOWLEDGE BASE LOADING ---
+# --- KNOWLEDGE BASE LOADING (fixed) ---
 @st.cache_data
 def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     """
     Loads the knowledge CSV and converts it into structured text
     for the LLM to understand as context.
+ 
+    Robust against the most common CSV quoting issues:
+      - Content field has commas but is NOT wrapped in double-quotes
+      - Internal double-quotes that are not escaped (should be "")
+      - Mixed single/double quote styles
     """
     try:
-        # Using Python's native CSV reader for robustness against parsing errors.
-        # It handles complex quoting and newlines within fields more reliably.
-        with open(file_path, mode='r', encoding='utf-8') as infile:
-            reader = csv.reader(infile)
+        with open(file_path, mode="r", encoding="utf-8") as f:
+            raw = f.read()
+ 
+        # ── Attempt 1: standard csv.reader (handles well-formed RFC-4180) ────
+        try:
+            reader = csv.reader(io.StringIO(raw))
             data = list(reader)
-
-        if not data or len(data) < 2:
-            st.error("Error: El archivo CSV está vacío o no contiene datos.")
-            return ""
-
-        header = data[0]
-        rows = data[1:]
-        df = pd.DataFrame(rows, columns=header)
-
-        required_columns = ["Category", "Topic", "Content"]
-        if not all(col in df.columns for col in required_columns):
-            st.error(f"Error de formato en el CSV. Columnas requeridas: {required_columns}")
-            return ""
-
-        context_text = ""
-        for _, row in df.iterrows():
-            context_text += f"[{row['Category']}] {row['Topic']}: {row['Content']}\n"
-
-        return context_text
-
+            header = data[0]
+            # Validate: every row must have exactly as many fields as the header
+            if all(len(row) == len(header) for row in data[1:]):
+                df = pd.DataFrame(data[1:], columns=header)
+                return _build_context(df, file_path)
+        except csv.Error:
+            pass  # fall through to attempt 2
+ 
+        # ── Attempt 2: pandas with python engine + flexible quoting ──────────
+        try:
+            df = pd.read_csv(
+                io.StringIO(raw),
+                quotechar='"',
+                quoting=csv.QUOTE_MINIMAL,   # honours existing quotes
+                engine="python",
+                on_bad_lines="skip",         # silently drop malformed lines
+            )
+            return _build_context(df, file_path)
+        except Exception:
+            pass
+ 
+        # ── Attempt 3: treat every line as "first two commas are separators" ─
+        # Works when the Content column has unquoted free-form text.
+        try:
+            rows = []
+            for line in raw.splitlines():
+                # Split on the first two commas only → always gives 3 parts
+                parts = line.split(",", 2)
+                if len(parts) == 3:
+                    # Strip surrounding quotes and whitespace from each field
+                    rows.append([p.strip().strip('"') for p in parts])
+ 
+            if len(rows) < 2:
+                raise ValueError("Not enough rows after manual parse")
+ 
+            df = pd.DataFrame(rows[1:], columns=[c.strip().strip('"') for c in rows[0]])
+            return _build_context(df, file_path)
+        except Exception:
+            pass
+ 
+        st.error(
+            "No se pudo parsear el CSV. "
+            "Ejecuta `scripts/fix_csv.py` para repararlo automáticamente."
+        )
+        return ""
+ 
     except FileNotFoundError:
         st.error(f"Archivo de conocimiento no encontrado en: {file_path}")
         return ""
     except Exception as e:
         st.error(f"Error cargando la base de conocimiento: {e}")
         return ""
-
+ 
+ 
+def _build_context(df: pd.DataFrame, file_path: str) -> str:
+    required_columns = ["Category", "Topic", "Content"]
+    # Normalise column names (strip whitespace, match case-insensitively)
+    df.columns = [c.strip() for c in df.columns]
+    col_map = {c.lower(): c for c in df.columns}
+    rename = {col_map[r.lower()]: r for r in required_columns if r.lower() in col_map}
+    df = df.rename(columns=rename)
+ 
+    if not all(col in df.columns for col in required_columns):
+        st.error(f"Columnas requeridas: {required_columns}. Encontradas: {list(df.columns)}")
+        return ""
+ 
+    context_text = ""
+    for _, row in df.iterrows():
+        context_text += f"[{row['Category']}] {row['Topic']}: {row['Content']}\n"
+    return context_text
+ 
 
 # --- SYSTEM PROMPT ---
 def get_system_instruction(context_data: str, lang: str = "es") -> str:
