@@ -5,6 +5,7 @@ from google import genai
 import json
 import html as _html
 import os
+import csv
 
 
 # --- CHATBOT INITIALIZATION ---
@@ -34,7 +35,19 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     for the LLM to understand as context.
     """
     try:
-        df = pd.read_csv(file_path, engine='python')
+        # Using Python's native CSV reader for robustness against parsing errors.
+        # It handles complex quoting and newlines within fields more reliably.
+        with open(file_path, mode='r', encoding='utf-8') as infile:
+            reader = csv.reader(infile)
+            data = list(reader)
+
+        if not data or len(data) < 2:
+            st.error("Error: El archivo CSV está vacío o no contiene datos.")
+            return ""
+
+        header = data[0]
+        rows = data[1:]
+        df = pd.DataFrame(rows, columns=header)
 
         required_columns = ["Category", "Topic", "Content"]
         if not all(col in df.columns for col in required_columns):
