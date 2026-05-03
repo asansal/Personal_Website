@@ -34,7 +34,7 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     for the LLM to understand as context.
     """
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, engine='python')
 
         required_columns = ["Category", "Topic", "Content"]
         if not all(col in df.columns for col in required_columns):
