@@ -27,97 +27,52 @@ def initialize_chatbot() -> str | None:
     return api_key
 
 
-# --- KNOWLEDGE BASE LOADING (fixed) ---
+# --- KNOWLEDGE BASE LOADING ---
 @st.cache_data
 def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     """
-    Loads the knowledge CSV and converts it into structured text
-    for the LLM to understand as context.
- 
-    Robust against the most common CSV quoting issues:
-      - Content field has commas but is NOT wrapped in double-quotes
-      - Internal double-quotes that are not escaped (should be "")
-      - Mixed single/double quote styles
+    Loads the knowledge CSV and converts it into a plain-text context string.
+    Does NOT use pandas to parse the CSV — uses only Python's csv module,
+    which correctly handles quoted fields containing commas.
     """
     try:
-        with open(file_path, mode="r", encoding="utf-8") as f:
-            raw = f.read()
- 
-        # ── Attempt 1: standard csv.reader (handles well-formed RFC-4180) ────
+        with open(file_path, mode="r", encoding="utf-8-sig", newline="") as f:
+            reader = csv.reader(f)
+            rows = list(reader)
+
+        if not rows or len(rows) < 2:
+            st.error("El archivo CSV está vacío o no tiene datos.")
+            return ""
+
+        header = [col.strip() for col in rows[0]]
+
+        # Locate the three required columns (case-insensitive)
         try:
-            reader = csv.reader(io.StringIO(raw))
-            data = list(reader)
-            header = data[0]
-            # Validate: every row must have exactly as many fields as the header
-            if all(len(row) == len(header) for row in data[1:]):
-                df = pd.DataFrame(data[1:], columns=header)
-                return _build_context(df, file_path)
-        except csv.Error:
-            pass  # fall through to attempt 2
- 
-        # ── Attempt 2: pandas with python engine + flexible quoting ──────────
-        try:
-            df = pd.read_csv(
-                io.StringIO(raw),
-                quotechar='"',
-                quoting=csv.QUOTE_MINIMAL,   # honours existing quotes
-                engine="python",
-                on_bad_lines="skip",         # silently drop malformed lines
-            )
-            return _build_context(df, file_path)
-        except Exception:
-            pass
- 
-        # ── Attempt 3: treat every line as "first two commas are separators" ─
-        # Works when the Content column has unquoted free-form text.
-        try:
-            rows = []
-            for line in raw.splitlines():
-                # Split on the first two commas only → always gives 3 parts
-                parts = line.split(",", 2)
-                if len(parts) == 3:
-                    # Strip surrounding quotes and whitespace from each field
-                    rows.append([p.strip().strip('"') for p in parts])
- 
-            if len(rows) < 2:
-                raise ValueError("Not enough rows after manual parse")
- 
-            df = pd.DataFrame(rows[1:], columns=[c.strip().strip('"') for c in rows[0]])
-            return _build_context(df, file_path)
-        except Exception:
-            pass
- 
-        st.error(
-            "No se pudo parsear el CSV. "
-            "Ejecuta `scripts/fix_csv.py` para repararlo automáticamente."
-        )
-        return ""
- 
+            idx_cat     = next(i for i, h in enumerate(header) if h.lower() == "category")
+            idx_topic   = next(i for i, h in enumerate(header) if h.lower() == "topic")
+            idx_content = next(i for i, h in enumerate(header) if h.lower() == "content")
+        except StopIteration:
+            st.error(f"Columnas requeridas no encontradas. Cabecera detectada: {header}")
+            return ""
+
+        context_text = ""
+        for row in rows[1:]:
+            if len(row) <= max(idx_cat, idx_topic, idx_content):
+                continue  # skip malformed rows silently
+            category = row[idx_cat].strip()
+            topic    = row[idx_topic].strip()
+            content  = row[idx_content].strip()
+            context_text += f"[{category}] {topic}: {content}\n"
+
+        return context_text
+
     except FileNotFoundError:
-        st.error(f"Archivo de conocimiento no encontrado en: {file_path}")
+        st.error(f"Archivo no encontrado: {file_path}")
         return ""
     except Exception as e:
         st.error(f"Error cargando la base de conocimiento: {e}")
         return ""
- 
- 
-def _build_context(df: pd.DataFrame, file_path: str) -> str:
-    required_columns = ["Category", "Topic", "Content"]
-    # Normalise column names (strip whitespace, match case-insensitively)
-    df.columns = [c.strip() for c in df.columns]
-    col_map = {c.lower(): c for c in df.columns}
-    rename = {col_map[r.lower()]: r for r in required_columns if r.lower() in col_map}
-    df = df.rename(columns=rename)
- 
-    if not all(col in df.columns for col in required_columns):
-        st.error(f"Columnas requeridas: {required_columns}. Encontradas: {list(df.columns)}")
-        return ""
- 
-    context_text = ""
-    for _, row in df.iterrows():
-        context_text += f"[{row['Category']}] {row['Topic']}: {row['Content']}\n"
-    return context_text
- 
+
 
 # --- SYSTEM PROMPT ---
 def get_system_instruction(context_data: str, lang: str = "es") -> str:
