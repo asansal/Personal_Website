@@ -1,3 +1,5 @@
+from __future__ import annotations  # Compatibilidad con Python 3.9 para la sintaxis X | None
+
 import streamlit as st
 from pathlib import Path
 import base64
