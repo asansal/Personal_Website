@@ -288,6 +288,32 @@ with st.container():
             st.markdown(f"- **{item.get('name')}** - _{item.get('issuer')}_ ({item.get('year')})")
 st.divider()
 
+# Hackathons section
+hackathons_data = texts.get("hackathons_section", {})
+with st.container():
+    st.header(hackathons_data.get("title", "Hackathons"))
+    for item in hackathons_data.get("items", []):
+        with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
+            st.markdown(f"_{item.get('organizer')}_")
+            st.write(item.get("description", ""))
+            st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
+
+st.divider()
+
+# Current & Future Projects section
+current_projects_data = texts.get("current_projects_section", {})
+with st.container():
+    st.header(current_projects_data.get("title", "Current Projects"))
+    st.subheader(current_projects_data.get("subtitle", ""))
+    for item in current_projects_data.get("items", []):
+        with st.expander(f"**{item.get('name')}** — {item.get('status')}", expanded=True):
+            st.write(item.get("description", ""))
+            st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
+            if item.get("link"):
+                st.markdown(f"[Ver proyecto]({item.get('link')})")
+
+st.divider()
+
 # Contact Section
 contact_data = texts.get("contact_section", {})
 with st.container():
