@@ -37,7 +37,10 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     """
     try:
         with open(file_path, mode="r", encoding="utf-8-sig", newline="") as f:
-            reader = csv.reader(f, delimiter=';')
+            reader = csv.reader(f, delimiter=';', 
+                                engine='python', 
+                                on_bad_lines='skip', 
+                                encoding='utf-8')
             rows = list(reader)
 
         if not rows or len(rows) < 2:
