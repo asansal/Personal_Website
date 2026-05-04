@@ -139,7 +139,7 @@
             "organizer": "Woztell & Make",
             "description": "Diseñamos y desarrollamos un asistente inteligente para la gestión de aparcamiento urbano. Construimos un flujo automatizado que cruzaba la matrícula del vehículo y su etiqueta ambiental con la ubicación GPS del usuario en tiempo real. El chatbot determinaba si el usuario podía aparcar en esa zona y, en caso de restricciones, orquestaba una respuesta recomendando y enviando la ruta al parking legal más cercano.",
             "stack": ["Make", "Woztell", "Automation", "API Integrations", "Chatbot"],
-            "image": "./assets/images/Hackathon.png"
+            "image": "assets/images/Hackathon.png"
         }
       ]
   },
@@ -151,8 +151,7 @@
             "name": "Sextant.ai - Intelligent Travel Planner",
             "status": "🚧 En desarrollo activo",
             "description": "Aplicación inteligente para la generación de itinerarios de viaje altamente personalizados. La arquitectura conecta un frontend en Django con un backend orquestado por LLMs. El sistema procesa las preferencias del usuario para estructurar un viaje completo: genera un itinerario principal, lo desglosa dinámicamente en planes diarios y enriquece la experiencia inyectando información cultural e histórica específica de cada ubicación.",
-            "stack": ["Python", "Django", "LLMs Orchestration", "Prompt Engineering", "API REST"],
-            "link": "https://github.com/tu-usuario/sextant-ai"
+            "stack": ["Python", "Django", "LLMs Orchestration", "Prompt Engineering", "API REST"]
         }
       ]
   },
