@@ -839,7 +839,7 @@ hr::after {
 /* ── VENTANA DEL CHAT ───────────────────────────────────── */
 .chatbot-popup {
     position: fixed !important;
-    bottom: 340px !important;
+    bottom: 100px !important;
     right: 30px !important;
     width: 420px;
     height: 560px;
