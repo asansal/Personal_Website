@@ -311,17 +311,16 @@ with st.container():
     st.subheader(current_projects_data.get("subtitle", ""))
     for item in current_projects_data.get("items", []):
         with st.expander(f"**{item.get('name')}** — {item.get('status')}", expanded=True):
-            image_path = item.get("image")
-            if image_path and os.path.exists(image_path):
-                st.image(image_path)
-
-            st.write(item.get("description", ""))
+            col1, col2 = st.columns([2, 1])
             with col1:
+                st.write(item.get("description", ""))
                 st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
                 if item.get("link"):
                     st.markdown(f"[Ver proyecto]({item.get('link')})")
             with col2:
-                st.image("assets/images/SextantIA.png", use_container_width=True)
+                image_path = item.get("image")
+                if image_path and os.path.exists(image_path):
+                    st.image(image_path, use_container_width=True)
 st.divider()
 
 # Contact Section
