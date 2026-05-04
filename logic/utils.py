@@ -1,4 +1,5 @@
-from __future__ import annotations  # Compatibilidad con Python 3.9 para la sintaxis X | None
+from __future__ import annotations
+from typing import Optional
 
 import streamlit as st
 from pathlib import Path
@@ -27,7 +28,7 @@ def load_css(file_path: str) -> None:
 
 # --- FILES ---
 
-def read_pdf_byte_stream(file_path: str) -> bytes | None:
+def read_pdf_byte_stream(file_path: str) -> Optional[bytes]:
     """
     Reads a PDF file in binary mode to be used in download buttons.
 

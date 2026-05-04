@@ -9,3 +9,5 @@ google-genai
 # --- Utilities ---
 # Para manejo de peticiones si fuera necesario conectar con APIs externas
 requests
+typing
+
