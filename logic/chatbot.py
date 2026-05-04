@@ -36,16 +36,14 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     which correctly handles quoted fields containing commas.
     """
     try:
+        # Open file handling potential BOM characters and standardizing newlines
         with open(file_path, mode="r", encoding="utf-8-sig", newline="") as f:
-            reader = csv.reader(f, delimiter=';', 
-                                engine='python', 
-                                on_bad_lines='skip', 
-                                encoding='utf-8')
+            # Use native csv reader strictly with the correct delimiter
+            reader = csv.reader(f, delimiter=';')
             rows = list(reader)
 
         if not rows or len(rows) < 2:
-            st.error("El archivo CSV está vacío o no tiene datos.")
-            return ""
+            return "No knowledge base data found."
 
         header = [col.strip() for col in rows[0]]
 
