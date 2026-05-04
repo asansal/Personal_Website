@@ -294,14 +294,13 @@ with st.container():
     st.header(hackathons_data.get("title", "Hackathons"))
     for item in hackathons_data.get("items", []):
         with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
-            st.markdown(f"_{item.get('organizer')}_")
-
-            image_path = item.get("image")
-            if image_path and os.path.exists(image_path):
-                st.image(image_path)
-
-            st.write(item.get("description", ""))
-            st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
+            col1, col2 = st.columns([2, 1])
+            with col1:
+                st.markdown(f"_{item.get('organizer')}_")
+                st.write(item.get("description", ""))
+                st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
+            with col2:
+                st.image("assets/images/Hackathon.png", use_container_width=True)
 
 st.divider()
 
@@ -317,10 +316,12 @@ with st.container():
                 st.image(image_path)
 
             st.write(item.get("description", ""))
-            st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
-            if item.get("link"):
-                st.markdown(f"[Ver proyecto]({item.get('link')})")
-
+            with col1:
+                st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
+                if item.get("link"):
+                    st.markdown(f"[Ver proyecto]({item.get('link')})")
+            with col2:
+                st.image("assets/images/SextantIA.png", use_container_width=True)
 st.divider()
 
 # Contact Section
