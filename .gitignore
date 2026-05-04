@@ -6,7 +6,6 @@ venv/
 env/
 .env
 .venv/
-.github
 
 # --- Streamlit Specific ---
 # This is CRITICAL: never upload your API keys
