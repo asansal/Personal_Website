@@ -295,6 +295,11 @@ with st.container():
     for item in hackathons_data.get("items", []):
         with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
             st.markdown(f"_{item.get('organizer')}_")
+
+            image_path = item.get("image")
+            if image_path and os.path.exists(image_path):
+                st.image(image_path)
+
             st.write(item.get("description", ""))
             st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
 
@@ -307,6 +312,10 @@ with st.container():
     st.subheader(current_projects_data.get("subtitle", ""))
     for item in current_projects_data.get("items", []):
         with st.expander(f"**{item.get('name')}** — {item.get('status')}", expanded=True):
+            image_path = item.get("image")
+            if image_path and os.path.exists(image_path):
+                st.image(image_path)
+
             st.write(item.get("description", ""))
             st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
             if item.get("link"):
