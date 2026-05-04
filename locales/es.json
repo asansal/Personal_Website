@@ -139,7 +139,7 @@
             "organizer": "Woztell & Make",
             "description": "Diseñamos y desarrollamos un asistente inteligente para la gestión de aparcamiento urbano. Construimos un flujo automatizado que cruzaba la matrícula del vehículo y su etiqueta ambiental con la ubicación GPS del usuario en tiempo real. El chatbot determinaba si el usuario podía aparcar en esa zona y, en caso de restricciones, orquestaba una respuesta recomendando y enviando la ruta al parking legal más cercano.",
             "stack": ["Make", "Woztell", "Automation", "API Integrations", "Chatbot"],
-            "image": "ruta/a/tu/imagen_hackathon.jpg"
+            "image": "./assets/images/Hackathon.png"
         }
       ]
   },
