@@ -1,6 +1,4 @@
 from __future__ import annotations
-from typing import Optional
-
 import streamlit as st
 from pathlib import Path
 import base64
@@ -28,7 +26,7 @@ def load_css(file_path: str) -> None:
 
 # --- FILES ---
 
-def read_pdf_byte_stream(file_path: str) -> Optional[bytes]:
+def read_pdf_byte_stream(file_path: str) -> bytes | None:
     """
     Reads a PDF file in binary mode to be used in download buttons.
 
