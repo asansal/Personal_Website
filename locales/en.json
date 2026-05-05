@@ -2,8 +2,8 @@
   "profile": {
     "name": "Alejandro Sánchez",
     "role": "Data Scientist | Data Analyst | Bioinformatician",
-    "tagline": "Data Science end-to-end: Analysis, Forecast & AI",
-    "subtitle": "Data Scientist specializing in Machine Learning, Data Engineering, and Complex Process Analysis",
+    "tagline": "End-to-end Data Science: Analysis, Prediction & AI",
+    "subtitle": "Data Scientist specialized in Machine Learning, Data Engineering, and Complex Process Analysis",
     "location": "Madrid, Spain",
     "availability": "Available for remote and hybrid projects (Open to relocation in DACH/Nordics)",
     "socials": {
@@ -14,8 +14,8 @@
   },
   "about": {
     "title": "About Me",
-    "text_short": "Data Scientist with a strong background in Biotechnology. After 4 years managing large datasets in research (Germany and Spain), I apply data engineering and Machine Learning to solve strategic business problems.",
-    "text_long": "I define myself as a scientist who discovered their true calling in the data underpinning biology. My journey began in high-level research laboratories (CSIC-UAM, Universität Konstanz), where I learned that data integrity and reproducibility are non-negotiable. Managing terabytes of information in HPC environments taught me to separate signal from noise and optimize complex pipelines. I recently formalized my transition to the tech sector with a Master's in Data Science & AI, applying the same analytical rigor to predictive models, time series, and strategic visualization for decision-making."
+    "text_short": "Data Scientist with a solid background in Biotechnology. After 4 years managing large-scale data in research (Germany and Spain), I apply data engineering and Machine Learning to solve strategic business problems.",
+    "text_long": "I define myself as a scientist who discovered his true calling in the data behind biology. My journey began in high-level research laboratories (CSIC-UAM, Universität Konstanz), where I learned that data integrity and reproducibility are non-negotiable. Managing terabytes of information in HPC environments taught me to separate signal from noise and to optimize complex pipelines. Recently, I formalized my transition to the tech sector with a Master's in Data Science & AI, applying the same analytical rigor to predictive models, time series, and strategic visualization for decision-making."
   },
   "value_proposition": {
     "title": "Value Proposition",
@@ -23,11 +23,11 @@
       {
         "icon": "analytics",
         "title": "Analytical Rigor",
-        "description": "Proven experience in handling complex datasets (>1TB) applying the scientific method to prevent biases."
+        "description": "Proven experience in handling complex datasets (>1TB), applying the scientific method to avoid biases."
       },
       {
         "icon": "automation",
-        "title": "Engineering and Efficiency",
+        "title": "Engineering & Efficiency",
         "description": "Development of automated pipelines (Python/Bash) and process optimization through parallel computing."
       },
       {
@@ -37,7 +37,7 @@
       },
       {
         "icon": "collaboration",
-        "title": "Management and Leadership",
+        "title": "Management & Leadership",
         "description": "International experience leading computational strategy, supervising junior teams, and managing vendors."
       }
     ]
@@ -99,7 +99,7 @@
         "company": "Nuclio Digital School",
         "location": "Madrid, Spain",
         "type": "Capstone Project - DS Market",
-        "description": "End-to-end development of a demand forecasting system for the retail sector. Implementation of Machine Learning models for sales prediction, customer segmentation, and creation of interactive dashboards for strategic decision-making. The project covered the entire data lifecycle: from ingesting 5 years of bi-weekly transactions to model deployment.",
+        "description": "End-to-end development of a demand forecasting system for the retail sector. Implementation of Machine Learning models for sales prediction, customer segmentation, and creation of interactive dashboards for strategic decision-making. The project covered the entire data lifecycle: from ingesting 5 years of bi-yearly transactions to model deployment.",
         "stack": [
           "Python",
           "Scikit-learn",
@@ -116,11 +116,11 @@
       },
       {
         "period": "2022 - 2025",
-        "role": "Bioinformatics Researcher / Data Scientist",
-        "company": "Severo Ochoa Molecular Biology Center (CSIC-UAM)",
+        "role": "Bioinformatician / Data Scientist",
+        "company": "Severo Ochoa Center for Molecular Biology (CSIC-UAM)",
         "location": "Madrid, Spain",
         "type": "Full-time",
-        "description": "Led the laboratory's computational strategy. Designed and implemented automated Python and Bash pipelines for processing massive datasets (>1TB). Mentored the team, managed budgets with external vendors (Novogene, Illumina), and resolved data crises.",
+        "description": "Led the computational strategy of the lab. Designed and implemented automated pipelines in Python and Bash for massive data processing (>1TB). Mentored team members, managed budgets with external vendors (Novogene, Illumina), and resolved data crises.",
         "stack": [
           "Python",
           "R",
@@ -130,19 +130,19 @@
           "Git"
         ],
         "achievements": [
-          "Supervised and mentored 8 junior researchers (Bachelor's Thesis, Master's Thesis, technicians).",
+          "Supervised and mentored 8 junior researchers (Undergraduate Thesis, Master's Thesis, technicians).",
           "Optimized computational processes using GNU Parallel, drastically reducing processing times.",
-          "Successfully rescued a failed genomic dataset (ONT) using a hybrid strategy with Illumina sequencing.",
-          "Key contribution to 3 peer-reviewed scientific publications."
+          "Successfully rescued a failed genomic dataset (ONT) through a hybrid strategy with Illumina sequencing.",
+          "Key contributor to 3 peer-reviewed scientific publications."
         ]
       },
       {
         "period": "2020 - 2022",
         "role": "Research Data Associate",
-        "company": "University of Konstanz - Kroth Lab",
+        "company": "Universität Konstanz - AG Kroth",
         "location": "Konstanz, Germany",
         "type": "Full-time",
-        "description": "Comprehensive management of environmental data lifecycle. Responsible for experimental design, data collection in bioreactors, and multivariate statistical analysis. Intensive computational work using queuing systems (Slurm) on High-Performance Computing (HPC) clusters.",
+        "description": "Comprehensive management of the environmental data lifecycle. Responsible for experimental design, data collection in bioreactors, and multivariate statistical analysis. Intensive computational work using queueing systems (Slurm) on high-performance computing (HPC) clusters.",
         "stack": [
           "R",
           "HPC (Slurm)",
@@ -153,11 +153,11 @@
         "achievements": [
           "De novo assembly of eukaryotic transcriptomes from environmental samples.",
           "Multivariate statistical analysis of communities in oligotrophic ecosystems.",
-          "Supervised students and managed international procurement of laboratory materials."
+          "Supervised students and managed international purchases of laboratory materials."
         ]
       },
       {
-        "period": "March 2025 - June 2025",
+        "period": "Marzo 2025 - Junio 2025",
         "role": "Data Analyst (AI Evaluation & RLHF)",
         "company": "Telus International AI",
         "location": "Remote",
@@ -169,7 +169,7 @@
           "AI Model Evaluation"
         ],
         "achievements": [
-          "Ensured quality in predictive and recommendation models.",
+          "Quality assurance for predictive and recommendation models.",
           "Meticulous analytical documentation for continuous improvement of algorithmic precision."
         ]
       }
@@ -183,7 +183,7 @@
         "degree": "Master in Data Science & Artificial Intelligence",
         "institution": "Nuclio Digital School",
         "location": "Online",
-        "type": "Postgraduate",
+        "type": "Postgraduate Degree",
         "highlights": [
           "Specialization in Machine Learning, Deep Learning, and Business Intelligence.",
           "Final Project: 'DSMarket' - End-to-end forecasting system for retail.",
@@ -195,7 +195,7 @@
         "degree": "Master in Bioinformatics and Biostatistics",
         "institution": "UOC - Universitat Oberta de Catalunya",
         "location": "Barcelona, Spain",
-        "type": "Postgraduate",
+        "type": "Postgraduate Degree",
         "highlights": [
           "Master's Thesis: Differential transcriptome analysis of dinoflagellates from public raw data.",
           "Development of a complete pipeline: QC, filtering, de novo assembly, and annotation."
@@ -206,9 +206,9 @@
         "degree": "Master in Microbiology",
         "institution": "Autonomous University of Madrid (UAM)",
         "location": "Madrid, Spain",
-        "type": "Postgraduate",
+        "type": "Postgraduate Degree",
         "highlights": [
-          "Master's Thesis in the Genomic Stability Maintenance Group (CBMSO).",
+          "Master's Thesis in the Genome Stability Maintenance Group (CBMSO).",
           "Study of nucleotide insertion by a DNA polymerase, culminating in a publication in 'Biomolecules'."
         ]
       },
@@ -217,9 +217,9 @@
         "degree": "Bachelor's Degree in Biology",
         "institution": "University of Salamanca",
         "location": "Salamanca, Spain",
-        "type": "Undergraduate",
+        "type": "Undergraduate Degree",
         "highlights": [
-          "Bachelor's Thesis: Study of tomato-fungus interaction (symbiosis) against attack by the bacterial pathogen P. aeruginosa.",
+          "Undergraduate Thesis: Study of tomato-fungus interaction (symbiosis) against the attack of the bacterial pathogen P. aeruginosa.",
           "Use of quantitative culture techniques and gene expression analysis using qPCR."
         ]
       }
@@ -234,7 +234,7 @@
         "type": "Data Science & Business Intelligence",
         "category": "Machine Learning",
         "year": "2025",
-        "description": "Full development of a demand prediction system for the retail sector. Integration, cleaning, and transformation of historical data (5 years, 500K+ transactions). Advanced customer segmentation using K-Means and predictive models (Lasso Regression) for sales forecasting. Includes an interactive executive dashboard with business KPIs.",
+        "description": "Complete development of a demand prediction system for the retail sector. Integration, cleaning, and transformation of historical data (5 years, 500K+ transactions). Advanced customer segmentation using K-Means and predictive models (Lasso Regression) for sales forecasting. Includes an interactive executive dashboard with business KPIs.",
         "tech": [
           "Python",
           "Scikit-learn",
@@ -244,7 +244,7 @@
           "Clustering"
         ],
         "highlights": [
-          "Identified 6 strategic customer segments.",
+          "Identification of 6 strategic customer segments.",
           "Automated dashboard for inventory decision-making."
         ],
         "link": "https://github.com/asansal/DS_market_Capstone"
@@ -255,7 +255,7 @@
         "type": "Data Engineering & Bioinformatics",
         "category": "Scientific Research",
         "year": "2023",
-        "description": "Computational analysis of Ribo-Seq data to redefine genomic annotations in Leishmania. Faced with a degraded dataset due to faulty hardware (Nanopore ONT), I designed a hybrid 'Data Rescue' strategy using high-fidelity Illumina sequences to correct the transcriptome, saving the project. Developed optimized scripts with GNU Parallel.",
+        "description": "Computational analysis of Ribo-Seq data to redefine genomic annotations in Leishmania. Faced with a dataset degraded by faulty hardware (Nanopore ONT), I designed a hybrid strategy ('Data Rescue') using high-fidelity Illumina sequences to correct the transcriptome, saving the project. Developed optimized scripts with GNU Parallel.",
         "tech": [
           "Python",
           "Bash",
@@ -264,8 +264,8 @@
           "Linux"
         ],
         "highlights": [
-          "Drastically optimized computation times through parallel processing.",
-          "Successfully recovered a high-cost failed experiment."
+          "Drastic optimization of computation times through parallel processing.",
+          "Successful recovery of a high-cost failed experiment."
         ],
         "link": "https://github.com/CBMSO-L302"
       },
@@ -275,12 +275,12 @@
         "type": "Bioinformatics & HPC",
         "category": "Scientific Research",
         "year": "2022",
-        "description": "Management of massive sequencing data at the University of Konstanz. Data processing on High-Performance Computing (HPC) clusters using queuing systems (Slurm). De novo assembly and multivariate statistical analysis of microbial communities.",
+        "description": "Management of large-scale sequencing data at the University of Konstanz. Data processing on high-performance computing (HPC) clusters using queueing systems (Slurm). De novo assembly and multivariate statistical analysis of microbial communities.",
         "tech": [
           "R",
           "HPC (Slurm)",
           "Multivariate Statistics",
-          "Bioreactors"
+          "Biorreactores"
         ],
         "highlights": [
           "Efficient management of limited computational resources through hybrid workflows (Local/HPC)."
@@ -290,7 +290,7 @@
     ]
   },
   "certifications_section": {
-    "title": "Certifications and Languages",
+    "title": "Certifications & Languages",
     "languages": {
       "title": "Languages",
       "items": [
@@ -330,13 +330,13 @@
         },
         {
           "name": "Big Data in the Transportation Sector",
-          "issuer": "Maude Foundation",
+          "issuer": "Fundación Maude",
           "year": "2025",
           "type": "Specialized Course"
         },
         {
           "name": "Power BI - Data Analytics & Visualization",
-          "issuer": "Santander Bank | Santander Open Academy",
+          "issuer": "Banco Santander | Santander Open Academy",
           "year": "2025",
           "type": "Professional Certification"
         },
@@ -365,7 +365,7 @@
         "year": "2024",
         "doi": "10.3390/genes15060775",
         "type": "Scientific Article",
-        "description": "Integration of massive mass spectrometry data with genomics. Statistical validation of new coding sequences."
+        "description": "Integration of mass spectrometry data with genomics. Statistical validation of new coding sequences."
       },
       {
         "title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)",
@@ -387,11 +387,50 @@
       }
     ]
   },
+  "hackathons_section": {
+    "title": "Hackathons",
+    "items": [
+      {
+        "name": "No-Code Automation Hackathon Madrid",
+        "position": "🥈 2nd Prize",
+        "date": "2025",
+        "organizer": "Woztell & Make",
+        "description": "We designed and developed an intelligent assistant for urban parking management. We built an automated flow that cross-referenced the vehicle's license plate and environmental label with the user's real-time GPS location. The chatbot determined if the user could park in that zone and, in case of restrictions, orchestrated a response recommending and sending the route to the nearest legal parking.",
+        "stack": [
+          "Make",
+          "Woztell",
+          "Automation",
+          "API Integrations",
+          "Chatbot"
+        ],
+        "image": "assets/images/Hackathon.png"
+      }
+    ]
+  },
+  "current_projects_section": {
+    "title": "Current Projects",
+    "subtitle": "What I'm working on right now",
+    "items": [
+      {
+        "name": "Sextant.ai - Intelligent Travel Planner",
+        "status": "🚧 Actively in development",
+        "description": "Intelligent application for generating highly personalized travel itineraries. The architecture connects a Django frontend with a backend orchestrated by LLMs. The system processes user preferences to structure a complete trip: it generates a main itinerary, dynamically breaks it down into daily plans, and enriches the experience by injecting cultural and historical information specific to each location.",
+        "stack": [
+          "Python",
+          "Django",
+          "LLMs Orchestration",
+          "Prompt Engineering",
+          "API REST"
+        ],
+        "image": "assets/images/SextantIA.png"
+      }
+    ]
+  },
   "chatbot_config": {
     "title": "AI Virtual Assistant",
     "status_text": "Online",
     "welcome_title": "👋 Welcome!",
-    "welcome_message": "I´m Alejandro´s assistant. You can ask me about his experience managing complex data, his Machine Learning projects, or why he decided to pivot to the business world.",
+    "welcome_message": "I am Alejandro's assistant. You can ask me about his experience managing complex data, his Machine Learning projects, or why he decided to pivot to the business world.",
     "input_placeholder": "Type your question...",
     "suggestions": [
       {
@@ -416,7 +455,7 @@
     "cta": "Interested in collaborating?",
     "description": "I am open to new corporate opportunities in Data Science, Machine Learning, and Data Engineering in Europe.",
     "availability": "Immediately available. Open to on-site or hybrid roles in the DACH region, Nordics, and Spain.",
-    "response_time": "I respond quickly",
+    "response_time": "Responds quickly",
     "contact_methods": {
       "email": "asansal@outlook.es",
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
