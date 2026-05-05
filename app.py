@@ -300,7 +300,9 @@ with st.container():
                 st.write(item.get("description", ""))
                 st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
             with col2:
-                st.image("assets/images/Hackathon.png", use_container_width=True)
+                image_path = item.get("image")
+                if image_path:
+                    st.image(image_path, use_container_width=True)
 
 st.divider()
 
@@ -319,7 +321,7 @@ with st.container():
                     st.markdown(f"[Ver proyecto]({item.get('link')})")
             with col2:
                 image_path = item.get("image")
-                if image_path and os.path.exists(image_path):
+                if image_path:
                     st.image(image_path, use_container_width=True)
 st.divider()
 
