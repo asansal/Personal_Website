@@ -128,10 +128,6 @@ def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> s
 
 # --- CHATBOT POPUP INJECTION ---
 def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
-    """
-    Injects the floating chatbot HTML into the Streamlit app.
-    All CSS has been moved to style.css for cleaner separation of concerns.
-    """
     bot_title         = _html.escape(bot_config.get("title",             "AI Assistant"))
     status_text       = _html.escape(bot_config.get("status_text",       "Online"))
     welcome_title     = _html.escape(bot_config.get("welcome_title",     "👋 Welcome!"))
@@ -143,11 +139,12 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
 
-    st.html(f"""
+    components.html(f"""
     <script>
     (function() {{
-        // Since there is no iframe, we operate directly on the local DOM
-        const doc = document;
+        // We MUST use window.parent.document to escape the iframe
+        // and inject the chatbot into the main Streamlit application DOM.
+        const doc = window.parent.document;
 
         if (!doc.getElementById('chatbot-root')) {{
             const root = doc.createElement('div');
@@ -203,6 +200,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
         }}
 
         const suggestions = {suggestions_json};
+
 
         const titleEl = doc.getElementById('chatbotTitle');
         if (titleEl) titleEl.textContent = '{bot_title}';
@@ -388,4 +386,4 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
     }})();
     </script>
-    """, unsafe_allow_javascript=True)
+    """, height=0, width=0)
