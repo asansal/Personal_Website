@@ -143,10 +143,11 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
 
-    st.html(f"""
+st.html(f"""
     <script>
     (function() {{
-        const doc = window.parent.document;
+        // Since there is no iframe, we operate directly on the local DOM
+        const doc = document;
 
         if (!doc.getElementById('chatbot-root')) {{
             const root = doc.createElement('div');
@@ -387,4 +388,4 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
     }})();
     </script>
-    """)
+    """, unsafe_allow_javascript=True)
