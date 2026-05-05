@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import pandas as pd
 from google import genai
 import json
@@ -143,7 +142,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
 
-    components.html(f"""
+    st.iframe(srcdoc=f"""
     <script>
     (function() {{
         const doc = window.parent.document;
