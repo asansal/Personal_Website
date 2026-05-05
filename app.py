@@ -143,7 +143,7 @@ with st.sidebar:
             data=pdf_bytes,
             file_name=os.path.basename(cv_path),
             mime="application/octet-stream",
-            use_container_width=True,
+            width='stretch',
         )
 
 # --- MAIN CONTENT ---
@@ -302,7 +302,7 @@ with st.container():
             with col2:
                 image_path = item.get("image")
                 if image_path:
-                    st.image(image_path, use_container_width=True)
+                    st.image(image_path, width='stretch')
 
 st.divider()
 
@@ -322,7 +322,7 @@ with st.container():
             with col2:
                 image_path = item.get("image")
                 if image_path:
-                    st.image(image_path, use_container_width=True)
+                    st.image(image_path, width='stretch')
 st.divider()
 
 # Contact Section
