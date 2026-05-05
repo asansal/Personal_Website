@@ -88,7 +88,7 @@ def load_localization(lang_code: str) -> dict:
         return {}
 
 
-@st.cache_data
+@st.cache_data(ttl=3600)
 def load_config(file_path: str = "config/languages.json") -> dict:
     """
     Carga el archivo de configuración de idiomas disponibles.
