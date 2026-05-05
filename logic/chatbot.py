@@ -129,13 +129,26 @@ def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> s
 
 # --- CHATBOT POPUP INJECTION ---
 def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
-    bot_title         = _html.escape(bot_config.get("title",             "AI Assistant"))
-    status_text       = _html.escape(bot_config.get("status_text",       "Online"))
-    welcome_title     = _html.escape(bot_config.get("welcome_title",     "👋 Welcome!"))
-    welcome_message   = json.dumps(bot_config.get("welcome_message",   "Ask me anything."))
-    input_placeholder = _html.escape(bot_config.get("input_placeholder", "Type your question..."))
-    error_timeout     = _html.escape(bot_config.get("error_timeout",     "Response timed out. Please try again."))
-    error_connection  = _html.escape(bot_config.get("error_connection",  "Internal error: could not reach the server."))
+    # Separate variables for initial HTML rendering (HTML-escaped)
+    # and for dynamic JS updates (JSON-encoded for safety).
+
+    # FOR HTML (initial render): Use html.escape
+    bot_title_html         = _html.escape(bot_config.get("title",             "AI Assistant"))
+    status_text_html       = _html.escape(bot_config.get("status_text",       "Online"))
+    welcome_title_html     = _html.escape(bot_config.get("welcome_title",     "👋 Welcome!"))
+    # The welcome_message might be a string or list. Ensure it's a string and escape.
+    welcome_message_raw    = bot_config.get("welcome_message",   "Ask me anything.")
+    welcome_message_html   = _html.escape(str(welcome_message_raw))
+    input_placeholder_html = _html.escape(bot_config.get("input_placeholder", "Type your question..."))
+
+    # FOR JAVASCRIPT (dynamic updates): Use json.dumps to create valid JS string literals.
+    bot_title_js         = json.dumps(bot_config.get("title",             "AI Assistant"))
+    status_text_js       = json.dumps(bot_config.get("status_text",       "Online"))
+    welcome_title_js     = json.dumps(bot_config.get("welcome_title",     "👋 Welcome!"))
+    welcome_message_js   = json.dumps(bot_config.get("welcome_message",   "Ask me anything."))
+    input_placeholder_js = json.dumps(bot_config.get("input_placeholder", "Type your question..."))
+    error_timeout_js     = json.dumps(bot_config.get("error_timeout",     "Response timed out. Please try again."))
+    error_connection_js  = json.dumps(bot_config.get("error_connection",  "Internal error: could not reach the server."))
 
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
@@ -165,10 +178,10 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                         <div class="chatbot-header-content">
                             <div class="chatbot-avatar">🤖</div>
                             <div>
-                                <h3 id="chatbotTitle">{bot_title}</h3>
+                                <h3 id="chatbotTitle">{bot_title_html}</h3>
                                 <div class="status">
                                     <div class="status-dot"></div>
-                                    <span id="chatbotStatusText">{status_text}</span>
+                                    <span id="chatbotStatusText">{status_text_html}</span>
                                 </div>
                             </div>
                         </div>
@@ -179,15 +192,15 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
                     <div class="chatbot-body" id="chatbotBody">
                         <div class="chatbot-welcome" id="chatbotWelcome">
-                            <h4 id="chatbotWelcomeTitle">{welcome_title}</h4>
-                            <p id="chatbotWelcomeMsg">{welcome_message}</p>
+                            <h4 id="chatbotWelcomeTitle">{welcome_title_html}</h4>
+                            <p id="chatbotWelcomeMsg">{welcome_message_html}</p>
                         </div>
                     </div>
 
                     <div class="chatbot-footer">
                         <div class="chatbot-input-container">
                             <input type="text" id="chatbot-text-input"
-                                   placeholder="{input_placeholder}" autocomplete="off"/>
+                                   placeholder="{input_placeholder_html}" autocomplete="off"/>
                             <button class="chatbot-send-btn" id="chatbotSendBtn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -203,20 +216,21 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
         const suggestions = {suggestions_json};
 
 
+        // Use JSON-encoded strings for safe assignment in JS
         const titleEl = doc.getElementById('chatbotTitle');
-        if (titleEl) titleEl.textContent = '{bot_title}';
+        if (titleEl) titleEl.textContent = {bot_title_js};
 
         const statusEl = doc.getElementById('chatbotStatusText');
-        if (statusEl) statusEl.textContent = '{status_text}';
+        if (statusEl) statusEl.textContent = {status_text_js};
 
         const welcomeTitleEl = doc.getElementById('chatbotWelcomeTitle');
-        if (welcomeTitleEl) welcomeTitleEl.textContent = '{welcome_title}';
+        if (welcomeTitleEl) welcomeTitleEl.textContent = {welcome_title_js};
 
         const welcomeMsgEl = doc.getElementById('chatbotWelcomeMsg');
-        if (welcomeMsgEl) welcomeMsgEl.textContent = '{welcome_message}';
+        if (welcomeMsgEl) welcomeMsgEl.textContent = {welcome_message_js};
 
         const inputEl2 = doc.getElementById('chatbot-text-input');
-        if (inputEl2) inputEl2.placeholder = '{input_placeholder}';
+        if (inputEl2) inputEl2.placeholder = {input_placeholder_js};
 
         const suggestionsContainer = doc.getElementById('chatbotSuggestions');
         if (suggestionsContainer) {{
@@ -266,7 +280,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             const freshInput = doc.getElementById('chatbot-text-input');
             freshInput.value       = savedValue;
             freshInput.disabled    = savedDisabled;
-            freshInput.placeholder = '{input_placeholder}';
+            freshInput.placeholder = {input_placeholder_js};
             freshInput.addEventListener('keypress', function(e) {{
                 if (e.key === 'Enter' && !e.shiftKey) {{ e.preventDefault(); sendMessage(); }}
             }});
@@ -310,7 +324,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             const ok = triggerStreamlitInput(message);
             if (!ok) {{
                 hideTypingIndicator();
-                addMessage('{error_connection}', 'bot');
+                addMessage({error_connection_js}, 'bot');
                 activeInput.disabled = false;
                 return;
             }}
@@ -335,7 +349,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 if (elapsed >= maxWait) {{
                     clearInterval(interval);
                     hideTypingIndicator();
-                    addMessage('{error_timeout}', 'bot');
+                    addMessage({error_timeout_js}, 'bot');
                     activeInput.disabled = false;
                 }}
             }}, 500);
