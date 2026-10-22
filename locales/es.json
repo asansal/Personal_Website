@@ -1,113 +1,185 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Bioinformático | Data Scientist — Life Sciences",
-    "tagline": "Genómica, Transcriptómica y Machine Learning aplicados a Biotecnología y Salud",
-    "subtitle": "Científico de Datos con base en biología molecular, especializado en NGS, HPC y Machine Learning para investigación biomédica",
+    "role": "Biólogo convertido en Data Scientist & AI Engineer",
+    "tagline": "Del rigor del laboratorio a la Inteligencia Artificial",
+    "subtitle": "Soy biólogo e investigador. Aprendí a hacer buenas preguntas en el laboratorio; la Ciencia de Datos y la IA me dieron las herramientas para responderlas a escala.",
     "location": "Madrid, España",
-    "availability": "Disponible para proyectos remotos e híbridos (Abierto a reubicación en DACH/Nordics)",
+    "availability": "Disponible · Remoto, híbrido o reubicación (DACH / Nordics)",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
       "email": "asansal@outlook.es"
     }
   },
+  "navigation": {
+    "back_home": "🔙 Volver al Inicio",
+    "home_hint": "Elige un capítulo para empezar a explorar.",
+    "cards": {
+      "story": {"icon": "🧬", "title": "Mi Historia", "subtitle": "Del microscopio al modelo: por qué estoy aquí"},
+      "experience": {"icon": "🧭", "title": "Experiencia", "subtitle": "Sextant IA en producción, CBM-CSIC y Konstanz"},
+      "projects": {"icon": "🚀", "title": "Proyectos", "subtitle": "Problemas reales, cómo los abordé y qué aprendí"},
+      "skills": {"icon": "🛠️", "title": "Herramientas", "subtitle": "Lo que uso y para qué"},
+      "education": {"icon": "🎓", "title": "Formación & Ciencia", "subtitle": "Estudios y publicaciones peer-reviewed"},
+      "achievements": {"icon": "🏆", "title": "Logros", "subtitle": "Hackathons, certificaciones e idiomas"},
+      "contact": {"icon": "✉️", "title": "Hablemos", "subtitle": "¿Tienes un problema complejo? Me encantaría escucharlo"}
+    }
+  },
   "about": {
-    "title": "Sobre mí",
-    "text_short": "Bioinformático y Científico de Datos con 4 años gestionando datos de secuenciación masiva en investigación biomédica (Alemania y España). Combino el conocimiento del laboratorio húmedo con ingeniería de datos y Machine Learning para acelerar la investigación en biotecnología y salud.",
-    "text_long": "Mi perfil nace de la intersección entre el laboratorio y el código: entiendo cómo se genera un dato biológico —desde el cultivo celular hasta la secuenciación NGS— y también cómo procesarlo, validarlo y modelarlo a escala. Mi trayectoria comenzó en laboratorios de investigación de alto nivel (CSIC-UAM, Universität Konstanz), donde aprendí que la integridad del dato y la reproducibilidad son innegociables. Gestionar terabytes de información genómica en entornos HPC me enseñó a separar la señal del ruido, optimizar pipelines complejos y gestionar proveedores de secuenciación (Illumina, Novogene). Recientemente he formalizado mi transición aplicando ese mismo rigor científico a Machine Learning, series temporales y visualización de datos, siempre con el objetivo de trabajar en proyectos con impacto en salud y ciencias de la vida."
+    "title": "Mi Historia",
+    "text_short": "Soy biólogo e investigador. Pasé años en laboratorios como el CBM-CSIC y la Universität Konstanz aprendiendo que un resultado solo vale si es reproducible. Por el camino descubrí que la Ciencia de Datos y la IA son las mejores herramientas que conozco para resolver problemas complejos, y hoy construyo productos con ellas de principio a fin, como Sextant IA, que ya está en producción.",
+    "lead": "No llegué a los datos por moda. Llegué porque, como científico, necesitaba mejores herramientas para encontrar respuestas.",
+    "chapters": [
+      {
+        "icon": "🔬",
+        "period": "2013 - 2018",
+        "title": "Capítulo 1 · Aprender a dudar",
+        "text": "Todo empezó en la Universidad de Salamanca y continuó en el Centro de Biología Molecular Severo Ochoa, estudiando cómo las bacterias reparan su ADN. Allí aprendí la lección más valiosa de mi carrera: un dato no es una verdad hasta que lo has cuestionado, replicado y entendido. Mi primera publicación científica (Biomolecules, 2020) nació de esa disciplina."
+      },
+      {
+        "icon": "🌊",
+        "period": "2020 - 2022",
+        "title": "Capítulo 2 · Cuando los datos crecen más que el laboratorio",
+        "text": "En la Universität Konstanz (Alemania) me encontré con un reto distinto: los experimentos generaban más información de la que una persona podía analizar a mano. Empecé a trabajar en clústeres HPC con Slurm, a ensamblar transcriptomas de novo y a aplicar estadística multivariante. Mientras tanto, cursaba un Máster en Bioinformática y Bioestadística. Fue el momento en que entendí que el código podía ser una extensión del método científico."
+      },
+      {
+        "icon": "🧪",
+        "period": "2022 - 2025",
+        "title": "Capítulo 3 · Rigor a escala",
+        "text": "De vuelta en el CBM-CSIC asumí la estrategia computacional del laboratorio: pipelines reproducibles sobre más de 1 TB de datos genómicos, mentoría a 8 investigadores junior y gestión de proveedores de secuenciación. Cuando un dataset clave se degradó por un fallo de hardware, diseñé una estrategia híbrida para rescatarlo. Ese proyecto, y otros dos, terminaron en publicaciones peer-reviewed. Aprendí que la ingeniería también es cuidar de las personas y de los datos cuando las cosas van mal."
+      },
+      {
+        "icon": "🤖",
+        "period": "2025 - Hoy",
+        "title": "Capítulo 4 · La IA como herramienta definitiva",
+        "text": "Quise ir más allá del análisis y construir soluciones. Completé un Máster en Data Science & IA, evalué modelos de IA mediante RLHF y, sobre todo, me lancé a crear Sextant IA: un planificador de viajes inteligente que diseñé, desarrollé y publiqué en producción de principio a fin. Hoy aplico el mismo rigor que aprendí con una pipeta a cada modelo, cada prompt y cada línea de código."
+      }
+    ],
+    "closing": "Sigo siendo, ante todo, un científico: curioso, metódico y con ganas de aprender de quienes me rodean. Solo que ahora mis experimentos también se despliegan en producción."
   },
   "value_proposition": {
-    "title": "Propuesta de Valor",
+    "title": "Lo que aporto a un equipo",
     "points": [
-      {"icon": "dna", "title": "Del Laboratorio al Código", "description": "Experiencia directa en wet-lab (NGS, qPCR, CRISPR, cultivos celulares) que me permite entender el origen y las limitaciones de cada dataset biológico antes de modelarlo."},
-      {"icon": "analytics", "title": "Rigor Analítico y Reproducibilidad", "description": "Experiencia probada en el manejo de datasets genómicos complejos (>1TB) aplicando el método científico y prácticas de trazabilidad para evitar sesgos."},
-      {"icon": "collaboration", "title": "Gestión de Proyectos Científicos", "description": "Experiencia internacional liderando estrategia computacional, supervisando equipos junior y gestionando proveedores externos (CROs, secuenciación)."},
-      {"icon": "insights", "title": "Traductor Ciencia-Negocio", "description": "Capacidad demostrada para explicar modelos estadísticos y resultados de investigación a stakeholders técnicos y no técnicos."}
+      {"icon": "dna", "title": "Entiendo el origen del dato", "description": "He generado datos con mis propias manos (NGS, qPCR, CRISPR, cultivos). Antes de modelar, sé preguntar de dónde viene cada número y qué limitaciones arrastra."},
+      {"icon": "analytics", "title": "Rigor y reproducibilidad", "description": "Formado en el método científico: trazabilidad, validación estadística y cero atajos. Un resultado que no se puede reproducir no es un resultado."},
+      {"icon": "rocket", "title": "Ejecución end-to-end", "description": "Con Sextant IA he llevado una idea desde el primer prompt hasta una web pública en producción. Sé terminar lo que empiezo."},
+      {"icon": "collaboration", "title": "Puente entre ciencia y negocio", "description": "He mentorizado a 8 investigadores y gestionado proveedores internacionales. Me gusta explicar lo complejo con claridad, sin perder precisión."}
     ]
   },
   "skills_section": {
-    "title": "Competencias Técnicas",
+    "title": "Mi Caja de Herramientas",
+    "intro": "Las herramientas cambian; la forma de pensar se queda. Estas son las que uso a diario y el tipo de problema que me ayudan a resolver.",
     "categories": [
-      {"name": "Bioinformática & Wet-Lab", "icon": "dna", "items": ["R & Bioconductor", "NGS (Illumina, ONT, Sanger) & Transcriptómica", "CRISPR-Cas9, Cultivos Celulares & Biorreactores", "Microscopía (Óptica/Fluorescencia) & qPCR", "Ensayos In Vitro & Biología Molecular"]},
-      {"name": "Ingeniería de Datos", "icon": "database", "items": ["SQL (PostgreSQL, MySQL)", "HPC (Slurm) & Computación Paralela (GNU Parallel)", "ETL Pipelines & Data Wrangling", "Git & Control de Versiones", "Docker & Contenedorización", "Linux & Bash Scripting"]},
-      {"name": "Data Science & Machine Learning", "icon": "chart", "items": ["Python (Pandas, Scikit-learn, TensorFlow)", "Machine Learning (Regresión Lasso/Ridge, Clustering K-Means)", "Series Temporales & Forecasting (Prophet, ARIMA)", "Validación Estadística y A/B Testing"]},
-      {"name": "Visualización & Business Intelligence", "icon": "visualization", "items": ["Power BI & DAX", "Tableau", "Streamlit (Dashboards Interactivos)", "Storytelling con Datos"]}
+      {"name": "IA Generativa & Producto", "icon": "ai", "why": "Para convertir modelos en productos que la gente puede usar.", "items": ["Orquestación de LLMs & Prompt Engineering", "Python & Django (desarrollo web full-stack)", "APIs REST & integraciones", "Automatización con n8n y Make", "Evaluación de modelos de IA (RLHF)"]},
+      {"name": "Data Science & Machine Learning", "icon": "chart", "why": "Para encontrar patrones y anticipar lo que viene.", "items": ["Python (Pandas, Scikit-learn, TensorFlow)", "Regresión Lasso/Ridge, Clustering K-Means", "Series temporales & Forecasting (Prophet, ARIMA)", "Validación estadística y A/B Testing"]},
+      {"name": "Ingeniería de Datos", "icon": "database", "why": "Para que los datos lleguen limpios, a tiempo y de forma reproducible.", "items": ["SQL (PostgreSQL, MySQL)", "HPC (Slurm) & GNU Parallel", "Pipelines ETL & Data Wrangling", "Linux, Bash, Git & Docker"]},
+      {"name": "Bioinformática & Laboratorio", "icon": "dna", "why": "Mis raíces: entender la biología detrás de cada dataset.", "items": ["R & Bioconductor", "NGS (Illumina, ONT, Sanger) & Transcriptómica", "Proteogenómica & Ribo-Seq", "CRISPR-Cas9, qPCR, cultivos celulares y biorreactores"]},
+      {"name": "Visualización & Comunicación", "icon": "visualization", "why": "Porque un hallazgo que no se entiende no cambia nada.", "items": ["Power BI & DAX", "Tableau", "Streamlit (como esta web)", "Storytelling con datos"]}
     ]
   },
   "experience_section": {
-    "title": "Experiencia Profesional",
+    "title": "Experiencia",
+    "intro": "Cada etapa me ha enseñado algo distinto. Esta es la historia de lo que he construido y de lo que he aprendido construyéndolo.",
+    "featured": {
+      "badge": "⭐ Proyecto destacado · En producción",
+      "period": "2025 - Presente",
+      "role": "Creador & AI Engineer Full-Stack",
+      "company": "Sextant IA — Planificador de viajes inteligente",
+      "location": "Remoto",
+      "type": "Proyecto propio",
+      "story": "Sextant IA nació de dos pasiones: viajar y descubrir la historia de cada lugar. Me propuse construir un asistente que no se limitara a listar destinos, sino que entendiera las preferencias de cada viajero y diseñara un viaje con sentido. Asumí el proyecto de principio a fin: arquitectura, backend orquestado por LLMs, frontend en Django, despliegue y puesta en producción.",
+      "production_note": "La web de Sextant IA está desarrollada, publicada y funcionando en producción. Es mi prueba más clara de que sé llevar una idea desde el concepto hasta un producto real en manos de usuarios.",
+      "link_label": "🌐 Visitar Sextant IA",
+      "link": "",
+      "image": "assets/images/SextantIA.png",
+      "stack": ["Python", "Django", "Orquestación de LLMs", "Prompt Engineering", "API REST", "Despliegue en producción"],
+      "impact_title": "Lo que construí",
+      "impact": [
+        "Un motor que transforma las preferencias del usuario en un itinerario completo y lo desglosa dinámicamente en planes diarios.",
+        "Enriquecimiento automático con contexto cultural e histórico de cada ubicación.",
+        "Ciclo completo end-to-end: diseño, desarrollo, despliegue y mantenimiento de la web en producción."
+      ]
+    },
     "items": [
       {
-        "period": "2022 - 2025", "role": "Investigador Bioinformático / Data Scientist", "company": "Centro de Biología Molecular Severo Ochoa (CSIC-UAM)", "location": "Madrid, España", "type": "Tiempo Completo",
-        "description": "Liderazgo de la estrategia computacional del laboratorio. Diseño e implementación de pipelines reproducibles en Python y Bash para el procesamiento de datos genómicos masivos (>1TB). Mentorización de equipo, gestión de proveedores externos de secuenciación (Novogene, Illumina) y resolución de crisis de datos.",
-        "stack": ["Python", "R", "Bash", "GNU Parallel", "Linux", "Git"],
-        "achievements": ["Supervisión y mentoría de 8 investigadores junior (TFG, TFM, técnicos).", "Optimización de procesos computacionales mediante GNU Parallel, reduciendo significativamente los tiempos de procesamiento.", "Rescate exitoso de un dataset genómico degradado (ONT) mediante una estrategia híbrida con secuenciación Illumina.", "Contribución clave a 3 publicaciones científicas peer-reviewed."]
-      },
-      {
-        "period": "2020 - 2022", "role": "Research Data Associate", "company": "Universität Konstanz - AG Kroth", "location": "Constanza, Alemania", "type": "Tiempo Completo",
-        "description": "Gestión integral del ciclo de vida de datos ambientales. Responsable del diseño experimental, recolección de datos en biorreactores y análisis estadístico multivariante. Trabajo computacional intensivo utilizando sistemas de colas (Slurm) en clústeres de alto rendimiento (HPC).",
-        "stack": ["R", "HPC (Slurm)", "Multivariate Statistics", "Transcriptomics", "Data Management"],
-        "achievements": ["Ensamblaje de novo de transcriptomas eucariotas a partir de muestras ambientales.", "Análisis estadístico multivariante de comunidades en ecosistemas oligotróficos.", "Supervisión de estudiantes y gestión de compras internacionales de material de laboratorio."]
-      },
-      {
         "period": "Marzo 2025 - Junio 2025", "role": "Data Analyst (AI Evaluation & RLHF)", "company": "Telus International AI", "location": "Remoto", "type": "Freelance",
-        "description": "Evaluación rigurosa de calidad de datos para algoritmos de búsqueda y visión computacional. Generación de 'Ground Truth' estricto basado en directrices complejas para afinar modelos de Inteligencia Artificial mediante RLHF (Reinforcement Learning from Human Feedback).",
+        "story": "Antes de construir con IA quise entender cómo se evalúa por dentro. Trabajé generando 'ground truth' estricto para algoritmos de búsqueda y visión computacional, ayudando a afinar modelos mediante RLHF. Descubrí que mi formación científica encajaba de forma natural: evaluar un modelo es, en el fondo, diseñar un buen experimento.",
         "stack": ["Data Quality Assessment", "RLHF", "AI Model Evaluation"],
-        "achievements": ["Aseguramiento de calidad en modelos predictivos y de recomendación.", "Documentación analítica minuciosa para la mejora continua de la precisión algorítmica."]
+        "impact": ["Aseguramiento de calidad en modelos predictivos y de recomendación.", "Documentación analítica minuciosa para la mejora continua de la precisión."]
       },
       {
-        "period": "2025", "role": "Proyecto Final de Máster — Data Scientist", "company": "Nuclio Digital School", "location": "Madrid, España", "type": "Capstone Project - DS Market",
-        "description": "Desarrollo end-to-end de un sistema de previsión de demanda para el sector retail, como proyecto final del Máster en Data Science & IA. Implementación de modelos de Machine Learning para predicción de ventas, segmentación de clientes, y creación de dashboards interactivos para la toma de decisiones estratégicas. El proyecto abarcó todo el ciclo de vida del dato: desde la ingesta de 5 años de transacciones hasta el despliegue del modelo.",
-        "stack": ["Python", "Scikit-learn", "SQL", "Power BI", "Feature Engineering", "Time Series Analysis"],
-        "achievements": ["Procesamiento y limpieza de un dataset con >3000 productos y >500K transacciones.", "Implementación de Regresión Lasso para forecasting y segmentación K-Means (6 clusters).", "Diseño de un dashboard ejecutivo en Power BI para el control de inventario."]
+        "period": "2022 - 2025", "role": "Investigador Bioinformático / Data Scientist", "company": "Centro de Biología Molecular Severo Ochoa (CBM-CSIC-UAM)", "location": "Madrid, España", "type": "Tiempo completo",
+        "story": "Aquí asumí la estrategia computacional del laboratorio. Diseñé pipelines reproducibles en Python y Bash para más de 1 TB de datos genómicos, y aprendí que liderar también significa enseñar: acompañé a 8 investigadores junior en sus primeros pasos. Cuando un dataset de Nanopore se degradó por un fallo de hardware, no lo di por perdido: diseñé una estrategia híbrida con Illumina que salvó el proyecto.",
+        "stack": ["Python", "R", "Bash", "GNU Parallel", "Linux", "Git"],
+        "impact": ["Mentoría de 8 investigadores junior (TFG, TFM y técnicos).", "Reducción significativa de tiempos de cómputo mediante paralelización con GNU Parallel.", "Rescate de un dataset genómico de alto coste (ONT + Illumina).", "Contribución a 3 publicaciones científicas peer-reviewed.", "Gestión de proveedores de secuenciación (Novogene, Illumina)."]
+      },
+      {
+        "period": "2020 - 2022", "role": "Research Data Associate", "company": "Universität Konstanz — AG Kroth", "location": "Constanza, Alemania", "type": "Tiempo completo",
+        "story": "Mudarme a Alemania fue un salto profesional y personal. Me responsabilicé del ciclo de vida completo de los datos: desde el diseño experimental y los biorreactores hasta el análisis estadístico en clústeres HPC. Fue la primera vez que el volumen de datos me obligó a pensar como ingeniero, y descubrí que me apasionaba.",
+        "stack": ["R", "HPC (Slurm)", "Estadística multivariante", "Transcriptómica", "Data Management"],
+        "impact": ["Ensamblaje de novo de transcriptomas eucariotas a partir de muestras ambientales.", "Análisis multivariante de comunidades en ecosistemas oligotróficos.", "Supervisión de estudiantes y gestión de compras internacionales."]
       }
     ]
   },
   "education_section": {
-    "title": "Formación Académica",
+    "title": "Formación",
+    "intro": "Nunca he dejado de estudiar. Cada máster respondió a una pregunta nueva que me hacía en el trabajo.",
     "items": [
-      {"year": "2025", "degree": "Máster en Data Science & Artificial Intelligence", "institution": "Nuclio Digital School", "location": "Online", "type": "Postgrado", "highlights": ["Especialización en Machine Learning, Deep Learning y Business Intelligence.", "Proyecto Final: 'DSMarket' - Sistema end-to-end de forecasting para retail.", "Formación en despliegue de modelos, SQL avanzado y visualización de datos."]},
-      {"year": "2019 - 2022", "degree": "Máster en Bioinformática y Bioestadística", "institution": "UOC - Universitat Oberta de Catalunya", "location": "Barcelona, España", "type": "Postgrado", "highlights": ["TFM: Análisis diferencial de transcriptomas de dinoflagelados a partir de datos crudos públicos.", "Desarrollo de un pipeline completo: QC, filtrado, ensamblaje de novo y anotación."]},
-      {"year": "2017 - 2018", "degree": "Máster en Microbiología", "institution": "Universidad Autónoma de Madrid (UAM)", "location": "Madrid, España", "type": "Postgrado", "highlights": ["TFM en el Grupo de Mantenimiento de la Estabilidad Genómica (CBMSO).", "Estudio de la inserción de nucleótidos por una DNA polimerasa, culminando en una publicación en 'Biomolecules'."]},
-      {"year": "2013 - 2017", "degree": "Grado en Biología", "institution": "Universidad de Salamanca", "location": "Salamanca, España", "type": "Grado", "highlights": ["TFG: Estudio de la interacción tomate-hongo (simbiosis) frente al ataque del patógeno bacteriano P. aeruginosa.", "Uso de técnicas cuantitativas de cultivo y análisis de expresión génica mediante qPCR."]}
+      {"year": "2025", "degree": "Máster en Data Science & Artificial Intelligence", "institution": "Nuclio Digital School", "location": "Online", "type": "Postgrado", "highlights": ["Machine Learning, Deep Learning y Business Intelligence.", "Proyecto final: DSMarket, sistema end-to-end de forecasting para retail.", "Despliegue de modelos, SQL avanzado y visualización."]},
+      {"year": "2019 - 2022", "degree": "Máster en Bioinformática y Bioestadística", "institution": "UOC — Universitat Oberta de Catalunya", "location": "Barcelona, España", "type": "Postgrado", "highlights": ["TFM: análisis diferencial de transcriptomas de dinoflagelados a partir de datos públicos.", "Pipeline completo: QC, filtrado, ensamblaje de novo y anotación."]},
+      {"year": "2017 - 2018", "degree": "Máster en Microbiología", "institution": "Universidad Autónoma de Madrid (UAM)", "location": "Madrid, España", "type": "Postgrado", "highlights": ["TFM en el Grupo de Mantenimiento de la Estabilidad Genómica (CBMSO).", "Estudio de la inserción de nucleótidos por una DNA polimerasa, publicado en 'Biomolecules'."]},
+      {"year": "2013 - 2017", "degree": "Grado en Biología", "institution": "Universidad de Salamanca", "location": "Salamanca, España", "type": "Grado", "highlights": ["TFG: interacción tomate-hongo frente al patógeno P. aeruginosa.", "Técnicas cuantitativas de cultivo y expresión génica mediante qPCR."]}
     ]
   },
   "projects_section": {
-    "title": "Proyectos Destacados",
+    "title": "Proyectos",
+    "intro": "Cada proyecto empezó con un problema concreto. Así es como los abordé.",
+    "labels": {"challenge": "El reto", "approach": "Cómo lo abordé", "result": "El resultado", "link": "Ver en GitHub"},
     "items": [
       {
-        "id": "leishmania-data-rescue", "title": "Refinamiento Genómico & Data Rescue en Leishmania", "type": "Ingeniería de Datos & Bioinformática", "category": "Investigación Científica", "year": "2023",
-        "description": "Análisis computacional de datos Ribo-Seq para redefinir anotaciones genómicas en Leishmania donovani. Ante un conjunto de datos degradado por hardware defectuoso (Nanopore ONT), diseñé una estrategia híbrida ('Data Rescue') utilizando secuencias de alta fidelidad de Illumina para corregir el transcriptoma, salvando el proyecto. Desarrollo de scripts optimizados con GNU Parallel. Resultados publicados en la revista Genes.",
-        "tech": ["Python", "Bash", "GNU Parallel", "Data Rescue", "Linux"],
-        "highlights": ["Optimización drástica de tiempos de cómputo mediante procesamiento en paralelo.", "Recuperación exitosa de un experimento fallido de alto coste.", "Publicación resultante: Genes (2023), DOI 10.3390/genes14081637."],
+        "id": "sextant-ia", "title": "Sextant IA", "type": "IA Generativa & Producto", "year": "2025",
+        "challenge": "Planificar un viaje a medida exige horas de búsqueda dispersa y casi nunca incluye el contexto histórico o cultural que da sentido a cada lugar.",
+        "approach": "Diseñé un backend que orquesta LLMs para generar un itinerario principal, desglosarlo en planes diarios y enriquecerlo con información cultural, todo servido desde un frontend en Django.",
+        "result": "Una web pública, desplegada y en producción: un producto real construido de principio a fin.",
+        "tech": ["Python", "Django", "LLMs", "Prompt Engineering", "API REST"],
+        "link": ""
+      },
+      {
+        "id": "leishmania-data-rescue", "title": "Data Rescue genómico en Leishmania", "type": "Ingeniería de Datos & Bioinformática", "year": "2023",
+        "challenge": "Un experimento de secuenciación Nanopore de alto coste quedó degradado por un fallo de hardware, poniendo en riesgo la redefinición de las anotaciones genómicas de Leishmania donovani.",
+        "approach": "Diseñé una estrategia híbrida que usaba lecturas Illumina de alta fidelidad para corregir el transcriptoma, con scripts paralelizados mediante GNU Parallel para analizar datos Ribo-Seq.",
+        "result": "Proyecto salvado y publicado en Genes (2023), DOI 10.3390/genes14081637.",
+        "tech": ["Python", "Bash", "GNU Parallel", "Linux", "Ribo-Seq"],
         "link": "https://github.com/CBMSO-L302"
       },
       {
-        "id": "leishmania-proteogenomics", "title": "Proteogenómica de Leishmania donovani", "type": "Bioinformática & Proteómica", "category": "Investigación Científica", "year": "2024",
-        "description": "Integración de datos de espectrometría de masas con anotaciones genómicas para identificar nuevas proteínas codificadas en el genoma de Leishmania donovani. Validación estadística de secuencias codificantes no descritas previamente.",
-        "tech": ["Python", "R", "Proteómica Computacional", "Validación Estadística"],
-        "highlights": ["Identificación de nuevas proteínas no anotadas en el genoma de referencia.", "Publicación resultante: Genes (2024), DOI 10.3390/genes15060775."],
+        "id": "leishmania-proteogenomics", "title": "Proteogenómica de Leishmania donovani", "type": "Bioinformática & Proteómica", "year": "2024",
+        "challenge": "El genoma de referencia de Leishmania donovani no recogía todas las proteínas que el parásito realmente produce.",
+        "approach": "Integré datos de espectrometría de masas con anotaciones genómicas y validé estadísticamente las secuencias codificantes candidatas.",
+        "result": "Identificación de proteínas no anotadas previamente, publicada en Genes (2024), DOI 10.3390/genes15060775.",
+        "tech": ["Python", "R", "Proteómica computacional", "Validación estadística"],
         "link": ""
       },
       {
-        "id": "transcriptomics-algae", "title": "Transcriptómica Ambiental en Ecosistemas Acuáticos", "type": "Bioinformática & HPC", "category": "Investigación Científica", "year": "2022",
-        "description": "Gestión de datos masivos de secuenciación en la Universidad de Konstanz. Procesamiento de datos en clústeres de alto rendimiento (HPC) mediante sistemas de colas (Slurm). Ensamblaje de novo y análisis estadístico multivariante de comunidades microbianas.",
-        "tech": ["R", "HPC (Slurm)", "Estadística Multivariante", "Biorreactores"],
-        "highlights": ["Gestión eficiente de recursos computacionales limitados mediante flujos de trabajo híbridos (Local/HPC)."],
-        "link": ""
-      },
-      {
-        "id": "dsmarket", "title": "DSMarket: Retail Forecasting System", "type": "Data Science & Business Intelligence", "category": "Machine Learning", "year": "2025",
-        "description": "Proyecto final del Máster en Data Science & IA. Desarrollo completo de un sistema de predicción de demanda para el sector retail. Integración, limpieza y transformación de datos históricos (5 años, 500K+ transacciones). Segmentación de clientes mediante K-Means y modelos predictivos (Regresión Lasso) para forecasting de ventas. Incluye dashboard ejecutivo interactivo con KPIs de negocio.",
-        "tech": ["Python", "Scikit-learn", "SQL", "Power BI", "Time Series", "Clustering"],
-        "highlights": ["Identificación de 6 segmentos de clientes estratégicos.", "Dashboard automatizado para la toma de decisiones de inventario."],
+        "id": "dsmarket", "title": "DSMarket: Retail Forecasting", "type": "Data Science & Business Intelligence", "year": "2025",
+        "challenge": "Un retailer con más de 3.000 productos necesitaba anticipar la demanda y entender a sus clientes para optimizar inventario.",
+        "approach": "Limpié 5 años de transacciones (+500K registros), segmenté clientes con K-Means y entrené modelos de Regresión Lasso para forecasting.",
+        "result": "6 segmentos de clientes accionables y un dashboard ejecutivo en Power BI para decisiones de inventario.",
+        "tech": ["Python", "Scikit-learn", "SQL", "Power BI", "Series temporales", "Clustering"],
         "link": "https://github.com/asansal/DS_market_Capstone"
+      },
+      {
+        "id": "transcriptomics-algae", "title": "Transcriptómica ambiental en ecosistemas acuáticos", "type": "Bioinformática & HPC", "year": "2022",
+        "challenge": "Analizar comunidades microbianas en lagos con pocos nutrientes generaba volúmenes de datos imposibles de procesar en local.",
+        "approach": "Monté flujos híbridos local/HPC con Slurm para ensamblar transcriptomas de novo y apliqué estadística multivariante.",
+        "result": "Uso eficiente de recursos computacionales limitados y análisis robusto de comunidades.",
+        "tech": ["R", "HPC (Slurm)", "Estadística multivariante", "Transcriptómica"],
+        "link": ""
       }
     ]
   },
   "certifications_section": {
-    "title": "Certificaciones y Lenguajes",
+    "title": "Certificaciones e Idiomas",
     "languages": {
       "title": "Idiomas",
       "items": [
@@ -117,7 +189,7 @@
       ]
     },
     "certifications": {
-      "title": "Certificaciones Profesionales",
+      "title": "Certificaciones",
       "items": [
         {"name": "ICH Good Clinical Practice (GCP) E6 (R3)", "issuer": "The Global Health Network", "year": "2025", "type": "Certificación Técnica"},
         {"name": "GDPR for Healthcare", "issuer": "Alison", "year": "2025", "type": "Certificación Técnica"},
@@ -130,59 +202,51 @@
   },
   "publications_section": {
     "title": "Publicaciones Científicas",
+    "intro": "La ciencia se valida cuando otros la revisan. Estas son mis contribuciones peer-reviewed.",
+    "link_label": "Ver publicación",
     "items": [
-      {"title": "A Proteogenomic Approach to Unravel New Proteins Encoded in the Leishmania donovani (HU3) Genome", "authors": "J. Adán-Jiménez, A. Sánchez-Salvador, E. Morato, J.C. Solana, B. Aguado, J.M. Requena", "journal": "Genes", "year": "2024", "doi": "10.3390/genes15060775", "type": "Artículo Científico", "description": "Integración de datos masivos de espectrometría de masas con genómica. Validación estadística de nuevas secuencias codificantes."},
-      {"title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)", "authors": "A. Sánchez-Salvador, S. González-de-la-Fuente, B. Aguado, P.E. Yates, J.M. Requena", "journal": "Genes", "year": "2023", "doi": "10.3390/genes14081637", "type": "Artículo Científico", "description": "Desarrollo de scripts computacionales y análisis de datos Ribo-Seq para detectar marcos de lectura abiertos (ORFs)."},
-      {"title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom", "authors": "A. Sánchez-Salvador, M. de Vega", "journal": "Biomolecules", "year": "2020", "doi": "10.3390/biom10020203", "type": "Artículo Científico", "description": "Estudio resultante de la investigación del TFM de Microbiología sobre la maquinaria de reparación de ADN bacteriana."}
+      {"title": "A Proteogenomic Approach to Unravel New Proteins Encoded in the Leishmania donovani (HU3) Genome", "authors": "J. Adán-Jiménez, A. Sánchez-Salvador, E. Morato, J.C. Solana, B. Aguado, J.M. Requena", "journal": "Genes", "year": "2024", "doi": "10.3390/genes15060775", "type": "Artículo Científico", "description": "Integración de espectrometría de masas con genómica y validación estadística de nuevas secuencias codificantes."},
+      {"title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)", "authors": "A. Sánchez-Salvador, S. González-de-la-Fuente, B. Aguado, P.E. Yates, J.M. Requena", "journal": "Genes", "year": "2023", "doi": "10.3390/genes14081637", "type": "Artículo Científico", "description": "Scripts computacionales y análisis de datos Ribo-Seq para detectar marcos de lectura abiertos (ORFs)."},
+      {"title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom", "authors": "A. Sánchez-Salvador, M. de Vega", "journal": "Biomolecules", "year": "2020", "doi": "10.3390/biom10020203", "type": "Artículo Científico", "description": "Resultado de mi TFM en Microbiología sobre la maquinaria de reparación del ADN bacteriano."}
     ]
   },
   "hackathons_section": {
     "title": "Hackathons",
     "items": [
-        {
-            "name": "No-Code Automation Hackathon Madrid",
-            "position": "🥈 2º Premio",
-            "date": "2025",
-            "organizer": "Woztell & Make",
-            "description": "Diseño y desarrollo de un asistente inteligente para la gestión de aparcamiento urbano, cruzando matrícula, etiqueta ambiental y ubicación GPS en tiempo real para recomendar y guiar al parking legal más cercano.",
-            "stack": ["Make", "Woztell", "Automation", "API Integrations", "Chatbot"],
-            "image": "assets/images/Hackathon.png"
-        }
-      ]
+      {
+        "name": "No-Code Automation Hackathon Madrid",
+        "position": "🥈 2º Premio",
+        "date": "2025",
+        "organizer": "Woztell & Make",
+        "description": "En un fin de semana diseñamos un asistente inteligente para el aparcamiento urbano: cruza matrícula, etiqueta ambiental y ubicación GPS en tiempo real para guiar al conductor al parking legal más cercano. Una buena lección de cómo resolver un problema real con rapidez y trabajo en equipo.",
+        "stack": ["Make", "Woztell", "Automatización", "Integración de APIs", "Chatbot"],
+        "image": "assets/images/Hackathon.png"
+      }
+    ]
   },
-  "current_projects_section": {
-    "title": "Proyectos Actuales",
-    "subtitle": "En qué estoy trabajando ahora mismo",
-    "items": [
-        {
-            "name": "Sextant.ai - Intelligent Travel Planner",
-            "status": "🚧 En desarrollo activo",
-            "description": "Aplicación inteligente para la generación de itinerarios de viaje altamente personalizados. La arquitectura conecta un frontend en Django con un backend orquestado por LLMs. El sistema procesa las preferencias del usuario para estructurar un viaje completo: genera un itinerario principal, lo desglosa dinámicamente en planes diarios y enriquece la experiencia inyectando información cultural e histórica específica de cada ubicación.",
-            "stack": ["Python", "Django", "LLMs Orchestration", "Prompt Engineering", "API REST"],
-            "image": "assets/images/SextantIA.png"
-        }
-      ]
+  "achievements_section": {
+    "title": "Logros"
   },
   "chatbot_config": {
     "title": "Asistente Virtual IA",
     "status_text": "En línea",
     "welcome_title": "👋 ¡Bienvenido!",
-    "welcome_message": "Soy el asistente de Alejandro. Puedes preguntarme sobre su experiencia gestionando datos genómicos y de investigación biomédica, sus proyectos de Machine Learning, o por qué combina biología y ciencia de datos.",
+    "welcome_message": "Soy el asistente de Alejandro. Pregúntame por su paso de la biología a la IA, por Sextant IA o por su experiencia con datos genómicos y Machine Learning.",
     "input_placeholder": "Escribe tu pregunta...",
     "suggestions": [
-      { "label": "💼 Experiencia", "msg": "¿Cuál es tu experiencia en Bioinformática y Data Science?" },
-      { "label": "🛠️ Skills", "msg": "¿Qué tecnologías dominas?" },
-      { "label": "🚀 Proyectos", "msg": "Cuéntame sobre tus proyectos destacados" }
+      { "label": "🧬 Su historia", "msg": "¿Cómo pasaste de la biología a la ciencia de datos y la IA?" },
+      { "label": "🧭 Sextant IA", "msg": "Cuéntame sobre Sextant IA" },
+      { "label": "🛠️ Skills", "msg": "¿Qué tecnologías dominas?" }
     ],
     "error_timeout": "Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.",
     "error_connection": "Error interno: no se pudo conectar con el servidor."
   },
   "cv_download_text": "Descargar CV",
   "contact_section": {
-    "title": "Contacto Profesional",
-    "cta": "¿Interesado en colaborar?",
-    "description": "Estoy abierto a nuevas oportunidades en Biotecnología, Salud y Life Sciences como Bioinformático, Data Scientist o Analista de Datos Clínicos/Biomédicos en Europa.",
-    "availability": "Inmediatamente disponible. Abierto a roles presenciales o híbridos en la región DACH, Nordics y España.",
+    "title": "Hablemos",
+    "cta": "¿Tienes un problema complejo entre manos?",
+    "description": "Me encantaría escucharlo. Busco unirme a un equipo donde pueda aportar rigor científico, Ciencia de Datos e IA a problemas que importan, especialmente en salud, biotecnología y producto. Si crees que puedo ayudar, escríbeme: respondo siempre.",
+    "availability": "Disponible de inmediato · Remoto, híbrido o presencial en España, DACH y Nordics.",
     "response_time": "Respondo rápidamente",
     "contact_methods": {
       "email": "asansal@outlook.es",
@@ -191,9 +255,9 @@
     }
   },
   "seo": {
-    "meta_title": "Alejandro Sánchez | Bioinformático & Data Scientist — Life Sciences",
-    "meta_description": "Bioinformático y Científico de Datos con base en biología molecular: 4 años de rigor científico gestionando datos genómicos, sumados a Machine Learning y Data Engineering para biotecnología y salud.",
-    "keywords": ["Bioinformatics", "Bioinformático", "Data Scientist", "Genomics", "NGS", "Life Sciences", "Machine Learning", "Python", "R", "HPC", "DACH"]
+    "meta_title": "Alejandro Sánchez | De Biólogo a Data Scientist & AI Engineer",
+    "meta_description": "Biólogo e investigador (CBM-CSIC, Universität Konstanz) que aplica el rigor científico a la Ciencia de Datos y la IA. Creador de Sextant IA, planificador de viajes con LLMs en producción.",
+    "keywords": ["Data Scientist", "AI Engineer", "LLM", "Bioinformatics", "Bioinformático", "Genomics", "Machine Learning", "Python", "Django", "Sextant IA", "Life Sciences", "DACH"]
   },
   "copy_email_tooltip": "Copiar email al portapapeles",
   "email_copied_feedback": "¡Email copiado!"

@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import os
 import html as _html
 
@@ -30,6 +31,11 @@ from logic.utils import (
 languages = load_config()
 if "lang" not in st.session_state:
     st.session_state.lang = "es"  # Default language
+
+# ── SPA Router State ───────────────────────────────────────────
+HOME_VIEW = "home"
+if "current_view" not in st.session_state:
+    st.session_state.current_view = HOME_VIEW
 
 # ── Chatbot Session State ──────────────────────────────────────
 if "chatbot_query_id" not in st.session_state:
@@ -146,124 +152,234 @@ with st.sidebar:
             width='stretch',
         )
 
-# --- MAIN CONTENT ---
-st.title(texts.get("profile", {}).get("tagline", ""))
-st.subheader(texts.get("profile", {}).get("subtitle", ""))
-st.divider()
 
-# About section
-about_data = texts.get("about", {})
-with st.container():
-    st.header(about_data.get("title", "About Me"))
-    st.write(about_data.get("text_long", ""))
+# --- NAVIGATION HELPERS ---
+nav_data = texts.get("navigation", {})
 
-st.divider()
 
-# Value Proposition section
-value_prop_data = texts.get("value_proposition", {})
-with st.container():
-    st.header(value_prop_data.get("title", "Value Proposition"))
-    points = value_prop_data.get("points", [])
+def go_to(view: str) -> None:
+    """on_click callback: changes the active view before the rerun, so a single click is enough."""
+    st.session_state.current_view = view
+
+
+def render_back_button(position: str) -> None:
+    """Renders the '🔙 Volver al Inicio' button. `position` keeps widget keys unique (top/bottom)."""
+    with st.container(key=f"back-nav-{position}"):
+        st.button(
+            nav_data.get("back_home", "🔙 Volver al Inicio"),
+            key=f"back_home_{position}",
+            on_click=go_to,
+            args=(HOME_VIEW,),
+        )
+
+
+def scroll_to_top(view: str) -> None:
+    """Streamlit keeps the scroll position between reruns; reset it when the view changes.
+    The view name is embedded in the HTML so the iframe only re-executes on navigation."""
+    components.html(
+        f"""<script>
+        // view: {view}
+        const main = window.parent.document.querySelector('section.stMain, [data-testid="stMain"]');
+        if (main) {{ main.scrollTo({{top: 0, behavior: 'instant'}}); }}
+        window.parent.scrollTo({{top: 0, behavior: 'instant'}});
+        </script>""",
+        height=0,
+    )
+
+
+def tech_badges(items: list) -> str:
+    return f"`{'`, `'.join(items)}`" if items else ""
+
+
+# --- VIEWS ---
+
+def render_home() -> None:
+    profile = texts.get("profile", {})
+    st.title(profile.get("tagline", ""))
+    st.markdown(f'<p class="home-subtitle">{profile.get("subtitle", "")}</p>', unsafe_allow_html=True)
+    st.caption(nav_data.get("home_hint", ""))
+
+    cards = nav_data.get("cards", {})
+
+    def card_label(view: str) -> str:
+        card = cards.get(view, {})
+        # Bold title + paragraph break → two <p> inside the button (styled in style.css)
+        return f"{card.get('icon', '')} **{card.get('title', view)}**\n\n{card.get('subtitle', '')}"
+
+    # Bento layout: each row is a list of (view, relative width)
+    bento_rows = [
+        [("story", 2), ("experience", 1)],
+        [("projects", 1), ("skills", 1), ("education", 1)],
+        [("achievements", 1), ("contact", 2)],
+    ]
+
+    with st.container(key="bento-grid"):
+        for row in bento_rows:
+            cols = st.columns([width for _, width in row], gap="medium")
+            for col, (view, _) in zip(cols, row):
+                with col:
+                    st.button(
+                        card_label(view),
+                        key=f"bento_{view}",
+                        on_click=go_to,
+                        args=(view,),
+                        width="stretch",
+                    )
+
+
+def render_story() -> None:
+    about = texts.get("about", {})
+    st.header(about.get("title", "My Story"))
+    st.markdown(f'<p class="story-lead">{about.get("lead", "")}</p>', unsafe_allow_html=True)
+
+    for chapter in about.get("chapters", []):
+        with st.container(border=True):
+            st.markdown(f"#### {chapter.get('icon', '')} {chapter.get('title', '')}")
+            st.caption(chapter.get("period", ""))
+            st.write(chapter.get("text", ""))
+
+    if about.get("closing"):
+        st.markdown(f'<p class="story-closing">{about.get("closing")}</p>', unsafe_allow_html=True)
+
+    st.divider()
+
+    value_prop = texts.get("value_proposition", {})
+    st.header(value_prop.get("title", "Value Proposition"))
+    points = value_prop.get("points", [])
     if points:
         num_cols = min(len(points), 4)
         cols = st.columns(num_cols)
         for i, point in enumerate(points):
             with cols[i % num_cols]:
-                st.subheader(point.get('title', ''))
+                st.subheader(point.get("title", ""))
                 st.write(point.get("description", ""))
 
-st.divider()
 
-# Skills section
-skills_data = texts.get("skills_section", {})
-with st.container():
+def render_experience() -> None:
+    exp_data = texts.get("experience_section", {})
+    st.header(exp_data.get("title", "Experience"))
+    st.write(exp_data.get("intro", ""))
+
+    # ── Featured: Sextant IA (in production) ──────────────────────
+    featured = exp_data.get("featured", {})
+    if featured:
+        with st.container(border=True, key="featured-experience"):
+            st.markdown(f'<span class="featured-badge">{featured.get("badge", "")}</span>', unsafe_allow_html=True)
+            col1, col2 = st.columns([3, 2])
+            with col1:
+                st.subheader(featured.get("company", ""))
+                st.markdown(f"**{featured.get('role')}** | {featured.get('period')}")
+                st.markdown(f"_{featured.get('location')}_ — _{featured.get('type')}_")
+                st.write(featured.get("story", ""))
+                st.success(featured.get("production_note", ""))
+                st.markdown(f"**{featured.get('impact_title', '')}**")
+                for item in featured.get("impact", []):
+                    st.markdown(f"- {item}")
+                st.markdown(f"**Stack:** {tech_badges(featured.get('stack', []))}")
+                if featured.get("link"):
+                    st.link_button(featured.get("link_label", "Sextant IA"), featured["link"])
+            with col2:
+                if featured.get("image"):
+                    st.image(featured["image"], width="stretch")
+
+    # ── Career path ───────────────────────────────────────────────
+    for item in exp_data.get("items", []):
+        with st.expander(f"**{item.get('role')}** · **{item.get('company')}** | {item.get('period')}", expanded=True):
+            st.markdown(f"_{item.get('location')}_ — _{item.get('type')}_")
+            st.write(item.get("story", ""))
+            for achievement in item.get("impact", []):
+                st.markdown(f"- {achievement}")
+            st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+
+
+def render_projects() -> None:
+    projects_data = texts.get("projects_section", {})
+    st.header(projects_data.get("title", "Projects"))
+    st.write(projects_data.get("intro", ""))
+    labels = projects_data.get("labels", {})
+
+    project_items = projects_data.get("items", [])
+    if project_items:
+        tabs = st.tabs([item.get("title", f"Project {i+1}") for i, item in enumerate(project_items)])
+        for tab, item in zip(tabs, project_items):
+            with tab:
+                st.markdown(f"##### {item.get('type')} - {item.get('year')}")
+                for field in ("challenge", "approach", "result"):
+                    if item.get(field):
+                        st.markdown(f"**{labels.get(field, field.capitalize())}:** {item.get(field)}")
+                st.markdown(f"**Tech:** {tech_badges(item.get('tech', []))}")
+                if item.get("link"):
+                    st.markdown(f"[{labels.get('link', 'GitHub')}]({item.get('link')})")
+
+
+def render_skills() -> None:
+    skills_data = texts.get("skills_section", {})
     st.header(skills_data.get("title", "Technical Skills"))
+    st.write(skills_data.get("intro", ""))
     categories = skills_data.get("categories", [])
     if categories:
         num_cols = min(len(categories), 2)
         cols = st.columns(num_cols)
         for i, category in enumerate(categories):
             with cols[i % num_cols]:
-                st.subheader(category.get('name', ''))
-                for item in category.get("items", []):
-                    st.markdown(f"- {item}")
+                with st.container(border=True):
+                    st.subheader(category.get("name", ""))
+                    st.caption(category.get("why", ""))
+                    for item in category.get("items", []):
+                        st.markdown(f"- {item}")
 
-st.divider()
 
-# Experience section
-exp_data = texts.get("experience_section", {})
-with st.container():
-    st.header(exp_data.get("title", "Experience"))
-    # Sort by descending period (full-time first, then freelance/capstone)
-    exp_items = sorted(
-        exp_data.get("items", []),
-        key=lambda x: x.get("period", "").split(" - ")[-1],
-        reverse=True,
-    )
-    for item in exp_items:
-        with st.expander(f"**{item.get('role')}** at **{item.get('company')}** | {item.get('period')}", expanded=True):
-            st.markdown(f"_{item.get('location')}_ — _{item.get('type')}_")
-            st.markdown(item.get("description", ""))
-            st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
-            achievements = item.get("achievements", [])
-            if achievements:
-                st.markdown("**Logros principales:**")
-                for achievement in achievements:
-                    st.markdown(f"- {achievement}")
-
-st.divider()
-
-# Education section
-education_data = texts.get("education_section", {})
-with st.container():
+def render_education() -> None:
+    education_data = texts.get("education_section", {})
     st.header(education_data.get("title", "Education"))
+    st.write(education_data.get("intro", ""))
     for item in education_data.get("items", []):
         with st.expander(f"**{item.get('degree')}** - {item.get('institution')} ({item.get('year')})", expanded=False):
             st.markdown(f"_{item.get('location')}_ - _{item.get('type')}_")
-            if item.get("highlights"):
-                for highlight in item.get("highlights", []):
-                    st.markdown(f"- {highlight}")
-st.divider()
+            for highlight in item.get("highlights", []):
+                st.markdown(f"- {highlight}")
 
-# Projects section
-projects_data = texts.get("projects_section", {})
-with st.container():
-    st.header(projects_data.get("title", "Projects"))
-    project_items = projects_data.get("items", [])
-    if project_items:
-        project_titles = [item.get("title", f"Project {i+1}") for i, item in enumerate(project_items)]
-        tabs = st.tabs(project_titles)
+    st.divider()
 
-        for tab, item in zip(tabs, project_items):
-            with tab:
-                st.markdown(f"##### {item.get('type')} - {item.get('year')}")
-                st.write(item.get("description"))
-                st.markdown(f"**Tech:** `{'`, `'.join(item.get('tech', []))}`")
-                if item.get("highlights"):
-                    st.markdown("<h6>Highlights:</h6>", unsafe_allow_html=True)
-                    for highlight in item.get("highlights", []):
-                        st.markdown(f"- {highlight}")
-                if item.get("link"):
-                    st.markdown(f"[Ver en GitHub]({item.get('link')})")
-st.divider()
-
-# Publications section
-pubs_data = texts.get("publications_section", {})
-with st.container():
+    pubs_data = texts.get("publications_section", {})
     st.header(pubs_data.get("title", "Publications"))
+    st.write(pubs_data.get("intro", ""))
     for item in pubs_data.get("items", []):
         with st.expander(f"**{item.get('title')}**", expanded=False):
             st.markdown(f"_{item.get('authors')}_")
             st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
             st.write(item.get("description", ""))
             if item.get("doi"):
-                    st.markdown(f"[Ver publicación (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
-st.divider()
+                st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
 
-# Certifications section
-cert_data = texts.get("certifications_section", {})
-with st.container():
-    st.header(cert_data.get("title", "Certifications"))
+
+def render_achievements() -> None:
+    st.header(texts.get("achievements_section", {}).get("title", "Achievements"))
+
+    # Hackathons
+    hackathons_data = texts.get("hackathons_section", {})
+    st.subheader(hackathons_data.get("title", "Hackathons"))
+    for item in hackathons_data.get("items", []):
+        with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
+            col1, col2 = st.columns([2, 1])
+            with col1:
+                st.markdown(f"_{item.get('organizer')}_")
+                st.write(item.get("description", ""))
+                st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+            with col2:
+                if item.get("image"):
+                    st.image(item.get("image"), width="stretch")
+
+    st.divider()
+
+    cert_data = texts.get("certifications_section", {})
+
+    # Technical Certifications
+    tech_cert_data = cert_data.get("certifications", {})
+    if tech_cert_data:
+        st.subheader(tech_cert_data.get("title", "Technical Certifications"))
+        for item in tech_cert_data.get("items", []):
+            st.markdown(f"- **{item.get('name')}** - _{item.get('issuer')}_ ({item.get('year')})")
 
     # Languages
     lang_data = cert_data.get("languages", {})
@@ -274,60 +390,12 @@ with st.container():
             cols = st.columns(len(lang_items))
             for i, item in enumerate(lang_items):
                 with cols[i]:
-                    # Sustituimos st.metric por markdown para un formato elegante
                     st.markdown(f"#### {item.get('language')}")
                     st.markdown(f"_{item.get('level')}_ **({item.get('proficiency')})**")
 
-    st.markdown("---") # Visual separator
 
-    # Technical Certifications
-    tech_cert_data = cert_data.get("certifications", {})
-    if tech_cert_data:
-        st.subheader(tech_cert_data.get("title", "Technical Certifications"))
-        for item in tech_cert_data.get("items", []):
-            st.markdown(f"- **{item.get('name')}** - _{item.get('issuer')}_ ({item.get('year')})")
-st.divider()
-
-# Hackathons section
-hackathons_data = texts.get("hackathons_section", {})
-with st.container():
-    st.header(hackathons_data.get("title", "Hackathons"))
-    for item in hackathons_data.get("items", []):
-        with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                st.markdown(f"_{item.get('organizer')}_")
-                st.write(item.get("description", ""))
-                st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
-            with col2:
-                image_path = item.get("image")
-                if image_path:
-                    st.image(image_path, width='stretch')
-
-st.divider()
-
-# Current & Future Projects section
-current_projects_data = texts.get("current_projects_section", {})
-with st.container():
-    st.header(current_projects_data.get("title", "Current Projects"))
-    st.subheader(current_projects_data.get("subtitle", ""))
-    for item in current_projects_data.get("items", []):
-        with st.expander(f"**{item.get('name')}** — {item.get('status')}", expanded=True):
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                st.write(item.get("description", ""))
-                st.markdown(f"**Stack:** `{'`, `'.join(item.get('stack', []))}`")
-                if item.get("link"):
-                    st.markdown(f"[Ver proyecto]({item.get('link')})")
-            with col2:
-                image_path = item.get("image")
-                if image_path:
-                    st.image(image_path, width='stretch')
-st.divider()
-
-# Contact Section
-contact_data = texts.get("contact_section", {})
-with st.container():
+def render_contact() -> None:
+    contact_data = texts.get("contact_section", {})
     st.header(contact_data.get("title", "Contact"))
     st.subheader(contact_data.get("cta"))
     st.write(contact_data.get("description"))
@@ -407,7 +475,32 @@ with st.container():
             unsafe_allow_html=True,
         )
 
-st.divider()
+
+VIEWS = {
+    "story": render_story,
+    "experience": render_experience,
+    "projects": render_projects,
+    "skills": render_skills,
+    "education": render_education,
+    "achievements": render_achievements,
+    "contact": render_contact,
+}
+
+# --- MAIN CONTENT (SPA ROUTER) ---
+# Unknown views (e.g. stale session state) fall back to Home.
+if st.session_state.current_view not in VIEWS:
+    st.session_state.current_view = HOME_VIEW
+
+current_view = st.session_state.current_view
+scroll_to_top(current_view)
+
+if current_view == HOME_VIEW:
+    render_home()
+else:
+    render_back_button("top")
+    VIEWS[current_view]()
+    st.divider()
+    render_back_button("bottom")
 
 # --- CHATBOT BACKEND BRIDGE & POPUP ---
 if GENAI_API_KEY:
@@ -419,7 +512,7 @@ if GENAI_API_KEY:
             st.session_state.cb_input = ""
 
             kb_text = load_knowledge_base()
-            
+
             # --- NUEVO: Inyectar contexto dinámico sobre el CV ---
             kb_text += (
                 f"\n\n[INSTRUCCIÓN DINÁMICA DE LA INTERFAZ]: La página está actualmente "
