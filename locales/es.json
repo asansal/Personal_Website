@@ -1,9 +1,9 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Biólogo convertido en Data Scientist & AI Engineer",
-    "tagline": "Del rigor del laboratorio a la Inteligencia Artificial",
-    "subtitle": "Soy biólogo e investigador. Aprendí a hacer buenas preguntas en el laboratorio; la Ciencia de Datos y la IA me dieron las herramientas para responderlas a escala.",
+    "role": "Data Scientist & AI Engineer · Pharma, Salud y Life Sciences",
+    "tagline": "Ciencia de Datos e IA para Pharma, Salud y Life Sciences",
+    "subtitle": "Biólogo e investigador formado en el CBM-CSIC y la Universität Konstanz. Combino rigor científico, Machine Learning e IA generativa para convertir datos biomédicos en decisiones fiables.",
     "location": "Madrid, España",
     "availability": "Disponible · Remoto, híbrido o reubicación",
     "socials": {
@@ -16,96 +16,57 @@
     "back_home": "Volver al Inicio",
     "home_hint": "Elige un capítulo para empezar a explorar.",
     "cards": {
-      "story": {
-        "icon": "auto_stories",
-        "title": "Mi Historia"
-      },
       "experience": {
-        "icon": "biotech",
         "title": "Experiencia"
       },
       "projects": {
-        "icon": "science",
         "title": "Proyectos"
       },
       "tableau": {
-        "icon": "monitoring",
         "title": "Portfolio Tableau"
       },
       "skills": {
-        "icon": "construction",
         "title": "Herramientas"
       },
       "education": {
-        "icon": "school",
-        "title": "Formación & Ciencia"
-      },
-      "achievements": {
-        "icon": "emoji_events",
-        "title": "Logros"
+        "title": "Formación & Logros"
       },
       "contact": {
-        "icon": "mail",
         "title": "Hablemos"
       }
     }
   },
   "about": {
-    "title": "Mi Historia",
-    "text_short": "Soy biólogo e investigador. Pasé años en laboratorios como el CBM-CSIC y la Universität Konstanz aprendiendo que un resultado solo vale si es reproducible. Por el camino descubrí que la Ciencia de Datos y la IA son las mejores herramientas que conozco para resolver problemas complejos, y hoy construyo productos con ellas de principio a fin, como Sextant IA, que ya está en producción.",
-    "lead": "No llegué a los datos por moda. Llegué porque, como científico, necesitaba mejores herramientas para encontrar respuestas.",
-    "chapters": [
-      {
-        "period": "2013 - 2018",
-        "title": "Capítulo 1 · Aprender a dudar",
-        "text": "Todo empezó en la Universidad de Salamanca y continuó en el Centro de Biología Molecular Severo Ochoa, estudiando cómo las bacterias reparan su ADN. Allí aprendí la lección más valiosa de mi carrera: un dato no es una verdad hasta que lo has cuestionado, replicado y entendido. Mi primera publicación científica (Biomolecules, 2020) nació de esa disciplina."
-      },
-      {
-        "period": "2020 - 2022",
-        "title": "Capítulo 2 · Cuando los datos crecen más que el laboratorio",
-        "text": "En la Universität Konstanz (Alemania) me encontré con un reto distinto: los experimentos generaban más información de la que una persona podía analizar a mano. Empecé a trabajar en clústeres HPC con Slurm, a ensamblar transcriptomas de novo y a aplicar estadística multivariante. Mientras tanto, cursaba un Máster en Bioinformática y Bioestadística. Fue el momento en que entendí que el código podía ser una extensión del método científico."
-      },
-      {
-        "period": "2022 - 2025",
-        "title": "Capítulo 3 · Rigor a escala",
-        "text": "De vuelta en el CBM-CSIC asumí la estrategia computacional del laboratorio: pipelines reproducibles sobre más de 1 TB de datos genómicos, mentoría a 8 investigadores junior y gestión de proveedores de secuenciación. Cuando un dataset clave se degradó por un fallo de hardware, diseñé una estrategia híbrida para rescatarlo. Ese proyecto, y otros dos, terminaron en publicaciones peer-reviewed. Aprendí que la ingeniería también es cuidar de las personas y de los datos cuando las cosas van mal."
-      },
-      {
-        "period": "2025 - Hoy",
-        "title": "Capítulo 4 · La IA como herramienta definitiva",
-        "text": "Quise ir más allá del análisis y aprender a construir soluciones completas. Completé un Máster en Data Science & IA, evalué modelos de IA mediante RLHF y, como proyecto propio, creé Sextant IA: un planificador de viajes inteligente que diseñé, desarrollé y publiqué en producción de principio a fin. Hoy aplico el mismo rigor que aprendí con una pipeta a cada modelo, cada análisis y cada línea de código."
-      }
-    ],
-    "closing": "Sigo siendo, ante todo, un científico: curioso, metódico y con ganas de aprender de quienes me rodean. Solo que ahora mis experimentos también se despliegan en producción."
+    "text_short": "Data Scientist & AI Engineer con base en biología molecular e investigación biomédica (CBM-CSIC, Universität Konstanz). Aplico rigor científico, Machine Learning e IA generativa a problemas de Pharma, Salud y Life Sciences, y sé llevar una solución hasta producción, como Sextant IA."
   },
   "value_proposition": {
-    "title": "Lo que aporto a un equipo",
+    "title": "Lo que aporto a Pharma, Salud y Life Sciences",
     "points": [
       {
         "icon": "dna",
-        "title": "Entiendo el origen del dato",
-        "description": "He generado datos con mis propias manos (NGS, qPCR, CRISPR, cultivos). Antes de modelar, sé preguntar de dónde viene cada número y qué limitaciones arrastra."
+        "title": "Conocimiento del dominio biomédico",
+        "description": "Biología molecular, genómica y laboratorio: entiendo de dónde viene cada dato biomédico y qué limitaciones arrastra antes de modelarlo."
       },
       {
         "icon": "analytics",
-        "title": "Rigor y reproducibilidad",
-        "description": "Formado en el método científico: trazabilidad, validación estadística y cero atajos. Un resultado que no se puede reproducir no es un resultado."
+        "title": "Rigor, reproducibilidad y cumplimiento",
+        "description": "Método científico, validación estadística y trazabilidad, con formación en ICH-GCP E6 (R3) y GDPR aplicado a salud."
       },
       {
         "icon": "rocket",
-        "title": "Ejecución end-to-end",
-        "description": "Con Sextant IA, mi proyecto propio, he llevado una idea desde el primer prompt hasta una web pública en producción. Sé terminar lo que empiezo."
+        "title": "Data Science e IA de extremo a extremo",
+        "description": "Del análisis y el Machine Learning a la IA generativa y el despliegue: Sextant IA, mi proyecto propio, está en producción."
       },
       {
         "icon": "collaboration",
         "title": "Puente entre ciencia y negocio",
-        "description": "He mentorizado a 8 investigadores y gestionado proveedores internacionales. Me gusta explicar lo complejo con claridad, sin perder precisión."
+        "description": "He mentorizado a 8 investigadores y gestionado proveedores; mis dashboards en Tableau y Power BI traducen resultados en decisiones."
       }
     ]
   },
   "skills_section": {
     "title": "Mi Caja de Herramientas",
-    "intro": "Las herramientas cambian; la forma de pensar se queda. Empiezo por las que más importan en salud y ciencias de la vida.",
+    "intro": "Las herramientas cambian; la forma de pensar se queda. Empiezo por las que más importan en Pharma, Salud y Life Sciences.",
     "highlights_title": "Imprescindibles en Salud & Life Sciences",
     "highlights": [
       "Python",
@@ -188,7 +149,7 @@
   },
   "experience_section": {
     "title": "Experiencia",
-    "intro": "Mi trayectoria profesional se ha forjado en la investigación biomédica institucional. Aquí aprendí a trabajar con datos reales, imperfectos y valiosos, y a tratarlos con el rigor que exige la ciencia.",
+    "intro": "Mi trayectoria se ha forjado en la investigación biomédica institucional, trabajando con datos genómicos reales, imperfectos y valiosos, y tratándolos con el rigor que exige la ciencia. Hoy llevo ese mismo rigor a la Ciencia de Datos y la IA aplicadas a Pharma, Salud y Life Sciences.",
     "items": [
       {
         "period": "2022 - 2025",
@@ -253,10 +214,11 @@
           "Documentación analítica minuciosa para la mejora continua de la precisión."
         ]
       }
-    ]
+    ],
+    "lead": "No llegué a los datos por moda: llegué porque, como científico, necesitaba mejores herramientas para encontrar respuestas."
   },
   "education_section": {
-    "title": "Formación",
+    "title": "Formación & Logros",
     "intro": "Nunca he dejado de estudiar. Cada máster respondió a una pregunta nueva que me hacía en el trabajo.",
     "items": [
       {
@@ -308,7 +270,7 @@
   },
   "projects_section": {
     "title": "Proyectos",
-    "intro": "Cada proyecto empezó con un problema concreto. Primero, ciencia aplicada a problemas biológicos; después, la capacidad de llevar una solución hasta producción.",
+    "intro": "Cada proyecto empezó con un problema concreto. Primero, análisis de datos aplicado a problemas biomédicos; después, la capacidad de llevar una solución de IA hasta producción.",
     "labels": {
       "challenge": "El reto",
       "approach": "Cómo lo abordé",
@@ -602,27 +564,24 @@
       }
     ]
   },
-  "achievements_section": {
-    "title": "Logros"
-  },
   "chatbot_config": {
     "title": "Asistente Virtual IA",
     "status_text": "En línea",
     "welcome_title": "¡Bienvenido!",
-    "welcome_message": "Soy el asistente de Alejandro. Pregúntame por su paso de la biología a la IA, por Sextant IA o por su experiencia con datos genómicos y Machine Learning.",
+    "welcome_message": "Soy el asistente de Alejandro. Pregúntame por su experiencia en Ciencia de Datos e IA aplicada a Pharma, Salud y Life Sciences, por Sextant IA o por su portfolio de Tableau.",
     "input_placeholder": "Escribe tu pregunta...",
     "suggestions": [
       {
-        "label": "Su historia",
-        "msg": "¿Cómo pasaste de la biología a la ciencia de datos y la IA?"
+        "label": "Su perfil",
+        "msg": "¿Qué puedes aportar a una empresa de Pharma, Salud o Life Sciences?"
       },
       {
         "label": "Sextant IA",
         "msg": "Cuéntame sobre Sextant IA"
       },
       {
-        "label": "Skills",
-        "msg": "¿Qué tecnologías dominas?"
+        "label": "Tableau",
+        "msg": "¿Qué dashboards tienes en Tableau?"
       }
     ],
     "error_timeout": "Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.",
@@ -631,8 +590,8 @@
   "cv_download_text": "Descargar CV",
   "contact_section": {
     "title": "Hablemos",
-    "cta": "¿Tienes un problema complejo entre manos?",
-    "description": "Me encantaría escucharlo. Busco unirme a un equipo donde pueda aportar rigor científico, Ciencia de Datos e IA a problemas que importan, especialmente en salud, biotecnología y producto. Si crees que puedo ayudar, escríbeme: respondo siempre.",
+    "cta": "¿Buscas un perfil de Data Science e IA para salud?",
+    "description": "Busco posiciones en Ciencia de Datos e Inteligencia Artificial en Pharma, Salud y Life Sciences: análisis de datos biomédicos y clínicos, bioinformática, Machine Learning e IA generativa. Si crees que mi perfil encaja en tu equipo, escríbeme: respondo siempre.",
     "availability": "Disponible de inmediato · Remoto, híbrido o presencial.",
     "response_time": "Respondo rápidamente",
     "contact_methods": {
@@ -642,21 +601,22 @@
     }
   },
   "seo": {
-    "meta_title": "Alejandro Sánchez | De Biólogo a Data Scientist & AI Engineer",
-    "meta_description": "Biólogo e investigador (CBM-CSIC, Universität Konstanz) que aplica el rigor científico a la Ciencia de Datos y la IA. Creador de Sextant IA, planificador de viajes con LLMs en producción.",
+    "meta_title": "Alejandro Sánchez | Data Scientist & AI Engineer · Pharma, Salud y Life Sciences",
+    "meta_description": "Data Scientist & AI Engineer con base en biología e investigación biomédica (CBM-CSIC, Universität Konstanz). Machine Learning, IA generativa y análisis de datos para Pharma, Salud y Life Sciences.",
     "keywords": [
       "Data Scientist",
       "AI Engineer",
-      "LLM",
-      "Bioinformatics",
-      "Bioinformático",
-      "Genomics",
-      "Machine Learning",
-      "Python",
-      "Django",
-      "Sextant IA",
+      "Pharma",
+      "Healthcare",
       "Life Sciences",
-      "DACH"
+      "Bioinformatics",
+      "Machine Learning",
+      "Generative AI",
+      "LLM",
+      "Python",
+      "R",
+      "Tableau",
+      "Genomics"
     ]
   },
   "copy_email_tooltip": "Copiar email al portapapeles",

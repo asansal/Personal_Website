@@ -1028,14 +1028,39 @@ hr {
     transition: background 0.3s ease;
 }
 
-.st-key-bento_story        { --card-icon: "auto_stories"; }
 .st-key-bento_experience   { --card-icon: "biotech"; }
 .st-key-bento_projects     { --card-icon: "science"; }
 .st-key-bento_tableau      { --card-icon: "monitoring"; }
 .st-key-bento_skills       { --card-icon: "construction"; }
 .st-key-bento_education    { --card-icon: "school"; }
-.st-key-bento_achievements { --card-icon: "emoji_events"; }
 .st-key-bento_contact      { --card-icon: "mail"; }
+
+/* Tarjeta de contacto: llamada a la acción en verde, como "Descargar CV" */
+.st-key-bento_contact div.stButton > button {
+    background: linear-gradient(160deg, #00d4aa 0%, #00b894 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(0, 212, 170, 0.25);
+}
+
+.st-key-bento_contact div.stButton > button p {
+    color: #0a0e27 !important;
+}
+
+.st-key-bento_contact div.stButton > button::before {
+    background: rgba(10, 14, 39, 0.12);
+    color: #0a0e27;
+}
+
+.st-key-bento_contact div.stButton > button:hover,
+.st-key-bento_contact div.stButton > button:focus-visible {
+    background: linear-gradient(160deg, #19e0b9 0%, #00c9a0 100%);
+    border-color: transparent;
+    box-shadow: 0 14px 32px rgba(0, 212, 170, 0.35);
+}
+
+.st-key-bento_contact div.stButton > button:hover::before {
+    background: rgba(10, 14, 39, 0.18);
+}
 
 /* ── Hover / focus ──────────────────────────────────────── */
 .st-key-bento-grid div.stButton > button:hover,
@@ -1215,7 +1240,9 @@ hr {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center;
+    display: block;
+    max-width: none;
     border: 2px solid rgba(0, 212, 170, 0.45);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
@@ -1330,4 +1357,17 @@ iframe[src*="public.tableau.com"] {
     width: 100% !important;
     border-radius: 12px;
     background: #ffffff;
+}
+
+/* Campo puente del chatbot: debe existir en el DOM (lo usa el JS) pero no verse */
+.st-key-cb_input {
+    position: absolute !important;
+    left: -9999px !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Sin icono de enlace junto a los títulos */
+[data-testid="stHeaderActionElements"] {
+    display: none !important;
 }

@@ -1,9 +1,9 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Biologe und heute Data Scientist & AI Engineer",
-    "tagline": "Von wissenschaftlicher Präzision im Labor zur Künstlichen Intelligenz",
-    "subtitle": "Ich bin Biologe und Forscher. Im Labor habe ich gelernt, gute Fragen zu stellen; Data Science und KI haben mir die Werkzeuge gegeben, sie im großen Maßstab zu beantworten.",
+    "role": "Data Scientist & AI Engineer · Pharma, Gesundheit & Life Sciences",
+    "tagline": "Data Science und KI für Pharma, Gesundheit und Life Sciences",
+    "subtitle": "Biologe und Forscher, ausgebildet am CBM-CSIC und an der Universität Konstanz. Ich verbinde wissenschaftliche Präzision, Machine Learning und generative KI, um biomedizinische Daten in verlässliche Entscheidungen zu verwandeln.",
     "location": "Madrid, Spanien",
     "availability": "Verfügbar · Remote, hybrid oder Umzug",
     "socials": {
@@ -16,96 +16,57 @@
     "back_home": "Zurück zur Startseite",
     "home_hint": "Wählen Sie ein Kapitel, um loszulegen.",
     "cards": {
-      "story": {
-        "icon": "auto_stories",
-        "title": "Meine Geschichte"
-      },
       "experience": {
-        "icon": "biotech",
         "title": "Erfahrung"
       },
       "projects": {
-        "icon": "science",
         "title": "Projekte"
       },
       "tableau": {
-        "icon": "monitoring",
         "title": "Tableau-Portfolio"
       },
       "skills": {
-        "icon": "construction",
         "title": "Werkzeugkasten"
       },
       "education": {
-        "icon": "school",
-        "title": "Ausbildung & Wissenschaft"
-      },
-      "achievements": {
-        "icon": "emoji_events",
-        "title": "Erfolge"
+        "title": "Ausbildung & Erfolge"
       },
       "contact": {
-        "icon": "mail",
         "title": "Sprechen wir"
       }
     }
   },
   "about": {
-    "title": "Meine Geschichte",
-    "text_short": "Ich bin Biologe und Forscher. Jahrelang habe ich in Laboren wie dem CBM-CSIC und der Universität Konstanz gelernt, dass ein Ergebnis nur zählt, wenn es reproduzierbar ist. Auf diesem Weg habe ich entdeckt, dass Data Science und KI die besten Werkzeuge sind, die ich kenne, um komplexe Probleme zu lösen. Heute baue ich damit Produkte von Anfang bis Ende, wie Sextant IA, das bereits in Produktion ist.",
-    "lead": "Ich bin nicht wegen eines Trends zu den Daten gekommen. Ich kam, weil ich als Wissenschaftler bessere Werkzeuge brauchte, um Antworten zu finden.",
-    "chapters": [
-      {
-        "period": "2013 - 2018",
-        "title": "Kapitel 1 · Zweifeln lernen",
-        "text": "Alles begann an der Universität Salamanca und ging am Zentrum für Molekularbiologie Severo Ochoa weiter, wo ich untersuchte, wie Bakterien ihre DNA reparieren. Dort lernte ich die wertvollste Lektion meiner Laufbahn: Ein Datenpunkt ist keine Wahrheit, bis man ihn hinterfragt, repliziert und verstanden hat. Meine erste wissenschaftliche Publikation (Biomolecules, 2020) entstand aus dieser Disziplin."
-      },
-      {
-        "period": "2020 - 2022",
-        "title": "Kapitel 2 · Wenn die Daten größer werden als das Labor",
-        "text": "An der Universität Konstanz stand ich vor einer neuen Herausforderung: Die Experimente erzeugten mehr Informationen, als ein Mensch von Hand analysieren konnte. Ich begann, auf HPC-Clustern mit Slurm zu arbeiten, Transkriptome de novo zu assemblieren und multivariate Statistik anzuwenden, während ich einen Master in Bioinformatik und Biostatistik absolvierte. Damals verstand ich, dass Code eine Erweiterung der wissenschaftlichen Methode sein kann."
-      },
-      {
-        "period": "2022 - 2025",
-        "title": "Kapitel 3 · Präzision im großen Maßstab",
-        "text": "Zurück am CBM-CSIC übernahm ich die computergestützte Strategie des Labors: reproduzierbare Pipelines für mehr als 1 TB genomischer Daten, Mentoring von 8 Nachwuchsforschenden und die Betreuung von Sequenzierungsdienstleistern. Als ein zentraler Datensatz durch einen Hardwarefehler beschädigt wurde, entwickelte ich eine hybride Strategie, um ihn zu retten. Dieses und zwei weitere Projekte mündeten in Peer-Review-Publikationen. Ich lernte, dass Engineering auch bedeutet, sich um Menschen und Daten zu kümmern, wenn etwas schiefgeht."
-      },
-      {
-        "period": "2025 - Heute",
-        "title": "Kapitel 4 · KI als entscheidendes Werkzeug",
-        "text": "Ich wollte über die Analyse hinausgehen und lernen, vollständige Lösungen zu bauen. Ich schloss einen Master in Data Science & KI ab, bewertete KI-Modelle mittels RLHF und entwickelte als eigenes Projekt Sextant IA: einen intelligenten Reiseplaner, den ich von Anfang bis Ende entworfen, entwickelt und in Produktion gebracht habe. Heute wende ich dieselbe Sorgfalt, die ich mit der Pipette gelernt habe, auf jedes Modell, jede Analyse und jede Codezeile an."
-      }
-    ],
-    "closing": "Vor allem bin ich nach wie vor Wissenschaftler: neugierig, methodisch und offen dafür, von den Menschen um mich herum zu lernen. Nur dass meine Experimente heute auch in Produktion gehen."
+    "text_short": "Data Scientist & AI Engineer mit Hintergrund in Molekularbiologie und biomedizinischer Forschung (CBM-CSIC, Universität Konstanz). Ich wende wissenschaftliche Präzision, Machine Learning und generative KI auf Fragestellungen in Pharma, Gesundheit und Life Sciences an und bringe Lösungen bis in die Produktion, wie Sextant IA."
   },
   "value_proposition": {
-    "title": "Was ich in ein Team einbringe",
+    "title": "Was ich in Pharma, Gesundheit und Life Sciences einbringe",
     "points": [
       {
         "icon": "dna",
-        "title": "Ich verstehe, woher Daten kommen",
-        "description": "Ich habe Daten mit eigenen Händen erzeugt (NGS, qPCR, CRISPR, Zellkultur). Bevor ich modelliere, frage ich, woher jede Zahl stammt und welche Grenzen sie mitbringt."
+        "title": "Biomedizinisches Fachwissen",
+        "description": "Molekularbiologie, Genomik und Laborerfahrung: Ich verstehe, woher jeder biomedizinische Datenpunkt stammt und welche Grenzen er mitbringt, bevor ich modelliere."
       },
       {
         "icon": "analytics",
-        "title": "Präzision und Reproduzierbarkeit",
-        "description": "Geschult in der wissenschaftlichen Methode: Nachvollziehbarkeit, statistische Validierung und keine Abkürzungen. Ein nicht reproduzierbares Ergebnis ist kein Ergebnis."
+        "title": "Präzision, Reproduzierbarkeit und Compliance",
+        "description": "Wissenschaftliche Methode, statistische Validierung und Nachvollziehbarkeit, mit Schulungen in ICH-GCP E6 (R3) und DSGVO im Gesundheitswesen."
       },
       {
         "icon": "rocket",
-        "title": "End-to-End-Umsetzung",
-        "description": "Mit Sextant IA, meinem eigenen Projekt, habe ich eine Idee vom ersten Prompt bis zu einer öffentlichen Website in Produktion gebracht. Ich bringe zu Ende, was ich beginne."
+        "title": "Data Science und KI von Anfang bis Ende",
+        "description": "Von Analyse und Machine Learning bis zu generativer KI und Deployment: Sextant IA, mein eigenes Projekt, läuft in Produktion."
       },
       {
         "icon": "collaboration",
         "title": "Brücke zwischen Wissenschaft und Business",
-        "description": "Ich habe 8 Forschende betreut und internationale Dienstleister koordiniert. Ich erkläre Komplexes gerne klar, ohne an Genauigkeit zu verlieren."
+        "description": "Ich habe 8 Forschende betreut und Dienstleister koordiniert; meine Dashboards in Tableau und Power BI machen aus Ergebnissen Entscheidungen."
       }
     ]
   },
   "skills_section": {
     "title": "Mein Werkzeugkasten",
-    "intro": "Werkzeuge ändern sich; die Denkweise bleibt. Ich beginne mit denen, die in Gesundheit und Life Sciences am meisten zählen.",
+    "intro": "Werkzeuge ändern sich; die Denkweise bleibt. Ich beginne mit denen, die in Pharma, Gesundheit und Life Sciences am meisten zählen.",
     "highlights_title": "Unverzichtbar in Gesundheit & Life Sciences",
     "highlights": [
       "Python",
@@ -188,7 +149,7 @@
   },
   "experience_section": {
     "title": "Erfahrung",
-    "intro": "Mein beruflicher Weg wurde in der institutionellen biomedizinischen Forschung geprägt. Dort habe ich gelernt, mit echten, unvollkommenen und wertvollen Daten zu arbeiten und sie mit der Sorgfalt zu behandeln, die die Wissenschaft verlangt.",
+    "intro": "Mein Werdegang wurde in der institutionellen biomedizinischen Forschung geprägt: echte, unvollkommene und wertvolle genomische Daten, behandelt mit der Sorgfalt, die die Wissenschaft verlangt. Heute bringe ich diese Präzision in Data Science und KI für Pharma, Gesundheit und Life Sciences ein.",
     "items": [
       {
         "period": "2022 - 2025",
@@ -253,10 +214,11 @@
           "Sorgfältige analytische Dokumentation zur kontinuierlichen Verbesserung der Genauigkeit."
         ]
       }
-    ]
+    ],
+    "lead": "Ich bin nicht wegen eines Trends zu den Daten gekommen, sondern weil ich als Wissenschaftler bessere Werkzeuge brauchte, um Antworten zu finden."
   },
   "education_section": {
-    "title": "Ausbildung",
+    "title": "Ausbildung & Erfolge",
     "intro": "Ich habe nie aufgehört zu lernen. Jeder Master beantwortete eine neue Frage, die ich mir bei der Arbeit stellte.",
     "items": [
       {
@@ -308,7 +270,7 @@
   },
   "projects_section": {
     "title": "Projekte",
-    "intro": "Jedes Projekt begann mit einem konkreten Problem. Zuerst Wissenschaft, angewandt auf biologische Fragestellungen; dann die Fähigkeit, eine Lösung bis in die Produktion zu bringen.",
+    "intro": "Jedes Projekt begann mit einem konkreten Problem. Zuerst Datenanalyse für biomedizinische Fragestellungen; dann die Fähigkeit, eine KI-Lösung bis in die Produktion zu bringen.",
     "labels": {
       "challenge": "Die Herausforderung",
       "approach": "Mein Ansatz",
@@ -602,27 +564,24 @@
       }
     ]
   },
-  "achievements_section": {
-    "title": "Erfolge"
-  },
   "chatbot_config": {
     "title": "KI Virtueller Assistent",
     "status_text": "Online",
     "welcome_title": "Willkommen!",
-    "welcome_message": "Ich bin Alejandros Assistent. Fragen Sie mich nach seinem Weg von der Biologie zur KI, nach Sextant IA oder nach seiner Erfahrung mit genomischen Daten und Machine Learning.",
+    "welcome_message": "Ich bin Alejandros Assistent. Fragen Sie mich nach seiner Erfahrung in Data Science und KI für Pharma, Gesundheit und Life Sciences, nach Sextant IA oder nach seinem Tableau-Portfolio.",
     "input_placeholder": "Gib deine Frage ein...",
     "suggestions": [
       {
-        "label": "Sein Weg",
-        "msg": "Wie bist du von der Biologie zu Data Science und KI gekommen?"
+        "label": "Sein Profil",
+        "msg": "Was kannst du einem Unternehmen aus Pharma, Gesundheit oder Life Sciences bieten?"
       },
       {
         "label": "Sextant IA",
         "msg": "Erzähl mir von Sextant IA"
       },
       {
-        "label": "Fähigkeiten",
-        "msg": "Welche Technologien beherrschst du?"
+        "label": "Tableau",
+        "msg": "Welche Dashboards hast du auf Tableau?"
       }
     ],
     "error_timeout": "Entschuldigung, die Antwort hat zu lange gedauert. Bitte versuche es erneut.",
@@ -631,8 +590,8 @@
   "cv_download_text": "Lebenslauf herunterladen",
   "contact_section": {
     "title": "Sprechen wir",
-    "cta": "Arbeiten Sie an einem komplexen Problem?",
-    "description": "Ich höre gerne davon. Ich möchte Teil eines Teams werden, in dem ich wissenschaftliche Präzision, Data Science und KI auf relevante Probleme anwenden kann, besonders in Gesundheit, Biotechnologie und Produktentwicklung. Wenn Sie glauben, dass ich helfen kann, schreiben Sie mir: Ich antworte immer.",
+    "cta": "Suchen Sie ein Data-Science- und KI-Profil für das Gesundheitswesen?",
+    "description": "Ich suche Positionen in Data Science und Künstlicher Intelligenz in Pharma, Gesundheit und Life Sciences: Analyse biomedizinischer und klinischer Daten, Bioinformatik, Machine Learning und generative KI. Wenn mein Profil zu Ihrem Team passt, schreiben Sie mir: Ich antworte immer.",
     "availability": "Sofort verfügbar · Remote, hybrid oder vor Ort.",
     "response_time": "Ich antworte schnell",
     "contact_methods": {
@@ -642,20 +601,22 @@
     }
   },
   "seo": {
-    "meta_title": "Alejandro Sánchez | Vom Biologen zum Data Scientist & AI Engineer",
-    "meta_description": "Biologe und Forscher (CBM-CSIC, Universität Konstanz), der wissenschaftliche Präzision auf Data Science und KI überträgt. Entwickler von Sextant IA, einem LLM-basierten Reiseplaner in Produktion.",
+    "meta_title": "Alejandro Sánchez | Data Scientist & AI Engineer · Pharma, Gesundheit & Life Sciences",
+    "meta_description": "Data Scientist & AI Engineer mit Hintergrund in Biologie und biomedizinischer Forschung (CBM-CSIC, Universität Konstanz). Machine Learning, generative KI und Datenanalyse für Pharma, Gesundheit und Life Sciences.",
     "keywords": [
       "Data Scientist",
       "AI Engineer",
-      "LLM",
-      "Bioinformatik",
-      "Genomik",
-      "Machine Learning",
-      "Python",
-      "Django",
-      "Sextant IA",
+      "Pharma",
+      "Gesundheitswesen",
       "Life Sciences",
-      "DACH"
+      "Bioinformatik",
+      "Machine Learning",
+      "Generative KI",
+      "LLM",
+      "Python",
+      "R",
+      "Tableau",
+      "Genomik"
     ]
   },
   "copy_email_tooltip": "E-Mail in Zwischenablage kopieren",

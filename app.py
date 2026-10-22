@@ -8,7 +8,7 @@ import html as _html
 # ¡IMPORTANTE! set_page_config DEBE ser el primer comando de Streamlit.
 st.set_page_config(
     page_title="Alejandro Sánchez | Portfolio",
-    page_icon="assets/images/profile.png",
+    page_icon="assets/images/profile_avatar.jpg",
     layout="wide",
     initial_sidebar_state="auto",  # expanded on desktop, collapsed on mobile
 )
@@ -106,7 +106,7 @@ with st.sidebar:
     # ── Profile card: photo, name, socials and availability in one block ──
     # (a single HTML block keeps the spacing under control so the sidebar fits one screen)
     profile_data = texts.get("profile", {})
-    img_b64 = get_img_as_base64("assets/images/profile.png")
+    img_b64 = get_img_as_base64("assets/images/profile_avatar.jpg")
 
     # Icon-only brand logos (the accessible name lives in aria-label/title)
     socials = profile_data.get("socials", {})
@@ -128,7 +128,7 @@ with st.sidebar:
 
     st.markdown(
         f'<div class="profile-card">'
-        f'<img class="profile-pic" src="data:image/png;base64,{img_b64}" alt="{profile_data.get("name", "")}">'
+        f'<img class="profile-pic" src="data:image/jpeg;base64,{img_b64}" alt="{profile_data.get("name", "")}">'
         f'<div>'
         f'<p class="profile-name">{profile_data.get("name", "")}</p>'
         f'<p class="profile-role">{profile_data.get("role", "")}</p>'
@@ -244,18 +244,14 @@ def render_home() -> None:
         # doesn't depend on Streamlit's markdown icon support
         return card.get("title", view)
 
-    # Bento layout: each row is a list of (view, relative width)
-    bento_rows = [
-        [("story", 2), ("experience", 1)],
-        [("projects", 1), ("tableau", 1), ("skills", 1)],
-        [("education", 1), ("achievements", 1), ("contact", 2)],
-    ]
-    bento_rows = [[(view, width) for view, width in row if view in VIEWS] for row in bento_rows]
+    # Bento layout: a regular 3-column grid, every card the same size
+    views = [view for view in ("experience", "projects", "tableau", "skills", "education", "contact") if view in VIEWS]
+    bento_rows = [views[i:i + 3] for i in range(0, len(views), 3)]
 
     with st.container(key="bento-grid"):
         for row in bento_rows:
-            cols = st.columns([width for _, width in row], gap="medium")
-            for col, (view, _) in zip(cols, row):
+            cols = st.columns(3, gap="medium")
+            for col, view in zip(cols, row):
                 with col:
                     st.button(
                         card_label(view),
@@ -266,37 +262,11 @@ def render_home() -> None:
                     )
 
 
-def render_story() -> None:
-    about = texts.get("about", {})
-    st.header(about.get("title", "My Story"))
-    st.markdown(f'<p class="story-lead">{about.get("lead", "")}</p>', unsafe_allow_html=True)
-
-    for chapter in about.get("chapters", []):
-        with st.container(border=True):
-            st.markdown(f"#### {chapter.get('title', '')}")
-            st.caption(chapter.get("period", ""))
-            st.write(chapter.get("text", ""))
-
-    if about.get("closing"):
-        st.markdown(f'<p class="story-closing">{about.get("closing")}</p>', unsafe_allow_html=True)
-
-    st.divider()
-
-    value_prop = texts.get("value_proposition", {})
-    st.header(value_prop.get("title", "Value Proposition"))
-    points = value_prop.get("points", [])
-    if points:
-        num_cols = min(len(points), 4)
-        cols = st.columns(num_cols)
-        for i, point in enumerate(points):
-            with cols[i % num_cols]:
-                st.subheader(point.get("title", ""))
-                st.write(point.get("description", ""))
-
-
 def render_experience() -> None:
     exp_data = texts.get("experience_section", {})
     st.header(exp_data.get("title", "Experience"))
+    if exp_data.get("lead"):
+        st.markdown(f'<p class="story-lead">{exp_data["lead"]}</p>', unsafe_allow_html=True)
     section_intro(exp_data.get("intro", ""))
 
     for item in exp_data.get("items", []):
@@ -319,6 +289,18 @@ def render_experience() -> None:
                 for achievement in item.get("impact", []):
                     st.markdown(f"- {achievement}")
                 st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+
+    st.divider()
+
+    value_prop = texts.get("value_proposition", {})
+    st.header(value_prop.get("title", "Value Proposition"))
+    points = value_prop.get("points", [])
+    if points:
+        cols = st.columns(2, gap="medium")
+        for i, point in enumerate(points):
+            with cols[i % 2], st.container(border=True):
+                st.markdown(f"**{point.get('title', '')}**")
+                st.write(point.get("description", ""))
 
 
 def render_projects() -> None:
@@ -450,13 +432,15 @@ def render_education() -> None:
             if item.get("doi"):
                 st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
 
+    st.divider()
+    render_achievements()
+
 
 def render_achievements() -> None:
-    st.header(texts.get("achievements_section", {}).get("title", "Achievements"))
-
+    """Hackathons, certifications and languages (shown at the end of Education)."""
     # Hackathons
     hackathons_data = texts.get("hackathons_section", {})
-    st.subheader(hackathons_data.get("title", "Hackathons"))
+    st.header(hackathons_data.get("title", "Hackathons"))
     for item in hackathons_data.get("items", []):
         with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
             col1, col2 = st.columns([2, 1])
@@ -471,6 +455,7 @@ def render_achievements() -> None:
     st.divider()
 
     cert_data = texts.get("certifications_section", {})
+    st.header(cert_data.get("title", "Certifications & Languages"))
 
     # Technical Certifications
     tech_cert_data = cert_data.get("certifications", {})
@@ -575,13 +560,11 @@ def render_contact() -> None:
 
 
 VIEWS = {
-    "story": render_story,
     "experience": render_experience,
     "projects": render_projects,
     "tableau": render_tableau,
     "skills": render_skills,
     "education": render_education,
-    "achievements": render_achievements,
     "contact": render_contact,
 }
 if not HAS_TABLEAU:
