@@ -5,7 +5,7 @@
     "tagline": "Del rigor del laboratorio a la Inteligencia Artificial",
     "subtitle": "Soy biólogo e investigador. Aprendí a hacer buenas preguntas en el laboratorio; la Ciencia de Datos y la IA me dieron las herramientas para responderlas a escala.",
     "location": "Madrid, España",
-    "availability": "Disponible · Remoto, híbrido o reubicación (DACH / Nordics)",
+    "availability": "Disponible · Remoto, híbrido o reubicación",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
@@ -13,48 +13,40 @@
     }
   },
   "navigation": {
-    "back_home": "🔙 Volver al Inicio",
+    "back_home": "Volver al Inicio",
     "home_hint": "Elige un capítulo para empezar a explorar.",
     "cards": {
       "story": {
-        "icon": "📖",
-        "title": "Mi Historia",
-        "subtitle": "Del microscopio al modelo: por qué estoy aquí"
+        "icon": "auto_stories",
+        "title": "Mi Historia"
       },
       "experience": {
-        "icon": "🔬",
-        "title": "Experiencia",
-        "subtitle": "Investigación en CBM-CSIC y Universität Konstanz"
+        "icon": "biotech",
+        "title": "Experiencia"
       },
       "projects": {
-        "icon": "🧪",
-        "title": "Proyectos",
-        "subtitle": "Genómica, Machine Learning y producto en producción"
+        "icon": "science",
+        "title": "Proyectos"
       },
       "tableau": {
-        "icon": "📊",
-        "title": "Portfolio Tableau",
-        "subtitle": "Dashboards interactivos de análisis de datos"
+        "icon": "monitoring",
+        "title": "Portfolio Tableau"
       },
       "skills": {
-        "icon": "🧰",
-        "title": "Herramientas",
-        "subtitle": "Python, R, Bioconductor, SQL y estadística"
+        "icon": "construction",
+        "title": "Herramientas"
       },
       "education": {
-        "icon": "🎓",
-        "title": "Formación & Ciencia",
-        "subtitle": "Estudios y publicaciones peer-reviewed"
+        "icon": "school",
+        "title": "Formación & Ciencia"
       },
       "achievements": {
-        "icon": "🏆",
-        "title": "Logros",
-        "subtitle": "Hackathons, certificaciones e idiomas"
+        "icon": "emoji_events",
+        "title": "Logros"
       },
       "contact": {
-        "icon": "✉️",
-        "title": "Hablemos",
-        "subtitle": "¿Tienes un problema complejo? Me encantaría escucharlo"
+        "icon": "mail",
+        "title": "Hablemos"
       }
     }
   },
@@ -64,25 +56,25 @@
     "lead": "No llegué a los datos por moda. Llegué porque, como científico, necesitaba mejores herramientas para encontrar respuestas.",
     "chapters": [
       {
-        "icon": "🔬",
+        "icon": "microbiology",
         "period": "2013 - 2018",
         "title": "Capítulo 1 · Aprender a dudar",
         "text": "Todo empezó en la Universidad de Salamanca y continuó en el Centro de Biología Molecular Severo Ochoa, estudiando cómo las bacterias reparan su ADN. Allí aprendí la lección más valiosa de mi carrera: un dato no es una verdad hasta que lo has cuestionado, replicado y entendido. Mi primera publicación científica (Biomolecules, 2020) nació de esa disciplina."
       },
       {
-        "icon": "🌊",
+        "icon": "water",
         "period": "2020 - 2022",
         "title": "Capítulo 2 · Cuando los datos crecen más que el laboratorio",
         "text": "En la Universität Konstanz (Alemania) me encontré con un reto distinto: los experimentos generaban más información de la que una persona podía analizar a mano. Empecé a trabajar en clústeres HPC con Slurm, a ensamblar transcriptomas de novo y a aplicar estadística multivariante. Mientras tanto, cursaba un Máster en Bioinformática y Bioestadística. Fue el momento en que entendí que el código podía ser una extensión del método científico."
       },
       {
-        "icon": "🧪",
+        "icon": "genetics",
         "period": "2022 - 2025",
         "title": "Capítulo 3 · Rigor a escala",
         "text": "De vuelta en el CBM-CSIC asumí la estrategia computacional del laboratorio: pipelines reproducibles sobre más de 1 TB de datos genómicos, mentoría a 8 investigadores junior y gestión de proveedores de secuenciación. Cuando un dataset clave se degradó por un fallo de hardware, diseñé una estrategia híbrida para rescatarlo. Ese proyecto, y otros dos, terminaron en publicaciones peer-reviewed. Aprendí que la ingeniería también es cuidar de las personas y de los datos cuando las cosas van mal."
       },
       {
-        "icon": "🤖",
+        "icon": "smart_toy",
         "period": "2025 - Hoy",
         "title": "Capítulo 4 · La IA como herramienta definitiva",
         "text": "Quise ir más allá del análisis y aprender a construir soluciones completas. Completé un Máster en Data Science & IA, evalué modelos de IA mediante RLHF y, como proyecto propio, creé Sextant IA: un planificador de viajes inteligente que diseñé, desarrollé y publiqué en producción de principio a fin. Hoy aplico el mismo rigor que aprendí con una pipeta a cada modelo, cada análisis y cada línea de código."
@@ -361,9 +353,9 @@
           "API REST"
         ],
         "link": "https://sextantia.eu",
-        "link_label": "🌐 Visitar sextantia.eu",
+        "link_label": "Visitar sextantia.eu",
         "featured": true,
-        "badge": "⭐ En producción · Ejecución end-to-end",
+        "badge": "En producción · Ejecución end-to-end",
         "story": "Sextant IA nació de dos pasiones: viajar y descubrir la historia de cada lugar. Me propuse construir un asistente que no se limitara a listar destinos, sino que entendiera las preferencias de cada viajero y diseñara un viaje con sentido. Asumí el proyecto de principio a fin: arquitectura, backend orquestado por LLMs, frontend en Django, despliegue y puesta en producción.",
         "production_note": "La web de Sextant IA está desarrollada, publicada y funcionando en producción. Es mi prueba más clara de que sé llevar una idea desde el concepto hasta un producto real en manos de usuarios.",
         "impact": [
@@ -539,7 +531,7 @@
     "items": [
       {
         "name": "No-Code Automation Hackathon Madrid",
-        "position": "🥈 2º Premio",
+        "position": "2º Premio",
         "date": "2025",
         "organizer": "Woztell & Make",
         "description": "En un fin de semana diseñamos un asistente inteligente para el aparcamiento urbano: cruza matrícula, etiqueta ambiental y ubicación GPS en tiempo real para guiar al conductor al parking legal más cercano. Una buena lección de cómo resolver un problema real con rapidez y trabajo en equipo.",
@@ -560,20 +552,20 @@
   "chatbot_config": {
     "title": "Asistente Virtual IA",
     "status_text": "En línea",
-    "welcome_title": "👋 ¡Bienvenido!",
+    "welcome_title": "¡Bienvenido!",
     "welcome_message": "Soy el asistente de Alejandro. Pregúntame por su paso de la biología a la IA, por Sextant IA o por su experiencia con datos genómicos y Machine Learning.",
     "input_placeholder": "Escribe tu pregunta...",
     "suggestions": [
       {
-        "label": "🧬 Su historia",
+        "label": "Su historia",
         "msg": "¿Cómo pasaste de la biología a la ciencia de datos y la IA?"
       },
       {
-        "label": "🧭 Sextant IA",
+        "label": "Sextant IA",
         "msg": "Cuéntame sobre Sextant IA"
       },
       {
-        "label": "🛠️ Skills",
+        "label": "Skills",
         "msg": "¿Qué tecnologías dominas?"
       }
     ],
@@ -585,7 +577,7 @@
     "title": "Hablemos",
     "cta": "¿Tienes un problema complejo entre manos?",
     "description": "Me encantaría escucharlo. Busco unirme a un equipo donde pueda aportar rigor científico, Ciencia de Datos e IA a problemas que importan, especialmente en salud, biotecnología y producto. Si crees que puedo ayudar, escríbeme: respondo siempre.",
-    "availability": "Disponible de inmediato · Remoto, híbrido o presencial en España, DACH y Nordics.",
+    "availability": "Disponible de inmediato · Remoto, híbrido o presencial.",
     "response_time": "Respondo rápidamente",
     "contact_methods": {
       "email": "asansal@outlook.es",

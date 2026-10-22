@@ -948,13 +948,13 @@ hr {
 
 /* ── La tarjeta ─────────────────────────────────────────── */
 .st-key-bento-grid div.stButton > button {
-    height: 160px;
+    height: 150px;
     width: 100%;
     padding: 1.4rem 1.6rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-end;
+    justify-content: stretch;
     text-align: left;
     text-transform: none;
     letter-spacing: normal;
@@ -977,21 +977,51 @@ hr {
     justify-content: flex-start;
 }
 
-/* Título (línea en negrita) */
-.st-key-bento-grid div.stButton > button p:first-child {
-    font-size: 1.3rem !important;
-    font-weight: 600;
-    line-height: 1.25;
-    margin: 0 0 0.35rem 0;
-    white-space: normal;
+/* La etiqueta ocupa toda la tarjeta: icono arriba, título abajo */
+.st-key-bento-grid div.stButton > button > div {
+    flex: 1 1 auto;
 }
 
-/* Subtítulo */
-.st-key-bento-grid div.stButton > button p:not(:first-child) {
-    font-size: 0.95rem !important;
-    line-height: 1.4;
+.st-key-bento-grid div.stButton > button > div > span {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.st-key-bento-grid div.stButton > button [data-testid="stMarkdownContainer"] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Icono (Material Symbols) dentro de un círculo tenue */
+.st-key-bento-grid div.stButton > button p:first-child {
     margin: 0;
-    color: rgba(255, 255, 255, 0.65) !important;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(0, 212, 170, 0.10);
+    color: #00d4aa !important;
+    font-size: 1.5rem !important;
+    transition: background 0.3s ease;
+}
+
+.st-key-bento-grid div.stButton > button p:first-child span {
+    font-size: 1.5rem !important;
+}
+
+/* Título */
+.st-key-bento-grid div.stButton > button p:last-child {
+    margin: 0;
+    font-size: 1.25rem !important;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #ffffff !important;
     white-space: normal;
 }
 
@@ -1010,8 +1040,8 @@ hr {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
 }
 
-.st-key-bento-grid div.stButton > button:hover p:not(:first-child) {
-    color: rgba(255, 255, 255, 0.85) !important;
+.st-key-bento-grid div.stButton > button:hover p:first-child {
+    background: rgba(0, 212, 170, 0.20);
 }
 
 .st-key-bento-grid div.stButton > button:active {
@@ -1019,6 +1049,11 @@ hr {
 }
 
 /* ── Botón "Volver al Inicio" (discreto, no tarjeta) ────── */
+[class*="st-key-back-nav"] div.stButton > button,
+[class*="st-key-back-nav"] div.stButton > button span {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
 [class*="st-key-back-nav"] div.stButton > button {
     width: auto;
     padding: 0.45rem 1.2rem;
@@ -1065,11 +1100,11 @@ hr {
 /* ── Móvil: las columnas se apilan; tarjetas algo más bajas ─ */
 @media (max-width: 768px) {
     .st-key-bento-grid div.stButton > button {
-        height: 140px;
-        padding: 1.2rem 1.4rem;
+        height: 120px;
+        padding: 1.1rem 1.3rem;
     }
-    .st-key-bento-grid div.stButton > button p:first-child {
-        font-size: 1.2rem !important;
+    .st-key-bento-grid div.stButton > button p:last-child {
+        font-size: 1.1rem !important;
     }
 }
 
@@ -1094,4 +1129,139 @@ hr {
 .section-intro {
     color: rgba(255, 255, 255, 0.7) !important;
     max-width: 820px;
+}
+
+/* ============================================================
+   SIDEBAR COMPACTA (todo visible sin hacer scroll)
+   ============================================================ */
+[data-testid="stSidebarUserContent"] {
+    padding-top: 0.5rem !important;
+    padding-bottom: 1rem !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    gap: 0.9rem;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    margin: 0.5rem 0 0.4rem 0;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 2px solid rgba(0, 212, 170, 0.45);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.profile-card > div {
+    text-align: center;
+}
+
+.profile-card p {
+    margin: 0 !important;
+    line-height: 1.45 !important;
+}
+
+[data-testid="stSidebar"] .profile-name {
+    font-size: 1.45rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem !important;
+}
+
+[data-testid="stSidebar"] .profile-role {
+    font-size: 0.92rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-testid="stSidebar"] .profile-location {
+    font-size: 0.85rem !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+    margin-top: 0.2rem !important;
+}
+
+/* Logos de redes: solo icono */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    transition: all 0.25s ease;
+}
+
+.social-icon svg {
+    width: 19px;
+    height: 19px;
+    fill: currentColor;
+}
+
+.social-icon:hover {
+    color: #00d4aa !important;
+    border-color: rgba(0, 212, 170, 0.5);
+    background: rgba(0, 212, 170, 0.10);
+    transform: translateY(-2px);
+}
+
+/* Badge de disponibilidad */
+.availability-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    text-align: center;
+    color: #9fe8d8;
+    background: rgba(0, 212, 170, 0.08);
+    border: 1px solid rgba(0, 212, 170, 0.25);
+}
+
+.availability-inline {
+    display: inline-flex;
+    margin: 0.5rem 0 1rem 0;
+    font-size: 0.9rem;
+}
+
+.availability-dot {
+    flex: 0 0 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00d4aa;
+    box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.2);
+}
+
+/* Enlaces de contacto (logo + texto) */
+.contact-links {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 1.5rem 0 0 0;
+}
+
+@media (max-height: 760px) {
+    .profile-pic { width: 110px; height: 110px; }
+    .profile-card { gap: 0.8rem; }
 }

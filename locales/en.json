@@ -5,7 +5,7 @@
     "tagline": "From laboratory rigor to Artificial Intelligence",
     "subtitle": "I am a biologist and researcher. The lab taught me to ask good questions; Data Science and AI gave me the tools to answer them at scale.",
     "location": "Madrid, Spain",
-    "availability": "Available · Remote, hybrid or relocation (DACH / Nordics)",
+    "availability": "Available · Remote, hybrid or relocation",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
@@ -13,48 +13,40 @@
     }
   },
   "navigation": {
-    "back_home": "🔙 Back to Home",
+    "back_home": "Back to Home",
     "home_hint": "Pick a chapter to start exploring.",
     "cards": {
       "story": {
-        "icon": "📖",
-        "title": "My Story",
-        "subtitle": "From the microscope to the model: why I am here"
+        "icon": "auto_stories",
+        "title": "My Story"
       },
       "experience": {
-        "icon": "🔬",
-        "title": "Experience",
-        "subtitle": "Research at CBM-CSIC and Universität Konstanz"
+        "icon": "biotech",
+        "title": "Experience"
       },
       "projects": {
-        "icon": "🧪",
-        "title": "Projects",
-        "subtitle": "Genomics, Machine Learning and a product in production"
+        "icon": "science",
+        "title": "Projects"
       },
       "tableau": {
-        "icon": "📊",
-        "title": "Tableau Portfolio",
-        "subtitle": "Interactive data analysis dashboards"
+        "icon": "monitoring",
+        "title": "Tableau Portfolio"
       },
       "skills": {
-        "icon": "🧰",
-        "title": "Toolbox",
-        "subtitle": "Python, R, Bioconductor, SQL and statistics"
+        "icon": "construction",
+        "title": "Toolbox"
       },
       "education": {
-        "icon": "🎓",
-        "title": "Education & Science",
-        "subtitle": "Degrees and peer-reviewed publications"
+        "icon": "school",
+        "title": "Education & Science"
       },
       "achievements": {
-        "icon": "🏆",
-        "title": "Achievements",
-        "subtitle": "Hackathons, certifications and languages"
+        "icon": "emoji_events",
+        "title": "Achievements"
       },
       "contact": {
-        "icon": "✉️",
-        "title": "Let's talk",
-        "subtitle": "Have a complex problem? I would love to hear about it"
+        "icon": "mail",
+        "title": "Let's talk"
       }
     }
   },
@@ -64,25 +56,25 @@
     "lead": "I did not come to data because it was trendy. I came because, as a scientist, I needed better tools to find answers.",
     "chapters": [
       {
-        "icon": "🔬",
+        "icon": "microbiology",
         "period": "2013 - 2018",
         "title": "Chapter 1 · Learning to doubt",
         "text": "It all started at the University of Salamanca and continued at the Severo Ochoa Centre for Molecular Biology, studying how bacteria repair their DNA. There I learned the most valuable lesson of my career: a data point is not a truth until you have questioned, replicated and understood it. My first scientific publication (Biomolecules, 2020) was born from that discipline."
       },
       {
-        "icon": "🌊",
+        "icon": "water",
         "period": "2020 - 2022",
         "title": "Chapter 2 · When data outgrows the lab",
         "text": "At Universität Konstanz (Germany) I faced a different challenge: experiments produced more information than one person could analyse by hand. I started working on HPC clusters with Slurm, assembling transcriptomes de novo and applying multivariate statistics, while studying a Master's in Bioinformatics and Biostatistics. That was when I understood that code could be an extension of the scientific method."
       },
       {
-        "icon": "🧪",
+        "icon": "genetics",
         "period": "2022 - 2025",
         "title": "Chapter 3 · Rigor at scale",
         "text": "Back at CBM-CSIC I took over the lab's computational strategy: reproducible pipelines over more than 1 TB of genomic data, mentoring 8 junior researchers and managing sequencing providers. When a key dataset was degraded by a hardware failure, I designed a hybrid strategy to rescue it. That project, and two others, ended up as peer-reviewed publications. I learned that engineering also means looking after people and data when things go wrong."
       },
       {
-        "icon": "🤖",
+        "icon": "smart_toy",
         "period": "2025 - Today",
         "title": "Chapter 4 · AI as the ultimate tool",
         "text": "I wanted to go beyond analysis and learn to build complete solutions. I completed a Master's in Data Science & AI, evaluated AI models through RLHF and, as a personal project, created Sextant IA: an intelligent travel planner that I designed, developed and shipped to production end to end. Today I bring the same rigor I learned with a pipette to every model, every analysis and every line of code."
@@ -361,9 +353,9 @@
           "REST API"
         ],
         "link": "https://sextantia.eu",
-        "link_label": "🌐 Visit sextantia.eu",
+        "link_label": "Visit sextantia.eu",
         "featured": true,
-        "badge": "⭐ In production · End-to-end execution",
+        "badge": "In production · End-to-end execution",
         "story": "Sextant IA was born from two passions: travelling and discovering the history of every place. I set out to build an assistant that does not just list destinations, but understands each traveller's preferences and designs a meaningful trip. I owned the project end to end: architecture, LLM-orchestrated backend, Django frontend, deployment and release to production.",
         "production_note": "The Sextant IA website is built, published and running in production. It is my clearest proof that I can take an idea from concept to a real product in users' hands.",
         "impact": [
@@ -539,7 +531,7 @@
     "items": [
       {
         "name": "No-Code Automation Hackathon Madrid",
-        "position": "🥈 2nd Prize",
+        "position": "2nd Prize",
         "date": "2025",
         "organizer": "Woztell & Make",
         "description": "Over one weekend we designed a smart assistant for urban parking: it cross-references licence plate, environmental label and real-time GPS location to guide drivers to the nearest legal car park. A great lesson in solving a real problem quickly and as a team.",
@@ -560,20 +552,20 @@
   "chatbot_config": {
     "title": "AI Virtual Assistant",
     "status_text": "Online",
-    "welcome_title": "👋 Welcome!",
+    "welcome_title": "Welcome!",
     "welcome_message": "I am Alejandro's assistant. Ask me about his journey from biology to AI, about Sextant IA, or about his experience with genomic data and Machine Learning.",
     "input_placeholder": "Type your question...",
     "suggestions": [
       {
-        "label": "🧬 His story",
+        "label": "His story",
         "msg": "How did you move from biology to data science and AI?"
       },
       {
-        "label": "🧭 Sextant IA",
+        "label": "Sextant IA",
         "msg": "Tell me about Sextant IA"
       },
       {
-        "label": "🛠️ Skills",
+        "label": "Skills",
         "msg": "Which technologies do you master?"
       }
     ],
@@ -585,7 +577,7 @@
     "title": "Let's talk",
     "cta": "Working on a complex problem?",
     "description": "I would love to hear about it. I am looking to join a team where I can bring scientific rigor, Data Science and AI to problems that matter, especially in health, biotech and product. If you think I can help, write to me: I always reply.",
-    "availability": "Available immediately · Remote, hybrid or on-site in Spain, DACH and the Nordics.",
+    "availability": "Available immediately · Remote, hybrid or on-site.",
     "response_time": "I reply quickly",
     "contact_methods": {
       "email": "asansal@outlook.es",

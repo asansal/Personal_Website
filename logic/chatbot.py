@@ -176,7 +176,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                 <div class="chatbot-popup" id="chatbotPopup">
                     <div class="chatbot-header">
                         <div class="chatbot-header-content">
-                            <div class="chatbot-avatar">🤖</div>
+                            <div class="chatbot-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
                             <div>
                                 <h3 id="chatbotTitle">{bot_title_html}</h3>
                                 <div class="status">
@@ -355,6 +355,9 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             }}, 500);
         }}
 
+        const BOT_ICON  = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>';
+        const USER_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+
         function addMessage(text, type) {{
             const chatBody   = doc.getElementById('chatbotBody');
             const messageDiv = doc.createElement('div');
@@ -362,7 +365,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
             const avatar       = doc.createElement('div');
             avatar.className   = 'message-avatar';
-            avatar.textContent = type === 'bot' ? '🤖' : '👤';
+            avatar.innerHTML   = type === 'bot' ? BOT_ICON : USER_ICON;
 
             const bubble       = doc.createElement('div');
             bubble.className   = 'message-bubble';
@@ -382,7 +385,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
             const avatar       = doc.createElement('div');
             avatar.className   = 'message-avatar';
-            avatar.textContent = '🤖';
+            avatar.innerHTML   = BOT_ICON;
 
             const typingDiv     = doc.createElement('div');
             typingDiv.className = 'chatbot-typing';

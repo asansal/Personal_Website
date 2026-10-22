@@ -5,7 +5,7 @@
     "tagline": "Von wissenschaftlicher Präzision im Labor zur Künstlichen Intelligenz",
     "subtitle": "Ich bin Biologe und Forscher. Im Labor habe ich gelernt, gute Fragen zu stellen; Data Science und KI haben mir die Werkzeuge gegeben, sie im großen Maßstab zu beantworten.",
     "location": "Madrid, Spanien",
-    "availability": "Verfügbar · Remote, hybrid oder Umzug (DACH / Nordics)",
+    "availability": "Verfügbar · Remote, hybrid oder Umzug",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
@@ -13,48 +13,40 @@
     }
   },
   "navigation": {
-    "back_home": "🔙 Zurück zur Startseite",
+    "back_home": "Zurück zur Startseite",
     "home_hint": "Wählen Sie ein Kapitel, um loszulegen.",
     "cards": {
       "story": {
-        "icon": "📖",
-        "title": "Meine Geschichte",
-        "subtitle": "Vom Mikroskop zum Modell: warum ich hier bin"
+        "icon": "auto_stories",
+        "title": "Meine Geschichte"
       },
       "experience": {
-        "icon": "🔬",
-        "title": "Erfahrung",
-        "subtitle": "Forschung am CBM-CSIC und an der Universität Konstanz"
+        "icon": "biotech",
+        "title": "Erfahrung"
       },
       "projects": {
-        "icon": "🧪",
-        "title": "Projekte",
-        "subtitle": "Genomik, Machine Learning und ein Produkt in Produktion"
+        "icon": "science",
+        "title": "Projekte"
       },
       "tableau": {
-        "icon": "📊",
-        "title": "Tableau-Portfolio",
-        "subtitle": "Interaktive Dashboards zur Datenanalyse"
+        "icon": "monitoring",
+        "title": "Tableau-Portfolio"
       },
       "skills": {
-        "icon": "🧰",
-        "title": "Werkzeugkasten",
-        "subtitle": "Python, R, Bioconductor, SQL und Statistik"
+        "icon": "construction",
+        "title": "Werkzeugkasten"
       },
       "education": {
-        "icon": "🎓",
-        "title": "Ausbildung & Wissenschaft",
-        "subtitle": "Studium und Peer-Review-Publikationen"
+        "icon": "school",
+        "title": "Ausbildung & Wissenschaft"
       },
       "achievements": {
-        "icon": "🏆",
-        "title": "Erfolge",
-        "subtitle": "Hackathons, Zertifikate und Sprachen"
+        "icon": "emoji_events",
+        "title": "Erfolge"
       },
       "contact": {
-        "icon": "✉️",
-        "title": "Sprechen wir",
-        "subtitle": "Ein komplexes Problem? Ich höre gerne davon"
+        "icon": "mail",
+        "title": "Sprechen wir"
       }
     }
   },
@@ -64,25 +56,25 @@
     "lead": "Ich bin nicht wegen eines Trends zu den Daten gekommen. Ich kam, weil ich als Wissenschaftler bessere Werkzeuge brauchte, um Antworten zu finden.",
     "chapters": [
       {
-        "icon": "🔬",
+        "icon": "microbiology",
         "period": "2013 - 2018",
         "title": "Kapitel 1 · Zweifeln lernen",
         "text": "Alles begann an der Universität Salamanca und ging am Zentrum für Molekularbiologie Severo Ochoa weiter, wo ich untersuchte, wie Bakterien ihre DNA reparieren. Dort lernte ich die wertvollste Lektion meiner Laufbahn: Ein Datenpunkt ist keine Wahrheit, bis man ihn hinterfragt, repliziert und verstanden hat. Meine erste wissenschaftliche Publikation (Biomolecules, 2020) entstand aus dieser Disziplin."
       },
       {
-        "icon": "🌊",
+        "icon": "water",
         "period": "2020 - 2022",
         "title": "Kapitel 2 · Wenn die Daten größer werden als das Labor",
         "text": "An der Universität Konstanz stand ich vor einer neuen Herausforderung: Die Experimente erzeugten mehr Informationen, als ein Mensch von Hand analysieren konnte. Ich begann, auf HPC-Clustern mit Slurm zu arbeiten, Transkriptome de novo zu assemblieren und multivariate Statistik anzuwenden, während ich einen Master in Bioinformatik und Biostatistik absolvierte. Damals verstand ich, dass Code eine Erweiterung der wissenschaftlichen Methode sein kann."
       },
       {
-        "icon": "🧪",
+        "icon": "genetics",
         "period": "2022 - 2025",
         "title": "Kapitel 3 · Präzision im großen Maßstab",
         "text": "Zurück am CBM-CSIC übernahm ich die computergestützte Strategie des Labors: reproduzierbare Pipelines für mehr als 1 TB genomischer Daten, Mentoring von 8 Nachwuchsforschenden und die Betreuung von Sequenzierungsdienstleistern. Als ein zentraler Datensatz durch einen Hardwarefehler beschädigt wurde, entwickelte ich eine hybride Strategie, um ihn zu retten. Dieses und zwei weitere Projekte mündeten in Peer-Review-Publikationen. Ich lernte, dass Engineering auch bedeutet, sich um Menschen und Daten zu kümmern, wenn etwas schiefgeht."
       },
       {
-        "icon": "🤖",
+        "icon": "smart_toy",
         "period": "2025 - Heute",
         "title": "Kapitel 4 · KI als entscheidendes Werkzeug",
         "text": "Ich wollte über die Analyse hinausgehen und lernen, vollständige Lösungen zu bauen. Ich schloss einen Master in Data Science & KI ab, bewertete KI-Modelle mittels RLHF und entwickelte als eigenes Projekt Sextant IA: einen intelligenten Reiseplaner, den ich von Anfang bis Ende entworfen, entwickelt und in Produktion gebracht habe. Heute wende ich dieselbe Sorgfalt, die ich mit der Pipette gelernt habe, auf jedes Modell, jede Analyse und jede Codezeile an."
@@ -361,9 +353,9 @@
           "REST-API"
         ],
         "link": "https://sextantia.eu",
-        "link_label": "🌐 sextantia.eu besuchen",
+        "link_label": "sextantia.eu besuchen",
         "featured": true,
-        "badge": "⭐ In Produktion · End-to-End-Umsetzung",
+        "badge": "In Produktion · End-to-End-Umsetzung",
         "story": "Sextant IA entstand aus zwei Leidenschaften: Reisen und die Geschichte jedes Ortes zu entdecken. Mein Ziel war ein Assistent, der nicht nur Reiseziele auflistet, sondern die Vorlieben jedes Reisenden versteht und eine Reise mit Sinn gestaltet. Ich habe das Projekt von Anfang bis Ende verantwortet: Architektur, LLM-orchestriertes Backend, Django-Frontend, Deployment und Produktivbetrieb.",
         "production_note": "Die Website von Sextant IA ist entwickelt, veröffentlicht und läuft in Produktion. Sie ist mein deutlichster Beweis, dass ich eine Idee vom Konzept bis zu einem echten Produkt in den Händen der Nutzer bringen kann.",
         "impact": [
@@ -539,7 +531,7 @@
     "items": [
       {
         "name": "No-Code Automation Hackathon Madrid",
-        "position": "🥈 2. Preis",
+        "position": "2. Preis",
         "date": "2025",
         "organizer": "Woztell & Make",
         "description": "An einem Wochenende entwarfen wir einen intelligenten Assistenten für das Parken in der Stadt: Er gleicht Kennzeichen, Umweltplakette und GPS-Standort in Echtzeit ab, um Fahrer zum nächstgelegenen legalen Parkplatz zu führen. Eine wertvolle Lektion darin, ein echtes Problem schnell und im Team zu lösen.",
@@ -560,20 +552,20 @@
   "chatbot_config": {
     "title": "KI Virtueller Assistent",
     "status_text": "Online",
-    "welcome_title": "👋 Willkommen!",
+    "welcome_title": "Willkommen!",
     "welcome_message": "Ich bin Alejandros Assistent. Fragen Sie mich nach seinem Weg von der Biologie zur KI, nach Sextant IA oder nach seiner Erfahrung mit genomischen Daten und Machine Learning.",
     "input_placeholder": "Gib deine Frage ein...",
     "suggestions": [
       {
-        "label": "🧬 Sein Weg",
+        "label": "Sein Weg",
         "msg": "Wie bist du von der Biologie zu Data Science und KI gekommen?"
       },
       {
-        "label": "🧭 Sextant IA",
+        "label": "Sextant IA",
         "msg": "Erzähl mir von Sextant IA"
       },
       {
-        "label": "🛠️ Fähigkeiten",
+        "label": "Fähigkeiten",
         "msg": "Welche Technologien beherrschst du?"
       }
     ],
@@ -585,7 +577,7 @@
     "title": "Sprechen wir",
     "cta": "Arbeiten Sie an einem komplexen Problem?",
     "description": "Ich höre gerne davon. Ich möchte Teil eines Teams werden, in dem ich wissenschaftliche Präzision, Data Science und KI auf relevante Probleme anwenden kann, besonders in Gesundheit, Biotechnologie und Produktentwicklung. Wenn Sie glauben, dass ich helfen kann, schreiben Sie mir: Ich antworte immer.",
-    "availability": "Sofort verfügbar · Remote, hybrid oder vor Ort in Spanien, DACH und den Nordics.",
+    "availability": "Sofort verfügbar · Remote, hybrid oder vor Ort.",
     "response_time": "Ich antworte schnell",
     "contact_methods": {
       "email": "asansal@outlook.es",

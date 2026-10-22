@@ -8,9 +8,9 @@ import html as _html
 # ¡IMPORTANTE! set_page_config DEBE ser el primer comando de Streamlit.
 st.set_page_config(
     page_title="Alejandro Sánchez | Portfolio",
-    page_icon="🤖",
+    page_icon=":material/biotech:",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",  # expanded on desktop, collapsed on mobile
 )
 
 
@@ -57,7 +57,7 @@ load_css("assets/css/style.css")
 # --- CHATBOT INITIALIZATION ---
 GENAI_API_KEY = initialize_chatbot()
 if not GENAI_API_KEY:
-    st.warning("⚠️ Chatbot no disponible: API key no configurada. El resto de la web funciona con normalidad.")
+    st.warning("Chatbot no disponible: API key no configurada. El resto de la web funciona con normalidad.")
     # App is not stopped — the chatbot is a secondary feature
 
 # --- SEO META DESCRIPTION ---
@@ -71,13 +71,19 @@ if meta_desc:
         unsafe_allow_html=True,
     )
 
+# --- SOCIAL ICONS (inline SVG brand logos) ---
+SOCIAL_ICONS = {
+    "linkedin": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+    "github": '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>',
+    "email": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+}
+SOCIAL_NAMES = {"linkedin": "LinkedIn", "github": "GitHub", "email": "Email"}
+
 # --- SIDEBAR ---
 with st.sidebar:
     # ── Language Selector ──────────────────────────────────────────
-    st.subheader("Idioma / Language")
-
     # Create list of options for the selectbox
-    lang_options = {f"{info['flag']} {info['name']}": code for code, info in languages.items()}
+    lang_options = {info["name"]: code for code, info in languages.items()}
     # Get the name of the current option
     current_lang_name = next(
         (name for name, code in lang_options.items() if code == st.session_state.lang),
@@ -85,7 +91,7 @@ with st.sidebar:
     )
 
     selected_lang_name = st.selectbox(
-        "Select a language",
+        "Idioma / Language",
         options=list(lang_options.keys()),
         index=list(lang_options.keys()).index(current_lang_name),
         label_visibility="collapsed",
@@ -97,39 +103,42 @@ with st.sidebar:
         st.session_state.lang = selected_lang_code
         st.rerun()
 
-    st.divider()
-
-    # ── Profile ────────────────────────────────────────────────────
+    # ── Profile card: photo, name, socials and availability in one block ──
+    # (a single HTML block keeps the spacing under control so the sidebar fits one screen)
     profile_data = texts.get("profile", {})
     img_b64 = get_img_as_base64("assets/images/profile.png")
-    st.markdown(
-        f'<div class="profile-pic-container"><img class="profile-pic" src="data:image/png;base64,{img_b64}"></div>',
-        unsafe_allow_html=True,
-    )
-    st.title(profile_data.get("name", ""))
-    st.write(profile_data.get("role", ""))
-    st.write(profile_data.get('location', ''))
 
+    # Icon-only brand logos (the accessible name lives in aria-label/title)
     socials = profile_data.get("socials", {})
     social_links_html = ""
     for icon, link in socials.items():
         href = f"mailto:{link}" if icon == "email" else link
-        target = "" if icon == "email" else 'target="_blank"'
-        social_links_html += f'<a href="{href}" {target} class="social-link">{icon.capitalize()}</a>'
-    st.markdown(f'<div class="social-links">{social_links_html}</div>', unsafe_allow_html=True)
-
-    # ── Availability Badge ─────────────────────────────────────────
-    availability_text = profile_data.get("availability", "")
-    if availability_text:
-        st.markdown(
-            f'<div style="margin-top:10px;">'
-            f'<span style="background:#1F7033;color:#9DCCA9;padding:3px 9px;border-radius:4px;font-size:0.75em;letter-spacing:0.02em;">'
-            f'&#9679; {availability_text}'
-            f'</span></div>',
-            unsafe_allow_html=True,
+        target = "" if icon == "email" else 'target="_blank" rel="noopener"'
+        name = SOCIAL_NAMES.get(icon, icon.capitalize())
+        social_links_html += (
+            f'<a href="{href}" {target} class="social-icon" title="{name}" aria-label="{name}">'
+            f'{SOCIAL_ICONS.get(icon, name)}</a>'
         )
 
-    st.divider()
+    availability_text = profile_data.get("availability", "")
+    availability_html = (
+        f'<div class="availability-badge"><span class="availability-dot"></span>{availability_text}</div>'
+        if availability_text else ""
+    )
+
+    st.markdown(
+        f'<div class="profile-card">'
+        f'<img class="profile-pic" src="data:image/png;base64,{img_b64}" alt="{profile_data.get("name", "")}">'
+        f'<div>'
+        f'<p class="profile-name">{profile_data.get("name", "")}</p>'
+        f'<p class="profile-role">{profile_data.get("role", "")}</p>'
+        f'<p class="profile-location">{profile_data.get("location", "")}</p>'
+        f'</div>'
+        f'<div class="social-icons">{social_links_html}</div>'
+        f'{availability_html}'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
 
     # ── CV Download ────────────────────────────────────────────────
     # Map languages to their respective CV files
@@ -150,6 +159,7 @@ with st.sidebar:
             data=pdf_bytes,
             file_name=os.path.basename(cv_path),
             mime="application/octet-stream",
+            icon=":material/download:",
             width='stretch',
         )
 
@@ -164,11 +174,12 @@ def go_to(view: str) -> None:
 
 
 def render_back_button(position: str) -> None:
-    """Renders the '🔙 Volver al Inicio' button. `position` keeps widget keys unique (top/bottom)."""
+    """Renders the 'Volver al Inicio' button. `position` keeps widget keys unique (top/bottom)."""
     with st.container(key=f"back-nav-{position}"):
         st.button(
-            nav_data.get("back_home", "🔙 Volver al Inicio"),
+            nav_data.get("back_home", "Volver al Inicio"),
             key=f"back_home_{position}",
+            icon=":material/arrow_back:",
             on_click=go_to,
             args=(HOME_VIEW,),
         )
@@ -217,14 +228,13 @@ def render_home() -> None:
     profile = texts.get("profile", {})
     st.title(profile.get("tagline", ""))
     st.markdown(f'<p class="home-subtitle">{profile.get("subtitle", "")}</p>', unsafe_allow_html=True)
-    st.caption(nav_data.get("home_hint", ""))
 
     cards = nav_data.get("cards", {})
 
     def card_label(view: str) -> str:
         card = cards.get(view, {})
-        # Bold title + paragraph break → two <p> inside the button (styled in style.css)
-        return f"{card.get('icon', '')} **{card.get('title', view)}**\n\n{card.get('subtitle', '')}"
+        # Icon and title as two <p> inside the button (styled in style.css)
+        return f":material/{card.get('icon', 'circle')}:\n\n{card.get('title', view)}"
 
     # Bento layout: each row is a list of (view, relative width)
     bento_rows = [
@@ -255,7 +265,7 @@ def render_story() -> None:
 
     for chapter in about.get("chapters", []):
         with st.container(border=True):
-            st.markdown(f"#### {chapter.get('icon', '')} {chapter.get('title', '')}")
+            st.markdown(f"#### :material/{chapter.get('icon', 'circle')}: {chapter.get('title', '')}")
             st.caption(chapter.get("period", ""))
             st.write(chapter.get("text", ""))
 
@@ -337,7 +347,7 @@ def render_projects() -> None:
                 if item.get("link"):
                     link_label = item.get("link_label", labels.get("link", "GitHub"))
                     if is_featured:
-                        st.link_button(link_label, item["link"], type="primary")
+                        st.link_button(link_label, item["link"], type="primary", icon=":material/open_in_new:")
                     else:
                         st.markdown(f"[{link_label}]({item.get('link')})")
 
@@ -361,10 +371,10 @@ def render_tableau() -> None:
         if dashboard.get("tags"):
             st.markdown(f"**Tags:** {tech_badges(dashboard['tags'])}")
         components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 720), scrolling=True)
-        st.link_button(tableau_data.get("open_label", "Tableau Public"), dashboard["url"])
+        st.link_button(tableau_data.get("open_label", "Tableau Public"), dashboard["url"], icon=":material/open_in_new:")
 
     if tableau_data.get("profile_url"):
-        st.link_button(tableau_data.get("profile_label", "Tableau Public"), tableau_data["profile_url"], type="primary")
+        st.link_button(tableau_data.get("profile_label", "Tableau Public"), tableau_data["profile_url"], type="primary", icon=":material/open_in_new:")
 
 
 def render_skills() -> None:
@@ -465,10 +475,7 @@ def render_contact() -> None:
     availability = contact_data.get("availability", "")
     if availability:
         st.markdown(
-            f'<div style="margin:12px 0;">'
-            f'<span style="background:#1F7033;color:#9DCCA9;padding:6px 14px;border-radius:6px;font-size:0.9em;display:inline-block;">'
-            f'&#9679; {availability}'
-            f'</span></div>',
+            f'<div class="availability-badge availability-inline"><span class="availability-dot"></span>{availability}</div>',
             unsafe_allow_html=True,
         )
 
@@ -520,18 +527,21 @@ def render_contact() -> None:
                     f'<a href="mailto:{value}" '
                     f'onclick="copyEmailRobust(\'{value}\', \'copy-feedback-contact\'); return true;" '
                     f'class="social-link" title="{email_tooltip}">'
-                    f'{key.capitalize()}</a>'
+                    f'{SOCIAL_ICONS["email"]}{SOCIAL_NAMES["email"]}</a>'
                 )
                 links_html_parts.append(html)
             else:
-                html = f'<a href="{value}" target="_blank" class="social-link">{key.capitalize()}</a>'
+                html = (
+                    f'<a href="{value}" target="_blank" rel="noopener" class="social-link">'
+                    f'{SOCIAL_ICONS.get(key, "")}{SOCIAL_NAMES.get(key, key.capitalize())}</a>'
+                )
                 links_html_parts.append(html)
 
         feedback_html = '<span id="copy-feedback-contact" style="display:none; color:green; margin-left:10px; font-weight:bold;"></span>'
-        links_html = " | ".join(links_html_parts)
+        links_html = "".join(links_html_parts)
         # Centered and with top separator
         st.markdown(
-            f'<div style="text-align:center; margin-top:24px; padding-top:20px; border-top:1px solid #e0e0e0;">'
+            f'<div class="social-links contact-links">'
             f'{links_html}{feedback_html}'
             f'</div>',
             unsafe_allow_html=True,

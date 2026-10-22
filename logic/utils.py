@@ -19,7 +19,7 @@ def load_css(file_path: str) -> None:
             css_content = f.read()
         st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
     except FileNotFoundError:
-        st.warning(f"⚠️ CSS file not found at: {file_path}. The app will run without custom styles.")
+        st.warning(f"CSS file not found at: {file_path}. The app will run without custom styles.")
     except Exception as e:
         st.error(f"Error loading CSS: {e}")
 
