@@ -1,5 +1,5 @@
 # --- Core Framework ---
-streamlit
+streamlit>=1.53  # needed for st.container(key=...) CSS classes used by the SPA
 pandas
 numpy
 

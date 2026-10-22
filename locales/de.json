@@ -56,25 +56,21 @@
     "lead": "Ich bin nicht wegen eines Trends zu den Daten gekommen. Ich kam, weil ich als Wissenschaftler bessere Werkzeuge brauchte, um Antworten zu finden.",
     "chapters": [
       {
-        "icon": "microbiology",
         "period": "2013 - 2018",
         "title": "Kapitel 1 · Zweifeln lernen",
         "text": "Alles begann an der Universität Salamanca und ging am Zentrum für Molekularbiologie Severo Ochoa weiter, wo ich untersuchte, wie Bakterien ihre DNA reparieren. Dort lernte ich die wertvollste Lektion meiner Laufbahn: Ein Datenpunkt ist keine Wahrheit, bis man ihn hinterfragt, repliziert und verstanden hat. Meine erste wissenschaftliche Publikation (Biomolecules, 2020) entstand aus dieser Disziplin."
       },
       {
-        "icon": "water",
         "period": "2020 - 2022",
         "title": "Kapitel 2 · Wenn die Daten größer werden als das Labor",
         "text": "An der Universität Konstanz stand ich vor einer neuen Herausforderung: Die Experimente erzeugten mehr Informationen, als ein Mensch von Hand analysieren konnte. Ich begann, auf HPC-Clustern mit Slurm zu arbeiten, Transkriptome de novo zu assemblieren und multivariate Statistik anzuwenden, während ich einen Master in Bioinformatik und Biostatistik absolvierte. Damals verstand ich, dass Code eine Erweiterung der wissenschaftlichen Methode sein kann."
       },
       {
-        "icon": "genetics",
         "period": "2022 - 2025",
         "title": "Kapitel 3 · Präzision im großen Maßstab",
         "text": "Zurück am CBM-CSIC übernahm ich die computergestützte Strategie des Labors: reproduzierbare Pipelines für mehr als 1 TB genomischer Daten, Mentoring von 8 Nachwuchsforschenden und die Betreuung von Sequenzierungsdienstleistern. Als ein zentraler Datensatz durch einen Hardwarefehler beschädigt wurde, entwickelte ich eine hybride Strategie, um ihn zu retten. Dieses und zwei weitere Projekte mündeten in Peer-Review-Publikationen. Ich lernte, dass Engineering auch bedeutet, sich um Menschen und Daten zu kümmern, wenn etwas schiefgeht."
       },
       {
-        "icon": "smart_toy",
         "period": "2025 - Heute",
         "title": "Kapitel 4 · KI als entscheidendes Werkzeug",
         "text": "Ich wollte über die Analyse hinausgehen und lernen, vollständige Lösungen zu bauen. Ich schloss einen Master in Data Science & KI ab, bewertete KI-Modelle mittels RLHF und entwickelte als eigenes Projekt Sextant IA: einen intelligenten Reiseplaner, den ich von Anfang bis Ende entworfen, entwickelt und in Produktion gebracht habe. Heute wende ich dieselbe Sorgfalt, die ich mit der Pipette gelernt habe, auf jedes Modell, jede Analyse und jede Codezeile an."
@@ -419,12 +415,72 @@
   },
   "tableau_section": {
     "title": "Tableau-Portfolio",
-    "intro": "Eine Analyse wirkt nur, wenn man sie versteht. Hier sammle ich interaktive Dashboards, in denen ich Daten in klare, umsetzbare Erkenntnisse verwandle.",
-    "profile_label": "Mein vollständiges Tableau-Public-Profil ansehen",
+    "intro": "Eine Analyse wirkt nur, wenn man sie versteht. Dies sind meine Dashboards auf Tableau Public, beginnend mit öffentlicher Gesundheit.",
+    "profile_label": "Mein Tableau-Public-Profil ansehen",
+    "open_label": "Dashboard öffnen ↗",
+    "live_title": "Live erkunden",
     "select_label": "Dashboard auswählen",
-    "open_label": "In Tableau Public öffnen",
-    "profile_url": "",
-    "items": []
+    "groups": {
+      "health": "Gesundheit & Wissenschaft",
+      "business": "Business & Analytics"
+    },
+    "profile_url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/vizzes",
+    "items": [
+      {
+        "group": "health",
+        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
+        "description": "Geografische Verteilung und jährliche Entwicklung der viszeralen Leishmaniose auf Basis von WHO-Daten.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
+        "description": "Weltkarte und jährliche Fallzahlen der kutanen Leishmaniose auf Basis von WHO-Daten.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis — Endemic",
+        "description": "Endemiestatus der kutanen Leishmaniose nach Land und Jahr.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
+      },
+      {
+        "group": "health",
+        "title": "Gasto I+D+i Spain 2023",
+        "description": "Analyse der Ausgaben für Forschung, Entwicklung und Innovation in Spanien 2023.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "E-Commerce Retention & Customer Value Analysis (RFM)",
+        "description": "Ein Jahr Transaktionsdaten zur Analyse der Kohortenbindung und Identifikation wertvoller Segmente (RFM).",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Retail_II/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Daikibo Manufacturing — Deloitte",
+        "description": "Fertigungstelemetrie: Zusammenhänge zwischen Ausfällen, Temperatur und Standort zur Reduzierung von Stillständen. Erweiterte Deloitte-Simulation.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/DaikiboManufacturing-Deloitte/DaikiboManufacturing"
+      },
+      {
+        "group": "business",
+        "title": "Market Concentration Monitor: \"Magnificent 7\" vs. S&P 500",
+        "description": "Daten mit Python (yfinance): normalisierte Renditen, Rendite/Risiko und Volatilität.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/MarketConcentrationMonitor/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Corporate Equity Monitor: Pay Gap & Parity",
+        "description": "Gender Pay Gap und Repräsentationsparität in zwei simulierten Unternehmenskulturen.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CorporateEquityMonitorPayGapParityAnalysis/Corporate_Parity_Analysis"
+      },
+      {
+        "group": "business",
+        "title": "NovaTech: Capital Allocation Flow",
+        "description": "Sankey-Diagramm vom regionalen Umsatz bis zum operativen Nettogewinn und den Margen.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Sankey_NovaTech/NovaTechM_SciFi_"
+      }
+    ]
   },
   "certifications_section": {
     "title": "Zertifikate & Sprachen",

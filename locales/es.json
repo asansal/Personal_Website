@@ -56,25 +56,21 @@
     "lead": "No llegué a los datos por moda. Llegué porque, como científico, necesitaba mejores herramientas para encontrar respuestas.",
     "chapters": [
       {
-        "icon": "microbiology",
         "period": "2013 - 2018",
         "title": "Capítulo 1 · Aprender a dudar",
         "text": "Todo empezó en la Universidad de Salamanca y continuó en el Centro de Biología Molecular Severo Ochoa, estudiando cómo las bacterias reparan su ADN. Allí aprendí la lección más valiosa de mi carrera: un dato no es una verdad hasta que lo has cuestionado, replicado y entendido. Mi primera publicación científica (Biomolecules, 2020) nació de esa disciplina."
       },
       {
-        "icon": "water",
         "period": "2020 - 2022",
         "title": "Capítulo 2 · Cuando los datos crecen más que el laboratorio",
         "text": "En la Universität Konstanz (Alemania) me encontré con un reto distinto: los experimentos generaban más información de la que una persona podía analizar a mano. Empecé a trabajar en clústeres HPC con Slurm, a ensamblar transcriptomas de novo y a aplicar estadística multivariante. Mientras tanto, cursaba un Máster en Bioinformática y Bioestadística. Fue el momento en que entendí que el código podía ser una extensión del método científico."
       },
       {
-        "icon": "genetics",
         "period": "2022 - 2025",
         "title": "Capítulo 3 · Rigor a escala",
         "text": "De vuelta en el CBM-CSIC asumí la estrategia computacional del laboratorio: pipelines reproducibles sobre más de 1 TB de datos genómicos, mentoría a 8 investigadores junior y gestión de proveedores de secuenciación. Cuando un dataset clave se degradó por un fallo de hardware, diseñé una estrategia híbrida para rescatarlo. Ese proyecto, y otros dos, terminaron en publicaciones peer-reviewed. Aprendí que la ingeniería también es cuidar de las personas y de los datos cuando las cosas van mal."
       },
       {
-        "icon": "smart_toy",
         "period": "2025 - Hoy",
         "title": "Capítulo 4 · La IA como herramienta definitiva",
         "text": "Quise ir más allá del análisis y aprender a construir soluciones completas. Completé un Máster en Data Science & IA, evalué modelos de IA mediante RLHF y, como proyecto propio, creé Sextant IA: un planificador de viajes inteligente que diseñé, desarrollé y publiqué en producción de principio a fin. Hoy aplico el mismo rigor que aprendí con una pipeta a cada modelo, cada análisis y cada línea de código."
@@ -419,12 +415,72 @@
   },
   "tableau_section": {
     "title": "Portfolio de Tableau",
-    "intro": "Un análisis solo tiene impacto si se entiende. Aquí reúno dashboards interactivos en los que convierto datos en conclusiones claras y accionables.",
-    "profile_label": "Ver mi perfil completo en Tableau Public",
+    "intro": "Un análisis solo tiene impacto si se entiende. Estos son mis dashboards publicados en Tableau Public, empezando por los de salud pública.",
+    "profile_label": "Ver mi perfil en Tableau Public",
+    "open_label": "Abrir dashboard ↗",
+    "live_title": "Explorar en vivo",
     "select_label": "Elige un dashboard",
-    "open_label": "Abrir en Tableau Public",
-    "profile_url": "",
-    "items": []
+    "groups": {
+      "health": "Salud & Ciencia",
+      "business": "Negocio & Analítica"
+    },
+    "profile_url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/vizzes",
+    "items": [
+      {
+        "group": "health",
+        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
+        "description": "Distribución geográfica y evolución anual de casos de leishmaniasis visceral con datos de la OMS.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
+        "description": "Mapa mundial y casos anuales de leishmaniasis cutánea a partir de datos de la OMS.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis — Endemic",
+        "description": "Situación endémica de la leishmaniasis cutánea por país y año.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
+      },
+      {
+        "group": "health",
+        "title": "Gasto I+D+i Spain 2023",
+        "description": "Análisis del gasto en investigación, desarrollo e innovación en España en 2023.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "E-Commerce Retention & Customer Value Analysis (RFM)",
+        "description": "Un año de transacciones para diagnosticar la retención por cohortes e identificar segmentos de alto valor (RFM).",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Retail_II/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Daikibo Manufacturing — Deloitte",
+        "description": "Telemetría industrial: correlaciones entre fallos, temperatura y ubicación para reducir paradas. Versión ampliada de la simulación de Deloitte.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/DaikiboManufacturing-Deloitte/DaikiboManufacturing"
+      },
+      {
+        "group": "business",
+        "title": "Market Concentration Monitor: \"Magnificent 7\" vs. S&P 500",
+        "description": "Datos obtenidos con Python (yfinance): rentabilidades normalizadas, riesgo/rentabilidad y volatilidad.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/MarketConcentrationMonitor/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Corporate Equity Monitor: Pay Gap & Parity",
+        "description": "Brecha salarial de género y paridad de representación en dos culturas corporativas simuladas.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CorporateEquityMonitorPayGapParityAnalysis/Corporate_Parity_Analysis"
+      },
+      {
+        "group": "business",
+        "title": "NovaTech: Capital Allocation Flow",
+        "description": "Diagrama Sankey que traza el flujo de ingresos regionales hasta el beneficio operativo neto y los márgenes.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Sankey_NovaTech/NovaTechM_SciFi_"
+      }
+    ]
   },
   "certifications_section": {
     "title": "Certificaciones e Idiomas",

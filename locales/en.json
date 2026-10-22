@@ -56,25 +56,21 @@
     "lead": "I did not come to data because it was trendy. I came because, as a scientist, I needed better tools to find answers.",
     "chapters": [
       {
-        "icon": "microbiology",
         "period": "2013 - 2018",
         "title": "Chapter 1 · Learning to doubt",
         "text": "It all started at the University of Salamanca and continued at the Severo Ochoa Centre for Molecular Biology, studying how bacteria repair their DNA. There I learned the most valuable lesson of my career: a data point is not a truth until you have questioned, replicated and understood it. My first scientific publication (Biomolecules, 2020) was born from that discipline."
       },
       {
-        "icon": "water",
         "period": "2020 - 2022",
         "title": "Chapter 2 · When data outgrows the lab",
         "text": "At Universität Konstanz (Germany) I faced a different challenge: experiments produced more information than one person could analyse by hand. I started working on HPC clusters with Slurm, assembling transcriptomes de novo and applying multivariate statistics, while studying a Master's in Bioinformatics and Biostatistics. That was when I understood that code could be an extension of the scientific method."
       },
       {
-        "icon": "genetics",
         "period": "2022 - 2025",
         "title": "Chapter 3 · Rigor at scale",
         "text": "Back at CBM-CSIC I took over the lab's computational strategy: reproducible pipelines over more than 1 TB of genomic data, mentoring 8 junior researchers and managing sequencing providers. When a key dataset was degraded by a hardware failure, I designed a hybrid strategy to rescue it. That project, and two others, ended up as peer-reviewed publications. I learned that engineering also means looking after people and data when things go wrong."
       },
       {
-        "icon": "smart_toy",
         "period": "2025 - Today",
         "title": "Chapter 4 · AI as the ultimate tool",
         "text": "I wanted to go beyond analysis and learn to build complete solutions. I completed a Master's in Data Science & AI, evaluated AI models through RLHF and, as a personal project, created Sextant IA: an intelligent travel planner that I designed, developed and shipped to production end to end. Today I bring the same rigor I learned with a pipette to every model, every analysis and every line of code."
@@ -419,12 +415,72 @@
   },
   "tableau_section": {
     "title": "Tableau Portfolio",
-    "intro": "An analysis only has impact if people understand it. Here I collect interactive dashboards where I turn data into clear, actionable conclusions.",
-    "profile_label": "See my full Tableau Public profile",
+    "intro": "An analysis only has impact if people understand it. These are my dashboards on Tableau Public, starting with public health.",
+    "profile_label": "See my Tableau Public profile",
+    "open_label": "Open dashboard ↗",
+    "live_title": "Explore live",
     "select_label": "Choose a dashboard",
-    "open_label": "Open in Tableau Public",
-    "profile_url": "",
-    "items": []
+    "groups": {
+      "health": "Health & Science",
+      "business": "Business & Analytics"
+    },
+    "profile_url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/vizzes",
+    "items": [
+      {
+        "group": "health",
+        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
+        "description": "Geographic distribution and yearly trend of visceral leishmaniasis cases using WHO data.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
+        "description": "World map and yearly cases of cutaneous leishmaniasis based on WHO data.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis — Endemic",
+        "description": "Endemic status of cutaneous leishmaniasis by country and year.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
+      },
+      {
+        "group": "health",
+        "title": "Gasto I+D+i Spain 2023",
+        "description": "Analysis of research, development and innovation spending in Spain in 2023.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "E-Commerce Retention & Customer Value Analysis (RFM)",
+        "description": "One year of transactions to diagnose cohort retention and identify high-value segments (RFM).",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Retail_II/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Daikibo Manufacturing — Deloitte",
+        "description": "Manufacturing telemetry: correlations between device failure, temperature and location to reduce downtime. Enhanced Deloitte job simulation.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/DaikiboManufacturing-Deloitte/DaikiboManufacturing"
+      },
+      {
+        "group": "business",
+        "title": "Market Concentration Monitor: \"Magnificent 7\" vs. S&P 500",
+        "description": "Data pulled with Python (yfinance): normalised returns, risk/reward and volatility.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/MarketConcentrationMonitor/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Corporate Equity Monitor: Pay Gap & Parity",
+        "description": "Gender pay gap and representation parity across two simulated corporate cultures.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CorporateEquityMonitorPayGapParityAnalysis/Corporate_Parity_Analysis"
+      },
+      {
+        "group": "business",
+        "title": "NovaTech: Capital Allocation Flow",
+        "description": "Sankey diagram tracing regional revenue through to net operating profit and margins.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Sankey_NovaTech/NovaTechM_SciFi_"
+      }
+    ]
   },
   "certifications_section": {
     "title": "Certifications & Languages",

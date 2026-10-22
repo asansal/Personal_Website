@@ -8,7 +8,7 @@ import html as _html
 # ¡IMPORTANTE! set_page_config DEBE ser el primer comando de Streamlit.
 st.set_page_config(
     page_title="Alejandro Sánchez | Portfolio",
-    page_icon=":material/biotech:",
+    page_icon="assets/images/profile.png",
     layout="wide",
     initial_sidebar_state="auto",  # expanded on desktop, collapsed on mobile
 )
@@ -159,7 +159,6 @@ with st.sidebar:
             data=pdf_bytes,
             file_name=os.path.basename(cv_path),
             mime="application/octet-stream",
-            icon=":material/download:",
             width='stretch',
         )
 
@@ -179,7 +178,6 @@ def render_back_button(position: str) -> None:
         st.button(
             nav_data.get("back_home", "Volver al Inicio"),
             key=f"back_home_{position}",
-            icon=":material/arrow_back:",
             on_click=go_to,
             args=(HOME_VIEW,),
         )
@@ -208,13 +206,22 @@ def section_intro(text: str) -> None:
         st.markdown(f'<p class="section-intro">{text}</p>', unsafe_allow_html=True)
 
 
-def tableau_embed_url(url: str) -> str:
-    """Turns a Tableau Public viz link (…/viz/<Workbook>/<Sheet>) into its embeddable /views/ URL."""
+def tableau_parts(url: str) -> tuple[str, str] | None:
+    """(workbook, sheet) from a Tableau Public link (…/viz/<Workbook>/<Sheet>)."""
     match = re.search(r"/(?:viz|views)/([^/?#]+)/([^/?#]+)", url)
-    if not match:
-        return ""
-    workbook, sheet = match.groups()
-    return f"https://public.tableau.com/views/{workbook}/{sheet}?:showVizHome=no&:embed=true"
+    return match.groups() if match else None
+
+
+def tableau_embed_url(url: str) -> str:
+    """Embeddable /views/ URL for a Tableau Public viz link."""
+    parts = tableau_parts(url)
+    return f"https://public.tableau.com/views/{parts[0]}/{parts[1]}?:showVizHome=no&:embed=true" if parts else ""
+
+
+def tableau_thumbnail_url(url: str) -> str:
+    """Public thumbnail image for a Tableau Public viz link."""
+    parts = tableau_parts(url)
+    return f"https://public.tableau.com/thumb/views/{parts[0]}/{parts[1]}" if parts else ""
 
 
 tableau_data = texts.get("tableau_section", {})
@@ -233,8 +240,9 @@ def render_home() -> None:
 
     def card_label(view: str) -> str:
         card = cards.get(view, {})
-        # Icon and title as two <p> inside the button (styled in style.css)
-        return f":material/{card.get('icon', 'circle')}:\n\n{card.get('title', view)}"
+        # Plain-text label; the icon is drawn by style.css (.st-key-bento_<view>), so it
+        # doesn't depend on Streamlit's markdown icon support
+        return card.get("title", view)
 
     # Bento layout: each row is a list of (view, relative width)
     bento_rows = [
@@ -265,7 +273,7 @@ def render_story() -> None:
 
     for chapter in about.get("chapters", []):
         with st.container(border=True):
-            st.markdown(f"#### :material/{chapter.get('icon', 'circle')}: {chapter.get('title', '')}")
+            st.markdown(f"#### {chapter.get('title', '')}")
             st.caption(chapter.get("period", ""))
             st.write(chapter.get("text", ""))
 
@@ -347,7 +355,7 @@ def render_projects() -> None:
                 if item.get("link"):
                     link_label = item.get("link_label", labels.get("link", "GitHub"))
                     if is_featured:
-                        st.link_button(link_label, item["link"], type="primary", icon=":material/open_in_new:")
+                        st.link_button(link_label, item["link"], type="primary")
                     else:
                         st.markdown(f"[{link_label}]({item.get('link')})")
 
@@ -359,22 +367,40 @@ def render_projects() -> None:
 def render_tableau() -> None:
     st.header(tableau_data.get("title", "Tableau Portfolio"))
     section_intro(tableau_data.get("intro", ""))
-
-    dashboards = [d for d in tableau_data.get("items", []) if tableau_embed_url(d.get("url", ""))]
-    if dashboards:
-        # Only one embedded viz at a time: each Tableau iframe is heavy
-        titles = [d.get("title", f"Dashboard {i+1}") for i, d in enumerate(dashboards)]
-        selected = st.selectbox(tableau_data.get("select_label", "Dashboard"), titles)
-        dashboard = dashboards[titles.index(selected)]
-        if dashboard.get("description"):
-            st.write(dashboard["description"])
-        if dashboard.get("tags"):
-            st.markdown(f"**Tags:** {tech_badges(dashboard['tags'])}")
-        components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 720), scrolling=True)
-        st.link_button(tableau_data.get("open_label", "Tableau Public"), dashboard["url"], icon=":material/open_in_new:")
-
     if tableau_data.get("profile_url"):
-        st.link_button(tableau_data.get("profile_label", "Tableau Public"), tableau_data["profile_url"], type="primary", icon=":material/open_in_new:")
+        st.link_button(tableau_data.get("profile_label", "Tableau Public"), tableau_data["profile_url"], type="primary")
+
+    dashboards = [d for d in tableau_data.get("items", []) if tableau_parts(d.get("url", ""))]
+    if not dashboards:
+        return
+
+    # ── Gallery: thumbnails grouped by domain (health & science first) ──
+    groups = tableau_data.get("groups", {})
+    for group_key, group_title in groups.items():
+        group_items = [d for d in dashboards if d.get("group") == group_key]
+        if not group_items:
+            continue
+        st.subheader(group_title)
+        for start in range(0, len(group_items), 3):
+            cols = st.columns(3, gap="medium")
+            for col, dashboard in zip(cols, group_items[start:start + 3]):
+                with col, st.container(border=True, key=f"tableau-card-{dashboard['url'].rsplit('/', 2)[-2]}"):
+                    st.image(tableau_thumbnail_url(dashboard["url"]), width="stretch")
+                    st.markdown(f"**{dashboard.get('title', '')}**")
+                    st.caption(dashboard.get("description", ""))
+                    st.markdown(
+                        f'<a class="tableau-link" href="{dashboard["url"]}" target="_blank" rel="noopener">'
+                        f'{tableau_data.get("open_label", "Tableau Public")}</a>',
+                        unsafe_allow_html=True,
+                    )
+
+    # ── Live viewer: one embedded viz at a time (each Tableau iframe is heavy) ──
+    st.divider()
+    st.subheader(tableau_data.get("live_title", "Explore live"))
+    titles = [d.get("title", f"Dashboard {i+1}") for i, d in enumerate(dashboards)]
+    selected = st.selectbox(tableau_data.get("select_label", "Dashboard"), titles)
+    dashboard = dashboards[titles.index(selected)]
+    components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 800), scrolling=True)
 
 
 def render_skills() -> None:

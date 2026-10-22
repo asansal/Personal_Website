@@ -4,6 +4,7 @@
    ============================================ */
 
 /* --- IMPORT ELEGANT FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0&display=block');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Crimson+Pro:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 /* --- ROOT VARIABLES --- */
@@ -969,53 +970,23 @@ hr {
                 background 0.35s ease;
 }
 
-/* Contenedores internos de la etiqueta: ocupar todo el ancho y alinear a la izquierda */
-.st-key-bento-grid div.stButton > button > div,
-.st-key-bento-grid div.stButton > button [data-testid="stMarkdownContainer"] {
+/* Contenedores internos de la etiqueta: ocupan el resto de la tarjeta
+   y empujan el título hacia abajo */
+.st-key-bento-grid div.stButton > button > div {
+    flex: 1 1 auto;
     width: 100%;
-    text-align: left;
+    display: flex;
+    align-items: flex-end;
     justify-content: flex-start;
 }
 
-/* La etiqueta ocupa toda la tarjeta: icono arriba, título abajo */
-.st-key-bento-grid div.stButton > button > div {
-    flex: 1 1 auto;
-}
-
-.st-key-bento-grid div.stButton > button > div > span {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
 .st-key-bento-grid div.stButton > button [data-testid="stMarkdownContainer"] {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Icono (Material Symbols) dentro de un círculo tenue */
-.st-key-bento-grid div.stButton > button p:first-child {
-    margin: 0;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: rgba(0, 212, 170, 0.10);
-    color: #00d4aa !important;
-    font-size: 1.5rem !important;
-    transition: background 0.3s ease;
-}
-
-.st-key-bento-grid div.stButton > button p:first-child span {
-    font-size: 1.5rem !important;
+    width: 100%;
+    text-align: left;
 }
 
 /* Título */
-.st-key-bento-grid div.stButton > button p:last-child {
+.st-key-bento-grid div.stButton > button p {
     margin: 0;
     font-size: 1.25rem !important;
     font-weight: 600;
@@ -1025,10 +996,46 @@ hr {
     white-space: normal;
 }
 
-/* Sustituye el brillo verde genérico por uno sutil acorde a la tarjeta */
+/* ── Icono ──────────────────────────────────────────────
+   Se dibuja con la fuente Material Symbols (Google Fonts) en
+   un ::before, sin depender del soporte de iconos de Streamlit.
+   Cada tarjeta define su icono en --card-icon. */
 .st-key-bento-grid div.stButton > button::before {
-    display: none;
+    content: var(--card-icon, "circle");
+    position: static;
+    left: auto;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(0, 212, 170, 0.10);
+    color: #00d4aa;
+    font-family: 'Material Symbols Rounded';
+    font-size: 26px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    transition: background 0.3s ease;
 }
+
+.st-key-bento_story        { --card-icon: "auto_stories"; }
+.st-key-bento_experience   { --card-icon: "biotech"; }
+.st-key-bento_projects     { --card-icon: "science"; }
+.st-key-bento_tableau      { --card-icon: "monitoring"; }
+.st-key-bento_skills       { --card-icon: "construction"; }
+.st-key-bento_education    { --card-icon: "school"; }
+.st-key-bento_achievements { --card-icon: "emoji_events"; }
+.st-key-bento_contact      { --card-icon: "mail"; }
 
 /* ── Hover / focus ──────────────────────────────────────── */
 .st-key-bento-grid div.stButton > button:hover,
@@ -1040,12 +1047,45 @@ hr {
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
 }
 
-.st-key-bento-grid div.stButton > button:hover p:first-child {
+.st-key-bento-grid div.stButton > button:hover::before {
+    left: auto;
     background: rgba(0, 212, 170, 0.20);
 }
 
 .st-key-bento-grid div.stButton > button:active {
     transform: translateY(-2px) scale(0.99);
+}
+
+/* ── Iconos en botones secundarios (misma técnica) ────── */
+[class*="st-key-back-nav"] div.stButton > button::before,
+[data-testid="stSidebar"] .stDownloadButton button::before {
+    position: static;
+    left: auto;
+    width: auto;
+    height: auto;
+    background: none;
+    font-family: 'Material Symbols Rounded';
+    font-size: 20px;
+    line-height: 1;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    margin-right: 8px;
+    transition: none;
+}
+
+[class*="st-key-back-nav"] div.stButton > button::before {
+    content: "arrow_back";
+}
+
+[data-testid="stSidebar"] .stDownloadButton button::before {
+    content: "download";
+}
+
+[class*="st-key-back-nav"] div.stButton > button,
+[data-testid="stSidebar"] .stDownloadButton button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ── Botón "Volver al Inicio" (discreto, no tarjeta) ────── */
@@ -1070,6 +1110,25 @@ hr {
     border-color: rgba(0, 212, 170, 0.5);
     transform: none;
     box-shadow: none;
+}
+
+/* ── Galería de Tableau ─────────────────────────────────── */
+[class*="st-key-tableau-card-"] img {
+    border-radius: 10px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+}
+
+.tableau-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #00d4aa !important;
+    text-decoration: none !important;
+}
+
+.tableau-link:hover {
+    text-decoration: underline !important;
 }
 
 /* ── Historia y experiencia destacada ───────────────────── */
@@ -1103,7 +1162,7 @@ hr {
         height: 120px;
         padding: 1.1rem 1.3rem;
     }
-    .st-key-bento-grid div.stButton > button p:last-child {
+    .st-key-bento-grid div.stButton > button p {
         font-size: 1.1rem !important;
     }
 }
@@ -1264,4 +1323,11 @@ hr {
 @media (max-height: 760px) {
     .profile-pic { width: 110px; height: 110px; }
     .profile-card { gap: 0.8rem; }
+}
+
+/* Visor en vivo de Tableau a todo el ancho */
+iframe[src*="public.tableau.com"] {
+    width: 100% !important;
+    border-radius: 12px;
+    background: #ffffff;
 }
