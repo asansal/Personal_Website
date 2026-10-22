@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import os
+import re
 import html as _html
 
 # --- PAGE CONFIGURATION ---
@@ -191,6 +192,25 @@ def tech_badges(items: list) -> str:
     return f"`{'`, `'.join(items)}`" if items else ""
 
 
+def section_intro(text: str) -> None:
+    if text:
+        st.markdown(f'<p class="section-intro">{text}</p>', unsafe_allow_html=True)
+
+
+def tableau_embed_url(url: str) -> str:
+    """Turns a Tableau Public viz link (…/viz/<Workbook>/<Sheet>) into its embeddable /views/ URL."""
+    match = re.search(r"/(?:viz|views)/([^/?#]+)/([^/?#]+)", url)
+    if not match:
+        return ""
+    workbook, sheet = match.groups()
+    return f"https://public.tableau.com/views/{workbook}/{sheet}?:showVizHome=no&:embed=true"
+
+
+tableau_data = texts.get("tableau_section", {})
+# The Tableau card/view only appears once there is something to show
+HAS_TABLEAU = bool(tableau_data.get("profile_url") or tableau_data.get("items"))
+
+
 # --- VIEWS ---
 
 def render_home() -> None:
@@ -209,9 +229,10 @@ def render_home() -> None:
     # Bento layout: each row is a list of (view, relative width)
     bento_rows = [
         [("story", 2), ("experience", 1)],
-        [("projects", 1), ("skills", 1), ("education", 1)],
-        [("achievements", 1), ("contact", 2)],
+        [("projects", 1), ("tableau", 1), ("skills", 1)],
+        [("education", 1), ("achievements", 1), ("contact", 2)],
     ]
+    bento_rows = [[(view, width) for view, width in row if view in VIEWS] for row in bento_rows]
 
     with st.container(key="bento-grid"):
         for row in bento_rows:
@@ -258,64 +279,105 @@ def render_story() -> None:
 def render_experience() -> None:
     exp_data = texts.get("experience_section", {})
     st.header(exp_data.get("title", "Experience"))
-    st.write(exp_data.get("intro", ""))
+    section_intro(exp_data.get("intro", ""))
 
-    # ── Featured: Sextant IA (in production) ──────────────────────
-    featured = exp_data.get("featured", {})
-    if featured:
-        with st.container(border=True, key="featured-experience"):
-            st.markdown(f'<span class="featured-badge">{featured.get("badge", "")}</span>', unsafe_allow_html=True)
-            col1, col2 = st.columns([3, 2])
-            with col1:
-                st.subheader(featured.get("company", ""))
-                st.markdown(f"**{featured.get('role')}** | {featured.get('period')}")
-                st.markdown(f"_{featured.get('location')}_ — _{featured.get('type')}_")
-                st.write(featured.get("story", ""))
-                st.success(featured.get("production_note", ""))
-                st.markdown(f"**{featured.get('impact_title', '')}**")
-                for item in featured.get("impact", []):
-                    st.markdown(f"- {item}")
-                st.markdown(f"**Stack:** {tech_badges(featured.get('stack', []))}")
-                if featured.get("link"):
-                    st.link_button(featured.get("link_label", "Sextant IA"), featured["link"])
-            with col2:
-                if featured.get("image"):
-                    st.image(featured["image"], width="stretch")
-
-    # ── Career path ───────────────────────────────────────────────
     for item in exp_data.get("items", []):
-        with st.expander(f"**{item.get('role')}** · **{item.get('company')}** | {item.get('period')}", expanded=True):
-            st.markdown(f"_{item.get('location')}_ — _{item.get('type')}_")
+        with st.container(border=True):
+            st.subheader(item.get("company", ""))
+            st.markdown(f"**{item.get('role')}** | {item.get('period')}")
+            st.caption(f"{item.get('location')} · {item.get('type')}")
             st.write(item.get("story", ""))
             for achievement in item.get("impact", []):
                 st.markdown(f"- {achievement}")
             st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
 
+    other_items = exp_data.get("other_items", [])
+    if other_items:
+        st.markdown(f"#### {exp_data.get('other_title', 'Other experience')}")
+        for item in other_items:
+            with st.expander(f"**{item.get('role')}** · {item.get('company')} | {item.get('period')}"):
+                st.caption(f"{item.get('location')} · {item.get('type')}")
+                st.write(item.get("story", ""))
+                for achievement in item.get("impact", []):
+                    st.markdown(f"- {achievement}")
+                st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+
 
 def render_projects() -> None:
     projects_data = texts.get("projects_section", {})
     st.header(projects_data.get("title", "Projects"))
-    st.write(projects_data.get("intro", ""))
+    section_intro(projects_data.get("intro", ""))
     labels = projects_data.get("labels", {})
 
-    project_items = projects_data.get("items", [])
-    if project_items:
-        tabs = st.tabs([item.get("title", f"Project {i+1}") for i, item in enumerate(project_items)])
-        for tab, item in zip(tabs, project_items):
-            with tab:
-                st.markdown(f"##### {item.get('type')} - {item.get('year')}")
+    # Stacked cards (not tabs) so the order is visible at a glance: science first, then Sextant IA
+    for item in projects_data.get("items", []):
+        is_featured = item.get("featured", False)
+        with st.container(border=True, key=f"project-{item.get('id')}"):
+            if is_featured and item.get("badge"):
+                st.markdown(f'<span class="featured-badge">{item.get("badge")}</span>', unsafe_allow_html=True)
+
+            if item.get("image"):
+                text_col, image_col = st.columns([3, 2], gap="large")
+            else:
+                text_col, image_col = st.container(), None
+
+            with text_col:
+                st.subheader(item.get("title", ""))
+                st.caption(f"{item.get('type')} · {item.get('year')}")
+                if item.get("story"):
+                    st.write(item.get("story"))
                 for field in ("challenge", "approach", "result"):
                     if item.get(field):
                         st.markdown(f"**{labels.get(field, field.capitalize())}:** {item.get(field)}")
+                if item.get("production_note"):
+                    st.success(item.get("production_note"))
+                for highlight in item.get("impact", []):
+                    st.markdown(f"- {highlight}")
                 st.markdown(f"**Tech:** {tech_badges(item.get('tech', []))}")
                 if item.get("link"):
-                    st.markdown(f"[{item.get('link_label', labels.get('link', 'GitHub'))}]({item.get('link')})")
+                    link_label = item.get("link_label", labels.get("link", "GitHub"))
+                    if is_featured:
+                        st.link_button(link_label, item["link"], type="primary")
+                    else:
+                        st.markdown(f"[{link_label}]({item.get('link')})")
+
+            if image_col is not None:
+                with image_col:
+                    st.image(item["image"], width="stretch")
+
+
+def render_tableau() -> None:
+    st.header(tableau_data.get("title", "Tableau Portfolio"))
+    section_intro(tableau_data.get("intro", ""))
+
+    dashboards = [d for d in tableau_data.get("items", []) if tableau_embed_url(d.get("url", ""))]
+    if dashboards:
+        # Only one embedded viz at a time: each Tableau iframe is heavy
+        titles = [d.get("title", f"Dashboard {i+1}") for i, d in enumerate(dashboards)]
+        selected = st.selectbox(tableau_data.get("select_label", "Dashboard"), titles)
+        dashboard = dashboards[titles.index(selected)]
+        if dashboard.get("description"):
+            st.write(dashboard["description"])
+        if dashboard.get("tags"):
+            st.markdown(f"**Tags:** {tech_badges(dashboard['tags'])}")
+        components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 720), scrolling=True)
+        st.link_button(tableau_data.get("open_label", "Tableau Public"), dashboard["url"])
+
+    if tableau_data.get("profile_url"):
+        st.link_button(tableau_data.get("profile_label", "Tableau Public"), tableau_data["profile_url"], type="primary")
 
 
 def render_skills() -> None:
     skills_data = texts.get("skills_section", {})
     st.header(skills_data.get("title", "Technical Skills"))
-    st.write(skills_data.get("intro", ""))
+    section_intro(skills_data.get("intro", ""))
+
+    highlights = skills_data.get("highlights", [])
+    if highlights:
+        st.markdown(f"#### {skills_data.get('highlights_title', '')}")
+        pills = "".join(f'<span class="keyword-pill">{_html.escape(h)}</span>' for h in highlights)
+        st.markdown(f'<div class="keyword-pills">{pills}</div>', unsafe_allow_html=True)
+
     categories = skills_data.get("categories", [])
     if categories:
         num_cols = min(len(categories), 2)
@@ -332,7 +394,7 @@ def render_skills() -> None:
 def render_education() -> None:
     education_data = texts.get("education_section", {})
     st.header(education_data.get("title", "Education"))
-    st.write(education_data.get("intro", ""))
+    section_intro(education_data.get("intro", ""))
     for item in education_data.get("items", []):
         with st.expander(f"**{item.get('degree')}** - {item.get('institution')} ({item.get('year')})", expanded=False):
             st.markdown(f"_{item.get('location')}_ - _{item.get('type')}_")
@@ -343,7 +405,7 @@ def render_education() -> None:
 
     pubs_data = texts.get("publications_section", {})
     st.header(pubs_data.get("title", "Publications"))
-    st.write(pubs_data.get("intro", ""))
+    section_intro(pubs_data.get("intro", ""))
     for item in pubs_data.get("items", []):
         with st.expander(f"**{item.get('title')}**", expanded=False):
             st.markdown(f"_{item.get('authors')}_")
@@ -480,11 +542,14 @@ VIEWS = {
     "story": render_story,
     "experience": render_experience,
     "projects": render_projects,
+    "tableau": render_tableau,
     "skills": render_skills,
     "education": render_education,
     "achievements": render_achievements,
     "contact": render_contact,
 }
+if not HAS_TABLEAU:
+    del VIEWS["tableau"]
 
 # --- MAIN CONTENT (SPA ROUTER) ---
 # Unknown views (e.g. stale session state) fall back to Home.
