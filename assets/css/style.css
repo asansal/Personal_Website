@@ -935,12 +935,21 @@ hr {
    que el botón de CV y el resto de botones no se ven afectados.
    ============================================================ */
 
+/* Cabecera del Home: sobria, sin efectos */
+.st-key-home-hero h1 {
+    font-size: 2.4rem !important;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+}
+
 .home-subtitle {
-    font-family: var(--font-elegant);
-    font-size: 1.45rem !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-    max-width: 820px;
-    line-height: 1.5;
+    font-size: 1.1rem !important;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7) !important;
+    max-width: 760px;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
 }
 
 .st-key-bento-grid [data-testid="stHorizontalBlock"] {

@@ -233,8 +233,9 @@ HAS_TABLEAU = bool(tableau_data.get("profile_url") or tableau_data.get("items"))
 
 def render_home() -> None:
     profile = texts.get("profile", {})
-    st.title(profile.get("tagline", ""))
-    st.markdown(f'<p class="home-subtitle">{profile.get("subtitle", "")}</p>', unsafe_allow_html=True)
+    with st.container(key="home-hero"):
+        st.title(profile.get("tagline", ""))
+        st.markdown(f'<p class="home-subtitle">{profile.get("subtitle", "")}</p>', unsafe_allow_html=True)
 
     cards = nav_data.get("cards", {})
 
@@ -289,6 +290,19 @@ def render_experience() -> None:
                 for achievement in item.get("impact", []):
                     st.markdown(f"- {achievement}")
                 st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+
+    st.divider()
+
+    pubs_data = texts.get("publications_section", {})
+    st.header(pubs_data.get("title", "Publications"))
+    section_intro(pubs_data.get("intro", ""))
+    for item in pubs_data.get("items", []):
+        with st.expander(f"**{item.get('title')}**", expanded=False):
+            st.markdown(f"_{item.get('authors')}_")
+            st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
+            st.write(item.get("description", ""))
+            if item.get("doi"):
+                st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
 
     st.divider()
 
@@ -420,40 +434,11 @@ def render_education() -> None:
                 st.markdown(f"- {highlight}")
 
     st.divider()
-
-    pubs_data = texts.get("publications_section", {})
-    st.header(pubs_data.get("title", "Publications"))
-    section_intro(pubs_data.get("intro", ""))
-    for item in pubs_data.get("items", []):
-        with st.expander(f"**{item.get('title')}**", expanded=False):
-            st.markdown(f"_{item.get('authors')}_")
-            st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
-            st.write(item.get("description", ""))
-            if item.get("doi"):
-                st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
-
-    st.divider()
-    render_achievements()
+    render_certifications()
 
 
-def render_achievements() -> None:
-    """Hackathons, certifications and languages (shown at the end of Education)."""
-    # Hackathons
-    hackathons_data = texts.get("hackathons_section", {})
-    st.header(hackathons_data.get("title", "Hackathons"))
-    for item in hackathons_data.get("items", []):
-        with st.expander(f"**{item.get('name')}** | {item.get('position')} — {item.get('date')}", expanded=True):
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                st.markdown(f"_{item.get('organizer')}_")
-                st.write(item.get("description", ""))
-                st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
-            with col2:
-                if item.get("image"):
-                    st.image(item.get("image"), width="stretch")
-
-    st.divider()
-
+def render_certifications() -> None:
+    """Certifications and languages (shown at the end of Education)."""
     cert_data = texts.get("certifications_section", {})
     st.header(cert_data.get("title", "Certifications & Languages"))
 

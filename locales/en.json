@@ -2,8 +2,8 @@
   "profile": {
     "name": "Alejandro Sánchez",
     "role": "Data Scientist & AI Engineer · Pharma, Health & Life Sciences",
-    "tagline": "Data Science and AI for Pharma, Health and Life Sciences",
-    "subtitle": "Biologist and researcher trained at CBM-CSIC and Universität Konstanz. I combine scientific rigor, Machine Learning and generative AI to turn biomedical data into reliable decisions.",
+    "tagline": "Data Science and AI applied to health",
+    "subtitle": "Biologist and researcher. I analyse biomedical data and build Machine Learning and AI solutions for Pharma, Health and Life Sciences.",
     "location": "Madrid, Spain",
     "availability": "Available · Remote, hybrid or relocation",
     "socials": {
@@ -29,7 +29,7 @@
         "title": "Toolbox"
       },
       "education": {
-        "title": "Education & Achievements"
+        "title": "Education & Certifications"
       },
       "contact": {
         "title": "Let's talk"
@@ -218,7 +218,7 @@
     "lead": "I did not come to data because it was trendy: I came because, as a scientist, I needed better tools to find answers."
   },
   "education_section": {
-    "title": "Education & Achievements",
+    "title": "Education & Certifications",
     "intro": "I have never stopped studying. Each Master's answered a new question I was asking myself at work.",
     "items": [
       {
@@ -372,46 +372,40 @@
           "Transcriptomics"
         ],
         "link": ""
+      },
+      {
+        "id": "hackathon-parking",
+        "title": "Urban parking assistant (Hackathon)",
+        "type": "Automation & Chatbots · 2nd Prize, No-Code Automation Hackathon Madrid",
+        "year": "2025",
+        "challenge": "Finding legal parking in Madrid means cross-checking each zone's rules, the vehicle's environmental label and its real-time location.",
+        "approach": "Over one weekend, as a team, we built a conversational assistant with Make and Woztell that cross-references licence plate, environmental label and GPS location through API integrations.",
+        "result": "2nd prize at the No-Code Automation Hackathon Madrid (Woztell & Make), with a working prototype that guides drivers to the nearest legal car park.",
+        "tech": [
+          "Make",
+          "Woztell",
+          "Automation",
+          "API Integrations",
+          "Chatbot"
+        ],
+        "image": "assets/images/Hackathon.png",
+        "link": ""
       }
     ]
   },
   "tableau_section": {
     "title": "Tableau Portfolio",
-    "intro": "An analysis only has impact if people understand it. These are my dashboards on Tableau Public, starting with public health.",
+    "intro": "An analysis only has impact if people understand it. These are my dashboards published on Tableau Public.",
     "profile_label": "See my Tableau Public profile",
     "open_label": "Open dashboard ↗",
     "live_title": "Explore live",
     "select_label": "Choose a dashboard",
     "groups": {
-      "health": "Health & Science",
-      "business": "Business & Analytics"
+      "business": "Business & Analytics",
+      "health": "Health & Science"
     },
     "profile_url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/vizzes",
     "items": [
-      {
-        "group": "health",
-        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
-        "description": "Geographic distribution and yearly trend of visceral leishmaniasis cases using WHO data.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
-      },
-      {
-        "group": "health",
-        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
-        "description": "World map and yearly cases of cutaneous leishmaniasis based on WHO data.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
-      },
-      {
-        "group": "health",
-        "title": "Cutaneous Leishmaniasis — Endemic",
-        "description": "Endemic status of cutaneous leishmaniasis by country and year.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
-      },
-      {
-        "group": "health",
-        "title": "Gasto I+D+i Spain 2023",
-        "description": "Analysis of research, development and innovation spending in Spain in 2023.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
-      },
       {
         "group": "business",
         "title": "E-Commerce Retention & Customer Value Analysis (RFM)",
@@ -441,6 +435,30 @@
         "title": "NovaTech: Capital Allocation Flow",
         "description": "Sankey diagram tracing regional revenue through to net operating profit and margins.",
         "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Sankey_NovaTech/NovaTechM_SciFi_"
+      },
+      {
+        "group": "business",
+        "title": "Gasto I+D+i Spain 2023",
+        "description": "Analysis of research, development and innovation spending in Spain in 2023.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
+      },
+      {
+        "group": "health",
+        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
+        "description": "Geographic distribution and yearly trend of visceral leishmaniasis cases using WHO data.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
+        "description": "World map and yearly cases of cutaneous leishmaniasis based on WHO data.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis — Endemic",
+        "description": "Endemic status of cutaneous leishmaniasis by country and year.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
       }
     ]
   },
@@ -541,26 +559,6 @@
         "doi": "10.3390/biom10020203",
         "type": "Scientific Article",
         "description": "Outcome of my Microbiology Master's thesis on the bacterial DNA repair machinery."
-      }
-    ]
-  },
-  "hackathons_section": {
-    "title": "Hackathons",
-    "items": [
-      {
-        "name": "No-Code Automation Hackathon Madrid",
-        "position": "2nd Prize",
-        "date": "2025",
-        "organizer": "Woztell & Make",
-        "description": "Over one weekend we designed a smart assistant for urban parking: it cross-references licence plate, environmental label and real-time GPS location to guide drivers to the nearest legal car park. A great lesson in solving a real problem quickly and as a team.",
-        "stack": [
-          "Make",
-          "Woztell",
-          "Automation",
-          "API Integrations",
-          "Chatbot"
-        ],
-        "image": "assets/images/Hackathon.png"
       }
     ]
   },

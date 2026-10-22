@@ -2,8 +2,8 @@
   "profile": {
     "name": "Alejandro Sánchez",
     "role": "Data Scientist & AI Engineer · Pharma, Gesundheit & Life Sciences",
-    "tagline": "Data Science und KI für Pharma, Gesundheit und Life Sciences",
-    "subtitle": "Biologe und Forscher, ausgebildet am CBM-CSIC und an der Universität Konstanz. Ich verbinde wissenschaftliche Präzision, Machine Learning und generative KI, um biomedizinische Daten in verlässliche Entscheidungen zu verwandeln.",
+    "tagline": "Data Science und KI im Gesundheitswesen",
+    "subtitle": "Biologe und Forscher. Ich analysiere biomedizinische Daten und entwickle Machine-Learning- und KI-Lösungen für Pharma, Gesundheit und Life Sciences.",
     "location": "Madrid, Spanien",
     "availability": "Verfügbar · Remote, hybrid oder Umzug",
     "socials": {
@@ -29,7 +29,7 @@
         "title": "Werkzeugkasten"
       },
       "education": {
-        "title": "Ausbildung & Erfolge"
+        "title": "Ausbildung & Zertifikate"
       },
       "contact": {
         "title": "Sprechen wir"
@@ -218,7 +218,7 @@
     "lead": "Ich bin nicht wegen eines Trends zu den Daten gekommen, sondern weil ich als Wissenschaftler bessere Werkzeuge brauchte, um Antworten zu finden."
   },
   "education_section": {
-    "title": "Ausbildung & Erfolge",
+    "title": "Ausbildung & Zertifikate",
     "intro": "Ich habe nie aufgehört zu lernen. Jeder Master beantwortete eine neue Frage, die ich mir bei der Arbeit stellte.",
     "items": [
       {
@@ -372,46 +372,40 @@
           "Transkriptomik"
         ],
         "link": ""
+      },
+      {
+        "id": "hackathon-parking",
+        "title": "Parkassistent für die Stadt (Hackathon)",
+        "type": "Automatisierung & Chatbots · 2. Preis, No-Code Automation Hackathon Madrid",
+        "year": "2025",
+        "challenge": "Legales Parken in Madrid erfordert den Abgleich der Zonenregeln, der Umweltplakette des Fahrzeugs und des Standorts in Echtzeit.",
+        "approach": "An einem Wochenende entwickelten wir im Team einen Chat-Assistenten mit Make und Woztell, der Kennzeichen, Umweltplakette und GPS-Standort über API-Integrationen abgleicht.",
+        "result": "2. Preis beim No-Code Automation Hackathon Madrid (Woztell & Make), mit einem funktionierenden Prototyp, der Fahrer zum nächsten legalen Parkplatz führt.",
+        "tech": [
+          "Make",
+          "Woztell",
+          "Automatisierung",
+          "API-Integrationen",
+          "Chatbot"
+        ],
+        "image": "assets/images/Hackathon.png",
+        "link": ""
       }
     ]
   },
   "tableau_section": {
     "title": "Tableau-Portfolio",
-    "intro": "Eine Analyse wirkt nur, wenn man sie versteht. Dies sind meine Dashboards auf Tableau Public, beginnend mit öffentlicher Gesundheit.",
+    "intro": "Eine Analyse wirkt nur, wenn man sie versteht. Dies sind meine auf Tableau Public veröffentlichten Dashboards.",
     "profile_label": "Mein Tableau-Public-Profil ansehen",
     "open_label": "Dashboard öffnen ↗",
     "live_title": "Live erkunden",
     "select_label": "Dashboard auswählen",
     "groups": {
-      "health": "Gesundheit & Wissenschaft",
-      "business": "Business & Analytics"
+      "business": "Business & Analytics",
+      "health": "Gesundheit & Wissenschaft"
     },
     "profile_url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/vizzes",
     "items": [
-      {
-        "group": "health",
-        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
-        "description": "Geografische Verteilung und jährliche Entwicklung der viszeralen Leishmaniose auf Basis von WHO-Daten.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
-      },
-      {
-        "group": "health",
-        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
-        "description": "Weltkarte und jährliche Fallzahlen der kutanen Leishmaniose auf Basis von WHO-Daten.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
-      },
-      {
-        "group": "health",
-        "title": "Cutaneous Leishmaniasis — Endemic",
-        "description": "Endemiestatus der kutanen Leishmaniose nach Land und Jahr.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
-      },
-      {
-        "group": "health",
-        "title": "Gasto I+D+i Spain 2023",
-        "description": "Analyse der Ausgaben für Forschung, Entwicklung und Innovation in Spanien 2023.",
-        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
-      },
       {
         "group": "business",
         "title": "E-Commerce Retention & Customer Value Analysis (RFM)",
@@ -441,6 +435,30 @@
         "title": "NovaTech: Capital Allocation Flow",
         "description": "Sankey-Diagramm vom regionalen Umsatz bis zum operativen Nettogewinn und den Margen.",
         "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Sankey_NovaTech/NovaTechM_SciFi_"
+      },
+      {
+        "group": "business",
+        "title": "Gasto I+D+i Spain 2023",
+        "description": "Analyse der Ausgaben für Forschung, Entwicklung und Innovation in Spanien 2023.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
+      },
+      {
+        "group": "health",
+        "title": "Visceral Leishmaniasis (VL) — Map and cases per year",
+        "description": "Geografische Verteilung und jährliche Entwicklung der viszeralen Leishmaniose auf Basis von WHO-Daten.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis (CL) — Map and cases per year",
+        "description": "Weltkarte und jährliche Fallzahlen der kutanen Leishmaniose auf Basis von WHO-Daten.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutaneous Leishmaniasis — Endemic",
+        "description": "Endemiestatus der kutanen Leishmaniose nach Land und Jahr.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
       }
     ]
   },
@@ -541,26 +559,6 @@
         "doi": "10.3390/biom10020203",
         "type": "Wissenschaftlicher Artikel",
         "description": "Ergebnis meiner Masterarbeit in Mikrobiologie über die bakterielle DNA-Reparaturmaschinerie."
-      }
-    ]
-  },
-  "hackathons_section": {
-    "title": "Hackathons",
-    "items": [
-      {
-        "name": "No-Code Automation Hackathon Madrid",
-        "position": "2. Preis",
-        "date": "2025",
-        "organizer": "Woztell & Make",
-        "description": "An einem Wochenende entwarfen wir einen intelligenten Assistenten für das Parken in der Stadt: Er gleicht Kennzeichen, Umweltplakette und GPS-Standort in Echtzeit ab, um Fahrer zum nächstgelegenen legalen Parkplatz zu führen. Eine wertvolle Lektion darin, ein echtes Problem schnell und im Team zu lösen.",
-        "stack": [
-          "Make",
-          "Woztell",
-          "Automatisierung",
-          "API-Integrationen",
-          "Chatbot"
-        ],
-        "image": "assets/images/Hackathon.png"
       }
     ]
   },
