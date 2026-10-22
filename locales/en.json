@@ -90,7 +90,7 @@
       "story": "Sextant IA was born from two passions: travelling and discovering the history of every place. I set out to build an assistant that does not just list destinations, but understands each traveller's preferences and designs a meaningful trip. I owned the project end to end: architecture, LLM-orchestrated backend, Django frontend, deployment and release to production.",
       "production_note": "The Sextant IA website is built, published and running in production. It is my clearest proof that I can take an idea from concept to a real product in users' hands.",
       "link_label": "🌐 Visit Sextant IA",
-      "link": "",
+      "link": "https://sextantia.eu",
       "image": "assets/images/SextantIA.png",
       "stack": ["Python", "Django", "LLM Orchestration", "Prompt Engineering", "REST API", "Production deployment"],
       "impact_title": "What I built",
@@ -142,7 +142,7 @@
         "approach": "I designed a backend that orchestrates LLMs to generate a main itinerary, break it down into daily plans and enrich it with cultural information, all served from a Django frontend.",
         "result": "A public website, deployed and in production: a real product built end to end.",
         "tech": ["Python", "Django", "LLMs", "Prompt Engineering", "REST API"],
-        "link": ""
+        "link": "https://sextantia.eu", "link_label": "🌐 Visit sextantia.eu"
       },
       {
         "id": "leishmania-data-rescue", "title": "Genomic Data Rescue in Leishmania", "type": "Data Engineering & Bioinformatics", "year": "2023",

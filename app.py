@@ -309,7 +309,7 @@ def render_projects() -> None:
                         st.markdown(f"**{labels.get(field, field.capitalize())}:** {item.get(field)}")
                 st.markdown(f"**Tech:** {tech_badges(item.get('tech', []))}")
                 if item.get("link"):
-                    st.markdown(f"[{labels.get('link', 'GitHub')}]({item.get('link')})")
+                    st.markdown(f"[{item.get('link_label', labels.get('link', 'GitHub'))}]({item.get('link')})")
 
 
 def render_skills() -> None:
