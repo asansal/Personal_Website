@@ -77,7 +77,8 @@
       "NGS & Genómica",
       "Reproducibilidad (Git, Docker)",
       "ICH-GCP & GDPR",
-      "Tableau"
+      "Tableau",
+      "CI/CD & Cloud"
     ],
     "categories": [
       {
@@ -135,6 +136,16 @@
         ]
       },
       {
+        "name": "Despliegue, Cloud & CI/CD",
+        "icon": "cloud",
+        "why": "Para que lo que construyo llegue a producción y se mantenga sola.",
+        "items": [
+          "CI/CD con GitHub Actions (despliegue automático vía SSH)",
+          "Servidores Linux en Oracle Cloud: configuración, servicios systemd y entornos virtuales",
+          "Despliegue y mantenimiento de aplicaciones web en producción (Sextant IA, este portfolio)"
+        ]
+      },
+      {
         "name": "IA Generativa & Producto",
         "icon": "ai",
         "why": "Para convertir modelos en productos que la gente puede usar.",
@@ -149,8 +160,26 @@
   },
   "experience_section": {
     "title": "Experiencia",
-    "intro": "Mi trayectoria se ha forjado en la investigación biomédica institucional, trabajando con datos genómicos reales, imperfectos y valiosos, y tratándolos con el rigor que exige la ciencia. Hoy llevo ese mismo rigor a la Ciencia de Datos y la IA aplicadas a Pharma, Salud y Life Sciences.",
+    "intro": "Mi trayectoria se ha forjado en la investigación biomédica institucional, trabajando con datos genómicos reales, imperfectos y valiosos, y tratándolos con el rigor que exige la ciencia. Hoy llevo ese mismo rigor a la Ciencia de Datos y la IA: actualmente entreno LLMs en problemas de datos y bioinformática.",
     "items": [
+      {
+        "period": "Octubre 2026 - Presente",
+        "role": "AI Trainer · Data Science & Bioinformática",
+        "company": "Mercor",
+        "location": "Remoto",
+        "type": "Freelance",
+        "story": "Colaboro en un proyecto de entrenamiento de modelos de lenguaje (LLMs) centrado en problemas de análisis de datos y bioinformática. Aporto criterio experto para que los modelos razonen mejor sobre datos biológicos: el mismo rigor que aplicaba en el laboratorio, ahora al servicio de la IA.",
+        "impact": [
+          "Entrenamiento y evaluación de LLMs en tareas de Data Science y bioinformática.",
+          "Criterio científico para asegurar respuestas correctas, verificables y reproducibles."
+        ],
+        "stack": [
+          "LLMs",
+          "Bioinformática",
+          "Data Science",
+          "Evaluación de modelos de IA"
+        ]
+      },
       {
         "period": "2022 - 2025",
         "role": "Investigador Bioinformático / Data Scientist",
@@ -356,6 +385,24 @@
           "Clustering"
         ],
         "link": "https://github.com/asansal/DS_market_Capstone"
+      },
+      {
+        "id": "portfolio-web",
+        "year": "2026",
+        "link": "https://github.com/asansal/Personal_Website",
+        "title": "Este portfolio: web con asistente IA y despliegue continuo",
+        "type": "IA Generativa & MLOps · Proyecto propio",
+        "challenge": "Quería un portfolio que no fuera un CV estático: multilingüe, con un asistente capaz de responder sobre mi trayectoria y que se actualizara solo.",
+        "approach": "Lo construí con Streamlit y un chatbot sobre Google Gemini que responde a partir de una base de conocimiento propia. Lo alojo en un servidor Linux en Oracle Cloud y lo despliego con un pipeline de GitHub Actions que, en cada push, actualiza el código y las dependencias y reinicia el servicio.",
+        "result": "Una web en producción en tres idiomas, con despliegue continuo y sin pasos manuales.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Google Gemini API",
+          "GitHub Actions",
+          "Oracle Cloud",
+          "Linux & systemd"
+        ]
       },
       {
         "id": "transcriptomics-algae",

@@ -77,7 +77,8 @@
       "NGS & Genomik",
       "Reproduzierbarkeit (Git, Docker)",
       "ICH-GCP & DSGVO",
-      "Tableau"
+      "Tableau",
+      "CI/CD & Cloud"
     ],
     "categories": [
       {
@@ -135,6 +136,16 @@
         ]
       },
       {
+        "name": "Deployment, Cloud & CI/CD",
+        "icon": "cloud",
+        "why": "Damit das, was ich baue, in Produktion geht und eigenständig läuft.",
+        "items": [
+          "CI/CD mit GitHub Actions (automatisches Deployment per SSH)",
+          "Linux-Server in Oracle Cloud: Einrichtung, systemd-Dienste und virtuelle Umgebungen",
+          "Deployment und Betrieb von Webanwendungen in Produktion (Sextant IA, dieses Portfolio)"
+        ]
+      },
+      {
         "name": "Generative KI & Produkt",
         "icon": "ai",
         "why": "Um Modelle in Produkte zu verwandeln, die Menschen nutzen können.",
@@ -149,8 +160,26 @@
   },
   "experience_section": {
     "title": "Erfahrung",
-    "intro": "Mein Werdegang wurde in der institutionellen biomedizinischen Forschung geprägt: echte, unvollkommene und wertvolle genomische Daten, behandelt mit der Sorgfalt, die die Wissenschaft verlangt. Heute bringe ich diese Präzision in Data Science und KI für Pharma, Gesundheit und Life Sciences ein.",
+    "intro": "Mein Werdegang wurde in der institutionellen biomedizinischen Forschung geprägt: echte, unvollkommene und wertvolle genomische Daten, behandelt mit der Sorgfalt, die die Wissenschaft verlangt. Heute bringe ich diese Präzision in Data Science und KI ein: Aktuell trainiere ich LLMs für Daten- und Bioinformatik-Probleme.",
     "items": [
+      {
+        "period": "Oktober 2026 - Heute",
+        "role": "AI Trainer · Data Science & Bioinformatik",
+        "company": "Mercor",
+        "location": "Remote",
+        "type": "Freiberuflich",
+        "story": "Ich arbeite an einem Projekt zum Training großer Sprachmodelle (LLMs) für Fragestellungen der Datenanalyse und Bioinformatik. Ich bringe Expertenwissen ein, damit die Modelle besser über biologische Daten schlussfolgern: dieselbe Sorgfalt wie im Labor, jetzt im Dienst der KI.",
+        "impact": [
+          "Training und Evaluation von LLMs für Data-Science- und Bioinformatik-Aufgaben.",
+          "Wissenschaftliches Urteilsvermögen für korrekte, überprüfbare und reproduzierbare Antworten."
+        ],
+        "stack": [
+          "LLMs",
+          "Bioinformatik",
+          "Data Science",
+          "Evaluation von KI-Modellen"
+        ]
+      },
       {
         "period": "2022 - 2025",
         "role": "Bioinformatiker / Data Scientist",
@@ -356,6 +385,24 @@
           "Clustering"
         ],
         "link": "https://github.com/asansal/DS_market_Capstone"
+      },
+      {
+        "id": "portfolio-web",
+        "year": "2026",
+        "link": "https://github.com/asansal/Personal_Website",
+        "title": "Dieses Portfolio: Website mit KI-Assistent und Continuous Deployment",
+        "type": "Generative KI & MLOps · Eigenes Projekt",
+        "challenge": "Ich wollte ein Portfolio, das kein statischer Lebenslauf ist: mehrsprachig, mit einem Assistenten, der Fragen zu meinem Werdegang beantwortet, und das sich selbst aktualisiert.",
+        "approach": "Ich habe es mit Streamlit und einem Google-Gemini-Chatbot gebaut, der aus meiner eigenen Wissensbasis antwortet. Es läuft auf einem Linux-Server in Oracle Cloud und wird über eine GitHub-Actions-Pipeline deployt, die bei jedem Push Code und Abhängigkeiten aktualisiert und den Dienst neu startet.",
+        "result": "Eine Website in Produktion in drei Sprachen, kontinuierlich deployt ohne manuelle Schritte.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Google Gemini API",
+          "GitHub Actions",
+          "Oracle Cloud",
+          "Linux & systemd"
+        ]
       },
       {
         "id": "transcriptomics-algae",

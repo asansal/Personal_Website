@@ -77,7 +77,8 @@
       "NGS & Genomics",
       "Reproducibility (Git, Docker)",
       "ICH-GCP & GDPR",
-      "Tableau"
+      "Tableau",
+      "CI/CD & Cloud"
     ],
     "categories": [
       {
@@ -135,6 +136,16 @@
         ]
       },
       {
+        "name": "Deployment, Cloud & CI/CD",
+        "icon": "cloud",
+        "why": "So that what I build reaches production and keeps running on its own.",
+        "items": [
+          "CI/CD with GitHub Actions (automated deployment over SSH)",
+          "Linux servers on Oracle Cloud: setup, systemd services and virtual environments",
+          "Deploying and maintaining web applications in production (Sextant IA, this portfolio)"
+        ]
+      },
+      {
         "name": "Generative AI & Product",
         "icon": "ai",
         "why": "To turn models into products people can actually use.",
@@ -149,8 +160,26 @@
   },
   "experience_section": {
     "title": "Experience",
-    "intro": "My career was shaped in institutional biomedical research, working with real, imperfect and valuable genomic data and treating it with the rigor science demands. Today I bring that same rigor to Data Science and AI for Pharma, Health and Life Sciences.",
+    "intro": "My career was shaped in institutional biomedical research, working with real, imperfect and valuable genomic data and treating it with the rigor science demands. Today I bring that same rigor to Data Science and AI: I currently train LLMs on data and bioinformatics problems.",
     "items": [
+      {
+        "period": "October 2026 - Present",
+        "role": "AI Trainer · Data Science & Bioinformatics",
+        "company": "Mercor",
+        "location": "Remote",
+        "type": "Freelance",
+        "story": "I work on a project training large language models (LLMs) on data analysis and bioinformatics problems. I bring expert judgement so that models reason better about biological data: the same rigor I applied in the lab, now in service of AI.",
+        "impact": [
+          "Training and evaluating LLMs on Data Science and bioinformatics tasks.",
+          "Scientific judgement to ensure correct, verifiable and reproducible answers."
+        ],
+        "stack": [
+          "LLMs",
+          "Bioinformatics",
+          "Data Science",
+          "AI Model Evaluation"
+        ]
+      },
       {
         "period": "2022 - 2025",
         "role": "Bioinformatics Researcher / Data Scientist",
@@ -356,6 +385,24 @@
           "Clustering"
         ],
         "link": "https://github.com/asansal/DS_market_Capstone"
+      },
+      {
+        "id": "portfolio-web",
+        "year": "2026",
+        "link": "https://github.com/asansal/Personal_Website",
+        "title": "This portfolio: AI-assisted website with continuous deployment",
+        "type": "Generative AI & MLOps · Own project",
+        "challenge": "I wanted a portfolio that was not a static CV: multilingual, with an assistant able to answer questions about my career, and updating itself.",
+        "approach": "I built it with Streamlit and a Google Gemini chatbot that answers from my own knowledge base. It is hosted on a Linux server on Oracle Cloud and deployed by a GitHub Actions pipeline that, on every push, updates the code and dependencies and restarts the service.",
+        "result": "A production website in three languages, continuously deployed with no manual steps.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Google Gemini API",
+          "GitHub Actions",
+          "Oracle Cloud",
+          "Linux & systemd"
+        ]
       },
       {
         "id": "transcriptomics-algae",
