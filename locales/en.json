@@ -5,7 +5,7 @@
     "tagline": "Data Science and AI applied to health",
     "subtitle": "Biologist and researcher. I analyse biomedical data and build Machine Learning and AI solutions for Pharma, Health and Life Sciences.",
     "location": "Madrid, Spain",
-    "availability": "Available · Remote, hybrid or relocation",
+    "availability": "Open to full-time roles · Remote, hybrid or relocation",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
@@ -140,9 +140,10 @@
         "icon": "cloud",
         "why": "So that what I build reaches production and keeps running on its own.",
         "items": [
-          "CI/CD with GitHub Actions (automated deployment over SSH)",
+          "CI/CD: every push to the main branch is deployed automatically (GitHub Actions over SSH)",
           "Linux servers on Oracle Cloud: setup, systemd services and virtual environments",
-          "Deploying and maintaining web applications in production (Sextant IA, this portfolio)"
+          "Nginx reverse proxy with HTTPS",
+          "Running Sextant IA and this portfolio in production"
         ]
       },
       {
@@ -167,10 +168,10 @@
         "role": "AI Trainer · Data Science & Bioinformatics",
         "company": "Mercor",
         "location": "Remote",
-        "type": "Freelance",
-        "story": "I work on a project training large language models (LLMs) on data analysis and bioinformatics problems. I bring expert judgement so that models reason better about biological data: the same rigor I applied in the lab, now in service of AI.",
+        "type": "Freelance · Confidential project",
+        "story": "I work freelance on a confidential project training large language models (LLMs) in Data Science and bioinformatics. I bring expert judgement: the same rigor I applied in the lab, now in service of AI.",
         "impact": [
-          "Training and evaluating LLMs on Data Science and bioinformatics tasks.",
+          "Training and evaluating LLMs in Data Science and bioinformatics.",
           "Scientific judgement to ensure correct, verifiable and reproducible answers."
         ],
         "stack": [
@@ -331,13 +332,16 @@
         "year": "2025",
         "challenge": "Planning a tailor-made trip takes hours of scattered research and rarely includes the historical or cultural context that gives each place its meaning.",
         "approach": "I designed a backend that orchestrates LLMs to generate a main itinerary, break it down into daily plans and enrich it with cultural information, all served from a Django frontend.",
-        "result": "A public website, deployed and in production: a real product built end to end.",
+        "result": "A public production website with HTTPS and continuous deployment: a real product built and operated end to end.",
         "tech": [
           "Python",
           "Django",
           "LLMs",
           "Prompt Engineering",
-          "REST API"
+          "REST API",
+          "Oracle Cloud",
+          "Nginx & HTTPS",
+          "CI/CD"
         ],
         "link": "https://sextantia.eu",
         "link_label": "Visit sextantia.eu",
@@ -348,7 +352,7 @@
         "impact": [
           "An engine that turns user preferences into a complete itinerary and dynamically breaks it down into daily plans.",
           "Automatic enrichment with cultural and historical context for every location.",
-          "Full end-to-end cycle: design, development, deployment and maintenance of the production website."
+          "Continuous deployment: Oracle Cloud server with Nginx as a reverse proxy and HTTPS; every change to the Git main branch is released to production automatically."
         ],
         "image": "assets/images/SextantIA.png"
       },
@@ -637,7 +641,7 @@
     "title": "Let's talk",
     "cta": "Looking for a Data Science and AI profile for healthcare?",
     "description": "I am looking for Data Science and Artificial Intelligence positions in Pharma, Health and Life Sciences: biomedical and clinical data analysis, bioinformatics, Machine Learning and generative AI. If you think my profile fits your team, write to me: I always reply.",
-    "availability": "Available immediately · Remote, hybrid or on-site.",
+    "availability": "Open to full-time positions · Remote, hybrid or on-site.",
     "response_time": "I reply quickly",
     "contact_methods": {
       "email": "asansal@outlook.es",

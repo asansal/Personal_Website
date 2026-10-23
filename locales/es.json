@@ -5,7 +5,7 @@
     "tagline": "Ciencia de Datos e IA aplicadas a la salud",
     "subtitle": "Biólogo e investigador. Analizo datos biomédicos y desarrollo soluciones de Machine Learning e IA para Pharma, Salud y Life Sciences.",
     "location": "Madrid, España",
-    "availability": "Disponible · Remoto, híbrido o reubicación",
+    "availability": "Abierto a tiempo completo · Remoto, híbrido o reubicación",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
@@ -140,9 +140,10 @@
         "icon": "cloud",
         "why": "Para que lo que construyo llegue a producción y se mantenga sola.",
         "items": [
-          "CI/CD con GitHub Actions (despliegue automático vía SSH)",
+          "CI/CD: cada push a la rama main se despliega automáticamente (GitHub Actions vía SSH)",
           "Servidores Linux en Oracle Cloud: configuración, servicios systemd y entornos virtuales",
-          "Despliegue y mantenimiento de aplicaciones web en producción (Sextant IA, este portfolio)"
+          "Nginx como proxy inverso con HTTPS",
+          "Despliegue y mantenimiento en producción de Sextant IA y de este portfolio"
         ]
       },
       {
@@ -167,10 +168,10 @@
         "role": "AI Trainer · Data Science & Bioinformática",
         "company": "Mercor",
         "location": "Remoto",
-        "type": "Freelance",
-        "story": "Colaboro en un proyecto de entrenamiento de modelos de lenguaje (LLMs) centrado en problemas de análisis de datos y bioinformática. Aporto criterio experto para que los modelos razonen mejor sobre datos biológicos: el mismo rigor que aplicaba en el laboratorio, ahora al servicio de la IA.",
+        "type": "Freelance · Proyecto confidencial",
+        "story": "Colaboro como freelance en un proyecto confidencial de entrenamiento de modelos de lenguaje (LLMs) en el ámbito de la Ciencia de Datos y la bioinformática. Aporto criterio experto: el mismo rigor que aplicaba en el laboratorio, ahora al servicio de la IA.",
         "impact": [
-          "Entrenamiento y evaluación de LLMs en tareas de Data Science y bioinformática.",
+          "Entrenamiento y evaluación de LLMs en Data Science y bioinformática.",
           "Criterio científico para asegurar respuestas correctas, verificables y reproducibles."
         ],
         "stack": [
@@ -331,13 +332,16 @@
         "year": "2025",
         "challenge": "Planificar un viaje a medida exige horas de búsqueda dispersa y casi nunca incluye el contexto histórico o cultural que da sentido a cada lugar.",
         "approach": "Diseñé un backend que orquesta LLMs para generar un itinerario principal, desglosarlo en planes diarios y enriquecerlo con información cultural, todo servido desde un frontend en Django.",
-        "result": "Una web pública, desplegada y en producción: un producto real construido de principio a fin.",
+        "result": "Una web pública en producción con HTTPS y despliegue continuo: un producto real construido y operado de principio a fin.",
         "tech": [
           "Python",
           "Django",
           "LLMs",
           "Prompt Engineering",
-          "API REST"
+          "API REST",
+          "Oracle Cloud",
+          "Nginx & HTTPS",
+          "CI/CD"
         ],
         "link": "https://sextantia.eu",
         "link_label": "Visitar sextantia.eu",
@@ -348,7 +352,7 @@
         "impact": [
           "Un motor que transforma las preferencias del usuario en un itinerario completo y lo desglosa dinámicamente en planes diarios.",
           "Enriquecimiento automático con contexto cultural e histórico de cada ubicación.",
-          "Ciclo completo end-to-end: diseño, desarrollo, despliegue y mantenimiento de la web en producción."
+          "Despliegue continuo: servidor en Oracle Cloud con Nginx como proxy inverso y HTTPS; cada cambio en la rama main de Git se publica automáticamente en producción."
         ],
         "image": "assets/images/SextantIA.png"
       },
@@ -637,7 +641,7 @@
     "title": "Hablemos",
     "cta": "¿Buscas un perfil de Data Science e IA para salud?",
     "description": "Busco posiciones en Ciencia de Datos e Inteligencia Artificial en Pharma, Salud y Life Sciences: análisis de datos biomédicos y clínicos, bioinformática, Machine Learning e IA generativa. Si crees que mi perfil encaja en tu equipo, escríbeme: respondo siempre.",
-    "availability": "Disponible de inmediato · Remoto, híbrido o presencial.",
+    "availability": "Abierto a posiciones a tiempo completo · Remoto, híbrido o presencial.",
     "response_time": "Respondo rápidamente",
     "contact_methods": {
       "email": "asansal@outlook.es",

@@ -5,7 +5,7 @@
     "tagline": "Data Science und KI im Gesundheitswesen",
     "subtitle": "Biologe und Forscher. Ich analysiere biomedizinische Daten und entwickle Machine-Learning- und KI-Lösungen für Pharma, Gesundheit und Life Sciences.",
     "location": "Madrid, Spanien",
-    "availability": "Verfügbar · Remote, hybrid oder Umzug",
+    "availability": "Offen für Vollzeitstellen · Remote, hybrid oder Umzug",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
@@ -140,9 +140,10 @@
         "icon": "cloud",
         "why": "Damit das, was ich baue, in Produktion geht und eigenständig läuft.",
         "items": [
-          "CI/CD mit GitHub Actions (automatisches Deployment per SSH)",
+          "CI/CD: Jeder Push auf den Branch main wird automatisch deployt (GitHub Actions per SSH)",
           "Linux-Server in Oracle Cloud: Einrichtung, systemd-Dienste und virtuelle Umgebungen",
-          "Deployment und Betrieb von Webanwendungen in Produktion (Sextant IA, dieses Portfolio)"
+          "Nginx als Reverse Proxy mit HTTPS",
+          "Betrieb von Sextant IA und diesem Portfolio in Produktion"
         ]
       },
       {
@@ -167,10 +168,10 @@
         "role": "AI Trainer · Data Science & Bioinformatik",
         "company": "Mercor",
         "location": "Remote",
-        "type": "Freiberuflich",
-        "story": "Ich arbeite an einem Projekt zum Training großer Sprachmodelle (LLMs) für Fragestellungen der Datenanalyse und Bioinformatik. Ich bringe Expertenwissen ein, damit die Modelle besser über biologische Daten schlussfolgern: dieselbe Sorgfalt wie im Labor, jetzt im Dienst der KI.",
+        "type": "Freiberuflich · Vertrauliches Projekt",
+        "story": "Ich arbeite freiberuflich an einem vertraulichen Projekt zum Training großer Sprachmodelle (LLMs) im Bereich Data Science und Bioinformatik. Ich bringe Expertenwissen ein: dieselbe Sorgfalt wie im Labor, jetzt im Dienst der KI.",
         "impact": [
-          "Training und Evaluation von LLMs für Data-Science- und Bioinformatik-Aufgaben.",
+          "Training und Evaluation von LLMs in Data Science und Bioinformatik.",
           "Wissenschaftliches Urteilsvermögen für korrekte, überprüfbare und reproduzierbare Antworten."
         ],
         "stack": [
@@ -331,13 +332,16 @@
         "year": "2025",
         "challenge": "Eine maßgeschneiderte Reise zu planen kostet Stunden verstreuter Recherche und liefert selten den historischen oder kulturellen Kontext, der jedem Ort seine Bedeutung gibt.",
         "approach": "Ich entwarf ein Backend, das LLMs orchestriert, um eine Hauptroute zu erstellen, sie in Tagespläne aufzuteilen und mit kulturellen Informationen anzureichern, ausgeliefert über ein Django-Frontend.",
-        "result": "Eine öffentliche Website, deployt und in Produktion: ein echtes Produkt, von Anfang bis Ende gebaut.",
+        "result": "Eine öffentliche Website in Produktion mit HTTPS und Continuous Deployment: ein echtes Produkt, von Anfang bis Ende gebaut und betrieben.",
         "tech": [
           "Python",
           "Django",
           "LLMs",
           "Prompt Engineering",
-          "REST-API"
+          "REST-API",
+          "Oracle Cloud",
+          "Nginx & HTTPS",
+          "CI/CD"
         ],
         "link": "https://sextantia.eu",
         "link_label": "sextantia.eu besuchen",
@@ -348,7 +352,7 @@
         "impact": [
           "Eine Engine, die Nutzerpräferenzen in eine vollständige Reiseroute verwandelt und sie dynamisch in Tagespläne aufteilt.",
           "Automatische Anreicherung mit kulturellem und historischem Kontext für jeden Ort.",
-          "Vollständiger End-to-End-Zyklus: Design, Entwicklung, Deployment und Wartung der Website in Produktion."
+          "Continuous Deployment: Server in Oracle Cloud mit Nginx als Reverse Proxy und HTTPS; jede Änderung im Git-Branch main geht automatisch in Produktion."
         ],
         "image": "assets/images/SextantIA.png"
       },
@@ -637,7 +641,7 @@
     "title": "Sprechen wir",
     "cta": "Suchen Sie ein Data-Science- und KI-Profil für das Gesundheitswesen?",
     "description": "Ich suche Positionen in Data Science und Künstlicher Intelligenz in Pharma, Gesundheit und Life Sciences: Analyse biomedizinischer und klinischer Daten, Bioinformatik, Machine Learning und generative KI. Wenn mein Profil zu Ihrem Team passt, schreiben Sie mir: Ich antworte immer.",
-    "availability": "Sofort verfügbar · Remote, hybrid oder vor Ort.",
+    "availability": "Offen für Vollzeitstellen · Remote, hybrid oder vor Ort.",
     "response_time": "Ich antworte schnell",
     "contact_methods": {
       "email": "asansal@outlook.es",
