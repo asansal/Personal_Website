@@ -95,7 +95,8 @@
         ]
       }
     ],
-    "stack_link": "Tech-Stack ansehen"
+    "stack_link": "Tech-Stack ansehen",
+    "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
   },
   "skills_section": {
     "title": "Mein Werkzeugkasten",
@@ -714,7 +715,15 @@
         "year": "2024",
         "doi": "10.3390/genes15060775",
         "type": "Wissenschaftlicher Artikel",
-        "description": "Integration von Massenspektrometrie und Genomik sowie statistische Validierung neuer Kodiersequenzen."
+        "description": "Integration von Massenspektrometrie und Genomik sowie statistische Validierung neuer Kodiersequenzen.",
+        "summary": "Proteomik hängt von einer genauen Genomannotation ab: Fehlen Gene oder Proteine, geht ein Teil der Daten verloren. Mit einer proteogenomischen Strategie erzeugten wir Massenspektrometriedaten von L.-donovani-Promastigoten (Stamm HU3) und wiesen anhand der öffentlichen Annotationen 1.908 Proteine nach. Durch die Suche gegen alle offenen Leserahmen des Genoms annotierten wir 20 neue proteinkodierende Gene und verlängerten den N-Terminus von 43 Proteinen. Zudem fanden wir zahlreiche posttranslationale Modifikationen (Phosphorylierung, Acetylierung, Methylierung …) und zeigten im Vergleich mit dem Proteom von L. major, wie ein Vergleich nur anhand von Proteinlisten zu falschen Schlüssen führen kann.",
+        "highlights": [
+          "1.908 Proteine in L.-donovani-Promastigoten nachgewiesen.",
+          "20 neue proteinkodierende Gene und 43 am N-Terminus verlängerte Proteine.",
+          "Rohdaten in ProteomeXchange (PXD051920) und aktualisierte Genmodelle in offenen Repositorien."
+        ],
+        "image_caption": "(A) Massenspektren von Peptiden, die die kodierende Region von LdHU3_22.1300 erweitern. (B) Alignment dieser Region mit anderen Leishmania-Arten.",
+        "image": "assets/images/genes-15-00775-g003.png"
       },
       {
         "title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)",
@@ -723,7 +732,15 @@
         "year": "2023",
         "doi": "10.3390/genes14081637",
         "type": "Wissenschaftlicher Artikel",
-        "description": "Erstautor. Ribo-Seq-Datenanalyse und eigene Skripte zur Erkennung translatierter offener Leserahmen (ORFs)."
+        "description": "Erstautor. Ribo-Seq-Datenanalyse und eigene Skripte zur Erkennung translatierter offener Leserahmen (ORFs).",
+        "summary": "Automatische Genomannotation muss mit funktionellen Daten kuratiert werden. Wir nutzten öffentliche Ribo-Seq-Daten, also die Sequenzierung ribosomengeschützter mRNA-Fragmente, um die Annotation des Genoms von L. donovani (Stamm HU3) zu verbessern. Wir entdeckten 70 bisher nicht annotierte proteinkodierende Gene, verbesserten die Annotation von rund 600 Genen und fanden in vielen Transkripten kleine vorgelagerte Leserahmen (uORFs) mit möglicher Rolle in der Translationsregulation. Die entwickelten Bioinformatik-Pipelines lassen sich auf jeden Organismus mit Ribo-Seq-Daten anwenden.",
+        "highlights": [
+          "70 neue proteinkodierende Gene.",
+          "Rund 600 Gene mit verbesserter Annotation.",
+          "Wiederverwendbare Bioinformatik-Pipelines für andere Organismen mit Ribo-Seq-Daten."
+        ],
+        "image_caption": "(A) Die Ribo-Seq-Abdeckung zeigt ein nicht annotiertes kodierendes Gen (LDHU3_36.4050). (B) Seine Konservierung in anderen Leishmania-Arten.",
+        "image": "assets/images/genes-14-01637-g001.png"
       },
       {
         "title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom",
@@ -732,9 +749,21 @@
         "year": "2020",
         "doi": "10.3390/biom10020203",
         "type": "Wissenschaftlicher Artikel",
-        "description": "Erstautor. Ergebnis meiner Masterarbeit in Mikrobiologie zur bakteriellen DNA-Reparatur."
+        "description": "Erstautor. Ergebnis meiner Masterarbeit in Mikrobiologie zur bakteriellen DNA-Reparatur.",
+        "summary": "Die Polymerisationsdomäne (PolDom) der bakteriellen Ligase D repariert DNA-Doppelstrangbrüche durch nicht-homologe Endverknüpfung (NHEJ) und bevorzugt Ribonukleotide (NTPs) gegenüber Desoxyribonukleotiden, was entscheidend ist, wenn die Zelle kaum dNTPs hat. Wir analysierten biochemisch PolDom-Varianten von Pseudomonas aeruginosa an drei konservierten Resten (His651, Ser768 und Lys606). Das Histidin ist hauptverantwortlich für die Bevorzugung von Ribonukleotiden und die Plastizität des aktiven Zentrums, Lys606 stabilisiert Primer-Verschiebungen. Zudem nutzt PolDom 8oxoGTP effizient, eine durch oxidativen Stress entstehende Nukleotidläsion.",
+        "highlights": [
+          "His651 bestimmt die Bevorzugung von Ribonukleotiden.",
+          "Lys606 stabilisiert Primer-Verschiebungen.",
+          "Effizienter Einbau von 8oxoGMP in anti- und syn-Konformation."
+        ],
+        "image_caption": "Primerverlängerungskinetik der Wildtyp-PolDom und ihrer Serin- und Histidin-Varianten, mit Ribonukleotiden im Vergleich zu Desoxyribonukleotiden.",
+        "image": "assets/images/biomolecules-10-00203-g002.png"
       }
-    ]
+    ],
+    "labels": {
+      "summary": "Zusammenfassung",
+      "highlights": "Wichtigste Ergebnisse"
+    }
   },
   "chatbot_config": {
     "title": "KI Virtueller Assistent",

@@ -95,7 +95,8 @@
         ]
       }
     ],
-    "stack_link": "Ver stack técnico"
+    "stack_link": "Ver stack técnico",
+    "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
   },
   "skills_section": {
     "title": "Mi Caja de Herramientas",
@@ -714,7 +715,15 @@
         "year": "2024",
         "doi": "10.3390/genes15060775",
         "type": "Artículo Científico",
-        "description": "Integración de espectrometría de masas con genómica y validación estadística de nuevas secuencias codificantes."
+        "description": "Integración de espectrometría de masas con genómica y validación estadística de nuevas secuencias codificantes.",
+        "summary": "La proteómica depende de que el genoma esté bien anotado: si faltan genes o proteínas, parte de los datos se pierde. Siguiendo una estrategia proteogenómica, generamos datos de espectrometría de masas de promastigotes de L. donovani (cepa HU3) y detectamos 1.908 proteínas con las anotaciones públicas. Al buscar esos datos contra todos los marcos de lectura abiertos del genoma, anotamos 20 genes codificantes nuevos y extendimos el extremo N-terminal de 43 proteínas. Además, identificamos numerosas modificaciones post-traduccionales (fosforilación, acetilación, metilación…) y, comparando con el proteoma de L. major, mostramos cómo comparar proteomas solo por sus listas de proteínas puede llevar a conclusiones erróneas.",
+        "highlights": [
+          "1.908 proteínas detectadas en promastigotes de L. donovani.",
+          "20 genes codificantes nuevos y 43 proteínas extendidas en su extremo N-terminal.",
+          "Datos públicos en ProteomeXchange (PXD051920) y modelos de genes actualizados en repositorios abiertos."
+        ],
+        "image_caption": "(A) Espectros de masas de péptidos que amplían la región codificante de LdHU3_22.1300. (B) Alineamiento de esa región con otras especies de Leishmania.",
+        "image": "assets/images/genes-15-00775-g003.png"
       },
       {
         "title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)",
@@ -723,7 +732,15 @@
         "year": "2023",
         "doi": "10.3390/genes14081637",
         "type": "Artículo Científico",
-        "description": "Primer autor. Análisis de datos Ribo-Seq y scripts propios para detectar marcos de lectura (ORFs) traducidos."
+        "description": "Primer autor. Análisis de datos Ribo-Seq y scripts propios para detectar marcos de lectura (ORFs) traducidos.",
+        "summary": "La anotación automática de genomas necesita curarse con datos funcionales. Utilizamos datos públicos de Ribo-Seq, la secuenciación de los fragmentos de ARNm protegidos por ribosomas, para refinar la anotación del genoma de L. donovani (cepa HU3). Descubrimos 70 genes codificantes que no estaban anotados, mejoramos la anotación de unos 600 genes y encontramos pequeños marcos de lectura aguas arriba (uORFs) en muchos transcritos, con posible papel en la regulación de la traducción. Los pipelines bioinformáticos que desarrollamos pueden aplicarse a cualquier organismo con datos de Ribo-Seq.",
+        "highlights": [
+          "70 genes codificantes nuevos.",
+          "Unos 600 genes con anotación mejorada.",
+          "Pipelines bioinformáticos reutilizables para otros organismos con datos de Ribo-Seq."
+        ],
+        "image_caption": "(A) La cobertura de Ribo-Seq revela un gen codificante no anotado (LDHU3_36.4050). (B) Su conservación en otras especies de Leishmania.",
+        "image": "assets/images/genes-14-01637-g001.png"
       },
       {
         "title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom",
@@ -732,9 +749,21 @@
         "year": "2020",
         "doi": "10.3390/biom10020203",
         "type": "Artículo Científico",
-        "description": "Primer autor. Resultado de mi TFM en Microbiología sobre la reparación del ADN bacteriano."
+        "description": "Primer autor. Resultado de mi TFM en Microbiología sobre la reparación del ADN bacteriano.",
+        "summary": "El dominio de polimerización (PolDom) de la Ligasa D bacteriana repara roturas de doble cadena del ADN por unión de extremos no homólogos (NHEJ), y prefiere ribonucleótidos (NTPs) a desoxirribonucleótidos, algo clave cuando la célula tiene pocos dNTPs. Analizamos bioquímicamente variantes de la PolDom de Pseudomonas aeruginosa en tres residuos conservados (His651, Ser768 y Lys606). La histidina es la principal responsable de la preferencia por ribonucleótidos y de la plasticidad del sitio activo, y Lys606 estabiliza los desplazamientos del cebador. Además, PolDom usa con eficiencia 8oxoGTP, una lesión de nucleótido causada por estrés oxidativo.",
+        "highlights": [
+          "His651 es la principal responsable de la preferencia por ribonucleótidos.",
+          "Lys606 estabiliza los desplazamientos del cebador.",
+          "Inserción eficiente de 8oxoGMP en sus conformaciones anti y syn."
+        ],
+        "image_caption": "Cinéticas de extensión del cebador de la PolDom silvestre y sus variantes en serina e histidina, con ribonucleótidos frente a desoxirribonucleótidos.",
+        "image": "assets/images/biomolecules-10-00203-g002.png"
       }
-    ]
+    ],
+    "labels": {
+      "summary": "Resumen",
+      "highlights": "Resultados clave"
+    }
   },
   "chatbot_config": {
     "title": "Asistente Virtual IA",

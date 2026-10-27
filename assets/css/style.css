@@ -1708,43 +1708,99 @@ iframe[src*="public.tableau.com"] {
     color: var(--job-color);
 }
 
-/* Enlace al stack técnico bajo "Qué aporto" */
+/* Enlace al stack técnico bajo "Qué aporto": tarjeta horizontal con icono y flecha */
+.st-key-stack-link {
+    margin-top: 1rem;
+}
+
 .st-key-stack-link div.stButton > button {
-    width: auto;
-    margin-top: 0.8rem;
-    padding: 0.55rem 1.3rem;
-    font-size: 0.95rem;
-    display: inline-flex;
+    width: 100%;
+    min-height: 92px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    background: transparent;
-    color: #00d4aa !important;
-    border: 1px solid rgba(0, 212, 170, 0.5);
-    box-shadow: none;
+    gap: 1.1rem;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
+    border-radius: 18px;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(160deg, #171e3a 0%, #10162d 100%) padding-box,
+        linear-gradient(90deg, #5b9bff 0%, #00d4aa 100%) border-box;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.st-key-stack-link div.stButton > button > div {
+    flex: 1 1 auto;
+    justify-content: flex-start;
+}
+
+.st-key-stack-link div.stButton > button [data-testid="stMarkdownContainer"] {
+    text-align: left;
 }
 
 .st-key-stack-link div.stButton > button p {
-    color: #00d4aa !important;
+    margin: 0;
+    white-space: normal;
 }
 
+.st-key-stack-link div.stButton > button p:first-child {
+    font-size: 1.15rem !important;
+    font-weight: 600;
+    color: #ffffff !important;
+}
+
+.st-key-stack-link div.stButton > button p:last-child {
+    font-size: 0.88rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin-top: 0.2rem;
+}
+
+/* Icono a la izquierda */
 .st-key-stack-link div.stButton > button::before {
     content: "terminal";
     position: static;
     left: auto;
-    width: auto;
-    height: auto;
-    background: none;
-    margin-right: 8px;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #5b9bff 0%, #00d4aa 100%);
+    color: #0a0e27;
     font-family: 'Material Symbols Rounded';
-    font-size: 20px;
+    font-size: 26px;
     line-height: 1;
     font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
     transition: none;
 }
 
+/* Flecha a la derecha */
+.st-key-stack-link div.stButton > button::after {
+    content: "arrow_forward";
+    flex: 0 0 auto;
+    font-family: 'Material Symbols Rounded';
+    font-size: 26px;
+    line-height: 1;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    color: #00d4aa;
+    transition: transform 0.3s ease;
+}
+
 .st-key-stack-link div.stButton > button:hover {
-    background: rgba(0, 212, 170, 0.1);
-    transform: none;
-    box-shadow: none;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+}
+
+.st-key-stack-link div.stButton > button:hover::after {
+    transform: translateX(6px);
 }
 
 @media (max-width: 768px) {

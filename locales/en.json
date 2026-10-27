@@ -95,7 +95,8 @@
         ]
       }
     ],
-    "stack_link": "See tech stack"
+    "stack_link": "See tech stack",
+    "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
   },
   "skills_section": {
     "title": "My Toolbox",
@@ -714,7 +715,15 @@
         "year": "2024",
         "doi": "10.3390/genes15060775",
         "type": "Scientific Article",
-        "description": "Integration of mass spectrometry with genomics and statistical validation of new coding sequences."
+        "description": "Integration of mass spectrometry with genomics and statistical validation of new coding sequences.",
+        "summary": "Proteomics relies on accurate genome annotation: when genes or proteins are missing, part of the data is lost. Following a proteogenomic strategy, we generated mass spectrometry data from L. donovani (HU3 strain) promastigotes and detected 1,908 proteins using the public annotations. Searching the same data against every open reading frame in the genome let us annotate 20 new protein-coding genes and extend the N-terminal end of 43 proteins. We also found many post-translational modifications (phosphorylation, acetylation, methylation…) and, by comparing with the L. major proteome, showed how comparing proteomes only by their protein lists can lead to wrong conclusions.",
+        "highlights": [
+          "1,908 proteins detected in L. donovani promastigotes.",
+          "20 new protein-coding genes and 43 proteins extended at their N-terminal end.",
+          "Raw data on ProteomeXchange (PXD051920) and updated gene models in open repositories."
+        ],
+        "image_caption": "(A) Mass spectra of peptides that extend the coding region of LdHU3_22.1300. (B) Alignment of that region with other Leishmania species.",
+        "image": "assets/images/genes-15-00775-g003.png"
       },
       {
         "title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)",
@@ -723,7 +732,15 @@
         "year": "2023",
         "doi": "10.3390/genes14081637",
         "type": "Scientific Article",
-        "description": "First author. Ribo-Seq data analysis and custom scripts to detect translated open reading frames (ORFs)."
+        "description": "First author. Ribo-Seq data analysis and custom scripts to detect translated open reading frames (ORFs).",
+        "summary": "Automated genome annotation needs to be curated with functional data. We used public Ribo-Seq data, the sequencing of ribosome-protected mRNA fragments, to refine the annotation of the L. donovani (HU3 strain) genome. We uncovered 70 previously non-annotated protein-coding genes, improved the annotation of around 600 genes and found small upstream open reading frames (uORFs) in many transcripts, pointing to a role in translational regulation. The bioinformatics pipelines we developed can be applied to any organism with Ribo-Seq data.",
+        "highlights": [
+          "70 new protein-coding genes.",
+          "Around 600 genes with improved annotation.",
+          "Reusable bioinformatics pipelines for other organisms with Ribo-Seq data."
+        ],
+        "image_caption": "(A) Ribo-Seq coverage reveals a non-annotated coding gene (LDHU3_36.4050). (B) Its conservation in other Leishmania species.",
+        "image": "assets/images/genes-14-01637-g001.png"
       },
       {
         "title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom",
@@ -732,9 +749,21 @@
         "year": "2020",
         "doi": "10.3390/biom10020203",
         "type": "Scientific Article",
-        "description": "First author. Outcome of my Microbiology Master's thesis on bacterial DNA repair."
+        "description": "First author. Outcome of my Microbiology Master's thesis on bacterial DNA repair.",
+        "summary": "The polymerization domain (PolDom) of bacterial Ligase D repairs DNA double-strand breaks by non-homologous end joining (NHEJ) and prefers ribonucleotides (NTPs) over deoxynucleotides, which is key when the cell's dNTP pool is depleted. We biochemically analysed Pseudomonas aeruginosa PolDom variants at three conserved residues (His651, Ser768 and Lys606). The histidine is mainly responsible for the preference for ribonucleotides and for the plasticity of the active site, while Lys606 stabilises primer dislocations. PolDom also uses 8oxoGTP efficiently, a nucleotide lesion caused by oxidative stress.",
+        "highlights": [
+          "His651 drives the preference for ribonucleotides.",
+          "Lys606 stabilises primer dislocations.",
+          "Efficient insertion of 8oxoGMP in both its anti and syn conformations."
+        ],
+        "image_caption": "Primer-extension kinetics of wild-type PolDom and its serine and histidine variants, with ribonucleotides versus deoxynucleotides.",
+        "image": "assets/images/biomolecules-10-00203-g002.png"
       }
-    ]
+    ],
+    "labels": {
+      "summary": "Summary",
+      "highlights": "Key results"
+    }
   },
   "chatbot_config": {
     "title": "AI Virtual Assistant",

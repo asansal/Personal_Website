@@ -329,9 +329,11 @@ def render_experience() -> None:
                         st.write(point.get("description", ""))
     if "skills" in VIEWS:
         with st.container(key="stack-link"):
+            # Two-line label (title + main technologies) styled as a card in style.css
             st.button(
-                value_prop.get("stack_link", "Tech stack"),
+                f"{value_prop.get('stack_link', 'Tech stack')}\n\n{value_prop.get('stack_link_hint', '')}",
                 key="go_to_skills",
+                width="stretch",
                 on_click=go_to,
                 args=("skills",),
             )
@@ -342,13 +344,36 @@ def render_experience() -> None:
     pubs_data = texts.get("publications_section", {})
     st.header(pubs_data.get("title", "Publications"))
     section_intro(pubs_data.get("intro", ""))
+    pub_labels = pubs_data.get("labels", {})
     for item in pubs_data.get("items", []):
         with st.expander(f"**{item.get('title')}**", expanded=False):
-            st.markdown(f"_{item.get('authors')}_")
-            st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
-            st.write(item.get("description", ""))
-            if item.get("doi"):
-                st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
+            st.caption(f"{item.get('authors')} · {item.get('journal')} ({item.get('year')})")
+            if item.get("description"):
+                st.markdown(f'<span class="featured-badge">{_html.escape(item["description"])}</span>', unsafe_allow_html=True)
+
+            if item.get("image"):
+                text_col, image_col = st.columns([3, 2], gap="large")
+            else:
+                text_col, image_col = st.container(), None
+
+            with text_col:
+                if item.get("summary"):
+                    st.markdown(f"**{pub_labels.get('summary', 'Summary')}**")
+                    st.write(item["summary"])
+                if item.get("highlights"):
+                    st.markdown(f"**{pub_labels.get('highlights', 'Key results')}**")
+                    for highlight in item["highlights"]:
+                        st.markdown(f"- {highlight}")
+                if item.get("doi"):
+                    st.link_button(
+                        f"{pubs_data.get('link_label', 'DOI')} · DOI {item['doi']}",
+                        f"https://doi.org/{item['doi']}",
+                        type="primary",
+                    )
+
+            if image_col is not None:
+                with image_col:
+                    st.image(item["image"], caption=item.get("image_caption"), width="stretch")
 
 
 def render_project(item: dict, labels: dict) -> None:
