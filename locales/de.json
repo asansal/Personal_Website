@@ -851,20 +851,27 @@
       }
     ],
     "error_timeout": "Entschuldigung, die Antwort hat zu lange gedauert. Bitte versuchen Sie es erneut.",
-    "error_connection": "Interner Fehler: Verbindung zum Server konnte nicht hergestellt werden."
+    "error_connection": "Interner Fehler: Verbindung zum Server konnte nicht hergestellt werden.",
+    "trigger_label": "Frag meine KI",
+    "disclaimer": "KI-generierte Antworten auf Basis meines Lebenslaufs; sie können Fehler enthalten."
   },
   "cv_download_text": "Lebenslauf herunterladen",
   "contact_section": {
     "title": "Sprechen wir",
-    "cta": "Suchen Sie ein Data-Science- und KI-Profil mit biomedizinischem Hintergrund?",
-    "description": "Ich suche eine Stelle in Data Science und KI, bevorzugt in Pharma, Gesundheit und Life Sciences: biomedizinische und klinische Daten, Bioinformatik, Machine Learning und generative KI. Auch Stellen als Data Scientist oder Data Analyst in anderen Branchen interessieren mich. Schreiben Sie mir auf LinkedIn oder per E-Mail.",
+    "cta": "Passt mein Profil?",
+    "description": "Wenn Ihnen gefällt, was Sie gesehen haben, oder mein Profil zu einem Projekt oder einer Stelle passt, die Sie suchen, schreiben Sie mir gerne. Besonders interessieren mich Data Science und KI in Pharma, Gesundheit und Life Sciences, aber ich bin auch für andere Branchen offen.",
     "availability": "Offen für Vollzeitstellen · Remote, hybrid oder vor Ort.",
-    "response_time": "Ich schaue täglich auf LinkedIn",
     "contact_methods": {
       "email": "asansal@outlook.es",
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal"
-    }
+    },
+    "email_title": "Schreiben Sie mir eine E-Mail",
+    "email_button": "E-Mail schreiben",
+    "copy_hint": "Oder Adresse kopieren:",
+    "other_title": "Weitere Kontaktmöglichkeiten",
+    "linkedin_desc": "Vernetzen wir uns und sprechen über Möglichkeiten",
+    "github_desc": "Der Code meiner Projekte"
   },
   "seo": {
     "meta_title": "Alejandro Sánchez | Data Scientist · Bioinformatik & KI für Pharma, Gesundheit und Life Sciences",
@@ -886,7 +893,5 @@
       "Data Analyst",
       "R Shiny"
     ]
-  },
-  "copy_email_tooltip": "E-Mail in Zwischenablage kopieren",
-  "email_copied_feedback": "E-Mail kopiert!"
+  }
 }

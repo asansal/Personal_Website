@@ -851,20 +851,27 @@
       }
     ],
     "error_timeout": "Sorry, the response took too long. Please try again.",
-    "error_connection": "Internal error: could not connect to the server."
+    "error_connection": "Internal error: could not connect to the server.",
+    "trigger_label": "Ask my AI",
+    "disclaimer": "AI-generated answers based on my CV; they may contain mistakes."
   },
   "cv_download_text": "Download CV",
   "contact_section": {
     "title": "Let's talk",
-    "cta": "Looking for a Data Science and AI profile with a biomedical background?",
-    "description": "I am looking for a Data Science and AI role, ideally in Pharma, Health and Life Sciences: biomedical and clinical data, bioinformatics, Machine Learning and generative AI. I am also interested in Data Scientist and Data Analyst roles in other industries. Reach me on LinkedIn or by email.",
+    "cta": "Does my profile fit?",
+    "description": "If you liked what you saw, or my profile fits a project or a role you are looking for, don't hesitate to get in touch. I am especially interested in Data Science and AI in Pharma, Health and Life Sciences, and open to other sectors too.",
     "availability": "Open to full-time roles · Remote, hybrid or on-site.",
-    "response_time": "I check LinkedIn daily",
     "contact_methods": {
       "email": "asansal@outlook.es",
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal"
-    }
+    },
+    "email_title": "Send me an email",
+    "email_button": "Write an email",
+    "copy_hint": "Or copy the address:",
+    "other_title": "Other ways to get in touch",
+    "linkedin_desc": "Let's connect and talk about opportunities",
+    "github_desc": "The code behind my projects"
   },
   "seo": {
     "meta_title": "Alejandro Sánchez | Data Scientist · Bioinformatics & AI for Pharma, Health and Life Sciences",
@@ -886,7 +893,5 @@
       "Data Analyst",
       "R Shiny"
     ]
-  },
-  "copy_email_tooltip": "Copy email to clipboard",
-  "email_copied_feedback": "Email copied!"
+  }
 }

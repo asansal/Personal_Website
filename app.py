@@ -496,12 +496,30 @@ def render_tableau() -> None:
                     )
 
     # ── Live viewer: one embedded viz at a time (each Tableau iframe is heavy) ──
+    # Collapsed by default; the script below opens it only on desktop-width screens,
+    # so on mobile it stays folded.
     st.divider()
-    st.subheader(tableau_data.get("live_title", "Explore live"))
-    titles = [d.get("title", f"Dashboard {i+1}") for i, d in enumerate(dashboards)]
-    selected = st.selectbox(tableau_data.get("select_label", "Dashboard"), titles)
-    dashboard = dashboards[titles.index(selected)]
-    components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 800), scrolling=True)
+    with st.container(key="tableau-live"):
+        with st.expander(f"**{tableau_data.get('live_title', 'Explore live')}**"):
+            titles = [d.get("title", f"Dashboard {i+1}") for i, d in enumerate(dashboards)]
+            selected = st.selectbox(tableau_data.get("select_label", "Dashboard"), titles)
+            dashboard = dashboards[titles.index(selected)]
+            components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 800), scrolling=True)
+    components.html(
+        """<script>
+        (function () {
+            const win = window.parent;
+            if (win.innerWidth <= 640) return;
+            let tries = 0;
+            const timer = setInterval(function () {
+                const details = win.document.querySelector('.st-key-tableau-live details');
+                if (details || ++tries > 50) clearInterval(timer);
+                if (details && !details.open) details.querySelector('summary').click();
+            }, 100);
+        })();
+        </script>""",
+        height=0,
+    )
 
 
 STACK_GROUP_ICONS = {"analysis": "bar_chart", "datascience": "model_training", "llm": "smart_toy", "life": "genetics"}
@@ -609,84 +627,50 @@ def render_education() -> None:
 
 def render_contact() -> None:
     contact_data = texts.get("contact_section", {})
+    methods = contact_data.get("contact_methods", {})
     st.header(contact_data.get("title", "Contact"))
-    st.subheader(contact_data.get("cta"))
-    st.write(contact_data.get("description"))
 
-    availability = contact_data.get("availability", "")
-    if availability:
+    st.markdown(
+        f'<div class="contact-intro"><p class="contact-cta">{_html.escape(contact_data.get("cta", ""))}</p>'
+        f'<p class="contact-desc">{_html.escape(contact_data.get("description", ""))}</p></div>',
+        unsafe_allow_html=True,
+    )
+    if contact_data.get("availability"):
         st.markdown(
-            f'<div class="availability-badge availability-inline"><span class="availability-dot"></span>{availability}</div>',
+            f'<div class="availability-badge availability-inline"><span class="availability-dot"></span>{contact_data["availability"]}</div>',
             unsafe_allow_html=True,
         )
 
-    socials = contact_data.get("contact_methods", {})
-    if socials:
-        copy_feedback_text = texts.get("email_copied_feedback", "¡Copiado!")
-        email_tooltip = texts.get('copy_email_tooltip', 'Copiar email al portapapeles')
+    # ── Email: the main way to get in touch ──
+    email = methods.get("email", "")
+    if email:
+        with st.container(key="contact-email"):
+            st.markdown(
+                f'<div class="email-card">'
+                f'<div class="email-icon">{SOCIAL_ICONS["email"]}</div>'
+                f'<div class="email-text"><p class="email-title">{_html.escape(contact_data.get("email_title", "Email"))}</p>'
+                f'<p class="email-address">{_html.escape(email)}</p></div>'
+                f'<a class="email-button" href="mailto:{email}">{_html.escape(contact_data.get("email_button", "Email"))}</a>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+            # st.code has a built-in copy button, which works without extra JavaScript
+            st.caption(contact_data.get("copy_hint", ""))
+            st.code(email, language=None)
 
-        # Robust JS with fallback execCommand for environments without HTTPS or Clipboard API
-        js = f"""
-        <script>
-        function copyEmailRobust(text, feedbackId) {{
-            function showFeedback() {{
-                var feedback = document.getElementById(feedbackId);
-                if (feedback) {{
-                    feedback.innerText = '{copy_feedback_text}';
-                    feedback.style.display = 'inline';
-                    setTimeout(function() {{ feedback.style.display = 'none'; }}, 2500);
-                }}
-            }}
-            if (navigator.clipboard && window.isSecureContext) {{
-                navigator.clipboard.writeText(text).then(showFeedback, function() {{
-                    fallbackCopy(text, showFeedback);
-                }});
-            }} else {{
-                fallbackCopy(text, showFeedback);
-            }}
-        }}
-        function fallbackCopy(text, callback) {{
-            var textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            try {{ document.execCommand('copy'); if (callback) callback(); }}
-            catch (e) {{ console.error('Copy failed:', e); }}
-            document.body.removeChild(textarea);
-        }}
-        </script>
-        """
-        st.markdown(js, unsafe_allow_html=True)
-
-        links_html_parts = []
-        for key, value in socials.items():
-            if key == "email":
-                html = (
-                    f'<a href="mailto:{value}" '
-                    f'onclick="copyEmailRobust(\'{value}\', \'copy-feedback-contact\'); return true;" '
-                    f'class="social-link" title="{email_tooltip}">'
-                    f'{SOCIAL_ICONS["email"]}{SOCIAL_NAMES["email"]}</a>'
-                )
-                links_html_parts.append(html)
-            else:
-                html = (
-                    f'<a href="{value}" target="_blank" rel="noopener" class="social-link">'
-                    f'{SOCIAL_ICONS.get(key, "")}{SOCIAL_NAMES.get(key, key.capitalize())}</a>'
-                )
-                links_html_parts.append(html)
-
-        feedback_html = '<span id="copy-feedback-contact" style="display:none; color:green; margin-left:10px; font-weight:bold;"></span>'
-        links_html = "".join(links_html_parts)
-        # Centered and with top separator
-        st.markdown(
-            f'<div class="social-links contact-links">'
-            f'{links_html}{feedback_html}'
-            f'</div>',
-            unsafe_allow_html=True,
+    # ── Other channels ──
+    others = [(key, url) for key, url in methods.items() if key != "email"]
+    if others:
+        st.subheader(contact_data.get("other_title", "Other ways to get in touch"))
+        cards = "".join(
+            f'<a class="channel-card channel-{key}" href="{url}" target="_blank" rel="noopener">'
+            f'<span class="channel-icon">{SOCIAL_ICONS.get(key, "")}</span>'
+            f'<span class="channel-text"><span class="channel-name">{SOCIAL_NAMES.get(key, key.capitalize())}</span>'
+            f'<span class="channel-desc">{_html.escape(contact_data.get(f"{key}_desc", ""))}</span></span>'
+            f'<span class="ms-icon channel-arrow">open_in_new</span></a>'
+            for key, url in others
         )
+        st.markdown(f'<div class="channel-grid">{cards}</div>', unsafe_allow_html=True)
 
 
 VIEWS = {
@@ -768,4 +752,5 @@ if GENAI_API_KEY:
         bot_config=bot_config,
         kb_text=knowledge_base_text,
         api_key=GENAI_API_KEY,
+        avatar_src=f"data:image/jpeg;base64,{img_b64}",
     )

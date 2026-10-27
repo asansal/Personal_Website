@@ -851,20 +851,27 @@
       }
     ],
     "error_timeout": "Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.",
-    "error_connection": "Error interno: no se pudo conectar con el servidor."
+    "error_connection": "Error interno: no se pudo conectar con el servidor.",
+    "trigger_label": "Pregunta a mi IA",
+    "disclaimer": "Respuestas generadas por IA a partir de mi CV; pueden contener errores."
   },
   "cv_download_text": "Descargar CV",
   "contact_section": {
     "title": "Hablemos",
-    "cta": "¿Buscas un perfil de Data Science e IA con base biomédica?",
-    "description": "Busco un puesto en Data Science e IA, preferentemente en Pharma, Salud y Life Sciences: datos biomédicos y clínicos, bioinformática, Machine Learning e IA generativa. También me interesan puestos de Data Scientist y Data Analyst en otros sectores. Escríbeme por LinkedIn o por email.",
+    "cta": "¿Te encaja mi perfil?",
+    "description": "Si te ha gustado lo que has visto, o mi perfil encaja con un proyecto o un puesto que estás buscando, no dudes en escribirme. Me interesan especialmente Data Science e IA en Pharma, Salud y Life Sciences, aunque estoy abierto a otros sectores.",
     "availability": "Abierto a tiempo completo · Remoto, híbrido o presencial.",
-    "response_time": "Reviso LinkedIn a diario",
     "contact_methods": {
       "email": "asansal@outlook.es",
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal"
-    }
+    },
+    "email_title": "Mándame un correo",
+    "email_button": "Escribir un correo",
+    "copy_hint": "O copia la dirección:",
+    "other_title": "Otras formas de contacto",
+    "linkedin_desc": "Conectemos y hablemos de oportunidades",
+    "github_desc": "El código de mis proyectos"
   },
   "seo": {
     "meta_title": "Alejandro Sánchez | Data Scientist · Bioinformática e IA para Pharma, Salud y Life Sciences",
@@ -887,7 +894,5 @@
       "Data Analyst",
       "R Shiny"
     ]
-  },
-  "copy_email_tooltip": "Copiar email al portapapeles",
-  "email_copied_feedback": "¡Email copiado!"
+  }
 }

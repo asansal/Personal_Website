@@ -128,7 +128,7 @@ def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> s
 
 
 # --- CHATBOT POPUP INJECTION ---
-def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
+def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_src: str = "") -> None:
     # Separate variables for initial HTML rendering (HTML-escaped)
     # and for dynamic JS updates (JSON-encoded for safety).
 
@@ -150,6 +150,17 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
     error_timeout_js     = json.dumps(bot_config.get("error_timeout",     "Response timed out. Please try again."))
     error_connection_js  = json.dumps(bot_config.get("error_connection",  "Internal error: could not reach the server."))
 
+    trigger_label_html     = _html.escape(bot_config.get("trigger_label", "Ask my AI"))
+    disclaimer_html        = _html.escape(bot_config.get("disclaimer", ""))
+    trigger_label_js       = json.dumps(bot_config.get("trigger_label", "Ask my AI"))
+    disclaimer_js          = json.dumps(bot_config.get("disclaimer", ""))
+
+    # Bot avatar: the profile photo when available, otherwise a sparkle icon
+    sparkle_svg = ('<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">'
+                   '<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>')
+    avatar_html = f'<img src="{_html.escape(avatar_src)}" alt="">' if avatar_src else sparkle_svg
+    avatar_js   = json.dumps(avatar_html)
+
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
 
@@ -164,19 +175,17 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             const root = doc.createElement('div');
             root.id = 'chatbot-root';
             root.innerHTML = `
-                <div class="chatbot-trigger" id="chatbotTrigger">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-                        <circle cx="8"  cy="10" r="1.5"/>
-                        <circle cx="12" cy="10" r="1.5"/>
-                        <circle cx="16" cy="10" r="1.5"/>
+                <div class="chatbot-trigger" id="chatbotTrigger" role="button" aria-label="{trigger_label_html}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/>
                     </svg>
+                    <span class="chatbot-trigger-label" id="chatbotTriggerLabel">{trigger_label_html}</span>
                 </div>
 
                 <div class="chatbot-popup" id="chatbotPopup">
                     <div class="chatbot-header">
                         <div class="chatbot-header-content">
-                            <div class="chatbot-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
+                            <div class="chatbot-avatar">{avatar_html}</div>
                             <div>
                                 <h3 id="chatbotTitle">{bot_title_html}</h3>
                                 <div class="status">
@@ -192,6 +201,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
                     <div class="chatbot-body" id="chatbotBody">
                         <div class="chatbot-welcome" id="chatbotWelcome">
+                            <div class="chatbot-welcome-avatar">{avatar_html}</div>
                             <h4 id="chatbotWelcomeTitle">{welcome_title_html}</h4>
                             <p id="chatbotWelcomeMsg">{welcome_message_html}</p>
                         </div>
@@ -207,6 +217,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
                                 </svg>
                             </button>
                         </div>
+                        <p class="chatbot-disclaimer" id="chatbotDisclaimer">{disclaimer_html}</p>
                     </div>
                 </div>
             `;
@@ -228,6 +239,12 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
 
         const welcomeMsgEl = doc.getElementById('chatbotWelcomeMsg');
         if (welcomeMsgEl) welcomeMsgEl.textContent = {welcome_message_js};
+
+        // Texts that change with the language (the widget itself is created only once)
+        const triggerLabelEl = doc.getElementById('chatbotTriggerLabel');
+        if (triggerLabelEl) triggerLabelEl.textContent = {trigger_label_js};
+        const disclaimerEl = doc.getElementById('chatbotDisclaimer');
+        if (disclaimerEl) disclaimerEl.textContent = {disclaimer_js};
 
         const inputEl2 = doc.getElementById('chatbot-text-input');
         if (inputEl2) inputEl2.placeholder = {input_placeholder_js};
@@ -355,7 +372,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str) -> None:
             }}, 500);
         }}
 
-        const BOT_ICON  = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>';
+        const BOT_ICON  = {avatar_js};
         const USER_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
 
         function addMessage(text, type) {{
