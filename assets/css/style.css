@@ -1614,3 +1614,139 @@ iframe[src*="public.tableau.com"] {
 .lang-card p { margin: 0 !important; line-height: 1.4 !important; }
 .lang-desc { font-size: 0.88rem !important; color: rgba(255, 255, 255, 0.75) !important; }
 .lang-note { font-size: 0.8rem !important; color: rgba(255, 255, 255, 0.5) !important; margin-top: 0.15rem !important; }
+
+/* ============================================================
+   EXPERIENCIA: cifras clave + línea temporal con color
+   ============================================================ */
+.stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.8rem;
+    margin: 0.6rem 0 1.6rem 0;
+}
+
+.stat-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    background: linear-gradient(160deg, #171e3a 0%, #10162d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #00d4aa;
+}
+
+.stat-label {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.35;
+}
+
+.stat-tile:nth-child(2) .stat-value { color: #5b9bff; }
+.stat-tile:nth-child(3) .stat-value { color: #b07cf0; }
+.stat-tile:nth-child(4) .stat-value { color: #f4b860; }
+
+/* Color de cada puesto */
+.st-key-job-0     { --job-color: #b07cf0; }
+.st-key-job-1     { --job-color: #00d4aa; }
+.st-key-job-2     { --job-color: #5b9bff; }
+.st-key-job-3     { --job-color: #f4b860; }
+.st-key-job-other { --job-color: #8a93ad; }
+
+/* Columna de fechas con línea temporal */
+.tl-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.85rem 0 1.2rem 1.6rem;
+    border-left: 2px solid color-mix(in srgb, var(--job-color) 45%, transparent);
+    min-height: 100%;
+}
+
+.tl-dot {
+    position: absolute;
+    left: -8px;
+    top: 1rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--job-color);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--job-color) 22%, transparent);
+}
+
+.tl-period {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--job-color);
+    line-height: 1.3;
+}
+
+.tl-type {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.3;
+}
+
+/* Tarjeta del puesto con acento de color */
+[class*="st-key-job-"] [data-testid="stExpander"] details {
+    border-left: 4px solid var(--job-color) !important;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--job-color) 9%, transparent) 0%, rgba(255, 255, 255, 0.02) 60%);
+}
+
+[class*="st-key-job-"] [data-testid="stExpander"] details:hover {
+    border-color: var(--job-color) !important;
+}
+
+[class*="st-key-job-"] [data-testid="stExpander"] summary svg {
+    color: var(--job-color);
+}
+
+/* Enlace al stack técnico bajo "Qué aporto" */
+.st-key-stack-link div.stButton > button {
+    width: auto;
+    margin-top: 0.8rem;
+    padding: 0.55rem 1.3rem;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #00d4aa !important;
+    border: 1px solid rgba(0, 212, 170, 0.5);
+    box-shadow: none;
+}
+
+.st-key-stack-link div.stButton > button p {
+    color: #00d4aa !important;
+}
+
+.st-key-stack-link div.stButton > button::before {
+    content: "terminal";
+    position: static;
+    left: auto;
+    width: auto;
+    height: auto;
+    background: none;
+    margin-right: 8px;
+    font-family: 'Material Symbols Rounded';
+    font-size: 20px;
+    line-height: 1;
+    font-feature-settings: 'liga';
+    transition: none;
+}
+
+.st-key-stack-link div.stButton > button:hover {
+    background: rgba(0, 212, 170, 0.1);
+    transform: none;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .tl-item { padding-bottom: 0.2rem; min-height: auto; }
+}

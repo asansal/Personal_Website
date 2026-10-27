@@ -40,7 +40,7 @@
     "text_short": "Data Scientist con formación en biología, bioinformática y bioestadística. Más de 4 años de investigación en el CBM Severo Ochoa (CSIC-UAM) y la Universität Konstanz, 3 publicaciones y un Máster en Data Science e IA. Aplico Machine Learning e IA generativa a datos biomédicos y llevo las soluciones a producción, como Sextant IA."
   },
   "value_proposition": {
-    "title": "Lo que aporto",
+    "title": "Qué aporto a tu equipo",
     "columns": [
       {
         "id": "data",
@@ -94,7 +94,8 @@
           }
         ]
       }
-    ]
+    ],
+    "stack_link": "Ver stack técnico"
   },
   "skills_section": {
     "title": "Mi Caja de Herramientas",
@@ -195,7 +196,6 @@
   },
   "experience_section": {
     "title": "Experiencia",
-    "intro": "Vengo de la investigación biomédica, donde trabajé con datos genómicos reales e imperfectos. Hoy aplico ese rigor a la Ciencia de Datos y la IA.",
     "items": [
       {
         "period": "Octubre 2026 - Presente",
@@ -281,7 +281,25 @@
         ]
       }
     ],
-    "lead": "Llegué a los datos desde la ciencia: necesitaba mejores herramientas para responder preguntas biológicas."
+    "summary": "Data Scientist con más de 4 años analizando datos genómicos y biomédicos en investigación, formado en bioinformática, bioestadística y Data Science, y hoy aplicando ese rigor a la IA.",
+    "stats": [
+      {
+        "value": "4+",
+        "label": "años trabajando con datos en investigación"
+      },
+      {
+        "value": "1 TB+",
+        "label": "de datos genómicos analizados"
+      },
+      {
+        "value": "3",
+        "label": "publicaciones peer-reviewed"
+      },
+      {
+        "value": "8",
+        "label": "investigadores mentorizados"
+      }
+    ]
   },
   "education_section": {
     "title": "Formación & Certificaciones",

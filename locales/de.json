@@ -40,7 +40,7 @@
     "text_short": "Data Scientist mit Hintergrund in Biologie, Bioinformatik und Biostatistik. Über 4 Jahre Forschung am CBM Severo Ochoa (CSIC-UAM) und an der Universität Konstanz, 3 Publikationen und ein Master in Data Science & KI. Ich setze Machine Learning und generative KI für biomedizinische Daten ein und bringe Lösungen in die Produktion, wie Sextant IA."
   },
   "value_proposition": {
-    "title": "Was ich einbringe",
+    "title": "Was ich in Ihr Team einbringe",
     "columns": [
       {
         "id": "data",
@@ -94,7 +94,8 @@
           }
         ]
       }
-    ]
+    ],
+    "stack_link": "Tech-Stack ansehen"
   },
   "skills_section": {
     "title": "Mein Werkzeugkasten",
@@ -195,7 +196,6 @@
   },
   "experience_section": {
     "title": "Erfahrung",
-    "intro": "Ich komme aus der biomedizinischen Forschung, wo ich mit echten, unvollkommenen Genomdaten gearbeitet habe. Heute bringe ich diese Sorgfalt in Data Science und KI ein.",
     "items": [
       {
         "period": "Oktober 2026 - Heute",
@@ -281,7 +281,25 @@
         ]
       }
     ],
-    "lead": "Ich bin über die Wissenschaft zu den Daten gekommen: Ich brauchte bessere Werkzeuge, um biologische Fragen zu beantworten."
+    "summary": "Data Scientist mit über 4 Jahren Analyse genomischer und biomedizinischer Forschungsdaten, ausgebildet in Bioinformatik, Biostatistik und Data Science, und heute mit derselben Sorgfalt in der KI tätig.",
+    "stats": [
+      {
+        "value": "4+",
+        "label": "Jahre Arbeit mit Forschungsdaten"
+      },
+      {
+        "value": "1 TB+",
+        "label": "genomische Daten analysiert"
+      },
+      {
+        "value": "3",
+        "label": "Peer-Review-Publikationen"
+      },
+      {
+        "value": "8",
+        "label": "betreute Forschende"
+      }
+    ]
   },
   "education_section": {
     "title": "Ausbildung & Zertifikate",

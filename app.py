@@ -263,48 +263,55 @@ def render_home() -> None:
                     )
 
 
-def render_job(item: dict) -> None:
-    """One job as a collapsed expander: role and company visible, details on demand."""
-    with st.expander(f"**{item.get('role')}** · {item.get('company')}"):
-        st.caption(f"{item.get('period')} · {item.get('location')} · {item.get('type')}")
-        st.write(item.get("story", ""))
-        for achievement in item.get("impact", []):
-            st.markdown(f"- {achievement}")
-        st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+def render_job(item: dict, key: str) -> None:
+    """One job on the timeline: dates on the left, collapsed details on the right.
+    `key` selects the job's accent colour in style.css (.st-key-job-<n>)."""
+    with st.container(key=key):
+        dates_col, detail_col = st.columns([1, 4], gap="small")
+        with dates_col:
+            st.markdown(
+                f'<div class="tl-item"><span class="tl-dot"></span>'
+                f'<span class="tl-period">{_html.escape(item.get("period", ""))}</span>'
+                f'<span class="tl-type">{_html.escape(item.get("type", ""))}</span></div>',
+                unsafe_allow_html=True,
+            )
+        with detail_col:
+            with st.expander(f"**{item.get('role')}** · {item.get('company')}"):
+                st.caption(item.get("location", ""))
+                st.write(item.get("story", ""))
+                for achievement in item.get("impact", []):
+                    st.markdown(f"- {achievement}")
+                st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
 
 
 def render_experience() -> None:
     exp_data = texts.get("experience_section", {})
     st.header(exp_data.get("title", "Experience"))
-    if exp_data.get("lead"):
-        st.markdown(f'<p class="story-lead">{exp_data["lead"]}</p>', unsafe_allow_html=True)
-    section_intro(exp_data.get("intro", ""))
+    section_intro(exp_data.get("summary", ""))
 
-    for item in exp_data.get("items", []):
-        render_job(item)
+    # ── Key figures ──
+    stats = exp_data.get("stats", [])
+    if stats:
+        tiles = "".join(
+            f'<div class="stat-tile"><span class="stat-value">{_html.escape(s.get("value", ""))}</span>'
+            f'<span class="stat-label">{_html.escape(s.get("label", ""))}</span></div>'
+            for s in stats
+        )
+        st.markdown(f'<div class="stat-strip">{tiles}</div>', unsafe_allow_html=True)
 
-    other_items = exp_data.get("other_items", [])
-    if other_items:
-        st.markdown(f"#### {exp_data.get('other_title', 'Other experience')}")
-        for item in other_items:
-            render_job(item)
-
-    st.divider()
-
-    pubs_data = texts.get("publications_section", {})
-    st.header(pubs_data.get("title", "Publications"))
-    section_intro(pubs_data.get("intro", ""))
-    for item in pubs_data.get("items", []):
-        with st.expander(f"**{item.get('title')}**", expanded=False):
-            st.markdown(f"_{item.get('authors')}_")
-            st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
-            st.write(item.get("description", ""))
-            if item.get("doi"):
-                st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
+    # ── 1. Experience timeline ──
+    with st.container(key="exp-timeline"):
+        for n, item in enumerate(exp_data.get("items", [])):
+            render_job(item, key=f"job-{n}")
+        other_items = exp_data.get("other_items", [])
+        if other_items:
+            st.markdown(f"#### {exp_data.get('other_title', 'Other experience')}")
+            for item in other_items:
+                render_job(item, key="job-other")
 
     st.divider()
 
-    # ── What I bring: two columns (Data & AI / Life Sciences), points fold out ──
+    # ── 2. What I bring: two columns (Data & AI / Life Sciences), points fold out ──
     value_prop = texts.get("value_proposition", {})
     st.header(value_prop.get("title", "What I bring"))
     columns = value_prop.get("columns", [])
@@ -320,6 +327,28 @@ def render_experience() -> None:
                 for point in column.get("points", []):
                     with st.expander(point.get("title", "")):
                         st.write(point.get("description", ""))
+    if "skills" in VIEWS:
+        with st.container(key="stack-link"):
+            st.button(
+                value_prop.get("stack_link", "Tech stack"),
+                key="go_to_skills",
+                on_click=go_to,
+                args=("skills",),
+            )
+
+    st.divider()
+
+    # ── 3. Scientific publications ──
+    pubs_data = texts.get("publications_section", {})
+    st.header(pubs_data.get("title", "Publications"))
+    section_intro(pubs_data.get("intro", ""))
+    for item in pubs_data.get("items", []):
+        with st.expander(f"**{item.get('title')}**", expanded=False):
+            st.markdown(f"_{item.get('authors')}_")
+            st.markdown(f"**{item.get('journal')}** ({item.get('year')})")
+            st.write(item.get("description", ""))
+            if item.get("doi"):
+                st.markdown(f"[{pubs_data.get('link_label', 'DOI')} (DOI: {item.get('doi')})](https://doi.org/{item.get('doi')})")
 
 
 def render_project(item: dict, labels: dict) -> None:
