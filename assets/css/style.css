@@ -1659,6 +1659,12 @@ iframe[src*="public.tableau.com"] {
 .st-key-job-3     { --job-color: #f4b860; }
 .st-key-job-other { --job-color: #8a93ad; }
 
+/* Color de cada formación (misma línea temporal que Experiencia) */
+.st-key-edu-0 { --job-color: #b07cf0; }
+.st-key-edu-1 { --job-color: #00d4aa; }
+.st-key-edu-2 { --job-color: #5b9bff; }
+.st-key-edu-3 { --job-color: #f4b860; }
+
 /* Columna de fechas con línea temporal */
 .tl-item {
     position: relative;
@@ -1695,16 +1701,19 @@ iframe[src*="public.tableau.com"] {
 }
 
 /* Tarjeta del puesto con acento de color */
-[class*="st-key-job-"] [data-testid="stExpander"] details {
+[class*="st-key-job-"] [data-testid="stExpander"] details,
+[class*="st-key-edu-"] [data-testid="stExpander"] details {
     border-left: 4px solid var(--job-color) !important;
     background: linear-gradient(90deg, color-mix(in srgb, var(--job-color) 9%, transparent) 0%, rgba(255, 255, 255, 0.02) 60%);
 }
 
-[class*="st-key-job-"] [data-testid="stExpander"] details:hover {
+[class*="st-key-job-"] [data-testid="stExpander"] details:hover,
+[class*="st-key-edu-"] [data-testid="stExpander"] details:hover {
     border-color: var(--job-color) !important;
 }
 
-[class*="st-key-job-"] [data-testid="stExpander"] summary svg {
+[class*="st-key-job-"] [data-testid="stExpander"] summary svg,
+[class*="st-key-edu-"] [data-testid="stExpander"] summary svg {
     color: var(--job-color);
 }
 

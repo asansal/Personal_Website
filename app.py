@@ -278,25 +278,29 @@ def render_home() -> None:
                     )
 
 
-def render_job(item: dict, key: str) -> None:
-    """One job on the timeline: dates on the left, collapsed details on the right.
-    `key` selects the job's accent colour in style.css (.st-key-job-<n>)."""
+def timeline_entry(key: str, period: str, kind: str, label: str):
+    """One timeline row: dates on the left, a collapsed expander on the right (returned
+    so the caller fills it). `key` selects the accent colour in style.css (.st-key-job-<n>, .st-key-edu-<n>)."""
     with st.container(key=key):
         dates_col, detail_col = st.columns([1, 4], gap="small")
         with dates_col:
             st.markdown(
                 f'<div class="tl-item"><span class="tl-dot"></span>'
-                f'<span class="tl-period">{_html.escape(item.get("period", ""))}</span>'
-                f'<span class="tl-type">{_html.escape(item.get("type", ""))}</span></div>',
+                f'<span class="tl-period">{_html.escape(period)}</span>'
+                f'<span class="tl-type">{_html.escape(kind)}</span></div>',
                 unsafe_allow_html=True,
             )
         with detail_col:
-            with st.expander(f"**{item.get('role')}** · {item.get('company')}"):
-                st.caption(item.get("location", ""))
-                st.write(item.get("story", ""))
-                for achievement in item.get("impact", []):
-                    st.markdown(f"- {achievement}")
-                st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+            return st.expander(label)
+
+
+def render_job(item: dict, key: str) -> None:
+    with timeline_entry(key, item.get("period", ""), item.get("type", ""), f"**{item.get('role')}** · {item.get('company')}"):
+        st.caption(item.get("location", ""))
+        st.write(item.get("story", ""))
+        for achievement in item.get("impact", []):
+            st.markdown(f"- {achievement}")
+        st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
 
 
 def render_experience() -> None:
@@ -551,13 +555,12 @@ def render_education() -> None:
     education_data = texts.get("education_section", {})
     cert_data = texts.get("certifications_section", {})
     st.header(education_data.get("title", "Education"))
-    section_intro(education_data.get("intro", ""))
 
-    # ── 1. Academic education ──
+    # ── 1. Academic education, on the same colour timeline as Experience ──
     st.subheader(education_data.get("degrees_title", "Education"))
-    for item in education_data.get("items", []):
-        with st.expander(f"**{item.get('degree')}** · {item.get('institution')} ({item.get('year')})"):
-            st.caption(f"{item.get('location')} · {item.get('type')}")
+    for n, item in enumerate(education_data.get("items", [])):
+        with timeline_entry(f"edu-{n}", item.get("year", ""), item.get("type", ""), f"**{item.get('degree')}** · {item.get('institution')}"):
+            st.caption(item.get("location", ""))
             for highlight in item.get("highlights", []):
                 st.markdown(f"- {highlight}")
 
