@@ -513,11 +513,14 @@ def render_stack_group(group: dict) -> None:
             f'<div class="stack-category"><p class="stack-card-title">{_html.escape(category.get("name", ""))}</p>'
             f'<div class="stack-chips">{chips}</div>{note}</div>'
         )
+    header = f'<span class="ms-icon">{STACK_GROUP_ICONS.get(group["id"], "star")}</span>{group.get("title", "")}'
     with st.container(key=f"stack-group-{group['id']}"):
+        # Desktop: always-open block. Mobile: the same content as a collapsed <details>;
+        # style.css shows one or the other depending on the screen width.
         st.markdown(
-            f'<div class="stack-block">'
-            f'<div class="vp-header"><span class="ms-icon">{STACK_GROUP_ICONS.get(group["id"], "star")}</span>{group.get("title", "")}</div>'
-            f'{cards}</div>',
+            f'<div class="stack-block stack-desktop"><div class="vp-header">{header}</div>{cards}</div>'
+            f'<details class="stack-block stack-mobile"><summary class="vp-header">{header}'
+            f'<span class="ms-icon stack-chevron">expand_more</span></summary>{cards}</details>',
             unsafe_allow_html=True,
         )
 

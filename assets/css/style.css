@@ -1878,3 +1878,28 @@ iframe[src*="public.tableau.com"] {
 .keyword-pill.group-datascience { color: #5b9bff; background: rgba(91, 155, 255, 0.10);  border-color: rgba(91, 155, 255, 0.4); }
 .keyword-pill.group-llm         { color: #b07cf0; background: rgba(176, 124, 240, 0.10); border-color: rgba(176, 124, 240, 0.4); }
 .keyword-pill.group-life        { color: #00d4aa; background: rgba(0, 212, 170, 0.10);   border-color: rgba(0, 212, 170, 0.4); }
+
+/* Stack técnico en móvil: bloques apilados y plegables */
+.stack-mobile { display: none; }
+
+.stack-mobile summary {
+    list-style: none;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.stack-mobile summary::-webkit-details-marker { display: none; }
+
+.stack-chevron {
+    margin-left: auto;
+    transition: transform 0.25s ease;
+}
+
+.stack-mobile[open] .stack-chevron { transform: rotate(180deg); }
+.stack-mobile[open] summary { margin-bottom: 0.4rem; }
+
+@media (max-width: 640px) {
+    .stack-desktop { display: none; }
+    .stack-mobile { display: block; margin-bottom: 0; padding: 0.35rem; }
+    .stack-mobile:not([open]) { border-color: transparent; background: transparent; }
+}
