@@ -548,7 +548,7 @@
         "type": "Generative AI & MLOps · Own project",
         "challenge": "I wanted a multilingual portfolio with an assistant that answers questions about my career and updates itself.",
         "approach": "Streamlit and a Google Gemini chatbot that answers from my own knowledge base. Linux server on Oracle Cloud, deployed with GitHub Actions on every push.",
-        "result": "Production website in three languages, continuously deployed with no manual steps.",
+        "result": "Production website in six languages, continuously deployed with no manual steps.",
         "tech": [
           "Python",
           "Streamlit",

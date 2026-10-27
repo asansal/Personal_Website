@@ -10,5 +10,17 @@
   "de": {
     "name": "Deutsch",
     "flag": "🇩🇪"
+  },
+  "nl": {
+    "name": "Nederlands",
+    "flag": "🇳🇱"
+  },
+  "sv": {
+    "name": "Svenska",
+    "flag": "🇸🇪"
+  },
+  "da": {
+    "name": "Dansk",
+    "flag": "🇩🇰"
   }
 }

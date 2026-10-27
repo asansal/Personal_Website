@@ -79,7 +79,7 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
 
 # --- SYSTEM PROMPT ---
 def get_system_instruction(context_data: str, lang: str = "es") -> str:
-    lang_names = {"es": "Spanish", "en": "English", "de": "German"}
+    lang_names = {"es": "Spanish", "en": "English", "de": "German", "nl": "Dutch", "sv": "Swedish", "da": "Danish"}
     response_lang = lang_names.get(lang, "English")
 
     """

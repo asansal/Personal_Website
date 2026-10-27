@@ -30,8 +30,29 @@ from logic.utils import (
 
 # --- LANGUAGE SELECTION & LOCALIZATION ---
 languages = load_config()
+
+
+def detect_language() -> str:
+    """First supported language from the browser (Accept-Language, then st.context.locale)."""
+    preferred = []
+    accept = st.context.headers.get("Accept-Language", "") or ""
+    for part in accept.split(","):
+        tag = part.split(";")[0].strip()
+        if tag and tag != "*":
+            preferred.append(tag)
+    if st.context.locale:
+        preferred.append(st.context.locale)
+    if not preferred:
+        return "es"  # no information at all: original default
+    for tag in preferred:
+        code = tag.split("-")[0].split("_")[0].lower()
+        if code in languages:
+            return code
+    return "en"  # visitor's language not available: English is the safest bet
+
+
 if "lang" not in st.session_state:
-    st.session_state.lang = "es"  # Default language
+    st.session_state.lang = detect_language()
 
 # ── SPA Router State ───────────────────────────────────────────
 HOME_VIEW = "home"
@@ -99,22 +120,14 @@ SOCIAL_NAMES = {"linkedin": "LinkedIn", "github": "GitHub", "email": "Email"}
 # --- SIDEBAR ---
 with st.sidebar:
     # ── Language Selector ──────────────────────────────────────────
-    # Create list of options for the selectbox
-    lang_options = {info["name"]: code for code, info in languages.items()}
-    # Get the name of the current option
-    current_lang_name = next(
-        (name for name, code in lang_options.items() if code == st.session_state.lang),
-        list(lang_options.keys())[0]  # Fallback
-    )
-
-    selected_lang_name = st.selectbox(
+    lang_codes = list(languages.keys())
+    selected_lang_code = st.selectbox(
         "Idioma / Language",
-        options=list(lang_options.keys()),
-        index=list(lang_options.keys()).index(current_lang_name),
+        options=lang_codes,
+        index=lang_codes.index(st.session_state.lang) if st.session_state.lang in lang_codes else 0,
+        format_func=lambda code: f"{languages[code].get('flag', '')}  {languages[code].get('name', code)}",
         label_visibility="collapsed",
     )
-
-    selected_lang_code = lang_options[selected_lang_name]
 
     if selected_lang_code != st.session_state.lang:
         st.session_state.lang = selected_lang_code

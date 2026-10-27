@@ -1,0 +1,901 @@
+{
+  "profile": {
+    "name": "Alejandro Sánchez",
+    "role": "Data Scientist · Bio-informatica & AI",
+    "tagline": "Data Science & AI",
+    "subtitle": "Ruim 4 jaar analyse van genomische data bij CBM-CSIC en Universität Konstanz, met 3 publicaties en een master in Data Science & AI. Ik heb bio-informatica-pipelines, Machine Learning-modellen, klinische dashboards en Sextant IA gebouwd, een LLM-applicatie in productie. Vandaag ontwerp ik bio-informaticaproblemen om AI-modellen te trainen.",
+    "location": "Madrid, Spanje",
+    "availability": "Beschikbaar voor fulltime functies · Remote, hybride of op locatie · Bereid te verhuizen",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
+      "github": "https://github.com/asansal",
+      "email": "asansal@outlook.es"
+    },
+    "kicker": "Data Science · Bio-informatica · AI",
+    "explore_hint": "Ontdek mijn ervaring, projecten en tech stack in de secties hieronder, of stel je vraag direct aan mijn AI-assistent.",
+    "ask_ai": "Vraag het mijn AI",
+    "specialization": "Gespecialiseerd in farma, gezondheid en Life Sciences"
+  },
+  "navigation": {
+    "back_home": "Terug naar home",
+    "home_hint": "Kies een sectie.",
+    "cards": {
+      "experience": {
+        "title": "Ervaring"
+      },
+      "projects": {
+        "title": "Projecten"
+      },
+      "tableau": {
+        "title": "Tableau-portfolio"
+      },
+      "skills": {
+        "title": "Tech stack"
+      },
+      "education": {
+        "title": "Opleiding & certificeringen"
+      },
+      "contact": {
+        "title": "Laten we praten"
+      }
+    }
+  },
+  "about": {
+    "text_short": "Data Scientist met een achtergrond in biologie, bio-informatica en biostatistiek. Ruim 4 jaar onderzoek bij het CBM Severo Ochoa (CSIC-UAM) en de Universität Konstanz, 3 publicaties en een master in Data Science & AI. Ik pas Machine Learning en generatieve AI toe op biomedische data en breng oplossingen in productie, zoals Sextant IA."
+  },
+  "value_proposition": {
+    "title": "Wat ik je team breng",
+    "columns": [
+      {
+        "id": "data",
+        "title": "Data & AI",
+        "points": [
+          {
+            "icon": "rocket",
+            "title": "Data Science en AI van begin tot eind",
+            "description": "Van analyse en Machine Learning tot generatieve AI en deployment. Sextant IA, mijn eigen project, draait in productie."
+          },
+          {
+            "icon": "chart",
+            "title": "Machine Learning en toegepaste statistiek",
+            "description": "Regressie, clustering, tijdreeksen en statistische validatie met Python en R, met expliciete metrics en aannames."
+          },
+          {
+            "icon": "ai",
+            "title": "Generatieve AI en LLM's",
+            "description": "Orkestratie van LLM's, prompt engineering en modelevaluatie (RLHF). Vandaag ontwerp ik bio-informaticaproblemen om AI-modellen te trainen."
+          },
+          {
+            "icon": "cloud",
+            "title": "Engineering en deployment",
+            "description": "Reproduceerbare pipelines, HPC, CI/CD en cloudservers: mijn oplossingen komen in productie en blijven draaien."
+          }
+        ]
+      },
+      {
+        "id": "life",
+        "title": "Life Sciences",
+        "points": [
+          {
+            "icon": "dna",
+            "title": "Biomedische domeinkennis",
+            "description": "Moleculaire biologie, genomica en labwerk: ik weet waar elk biomedisch datapunt vandaan komt en wat de beperkingen zijn voordat ik het modelleer."
+          },
+          {
+            "icon": "genetics",
+            "title": "Bio-informatica en genomica",
+            "description": "NGS, transcriptomics, proteogenomics en Ribo-Seq: meer dan 1 TB genomische data geanalyseerd en 3 peer-reviewed publicaties."
+          },
+          {
+            "icon": "analytics",
+            "title": "Nauwkeurigheid, reproduceerbaarheid en compliance",
+            "description": "Statistische validatie, traceerbaarheid en reproduceerbaarheid, met training in ICH-GCP E6 (R3) en AVG in de zorg."
+          },
+          {
+            "icon": "collaboration",
+            "title": "Brug tussen wetenschap en business",
+            "description": "Ik heb 8 studenten en technici begeleid, leveranciers aangestuurd en vertaal resultaten naar beslissingen met dashboards in Tableau en Power BI."
+          }
+        ]
+      }
+    ],
+    "stack_link": "Bekijk tech stack",
+    "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
+  },
+  "skills_section": {
+    "title": "Tech stack",
+    "groups": [
+      {
+        "id": "analysis",
+        "title": "Data-analyse",
+        "categories": [
+          {
+            "icon": "health",
+            "name": "Analyse & statistiek",
+            "tools": [
+              "Python",
+              "Pandas",
+              "NumPy",
+              "R",
+              "SQL",
+              "PostgreSQL",
+              "MySQL",
+              "Statistische validatie",
+              "Multivariate statistiek",
+              "A/B-testen"
+            ],
+            "note": ""
+          },
+          {
+            "icon": "visualization",
+            "name": "Visualisatie & communicatie",
+            "tools": [
+              "Tableau",
+              "Power BI",
+              "DAX",
+              "R Shiny",
+              "Streamlit",
+              "Data storytelling"
+            ],
+            "note": ""
+          }
+        ]
+      },
+      {
+        "id": "datascience",
+        "title": "Data Science & Engineering",
+        "categories": [
+          {
+            "icon": "chart",
+            "name": "Machine Learning & modellering",
+            "tools": [
+              "Scikit-learn",
+              "XGBoost",
+              "TensorFlow",
+              "Keras",
+              "Optuna",
+              "Lasso-/Ridge-regressie",
+              "K-Means",
+              "Tijdreeksen",
+              "Prophet",
+              "ARIMA"
+            ],
+            "note": "Modellen gevalideerd tegen een baseline; tijdsgebaseerde kruisvalidatie bij forecasting."
+          },
+          {
+            "icon": "database",
+            "name": "Data engineering & reproduceerbaarheid",
+            "tools": [
+              "ETL-pipelines",
+              "Data wrangling",
+              "Linux",
+              "Bash",
+              "Git",
+              "Docker"
+            ],
+            "note": ""
+          },
+          {
+            "icon": "cloud",
+            "name": "Deployment, cloud & CI/CD",
+            "tools": [
+              "CI/CD",
+              "GitHub Actions",
+              "Oracle Cloud",
+              "Nginx",
+              "HTTPS",
+              "systemd"
+            ],
+            "note": "Elke push naar main wordt automatisch uitgerold. Sextant IA en dit portfolio draaien in productie."
+          }
+        ]
+      },
+      {
+        "id": "llm",
+        "title": "Generatieve AI & LLM's",
+        "categories": [
+          {
+            "icon": "ai",
+            "name": "Generatieve AI & product",
+            "tools": [
+              "LLMs",
+              "LLM-orkestratie",
+              "Prompt engineering",
+              "Django",
+              "REST-API's",
+              "n8n",
+              "Make",
+              "RLHF",
+              "Evaluatie van AI-modellen"
+            ],
+            "note": "Training en evaluatie van AI-modellen (Telus, Mercor)."
+          }
+        ]
+      },
+      {
+        "id": "life",
+        "title": "Life Sciences",
+        "categories": [
+          {
+            "icon": "dna",
+            "name": "Bio-informatica & genomica",
+            "tools": [
+              "Bioconductor",
+              "NGS",
+              "Illumina",
+              "Oxford Nanopore",
+              "Sanger",
+              "RNA-seq",
+              "Ribo-Seq",
+              "WGS",
+              "DESeq2",
+              "Transcriptomics",
+              "Proteogenomics",
+              "De-novo-assemblage",
+              "Genoomannotatie",
+              "Trinity",
+              "BUSCO",
+              "HPC (Slurm)",
+              "GNU Parallel"
+            ],
+            "note": ""
+          },
+          {
+            "icon": "lab",
+            "name": "Wet lab",
+            "tools": [
+              "CRISPR-Cas9",
+              "qPCR",
+              "Celkweek"
+            ],
+            "note": ""
+          },
+          {
+            "icon": "practice",
+            "name": "Goede praktijk in de zorg",
+            "tools": [
+              "ICH-GCP E6 (R3)",
+              "AVG (GDPR)"
+            ],
+            "note": "Patiëntgegevens zorgvuldig en volgens de regelgeving verwerkt."
+          }
+        ]
+      }
+    ],
+    "education_link": "Bekijk opleiding en certificeringen",
+    "education_link_hint": "Master in Data Science & AI, bio-informatica en microbiologie · ICH-GCP · AVG · Power BI"
+  },
+  "experience_section": {
+    "title": "Ervaring",
+    "items": [
+      {
+        "period": "Oktober 2026 - heden",
+        "role": "Writer · Expert bio-informatica",
+        "company": "Mercor",
+        "location": "Remote",
+        "type": "Freelance · Vertrouwelijk project",
+        "story": "Ik werk als expert bio-informatica aan een vertrouwelijk project om AI-modellen te trainen en te evalueren.",
+        "impact": [
+          "Schrijven van bio-informatica- en data-analyseproblemen op expertniveau met uitgewerkte oplossingen.",
+          "Controleren of antwoorden correct, verifieerbaar en reproduceerbaar zijn."
+        ],
+        "stack": [
+          "LLMs",
+          "Bio-informatica",
+          "Data Science",
+          "Evaluatie van AI-modellen"
+        ]
+      },
+      {
+        "period": "September 2022 - juli 2025",
+        "role": "Onderzoeker bio-informatica",
+        "company": "Centro de Biología Molecular Severo Ochoa (CBM-CSIC-UAM)",
+        "location": "Madrid, Spanje",
+        "type": "Fulltime",
+        "story": "Ik leidde het computationele deel van multi-omicsprojecten over het genoom van Leishmania donovani: reproduceerbare pipelines in Python, R en Bash voor terabytes aan sequencing- en proteomicsdata. Ik was het belangrijkste aanspreekpunt voor data in de groep en nam deel aan projectbeslissingen.",
+        "stack": [
+          "Python",
+          "R",
+          "Bash",
+          "DESeq2",
+          "GNU Parallel",
+          "Linux",
+          "Git"
+        ],
+        "impact": [
+          "Analyse van Ribo-Seq-, RNA-seq-, WGS- en proteomicsdata; differentiële expressie (DESeq2) en genoomassemblage.",
+          "3 peer-reviewed publicaties (2 als eerste auteur).",
+          "Een gedegradeerde Oxford Nanopore-dataset gered via hybride correctie met Illumina-reads.",
+          "Kortere rekentijden door parallellisatie met GNU Parallel.",
+          "Begeleiding van 5 studenten (bachelor- en masterscripties) en technici.",
+          "Aansturing van sequencingleveranciers (Novogene, Illumina)."
+        ]
+      },
+      {
+        "period": "April 2020 - januari 2022",
+        "role": "Onderzoeker biotechnologie",
+        "company": "Universität Konstanz — AG Kroth",
+        "location": "Konstanz, Duitsland",
+        "type": "Fulltime",
+        "story": "Ik beheerde de volledige datalevenscyclus van een project in omgevingstranscriptomics, van proefopzet en bioreactoren tot statistische analyse op HPC-clusters. Daar werkte ik voor het eerst met datavolumes waarvoor ik als een engineer moest denken.",
+        "stack": [
+          "R",
+          "HPC (Slurm)",
+          "Multivariate statistiek",
+          "Transcriptomics",
+          "Databeheer"
+        ],
+        "impact": [
+          "De-novo-assemblage van eukaryote transcriptomen uit omgevingsmonsters.",
+          "Multivariate analyse van gemeenschappen in voedselarme meren.",
+          "Begeleiding van 3 bachelor-/masterstudenten en internationale inkoop."
+        ]
+      }
+    ],
+    "other_title": "Overige ervaring",
+    "other_items": [
+      {
+        "period": "Maart 2025 - juni 2025",
+        "role": "Online Data Analyst (AI-evaluatie)",
+        "company": "Telus International AI",
+        "location": "Remote",
+        "type": "Parttime",
+        "story": "Ik beoordeelde zoekresultaten en output van AI-modellen volgens strikte kwaliteitsrichtlijnen en leverde referentiedata om hun nauwkeurigheid te verbeteren.",
+        "stack": [
+          "Datakwaliteit",
+          "Evaluatie van AI-modellen",
+          "Menselijke feedback (RLHF)"
+        ],
+        "impact": [
+          "Consistente beoordelingen van zoekresultaten en output van AI-modellen.",
+          "Gedetailleerde casusdocumentatie om de nauwkeurigheid te verbeteren."
+        ]
+      }
+    ],
+    "summary": "Data Scientist met ruim 4 jaar ervaring in de analyse van genomische en biomedische onderzoeksdata, opgeleid in bio-informatica, biostatistiek en Data Science, en nu met diezelfde nauwkeurigheid actief in AI.",
+    "stats": [
+      {
+        "value": "4+",
+        "label": "jaar werken met onderzoeksdata"
+      },
+      {
+        "value": "1 TB+",
+        "label": "genomische data geanalyseerd"
+      },
+      {
+        "value": "3",
+        "label": "peer-reviewed publicaties"
+      },
+      {
+        "value": "8",
+        "label": "begeleide onderzoekers"
+      }
+    ]
+  },
+  "education_section": {
+    "title": "Opleiding & certificeringen",
+    "items": [
+      {
+        "year": "2025",
+        "degree": "Master in Data Science & artificiële intelligentie",
+        "institution": "Nuclio Digital School",
+        "location": "Online",
+        "type": "Postdoctoraal / master",
+        "highlights": [
+          "Machine Learning, Deep Learning, SQL en Business Intelligence.",
+          "Eindproject: DSMarket, een systeem voor vraagvoorspelling in de retail."
+        ]
+      },
+      {
+        "year": "2019 - 2022",
+        "degree": "Master in bio-informatica en biostatistiek",
+        "institution": "UOC – UB (Universitat Oberta de Catalunya en Universitat de Barcelona)",
+        "location": "Online",
+        "type": "Postdoctoraal / master",
+        "highlights": [
+          "Scriptie: differentiële analyse van dinoflagellaattranscriptomen uit publieke data.",
+          "Volledige Linux-pipeline: QC (FastQC), filtering, de-novo-assemblage (Trinity) en annotatie (EnTAP, KEGG, GO)."
+        ]
+      },
+      {
+        "year": "2017 - 2018",
+        "degree": "Master in microbiologie",
+        "institution": "Universidad Autónoma de Madrid (UAM)",
+        "location": "Madrid, Spanje",
+        "type": "Postdoctoraal / master",
+        "highlights": [
+          "Scriptie bij het CBM Severo Ochoa over bacteriële DNA-reparatie.",
+          "Gepubliceerd in Biomolecules (2020) als eerste auteur."
+        ]
+      },
+      {
+        "year": "2013 - 2017",
+        "degree": "Bachelor in de biologie",
+        "institution": "Universidad de Salamanca",
+        "location": "Salamanca, Spanje",
+        "type": "Bachelor",
+        "highlights": [
+          "Scriptie: interactie tussen tomaat en schimmel tegen de ziekteverwekker P. aeruginosa.",
+          "Kwantitatieve kweektechnieken en genexpressieanalyse met qPCR."
+        ]
+      }
+    ],
+    "degrees_title": "Academische opleiding"
+  },
+  "projects_section": {
+    "title": "Projecten",
+    "intro": "Projecten in biomedische analyse, business analytics en generatieve AI in productie.",
+    "labels": {
+      "challenge": "De uitdaging",
+      "approach": "Mijn aanpak",
+      "result": "Het resultaat",
+      "link": "Bekijk op GitHub"
+    },
+    "items": [
+      {
+        "id": "leishmania-data-rescue",
+        "title": "Herannotatie van het Leishmania-genoom met Ribo-Seq",
+        "type": "Analyse van genomische data & bio-informatica",
+        "year": "2023",
+        "challenge": "De genoomannotatie van Leishmania donovani miste regio's die de parasiet wel degelijk in eiwit vertaalt.",
+        "approach": "Ik ontwierp en analyseerde Ribo-Seq-experimenten (door ribosomen beschermde mRNA-fragmenten) met Python- en Bash-scripts, geparallelliseerd met GNU Parallel, om vertaalde leesramen op te sporen.",
+        "result": "Verfijnde genoomannotatie, gepubliceerd in Genes (2023) als eerste auteur. DOI 10.3390/genes14081637.",
+        "tech": [
+          "Python",
+          "Bash",
+          "GNU Parallel",
+          "Linux",
+          "Ribo-Seq"
+        ],
+        "link": "https://github.com/CBMSO-L302",
+        "category": "bio"
+      },
+      {
+        "id": "sextant-ia",
+        "title": "Sextant IA",
+        "type": "Eigen project · Generatieve AI & product",
+        "year": "2025",
+        "challenge": "Een reis op maat plannen kost uren zoekwerk en bevat zelden de historische of culturele context van elke plek.",
+        "approach": "Een backend die LLM's in fasen orkestreert: hij selecteert plekken op basis van de voorkeuren van de reiziger, laat die kiezen, bouwt een dag-tot-dag-skelet en genereert elke dag parallel met culturele context. Frontend in Django.",
+        "result": "Publieke website in productie, met HTTPS en continuous deployment.",
+        "tech": [
+          "Python",
+          "Django",
+          "LLMs",
+          "Prompt Engineering",
+          "REST API",
+          "Oracle Cloud",
+          "Nginx & HTTPS",
+          "CI/CD"
+        ],
+        "link": "https://sextantia.eu",
+        "link_label": "Bezoek sextantia.eu",
+        "featured": true,
+        "badge": "In productie",
+        "story": "Sextant IA combineert twee interesses van mij: reizen en geschiedenis. Ik heb het helemaal zelf ontworpen, gebouwd en uitgerold: architectuur, LLM-backend, Django-frontend en livegang.",
+        "production_note": "Sextant IA is gepubliceerd en draait in productie op sextantia.eu.",
+        "impact": [
+          "Zet de voorkeuren van de gebruiker om in een volledige reisroute, opgedeeld in dagplannen.",
+          "Voegt automatisch culturele en historische context toe aan elke plek.",
+          "Eigen server op Oracle Cloud met Nginx en HTTPS; elke wijziging in main gaat automatisch live."
+        ],
+        "image": "assets/images/SextantIA.png",
+        "category": "ai"
+      },
+      {
+        "id": "leishmania-proteogenomics",
+        "title": "Proteogenomics van Leishmania donovani",
+        "type": "Bio-informatica & proteomics",
+        "year": "2024",
+        "challenge": "Het referentiegenoom van Leishmania donovani omvatte niet alle eiwitten die de parasiet werkelijk aanmaakt.",
+        "approach": "Ik integreerde massaspectrometriedata met de genoomannotatie en valideerde de kandidaat-coderende sequenties statistisch.",
+        "result": "Identificatie van eerder niet-geannoteerde eiwitten, gepubliceerd in Genes (2024). DOI 10.3390/genes15060775.",
+        "tech": [
+          "Python",
+          "R",
+          "Computationele proteomics",
+          "Statistische validatie"
+        ],
+        "link": "",
+        "category": "bio"
+      },
+      {
+        "id": "clinical-trial-dashboard",
+        "title": "Dashboard voor klinische studie (R Shiny)",
+        "type": "Klinische analyse & visualisatie · Eigen project",
+        "year": "2026",
+        "challenge": "Snel de resultaten van een klinische studie verkennen per behandelarm en patiëntsubgroep.",
+        "approach": "Interactief dashboard over een gesimuleerde studie met 500 patiënten en drie armen (placebo, middel A en B): filters op behandeling en geslacht, KPI's en grafieken van de biomarkerrespons, gebouwd met Shiny-modules en eigen CSS.",
+        "result": "App uitgerold op shinyapps.io. De data zijn gesimuleerd en vertegenwoordigen geen echte patiënten.",
+        "tech": [
+          "R",
+          "Shiny",
+          "shinydashboard",
+          "dplyr",
+          "ggplot2",
+          "plotly"
+        ],
+        "link": "https://asansal.shinyapps.io/Clinical_Data_Dashboard/",
+        "link_label": "Bekijk demo",
+        "category": "data"
+      },
+      {
+        "id": "dsmarket",
+        "title": "DSMarket: retail forecasting",
+        "type": "Data Science & Business Intelligence",
+        "year": "2025",
+        "challenge": "Een keten met 3.049 producten en 10 winkels moest de wekelijkse vraag voorspellen om de voorraad te plannen.",
+        "approach": "Ik bereidde 5 jaar verkoopdata voor (6,7 miljoen rijen) met features voor prijs, kalender, weer en evenementen, segmenteerde producten met K-Means en vergeleek Lasso en XGBoost met tijdreekskruisvalidatie en Optuna.",
+        "result": "Het uiteindelijke model verbeterde RMSE met 10% en WMAPE met 13% ten opzichte van een naïeve baseline op een testset van 9 weken, met een Power BI-dashboard per regio, winkel en segment.",
+        "tech": [
+          "Python",
+          "Scikit-learn",
+          "XGBoost",
+          "Optuna",
+          "SQL",
+          "Power BI",
+          "Tijdreeksen",
+          "Clustering"
+        ],
+        "link": "https://github.com/asansal/DS_market_Capstone",
+        "category": "data"
+      },
+      {
+        "id": "portfolio-web",
+        "year": "2026",
+        "link": "https://github.com/asansal/Personal_Website",
+        "title": "Dit portfolio: AI-ondersteunde website met continuous deployment",
+        "type": "Generatieve AI & MLOps · Eigen project",
+        "challenge": "Ik wilde een meertalig portfolio met een assistent die vragen over mijn loopbaan beantwoordt en zichzelf bijwerkt.",
+        "approach": "Streamlit en een Google Gemini-chatbot die antwoordt vanuit mijn eigen kennisbank. Linux-server op Oracle Cloud, uitgerold met GitHub Actions bij elke push.",
+        "result": "Website in productie in zes talen, continu uitgerold zonder handmatige stappen.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Google Gemini API",
+          "GitHub Actions",
+          "Oracle Cloud",
+          "Linux & systemd"
+        ],
+        "category": "ai"
+      },
+      {
+        "id": "transcriptomics-algae",
+        "title": "Omgevingstranscriptomics in aquatische ecosystemen",
+        "type": "Bio-informatica & HPC",
+        "year": "2022",
+        "challenge": "De analyse van microbiële gemeenschappen in voedselarme meren leverde meer data op dan lokaal te verwerken was.",
+        "approach": "Ik zette hybride lokale/HPC-workflows op met Slurm om transcriptomen de novo te assembleren en paste multivariate statistiek toe in R.",
+        "result": "Volledige analyse van de gemeenschappen met optimaal gebruik van beperkte rekenkracht.",
+        "tech": [
+          "R",
+          "HPC (Slurm)",
+          "Multivariate statistiek",
+          "Transcriptomics"
+        ],
+        "link": "",
+        "category": "bio"
+      },
+      {
+        "id": "hackathon-parking",
+        "title": "Stedelijke parkeerassistent (hackathon)",
+        "type": "Automatisering & chatbots · 2e prijs, No-Code Automation Hackathon Madrid",
+        "year": "2025",
+        "challenge": "Legaal parkeren in Madrid vraagt om het combineren van de regels per zone, het milieulabel van het voertuig en de realtime locatie.",
+        "approach": "In één weekend bouwden we als team een conversationele assistent met Make en Woztell die kenteken, milieulabel en GPS-locatie combineert.",
+        "result": "2e prijs met een werkend prototype dat zegt of je mag parkeren of je naar de dichtstbijzijnde legale parkeerplaats leidt.",
+        "tech": [
+          "Make",
+          "Woztell",
+          "Automatisering",
+          "API-integraties",
+          "Chatbot"
+        ],
+        "image": "assets/images/Hackathon.png",
+        "link": "",
+        "category": "ai"
+      }
+    ],
+    "categories": [
+      {
+        "id": "bio",
+        "title": "Bio-informatica & genomica"
+      },
+      {
+        "id": "data",
+        "title": "Klinische data & analytics"
+      },
+      {
+        "id": "ai",
+        "title": "AI, product & automatisering"
+      }
+    ],
+    "projects_word": [
+      "project",
+      "projecten"
+    ],
+    "category_hint": "Kies een categorie om de projecten te zien."
+  },
+  "tableau_section": {
+    "title": "Tableau-portfolio",
+    "intro": "Mijn dashboards op Tableau Public, over business en gezondheid.",
+    "profile_label": "Bekijk mijn Tableau Public-profiel",
+    "open_label": "Open dashboard ↗",
+    "live_title": "Live verkennen",
+    "select_label": "Kies een dashboard",
+    "groups": {
+      "business": "Business & analytics",
+      "health": "Gezondheid & wetenschap"
+    },
+    "profile_url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/vizzes",
+    "items": [
+      {
+        "group": "business",
+        "title": "E-Commerce Retention & Customer Value Analysis (RFM)",
+        "description": "Een jaar aan transacties om cohortretentie te analyseren en waardevolle segmenten te vinden (RFM).",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Retail_II/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Daikibo Manufacturing — Deloitte",
+        "description": "Productietelemetrie: verbanden tussen apparaatstoringen, temperatuur en locatie om stilstand te verminderen. Uitgebreide jobsimulatie van Deloitte.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/DaikiboManufacturing-Deloitte/DaikiboManufacturing"
+      },
+      {
+        "group": "business",
+        "title": "Market Concentration Monitor: \"Magnificent 7\" vs. S&P 500",
+        "description": "Data opgehaald met Python (yfinance): genormaliseerd rendement, risico/rendement en volatiliteit.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/MarketConcentrationMonitor/Dashboard1"
+      },
+      {
+        "group": "business",
+        "title": "Corporate Equity Monitor: Pay Gap & Parity",
+        "description": "Loonkloof tussen mannen en vrouwen en evenwichtige vertegenwoordiging in twee gesimuleerde bedrijfsculturen.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CorporateEquityMonitorPayGapParityAnalysis/Corporate_Parity_Analysis"
+      },
+      {
+        "group": "business",
+        "title": "NovaTech: Capital Allocation Flow",
+        "description": "Sankey-diagram dat regionale omzet volgt tot het netto bedrijfsresultaat en de marges.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/Sankey_NovaTech/NovaTechM_SciFi_"
+      },
+      {
+        "group": "business",
+        "title": "Gasto I+D+i Spain 2023",
+        "description": "Analyse van de uitgaven aan onderzoek, ontwikkeling en innovatie in Spanje in 2023.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/GastoIDISpain2023/Dashboard1"
+      },
+      {
+        "group": "health",
+        "title": "Viscerale leishmaniasis (VL) — kaart en gevallen per jaar",
+        "description": "Geografische spreiding en jaarlijkse trend van gevallen van viscerale leishmaniasis op basis van WHO-data.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/VisceralLeishmaniasisVL-Mapandcasesperyear/VL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutane leishmaniasis (CL) — kaart en gevallen per jaar",
+        "description": "Wereldkaart en jaarlijkse gevallen van cutane leishmaniasis op basis van WHO-data.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasisCL-Mapandcasesperyear/CL_Dashboard_map_countries"
+      },
+      {
+        "group": "health",
+        "title": "Cutane leishmaniasis — endemisch",
+        "description": "Endemische status van cutane leishmaniasis per land en jaar.",
+        "url": "https://public.tableau.com/app/profile/alejandro.sanchez2642/viz/CutaneousLeishmaniasis-Endemic/CL_VL_Dashboard_year"
+      }
+    ]
+  },
+  "certifications_section": {
+    "title": "Certificeringen & talen",
+    "languages": {
+      "title": "Talen",
+      "items": [
+        {
+          "language": "Spaans",
+          "level": "Moedertaal",
+          "proficiency": "C2"
+        },
+        {
+          "language": "Engels",
+          "level": "Vloeiend / professioneel",
+          "proficiency": "C1",
+          "certification": "Cambridge Advanced English"
+        },
+        {
+          "language": "Duits",
+          "level": "Gemiddeld",
+          "proficiency": "B1",
+          "certification": "Dagelijks professioneel gebruik (2 jaar in Duitsland)"
+        },
+        {
+          "language": "Frans",
+          "level": "Basis",
+          "proficiency": "A2"
+        }
+      ]
+    },
+    "certifications": {
+      "title": "Certificeringen",
+      "items": [
+        {
+          "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
+          "issuer": "The Global Health Network",
+          "year": "2025",
+          "type": "Technische certificering",
+          "category": "life"
+        },
+        {
+          "name": "AVG (GDPR) in de zorg",
+          "issuer": "Alison",
+          "year": "2025",
+          "type": "Technische certificering",
+          "category": "life"
+        },
+        {
+          "name": "Power BI - Data Analytics & Visualization",
+          "issuer": "Banco Santander | Santander Open Academy",
+          "year": "2025",
+          "type": "Professionele certificering",
+          "category": "data"
+        },
+        {
+          "name": "Data Analytics Job Simulation",
+          "issuer": "Deloitte - Forage",
+          "year": "2026",
+          "type": "Professionele certificering",
+          "category": "data"
+        },
+        {
+          "name": "Data Analytics Essentials",
+          "issuer": "Cisco Networking Academy",
+          "year": "2025",
+          "type": "Professionele certificering",
+          "category": "data"
+        },
+        {
+          "name": "Big Data in the Transportation Sector",
+          "issuer": "Fundación Maude",
+          "year": "2025",
+          "type": "Specialisatiecursus",
+          "category": "data"
+        }
+      ],
+      "categories": [
+        {
+          "id": "data",
+          "title": "Data & analytics"
+        },
+        {
+          "id": "life",
+          "title": "Gezondheid & Life Sciences"
+        }
+      ]
+    }
+  },
+  "publications_section": {
+    "title": "Wetenschappelijke publicaties",
+    "intro": "Peer-reviewed publicaties (2 als eerste auteur).",
+    "link_label": "Bekijk publicatie",
+    "items": [
+      {
+        "title": "A Proteogenomic Approach to Unravel New Proteins Encoded in the Leishmania donovani (HU3) Genome",
+        "authors": "J. Adán-Jiménez, A. Sánchez-Salvador, E. Morato, J.C. Solana, B. Aguado, J.M. Requena",
+        "journal": "Genes",
+        "year": "2024",
+        "doi": "10.3390/genes15060775",
+        "type": "Wetenschappelijk artikel",
+        "description": "Integratie van massaspectrometrie met genomica en statistische validatie van nieuwe coderende sequenties.",
+        "summary": "Proteomics is afhankelijk van een nauwkeurige genoomannotatie: ontbreken er genen of eiwitten, dan gaat een deel van de data verloren. Met een proteogenomische strategie genereerden we massaspectrometriedata van promastigoten van L. donovani (stam HU3) en detecteerden we 1.908 eiwitten met de publieke annotaties. Door dezelfde data te doorzoeken tegen alle open leesramen van het genoom konden we 20 nieuwe eiwitcoderende genen annoteren en het N-terminale uiteinde van 43 eiwitten verlengen. Ook vonden we veel posttranslationele modificaties (fosforylering, acetylering, methylering …) en lieten we, in vergelijking met het proteoom van L. major, zien hoe proteomen vergelijken op basis van alleen eiwitlijsten tot verkeerde conclusies kan leiden.",
+        "highlights": [
+          "1.908 eiwitten gedetecteerd in promastigoten van L. donovani.",
+          "20 nieuwe eiwitcoderende genen en 43 eiwitten verlengd aan hun N-terminale uiteinde.",
+          "Ruwe data op ProteomeXchange (PXD051920) en bijgewerkte genmodellen in open repositories."
+        ],
+        "image_caption": "(A) Massaspectra van peptiden die het coderende gebied van LdHU3_22.1300 verlengen. (B) Alignment van dat gebied met andere Leishmania-soorten.",
+        "image": "assets/images/genes-15-00775-g003.png"
+      },
+      {
+        "title": "Refinement of Leishmania donovani Genome Annotations in the Light of Ribosome-Protected mRNAs Fragments (Ribo-Seq Data)",
+        "authors": "A. Sánchez-Salvador, S. González-de la Fuente, B. Aguado, P.A. Yates, J.M. Requena",
+        "journal": "Genes",
+        "year": "2023",
+        "doi": "10.3390/genes14081637",
+        "type": "Wetenschappelijk artikel",
+        "description": "Eerste auteur. Analyse van Ribo-Seq-data en eigen scripts om vertaalde open leesramen (ORF's) op te sporen.",
+        "summary": "Automatische genoomannotatie moet worden gecureerd met functionele data. We gebruikten publieke Ribo-Seq-data, de sequencing van door ribosomen beschermde mRNA-fragmenten, om de annotatie van het genoom van L. donovani (stam HU3) te verfijnen. We ontdekten 70 eerder niet-geannoteerde eiwitcoderende genen, verbeterden de annotatie van zo'n 600 genen en vonden in veel transcripten kleine stroomopwaartse open leesramen (uORF's), wat wijst op een rol in de regulatie van translatie. De bio-informatica-pipelines die we ontwikkelden zijn toepasbaar op elk organisme met Ribo-Seq-data.",
+        "highlights": [
+          "70 nieuwe eiwitcoderende genen.",
+          "Zo'n 600 genen met verbeterde annotatie.",
+          "Herbruikbare bio-informatica-pipelines voor andere organismen met Ribo-Seq-data."
+        ],
+        "image_caption": "(A) De Ribo-Seq-dekking onthult een niet-geannoteerd coderend gen (LDHU3_36.4050). (B) De conservering ervan in andere Leishmania-soorten.",
+        "image": "assets/images/genes-14-01637-g001.png"
+      },
+      {
+        "title": "Structural determinants responsible for the preferential insertion of ribonucleotides by bacterial NHEJ poldom",
+        "authors": "A. Sánchez-Salvador, M. de Vega",
+        "journal": "Biomolecules",
+        "year": "2020",
+        "doi": "10.3390/biom10020203",
+        "type": "Wetenschappelijk artikel",
+        "description": "Eerste auteur. Resultaat van mijn masterscriptie microbiologie over bacteriële DNA-reparatie.",
+        "summary": "Het polymerisatiedomein (PolDom) van bacterieel Ligase D herstelt dubbelstrengs DNA-breuken via niet-homologe eindverbinding (NHEJ) en geeft de voorkeur aan ribonucleotiden (NTP's) boven deoxynucleotiden, wat cruciaal is wanneer de cel weinig dNTP's heeft. We analyseerden biochemisch PolDom-varianten van Pseudomonas aeruginosa op drie geconserveerde residuen (His651, Ser768 en Lys606). Het histidine is de belangrijkste factor voor de voorkeur voor ribonucleotiden en voor de plasticiteit van het actieve centrum, terwijl Lys606 primerverschuivingen stabiliseert. Daarnaast gebruikt PolDom efficiënt 8oxoGTP, een nucleotidebeschadiging door oxidatieve stress.",
+        "highlights": [
+          "His651 bepaalt de voorkeur voor ribonucleotiden.",
+          "Lys606 stabiliseert primerverschuivingen.",
+          "Efficiënte inbouw van 8oxoGMP in zowel de anti- als de syn-conformatie."
+        ],
+        "image_caption": "Kinetiek van primerverlenging van wildtype-PolDom en zijn serine- en histidinevarianten, met ribonucleotiden versus deoxynucleotiden.",
+        "image": "assets/images/biomolecules-10-00203-g002.png"
+      }
+    ],
+    "labels": {
+      "summary": "Samenvatting",
+      "highlights": "Belangrijkste resultaten"
+    }
+  },
+  "chatbot_config": {
+    "title": "Virtuele AI-assistent",
+    "status_text": "Online",
+    "welcome_title": "Welkom!",
+    "welcome_message": "Ik ben de assistent van Alejandro. Vraag me naar zijn ervaring, zijn projecten of zijn Tableau-portfolio.",
+    "input_placeholder": "Typ je vraag...",
+    "suggestions": [
+      {
+        "label": "Zijn profiel",
+        "msg": "Wat kun je bijdragen aan een bedrijf in farma, gezondheid of Life Sciences?"
+      },
+      {
+        "label": "Sextant IA",
+        "msg": "Vertel me over Sextant IA"
+      },
+      {
+        "label": "Tableau",
+        "msg": "Welke dashboards heb je op Tableau?"
+      }
+    ],
+    "error_timeout": "Sorry, het antwoord duurde te lang. Probeer het opnieuw.",
+    "error_connection": "Interne fout: kon geen verbinding maken met de server.",
+    "trigger_label": "Vraag het mijn AI",
+    "disclaimer": "Door AI gegenereerde antwoorden op basis van mijn cv; ze kunnen fouten bevatten."
+  },
+  "cv_download_text": "Cv in het Engels",
+  "contact_section": {
+    "title": "Laten we praten",
+    "cta": "Past mijn profiel?",
+    "description": "Als je het leuk vond wat je zag, of als mijn profiel past bij een project of functie waarvoor je iemand zoekt, neem dan gerust contact op. Ik ben vooral geïnteresseerd in Data Science en AI in farma, gezondheid en Life Sciences, maar sta ook open voor andere sectoren.",
+    "availability": "Beschikbaar voor fulltime functies · Remote, hybride of op locatie.",
+    "contact_methods": {
+      "email": "asansal@outlook.es",
+      "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
+      "github": "https://github.com/asansal"
+    },
+    "email_title": "Stuur me een e-mail",
+    "email_button": "Schrijf een e-mail",
+    "copy_hint": "Of kopieer het adres:",
+    "other_title": "Andere manieren om contact op te nemen",
+    "linkedin_desc": "Laten we connecten en over kansen praten",
+    "github_desc": "De code achter mijn projecten"
+  },
+  "seo": {
+    "meta_title": "Alejandro Sánchez | Data Scientist · Bio-informatica & AI voor farma, gezondheid en Life Sciences",
+    "meta_description": "Data Scientist met een achtergrond in biologie en bio-informatica (CBM-CSIC, Universität Konstanz). Machine Learning, generatieve AI en analyse van biomedische data voor farma, gezondheid en Life Sciences.",
+    "keywords": [
+      "Data Scientist",
+      "AI Engineer",
+      "Pharma",
+      "Gezondheidszorg",
+      "Life Sciences",
+      "Bio-informatica",
+      "Machine Learning",
+      "Generatieve AI",
+      "LLM",
+      "Python",
+      "R",
+      "Tableau",
+      "Genomica",
+      "Data Analyst",
+      "R Shiny"
+    ]
+  }
+}
