@@ -2052,3 +2052,105 @@ iframe[src*="public.tableau.com"] {
 .channel-name { font-weight: 600; font-size: 1.05rem; color: #ffffff; }
 .channel-desc { font-size: 0.86rem; color: rgba(255, 255, 255, 0.6); }
 .channel-arrow { color: rgba(255, 255, 255, 0.5); font-size: 20px; }
+
+/* ============================================================
+   PORTADA: cabecera con resumen e invitación a explorar
+   ============================================================ */
+.home-kicker {
+    margin: 0 0 0.4rem 0 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00d4aa !important;
+}
+
+.home-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 !important;
+    font-size: 0.95rem !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.home-hint .ms-icon { color: #00d4aa; font-size: 20px; }
+
+.st-key-home-hero {
+    margin-bottom: 1.2rem;
+}
+
+/* ============================================================
+   SELECTOR DE IDIOMA (esquina superior derecha)
+   ============================================================ */
+.st-key-lang-corner {
+    position: fixed;
+    top: 0.75rem;
+    right: 4.2rem;
+    z-index: 999995;
+    width: auto !important;
+}
+
+.st-key-lang-corner [data-testid="stPopover"] button {
+    min-height: 0;
+    height: 40px;
+    padding: 0 0.7rem;
+    border-radius: 999px;
+    font-size: 1.25rem;
+    background: rgba(23, 30, 58, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+}
+
+.st-key-lang-corner [data-testid="stPopover"] button:hover {
+    border-color: #00d4aa;
+}
+
+/* Opciones del menú: filas limpias en lugar de botones verdes */
+[class*="st-key-lang_opt_"] div.stButton > button {
+    justify-content: flex-start;
+    padding: 0.5rem 0.8rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: normal;
+    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+[class*="st-key-lang_opt_"] div.stButton > button p { color: inherit !important; }
+[class*="st-key-lang_opt_"] div.stButton > button::before { display: none; }
+
+[class*="st-key-lang_opt_"] div.stButton > button:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: none;
+    box-shadow: none;
+}
+
+[class*="st-key-lang_opt_"] div.stButton > button[data-testid="stBaseButton-primary"] {
+    background: rgba(0, 212, 170, 0.12);
+    border-color: rgba(0, 212, 170, 0.45);
+    color: #00d4aa;
+}
+
+@media (max-width: 640px) {
+    .st-key-lang-corner { top: 0.6rem; right: 3.4rem; }
+}
+
+[class*="st-key-lang_opt_"] div.stButton > button > div {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+[class*="st-key-lang_opt_"] div.stButton > button [data-testid="stMarkdownContainer"] {
+    text-align: left;
+}
+
+@media (max-width: 640px) {
+    .st-key-home-hero h1 { font-size: 1.85rem !important; }
+    .home-subtitle { font-size: 1rem !important; }
+}

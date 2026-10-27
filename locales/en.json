@@ -2,15 +2,18 @@
   "profile": {
     "name": "Alejandro Sánchez",
     "role": "Data Scientist · Bioinformatics & AI for Pharma, Health and Life Sciences",
-    "tagline": "Data Science and AI applied to health",
-    "subtitle": "Biologist and bioinformatician. I analyse biomedical data and build Machine Learning and AI solutions, from analysis to production.",
+    "tagline": "Turning biomedical data into decisions with Data Science and AI",
+    "subtitle": "4+ years analysing genomic data at CBM-CSIC and Universität Konstanz, with 3 publications and a Master's in Data Science & AI. I have built bioinformatics pipelines, Machine Learning models, clinical dashboards and Sextant IA, an LLM application in production. Today I design bioinformatics problems to train AI models.",
     "location": "Madrid, Spain",
     "availability": "Open to full-time roles · Remote, hybrid or on-site · Open to relocation",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
       "email": "asansal@outlook.es"
-    }
+    },
+    "kicker": "Data Science · Bioinformatics · AI",
+    "explore_hint": "Explore my experience, projects and tech stack in the sections below, or ask my AI assistant directly.",
+    "ask_ai": "Ask my AI"
   },
   "navigation": {
     "back_home": "Back to Home",

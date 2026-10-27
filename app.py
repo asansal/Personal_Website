@@ -71,6 +71,23 @@ if meta_desc:
         unsafe_allow_html=True,
     )
 
+# --- LANGUAGE PICKER (top-right corner) ---
+def set_language(code: str) -> None:
+    st.session_state.lang = code
+
+
+with st.container(key="lang-corner"):
+    with st.popover(languages.get(st.session_state.lang, {}).get("flag", "🌐")):
+        for code, info in languages.items():
+            st.button(
+                f"{info.get('flag', '')}  {info.get('name', code)}",
+                key=f"lang_opt_{code}",
+                on_click=set_language,
+                args=(code,),
+                type="primary" if code == st.session_state.lang else "secondary",
+                width="stretch",
+            )
+
 # --- SOCIAL ICONS (inline SVG brand logos) ---
 SOCIAL_ICONS = {
     "linkedin": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
@@ -249,8 +266,39 @@ HAS_TABLEAU = bool(tableau_data.get("profile_url") or tableau_data.get("items"))
 def render_home() -> None:
     profile = texts.get("profile", {})
     with st.container(key="home-hero"):
+        st.markdown(f'<p class="home-kicker">{_html.escape(profile.get("kicker", ""))}</p>', unsafe_allow_html=True)
         st.title(profile.get("tagline", ""))
-        st.markdown(f'<p class="home-subtitle">{profile.get("subtitle", "")}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="home-subtitle">{_html.escape(profile.get("subtitle", ""))}</p>', unsafe_allow_html=True)
+
+        # Invitation to explore, plus a button that opens the chatbot (only when it is available)
+        hint_col, ask_col = st.columns([3, 1], vertical_alignment="center") if GENAI_API_KEY else (st.container(), None)
+        with hint_col:
+            st.markdown(
+                f'<p class="home-hint"><span class="ms-icon">south</span>{_html.escape(profile.get("explore_hint", ""))}</p>',
+                unsafe_allow_html=True,
+            )
+        if ask_col is not None:
+            with ask_col:
+                # The chatbot lives in the parent document; this small iframe just clicks its trigger
+                components.html(
+                    f"""<button id="ask" type="button">&#10022;&nbsp; {_html.escape(profile.get("ask_ai", "Ask my AI"))}</button>
+                    <style>
+                      body {{ margin: 0; font-family: 'DM Sans', system-ui, sans-serif; }}
+                      #ask {{ width: 100%; height: 46px; border: 0; border-radius: 999px; cursor: pointer;
+                              font: 600 15px 'DM Sans', system-ui, sans-serif; color: #0a0e27;
+                              background: linear-gradient(135deg, #00d4aa 0%, #3d9bff 100%);
+                              transition: transform .2s ease; }}
+                      #ask:hover {{ transform: translateY(-2px); }}
+                    </style>
+                    <script>
+                      document.getElementById('ask').addEventListener('click', function () {{
+                        const trigger = window.parent.document.getElementById('chatbotTrigger');
+                        const popup = window.parent.document.getElementById('chatbotPopup');
+                        if (trigger && popup && !popup.classList.contains('active')) trigger.click();
+                      }});
+                    </script>""",
+                    height=50,
+                )
 
     cards = nav_data.get("cards", {})
 
