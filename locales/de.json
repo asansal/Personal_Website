@@ -40,27 +40,59 @@
     "text_short": "Data Scientist mit Hintergrund in Biologie, Bioinformatik und Biostatistik. Über 4 Jahre Forschung am CBM Severo Ochoa (CSIC-UAM) und an der Universität Konstanz, 3 Publikationen und ein Master in Data Science & KI. Ich setze Machine Learning und generative KI für biomedizinische Daten ein und bringe Lösungen in die Produktion, wie Sextant IA."
   },
   "value_proposition": {
-    "title": "Was ich in Pharma, Gesundheit und Life Sciences einbringe",
-    "points": [
+    "title": "Was ich einbringe",
+    "columns": [
       {
-        "icon": "dna",
-        "title": "Biomedizinisches Fachwissen",
-        "description": "Molekularbiologie, Genomik und Laborarbeit: Ich weiß, woher jeder biomedizinische Datenpunkt stammt und wo seine Grenzen liegen, bevor ich modelliere."
+        "id": "data",
+        "title": "Daten & KI",
+        "points": [
+          {
+            "icon": "rocket",
+            "title": "Data Science und KI von Anfang bis Ende",
+            "description": "Von Analyse und Machine Learning bis zu generativer KI und Deployment. Sextant IA, mein eigenes Projekt, läuft in Produktion."
+          },
+          {
+            "icon": "chart",
+            "title": "Machine Learning und angewandte Statistik",
+            "description": "Regression, Clustering, Zeitreihen und statistische Validierung mit Python und R, mit expliziten Metriken und Annahmen."
+          },
+          {
+            "icon": "ai",
+            "title": "Generative KI und LLMs",
+            "description": "LLM-Orchestrierung, Prompt Engineering und Modellevaluation (RLHF). Heute entwerfe ich Bioinformatik-Aufgaben zum Training von KI-Modellen."
+          },
+          {
+            "icon": "cloud",
+            "title": "Engineering und Deployment",
+            "description": "Reproduzierbare Pipelines, HPC, CI/CD und Cloud-Server: Meine Lösungen gehen in Produktion und laufen stabil."
+          }
+        ]
       },
       {
-        "icon": "analytics",
-        "title": "Präzision, Reproduzierbarkeit und Compliance",
-        "description": "Statistische Validierung, Nachvollziehbarkeit und Reproduzierbarkeit, mit Schulungen in ICH-GCP E6 (R3) und DSGVO im Gesundheitswesen."
-      },
-      {
-        "icon": "rocket",
-        "title": "Data Science und KI von Anfang bis Ende",
-        "description": "Von Analyse und Machine Learning bis zu generativer KI und Deployment. Sextant IA, mein eigenes Projekt, läuft in Produktion."
-      },
-      {
-        "icon": "collaboration",
-        "title": "Brücke zwischen Wissenschaft und Business",
-        "description": "Ich habe 8 Studierende und technische Mitarbeitende betreut, Dienstleister koordiniert und mache Ergebnisse mit Dashboards in Tableau und Power BI entscheidungsreif."
+        "id": "life",
+        "title": "Life Sciences",
+        "points": [
+          {
+            "icon": "dna",
+            "title": "Biomedizinisches Fachwissen",
+            "description": "Molekularbiologie, Genomik und Laborarbeit: Ich weiß, woher jeder biomedizinische Datenpunkt stammt und wo seine Grenzen liegen, bevor ich modelliere."
+          },
+          {
+            "icon": "genetics",
+            "title": "Bioinformatik und Genomik",
+            "description": "NGS, Transkriptomik, Proteogenomik und Ribo-Seq: mehr als 1 TB genomischer Daten analysiert und 3 Peer-Review-Publikationen."
+          },
+          {
+            "icon": "analytics",
+            "title": "Präzision, Reproduzierbarkeit und Compliance",
+            "description": "Statistische Validierung, Nachvollziehbarkeit und Reproduzierbarkeit, mit Schulungen in ICH-GCP E6 (R3) und DSGVO im Gesundheitswesen."
+          },
+          {
+            "icon": "collaboration",
+            "title": "Brücke zwischen Wissenschaft und Business",
+            "description": "Ich habe 8 Studierende und technische Mitarbeitende betreut, Dienstleister koordiniert und mache Ergebnisse mit Dashboards in Tableau und Power BI entscheidungsreif."
+          }
+        ]
       }
     ]
   },
@@ -299,7 +331,8 @@
           "Quantitative Kulturtechniken und Genexpressionsanalyse mittels qPCR."
         ]
       }
-    ]
+    ],
+    "degrees_title": "Akademische Ausbildung"
   },
   "projects_section": {
     "title": "Projekte",
@@ -326,7 +359,8 @@
           "Linux",
           "Ribo-Seq"
         ],
-        "link": "https://github.com/CBMSO-L302"
+        "link": "https://github.com/CBMSO-L302",
+        "category": "bio"
       },
       {
         "id": "sextant-ia",
@@ -357,7 +391,8 @@
           "Ergänzt automatisch kulturellen und historischen Kontext zu jedem Ort.",
           "Eigener Server in Oracle Cloud mit Nginx und HTTPS; jede Änderung auf main geht automatisch live."
         ],
-        "image": "assets/images/SextantIA.png"
+        "image": "assets/images/SextantIA.png",
+        "category": "ai"
       },
       {
         "id": "leishmania-proteogenomics",
@@ -373,7 +408,8 @@
           "Computergestützte Proteomik",
           "Statistische Validierung"
         ],
-        "link": ""
+        "link": "",
+        "category": "bio"
       },
       {
         "id": "clinical-trial-dashboard",
@@ -392,7 +428,8 @@
           "plotly"
         ],
         "link": "https://asansal.shinyapps.io/Clinical_Data_Dashboard/",
-        "link_label": "Demo ansehen"
+        "link_label": "Demo ansehen",
+        "category": "data"
       },
       {
         "id": "dsmarket",
@@ -412,7 +449,8 @@
           "Zeitreihen",
           "Clustering"
         ],
-        "link": "https://github.com/asansal/DS_market_Capstone"
+        "link": "https://github.com/asansal/DS_market_Capstone",
+        "category": "data"
       },
       {
         "id": "portfolio-web",
@@ -430,7 +468,8 @@
           "GitHub Actions",
           "Oracle Cloud",
           "Linux & systemd"
-        ]
+        ],
+        "category": "ai"
       },
       {
         "id": "transcriptomics-algae",
@@ -446,7 +485,8 @@
           "Multivariate Statistik",
           "Transkriptomik"
         ],
-        "link": ""
+        "link": "",
+        "category": "bio"
       },
       {
         "id": "hackathon-parking",
@@ -464,9 +504,29 @@
           "Chatbot"
         ],
         "image": "assets/images/Hackathon.png",
-        "link": ""
+        "link": "",
+        "category": "ai"
       }
-    ]
+    ],
+    "categories": [
+      {
+        "id": "bio",
+        "title": "Bioinformatik & Genomik"
+      },
+      {
+        "id": "data",
+        "title": "Klinische Daten & Analytik"
+      },
+      {
+        "id": "ai",
+        "title": "KI, Produkt & Automatisierung"
+      }
+    ],
+    "projects_word": [
+      "Projekt",
+      "Projekte"
+    ],
+    "category_hint": "Wählen Sie eine Kategorie, um ihre Projekte zu sehen."
   },
   "tableau_section": {
     "title": "Tableau-Portfolio",
@@ -573,37 +633,53 @@
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",
           "year": "2025",
-          "type": "Technisches Zertifikat"
+          "type": "Technisches Zertifikat",
+          "category": "life"
         },
         {
           "name": "GDPR for Healthcare",
           "issuer": "Alison",
           "year": "2025",
-          "type": "Technisches Zertifikat"
+          "type": "Technisches Zertifikat",
+          "category": "life"
         },
         {
           "name": "Power BI - Data Analytics & Visualization",
           "issuer": "Banco Santander | Santander Open Academy",
           "year": "2025",
-          "type": "Berufliches Zertifikat"
+          "type": "Berufliches Zertifikat",
+          "category": "data"
         },
         {
           "name": "Data Analytics Job Simulation",
           "issuer": "Deloitte - Forage",
           "year": "2026",
-          "type": "Berufliches Zertifikat"
+          "type": "Berufliches Zertifikat",
+          "category": "data"
         },
         {
           "name": "Data Analytics Essentials",
           "issuer": "Cisco Networking Academy",
           "year": "2025",
-          "type": "Berufliches Zertifikat"
+          "type": "Berufliches Zertifikat",
+          "category": "data"
         },
         {
           "name": "Big Data in the Transportation Sector",
           "issuer": "Fundación Maude",
           "year": "2025",
-          "type": "Fachkurs"
+          "type": "Fachkurs",
+          "category": "data"
+        }
+      ],
+      "categories": [
+        {
+          "id": "data",
+          "title": "Daten & Analytik"
+        },
+        {
+          "id": "life",
+          "title": "Gesundheit & Life Sciences"
         }
       ]
     }

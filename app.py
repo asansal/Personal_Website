@@ -263,6 +263,16 @@ def render_home() -> None:
                     )
 
 
+def render_job(item: dict) -> None:
+    """One job as a collapsed expander: role and company visible, details on demand."""
+    with st.expander(f"**{item.get('role')}** · {item.get('company')}"):
+        st.caption(f"{item.get('period')} · {item.get('location')} · {item.get('type')}")
+        st.write(item.get("story", ""))
+        for achievement in item.get("impact", []):
+            st.markdown(f"- {achievement}")
+        st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+
+
 def render_experience() -> None:
     exp_data = texts.get("experience_section", {})
     st.header(exp_data.get("title", "Experience"))
@@ -271,25 +281,13 @@ def render_experience() -> None:
     section_intro(exp_data.get("intro", ""))
 
     for item in exp_data.get("items", []):
-        with st.container(border=True):
-            st.subheader(item.get("company", ""))
-            st.markdown(f"**{item.get('role')}** | {item.get('period')}")
-            st.caption(f"{item.get('location')} · {item.get('type')}")
-            st.write(item.get("story", ""))
-            for achievement in item.get("impact", []):
-                st.markdown(f"- {achievement}")
-            st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+        render_job(item)
 
     other_items = exp_data.get("other_items", [])
     if other_items:
         st.markdown(f"#### {exp_data.get('other_title', 'Other experience')}")
         for item in other_items:
-            with st.expander(f"**{item.get('role')}** · {item.get('company')} | {item.get('period')}"):
-                st.caption(f"{item.get('location')} · {item.get('type')}")
-                st.write(item.get("story", ""))
-                for achievement in item.get("impact", []):
-                    st.markdown(f"- {achievement}")
-                st.markdown(f"**Stack:** {tech_badges(item.get('stack', []))}")
+            render_job(item)
 
     st.divider()
 
@@ -306,15 +304,62 @@ def render_experience() -> None:
 
     st.divider()
 
+    # ── What I bring: two columns (Data & AI / Life Sciences), points fold out ──
     value_prop = texts.get("value_proposition", {})
-    st.header(value_prop.get("title", "Value Proposition"))
-    points = value_prop.get("points", [])
-    if points:
-        cols = st.columns(2, gap="medium")
-        for i, point in enumerate(points):
-            with cols[i % 2], st.container(border=True):
-                st.markdown(f"**{point.get('title', '')}**")
-                st.write(point.get("description", ""))
+    st.header(value_prop.get("title", "What I bring"))
+    columns = value_prop.get("columns", [])
+    if columns:
+        column_icons = {"data": "query_stats", "life": "biotech"}
+        for col, column in zip(st.columns(len(columns), gap="large"), columns):
+            with col, st.container(key=f"vp-{column.get('id')}"):
+                st.markdown(
+                    f'<div class="vp-header"><span class="ms-icon">{column_icons.get(column.get("id"), "star")}</span>'
+                    f'{column.get("title", "")}</div>',
+                    unsafe_allow_html=True,
+                )
+                for point in column.get("points", []):
+                    with st.expander(point.get("title", "")):
+                        st.write(point.get("description", ""))
+
+
+def render_project(item: dict, labels: dict) -> None:
+    """One project as a collapsed expander: title visible, the full case study inside."""
+    is_featured = item.get("featured", False)
+    with st.expander(f"**{item.get('title', '')}**"):
+        if is_featured and item.get("badge"):
+            st.markdown(f'<span class="featured-badge">{item.get("badge")}</span>', unsafe_allow_html=True)
+
+        if item.get("image"):
+            text_col, image_col = st.columns([3, 2], gap="large")
+        else:
+            text_col, image_col = st.container(), None
+
+        with text_col:
+            st.caption(f"{item.get('type')} · {item.get('year')}")
+            if item.get("story"):
+                st.write(item.get("story"))
+            for field in ("challenge", "approach", "result"):
+                if item.get(field):
+                    st.markdown(f"**{labels.get(field, field.capitalize())}:** {item.get(field)}")
+            if item.get("production_note"):
+                st.success(item.get("production_note"))
+            for highlight in item.get("impact", []):
+                st.markdown(f"- {highlight}")
+            st.markdown(f"**Tech:** {tech_badges(item.get('tech', []))}")
+            if item.get("link"):
+                link_label = item.get("link_label", labels.get("link", "GitHub"))
+                if is_featured:
+                    st.link_button(link_label, item["link"], type="primary")
+                else:
+                    st.markdown(f"[{link_label}]({item.get('link')})")
+
+        if image_col is not None:
+            with image_col:
+                st.image(item["image"], width="stretch")
+
+
+def select_project_category(category_id: str) -> None:
+    st.session_state.project_category = category_id
 
 
 def render_projects() -> None:
@@ -322,42 +367,38 @@ def render_projects() -> None:
     st.header(projects_data.get("title", "Projects"))
     section_intro(projects_data.get("intro", ""))
     labels = projects_data.get("labels", {})
+    items = projects_data.get("items", [])
+    categories = [c for c in projects_data.get("categories", []) if any(i.get("category") == c["id"] for i in items)]
+    if not categories:
+        for item in items:
+            render_project(item, labels)
+        return
 
-    # Stacked cards (not tabs) so the order is visible at a glance: science first, then Sextant IA
-    for item in projects_data.get("items", []):
-        is_featured = item.get("featured", False)
-        with st.container(border=True, key=f"project-{item.get('id')}"):
-            if is_featured and item.get("badge"):
-                st.markdown(f'<span class="featured-badge">{item.get("badge")}</span>', unsafe_allow_html=True)
+    # First category (biomedical) is open by default so the page is never empty
+    if st.session_state.get("project_category") not in {c["id"] for c in categories}:
+        st.session_state.project_category = categories[0]["id"]
+    selected = st.session_state.project_category
 
-            if item.get("image"):
-                text_col, image_col = st.columns([3, 2], gap="large")
-            else:
-                text_col, image_col = st.container(), None
+    # ── Category tiles: one per category, colour-coded in style.css (.st-key-projcat-<id>) ──
+    singular, plural = projects_data.get("projects_word", ["project", "projects"])
+    st.caption(projects_data.get("category_hint", ""))
+    with st.container(key="project-categories"):
+        for col, category in zip(st.columns(len(categories), gap="medium"), categories):
+            count = sum(1 for i in items if i.get("category") == category["id"])
+            with col, st.container(key=f"projcat-{category['id']}"):
+                st.button(
+                    f"{category.get('title', '')}\n\n{count} {singular if count == 1 else plural}",
+                    key=f"projcat_btn_{category['id']}",
+                    type="primary" if category["id"] == selected else "secondary",
+                    on_click=select_project_category,
+                    args=(category["id"],),
+                    width="stretch",
+                )
 
-            with text_col:
-                st.subheader(item.get("title", ""))
-                st.caption(f"{item.get('type')} · {item.get('year')}")
-                if item.get("story"):
-                    st.write(item.get("story"))
-                for field in ("challenge", "approach", "result"):
-                    if item.get(field):
-                        st.markdown(f"**{labels.get(field, field.capitalize())}:** {item.get(field)}")
-                if item.get("production_note"):
-                    st.success(item.get("production_note"))
-                for highlight in item.get("impact", []):
-                    st.markdown(f"- {highlight}")
-                st.markdown(f"**Tech:** {tech_badges(item.get('tech', []))}")
-                if item.get("link"):
-                    link_label = item.get("link_label", labels.get("link", "GitHub"))
-                    if is_featured:
-                        st.link_button(link_label, item["link"], type="primary")
-                    else:
-                        st.markdown(f"[{link_label}]({item.get('link')})")
-
-            if image_col is not None:
-                with image_col:
-                    st.image(item["image"], width="stretch")
+    # ── Projects of the selected category, collapsed ──
+    for item in items:
+        if item.get("category") == selected:
+            render_project(item, labels)
 
 
 def render_tableau() -> None:
@@ -423,43 +464,62 @@ def render_skills() -> None:
                         st.markdown(f"- {item}")
 
 
+CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"]
+
+
 def render_education() -> None:
     education_data = texts.get("education_section", {})
+    cert_data = texts.get("certifications_section", {})
     st.header(education_data.get("title", "Education"))
     section_intro(education_data.get("intro", ""))
+
+    # ── 1. Academic education ──
+    st.subheader(education_data.get("degrees_title", "Education"))
     for item in education_data.get("items", []):
-        with st.expander(f"**{item.get('degree')}** - {item.get('institution')} ({item.get('year')})", expanded=False):
-            st.markdown(f"_{item.get('location')}_ - _{item.get('type')}_")
+        with st.expander(f"**{item.get('degree')}** · {item.get('institution')} ({item.get('year')})"):
+            st.caption(f"{item.get('location')} · {item.get('type')}")
             for highlight in item.get("highlights", []):
                 st.markdown(f"- {highlight}")
 
-    st.divider()
-    render_certifications()
-
-
-def render_certifications() -> None:
-    """Certifications and languages (shown at the end of Education)."""
-    cert_data = texts.get("certifications_section", {})
-    st.header(cert_data.get("title", "Certifications & Languages"))
-
-    # Technical Certifications
+    # ── 2. Certifications, split by domain (same colours as "What I bring") ──
     tech_cert_data = cert_data.get("certifications", {})
     if tech_cert_data:
-        st.subheader(tech_cert_data.get("title", "Technical Certifications"))
-        for item in tech_cert_data.get("items", []):
-            st.markdown(f"- **{item.get('name')}** - _{item.get('issuer')}_ ({item.get('year')})")
+        st.divider()
+        st.subheader(tech_cert_data.get("title", "Certifications"))
+        categories = tech_cert_data.get("categories", [])
+        column_icons = {"data": "query_stats", "life": "biotech"}
+        for col, category in zip(st.columns(len(categories) or 1, gap="large"), categories):
+            with col, st.container(key=f"vp-{category['id']}"):
+                cards = "".join(
+                    f'<div class="cert-card"><p class="cert-name">{_html.escape(c.get("name", ""))}</p>'
+                    f'<p class="cert-meta">{_html.escape(c.get("issuer", ""))} · {c.get("year", "")}</p></div>'
+                    for c in tech_cert_data.get("items", []) if c.get("category") == category["id"]
+                )
+                st.markdown(
+                    f'<div class="vp-header"><span class="ms-icon">{column_icons.get(category["id"], "verified")}</span>'
+                    f'{category.get("title", "")}</div><div class="cert-list">{cards}</div>',
+                    unsafe_allow_html=True,
+                )
 
-    # Languages
+    # ── 3. Languages: CEFR level as 6 dots (A1 = 1 … C2 = 6) ──
     lang_data = cert_data.get("languages", {})
-    if lang_data:
+    if lang_data.get("items"):
+        st.divider()
         st.subheader(lang_data.get("title", "Languages"))
-        lang_items = lang_data.get("items", [])
-        if lang_items:
-            cols = st.columns(len(lang_items))
-            for i, item in enumerate(lang_items):
-                with cols[i]:
-                    st.markdown(f"#### {item.get('language')}")
-                    st.markdown(f"_{item.get('level')}_ **({item.get('proficiency')})**")
+        cards = ""
+        for item in lang_data["items"]:
+            level = item.get("proficiency", "")
+            filled = CEFR_LEVELS.index(level) + 1 if level in CEFR_LEVELS else 0
+            dots = "".join(f'<span class="lang-dot{" on" if n < filled else ""}"></span>' for n in range(len(CEFR_LEVELS)))
+            note = f'<p class="lang-note">{_html.escape(item["certification"])}</p>' if item.get("certification") else ""
+            cards += (
+                f'<div class="lang-card" title="{level} ({filled}/6)">'
+                f'<div class="lang-top"><span class="lang-name">{_html.escape(item.get("language", ""))}</span>'
+                f'<span class="lang-level">{level}</span></div>'
+                f'<div class="lang-dots">{dots}</div>'
+                f'<p class="lang-desc">{_html.escape(item.get("level", ""))}</p>{note}</div>'
+            )
+        st.markdown(f'<div class="lang-grid">{cards}</div>', unsafe_allow_html=True)
 
 
 def render_contact() -> None:

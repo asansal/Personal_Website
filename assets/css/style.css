@@ -1380,3 +1380,237 @@ iframe[src*="public.tableau.com"] {
 [data-testid="stHeaderActionElements"] {
     display: none !important;
 }
+
+/* ============================================================
+   CONTENIDO PLEGABLE (Experiencia, Proyectos, "Lo que aporto")
+   ============================================================ */
+
+/* Iconos Material Symbols en HTML propio: <span class="ms-icon">biotech</span> */
+.ms-icon {
+    font-family: 'Material Symbols Rounded';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Desplegables: tarjetas discretas con hover */
+[data-testid="stExpander"] details {
+    border-radius: 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.025);
+    transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+[data-testid="stExpander"] details:hover {
+    border-color: rgba(0, 212, 170, 0.35) !important;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+[data-testid="stExpander"] summary {
+    padding: 0.9rem 1.1rem !important;
+}
+
+[data-testid="stExpander"] summary p {
+    font-size: 1.02rem !important;
+    line-height: 1.4 !important;
+}
+
+/* ── "Lo que aporto": dos columnas con cabecera de color ── */
+.vp-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.4rem;
+    border-radius: 14px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0a0e27;
+}
+
+.st-key-vp-data .vp-header { background: linear-gradient(135deg, #5b9bff 0%, #3d7bea 100%); }
+.st-key-vp-life .vp-header { background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%); }
+
+.st-key-vp-data [data-testid="stExpander"] details:hover { border-color: rgba(91, 155, 255, 0.5) !important; }
+.st-key-vp-life [data-testid="stExpander"] details:hover { border-color: rgba(0, 212, 170, 0.5) !important; }
+
+/* ── Proyectos: tarjetas de categoría ───────────────────── */
+.st-key-projcat-bio  { --cat-color: #00d4aa; --cat-icon: "genetics"; }
+.st-key-projcat-data { --cat-color: #5b9bff; --cat-icon: "query_stats"; }
+.st-key-projcat-ai   { --cat-color: #b07cf0; --cat-icon: "smart_toy"; }
+
+.st-key-project-categories {
+    margin: 0.3rem 0 1.2rem 0;
+}
+
+[class*="st-key-projcat-"] div.stButton > button {
+    height: 150px;
+    width: 100%;
+    padding: 1.2rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
+    border-radius: 18px;
+    border: 1px solid var(--cat-color);
+    background: linear-gradient(160deg, #171e3a 0%, #10162d 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+[class*="st-key-projcat-"] div.stButton > button > div {
+    flex: 1 1 auto;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+[class*="st-key-projcat-"] div.stButton > button [data-testid="stMarkdownContainer"] {
+    width: 100%;
+    text-align: left;
+}
+
+/* Título y nº de proyectos */
+[class*="st-key-projcat-"] div.stButton > button p {
+    margin: 0;
+    white-space: normal;
+    color: #ffffff !important;
+}
+
+[class*="st-key-projcat-"] div.stButton > button p:first-child {
+    font-size: 1.12rem !important;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+[class*="st-key-projcat-"] div.stButton > button p:last-child {
+    font-size: 0.85rem !important;
+    opacity: 0.7;
+    margin-top: 0.2rem;
+}
+
+/* Icono de la categoría */
+[class*="st-key-projcat-"] div.stButton > button::before {
+    content: var(--cat-icon, "circle");
+    position: static;
+    left: auto;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--cat-color) 16%, transparent);
+    color: var(--cat-color);
+    font-family: 'Material Symbols Rounded';
+    font-size: 24px;
+    line-height: 1;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    transition: none;
+}
+
+[class*="st-key-projcat-"] div.stButton > button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(160deg, #1c2446 0%, #131a35 100%);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    border-color: var(--cat-color);
+}
+
+/* Categoría seleccionada: rellena con su color */
+[class*="st-key-projcat-"] div.stButton > button[data-testid="stBaseButton-primary"] {
+    background: var(--cat-color);
+    border-color: var(--cat-color);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--cat-color) 35%, transparent);
+}
+
+[class*="st-key-projcat-"] div.stButton > button[data-testid="stBaseButton-primary"] p {
+    color: #0a0e27 !important;
+}
+
+[class*="st-key-projcat-"] div.stButton > button[data-testid="stBaseButton-primary"]::before {
+    background: rgba(10, 14, 39, 0.14);
+    color: #0a0e27;
+}
+
+@media (max-width: 768px) {
+    [class*="st-key-projcat-"] div.stButton > button { height: 120px; }
+}
+
+/* ── Certificaciones: tarjetas por categoría ────────────── */
+.cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cert-card {
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--col-color, #00d4aa);
+}
+
+.st-key-vp-data { --col-color: #5b9bff; }
+.st-key-vp-life { --col-color: #00d4aa; }
+
+.cert-card p { margin: 0 !important; line-height: 1.4 !important; }
+.cert-name { font-weight: 600; font-size: 0.98rem !important; color: #ffffff !important; }
+.cert-meta { font-size: 0.85rem !important; color: rgba(255, 255, 255, 0.6) !important; margin-top: 0.15rem !important; }
+
+/* ── Idiomas: nivel MCER en 6 círculos ──────────────────── */
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+
+.lang-card {
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lang-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.lang-name { font-weight: 600; font-size: 1.05rem; color: #ffffff; }
+.lang-level { font-weight: 700; font-size: 0.9rem; color: #00d4aa; }
+
+.lang-dots {
+    display: flex;
+    gap: 6px;
+    margin: 0.7rem 0 0.5rem 0;
+}
+
+.lang-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 212, 170, 0.55);
+    background: transparent;
+}
+
+.lang-dot.on {
+    background: #00d4aa;
+    border-color: #00d4aa;
+}
+
+.lang-card p { margin: 0 !important; line-height: 1.4 !important; }
+.lang-desc { font-size: 0.88rem !important; color: rgba(255, 255, 255, 0.75) !important; }
+.lang-note { font-size: 0.8rem !important; color: rgba(255, 255, 255, 0.5) !important; margin-top: 0.15rem !important; }
