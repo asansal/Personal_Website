@@ -26,7 +26,7 @@
         "title": "Portfolio Tableau"
       },
       "skills": {
-        "title": "Herramientas"
+        "title": "Stack Técnico"
       },
       "education": {
         "title": "Formación & Certificaciones"
@@ -99,101 +99,165 @@
     "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
   },
   "skills_section": {
-    "title": "Mi Caja de Herramientas",
-    "intro": "Empiezo por las más relevantes para Pharma, Salud y Life Sciences.",
+    "title": "Stack Técnico",
+    "intro": "Agrupado por tipo: análisis de datos, ciencia de datos e ingeniería, IA generativa y Life Sciences.",
     "highlights_title": "Imprescindibles en Salud & Life Sciences",
     "highlights": [
-      "Python",
-      "R",
-      "Bioconductor",
-      "SQL",
-      "Validación estadística",
-      "NGS & Genómica",
-      "Reproducibilidad (Git, Docker)",
-      "ICH-GCP & GDPR",
-      "Tableau",
-      "CI/CD & Cloud"
+      {
+        "label": "Python",
+        "group": "analysis"
+      },
+      {
+        "label": "R",
+        "group": "analysis"
+      },
+      {
+        "label": "Bioconductor",
+        "group": "life"
+      },
+      {
+        "label": "SQL",
+        "group": "analysis"
+      },
+      {
+        "label": "Validación estadística",
+        "group": "analysis"
+      },
+      {
+        "label": "NGS & Genómica",
+        "group": "life"
+      },
+      {
+        "label": "Reproducibilidad (Git, Docker)",
+        "group": "datascience"
+      },
+      {
+        "label": "ICH-GCP & GDPR",
+        "group": "life"
+      },
+      {
+        "label": "Tableau",
+        "group": "analysis"
+      },
+      {
+        "label": "CI/CD & Cloud",
+        "group": "datascience"
+      }
     ],
-    "categories": [
+    "groups": [
       {
-        "name": "Análisis de datos en Salud & Life Sciences",
-        "icon": "health",
-        "why": "El núcleo de mi trabajo: analizar datos biomédicos con rigor.",
-        "items": [
-          "Python (Pandas, NumPy, Scikit-learn)",
-          "R & Bioconductor",
-          "SQL (PostgreSQL, MySQL)",
-          "Validación estadística, estadística multivariante y A/B testing",
-          "Buenas prácticas: ICH-GCP E6 (R3) y GDPR en salud"
+        "id": "analysis",
+        "title": "Análisis de datos",
+        "categories": [
+          {
+            "name": "Análisis & Estadística",
+            "icon": "health",
+            "why": "El núcleo de mi trabajo: analizar datos biomédicos con rigor.",
+            "items": [
+              "Python (Pandas, NumPy, Scikit-learn)",
+              "R & Bioconductor",
+              "SQL (PostgreSQL, MySQL)",
+              "Validación estadística, estadística multivariante y A/B testing"
+            ]
+          },
+          {
+            "name": "Visualización & Comunicación",
+            "icon": "visualization",
+            "why": "Un resultado tiene impacto cuando se entiende.",
+            "items": [
+              "Tableau",
+              "Power BI y DAX",
+              "R Shiny",
+              "Streamlit (como esta web)",
+              "Storytelling con datos"
+            ]
+          }
         ]
       },
       {
-        "name": "Bioinformática & Genómica",
-        "icon": "dna",
-        "why": "Mi base: entender la biología detrás de cada dataset.",
-        "items": [
-          "NGS (Illumina, Oxford Nanopore, Sanger): RNA-seq, Ribo-Seq y WGS",
-          "Expresión diferencial (DESeq2), transcriptómica y proteogenómica",
-          "Ensamblaje de novo y anotación genómica (Trinity, BUSCO)",
-          "HPC (Slurm) y GNU Parallel",
-          "Experiencia wet-lab: CRISPR-Cas9, qPCR, cultivo celular"
+        "id": "datascience",
+        "title": "Ciencia de Datos & Ingeniería",
+        "categories": [
+          {
+            "name": "Machine Learning & Modelado",
+            "icon": "chart",
+            "why": "Modelos predictivos validados frente a un baseline.",
+            "items": [
+              "Scikit-learn, XGBoost, TensorFlow/Keras",
+              "Regresión Lasso/Ridge, clustering K-Means, optimización con Optuna",
+              "Series temporales y forecasting con validación cruzada temporal (Prophet, ARIMA)"
+            ]
+          },
+          {
+            "name": "Ingeniería de datos & Reproducibilidad",
+            "icon": "database",
+            "why": "Datos limpios, trazables y reproducibles.",
+            "items": [
+              "Pipelines ETL & Data Wrangling",
+              "Linux & Bash",
+              "Git & Docker"
+            ]
+          },
+          {
+            "name": "Despliegue, Cloud & CI/CD",
+            "icon": "cloud",
+            "why": "Llevar lo que construyo a producción y mantenerlo.",
+            "items": [
+              "CI/CD con GitHub Actions: cada push a main se despliega automáticamente",
+              "Servidores Linux en Oracle Cloud (systemd, entornos virtuales)",
+              "Nginx como proxy inverso con HTTPS",
+              "Sextant IA y este portfolio, desplegados y mantenidos en producción"
+            ]
+          }
         ]
       },
       {
-        "name": "Machine Learning & Modelado",
-        "icon": "chart",
-        "why": "Modelos predictivos validados frente a un baseline.",
-        "items": [
-          "Scikit-learn, XGBoost, TensorFlow/Keras",
-          "Regresión Lasso/Ridge, clustering K-Means, optimización con Optuna",
-          "Series temporales y forecasting con validación cruzada temporal (Prophet, ARIMA)"
+        "id": "llm",
+        "title": "IA Generativa & LLMs",
+        "categories": [
+          {
+            "name": "IA Generativa & Producto",
+            "icon": "ai",
+            "why": "Convertir modelos en productos que se pueden usar.",
+            "items": [
+              "Orquestación de LLMs y prompt engineering",
+              "Python y Django (full-stack)",
+              "APIs REST y automatización (n8n, Make)",
+              "Evaluación y entrenamiento de modelos de IA (Telus, Mercor)"
+            ]
+          }
         ]
       },
       {
-        "name": "Visualización & Comunicación",
-        "icon": "visualization",
-        "why": "Un resultado tiene impacto cuando se entiende.",
-        "items": [
-          "Tableau",
-          "Power BI y DAX",
-          "R Shiny",
-          "Streamlit (como esta web)",
-          "Storytelling con datos"
-        ]
-      },
-      {
-        "name": "Ingeniería de datos & Reproducibilidad",
-        "icon": "database",
-        "why": "Datos limpios, trazables y reproducibles.",
-        "items": [
-          "Pipelines ETL & Data Wrangling",
-          "Linux & Bash",
-          "Git & Docker"
-        ]
-      },
-      {
-        "name": "Despliegue, Cloud & CI/CD",
-        "icon": "cloud",
-        "why": "Llevar lo que construyo a producción y mantenerlo.",
-        "items": [
-          "CI/CD con GitHub Actions: cada push a main se despliega automáticamente",
-          "Servidores Linux en Oracle Cloud (systemd, entornos virtuales)",
-          "Nginx como proxy inverso con HTTPS",
-          "Sextant IA y este portfolio, desplegados y mantenidos en producción"
-        ]
-      },
-      {
-        "name": "IA Generativa & Producto",
-        "icon": "ai",
-        "why": "Convertir modelos en productos que se pueden usar.",
-        "items": [
-          "Orquestación de LLMs y prompt engineering",
-          "Python y Django (full-stack)",
-          "APIs REST y automatización (n8n, Make)",
-          "Evaluación y entrenamiento de modelos de IA (Telus, Mercor)"
+        "id": "life",
+        "title": "Life Sciences",
+        "categories": [
+          {
+            "name": "Bioinformática & Genómica",
+            "icon": "dna",
+            "why": "Mi base: entender la biología detrás de cada dataset.",
+            "items": [
+              "NGS (Illumina, Oxford Nanopore, Sanger): RNA-seq, Ribo-Seq y WGS",
+              "Expresión diferencial (DESeq2), transcriptómica y proteogenómica",
+              "Ensamblaje de novo y anotación genómica (Trinity, BUSCO)",
+              "HPC (Slurm) y GNU Parallel",
+              "Experiencia wet-lab: CRISPR-Cas9, qPCR, cultivo celular"
+            ]
+          },
+          {
+            "icon": "practice",
+            "name": "Buenas prácticas en salud",
+            "why": "Trabajar con datos de pacientes exige rigor y cumplimiento normativo.",
+            "items": [
+              "ICH-GCP E6 (R3): buenas prácticas clínicas",
+              "GDPR aplicado a datos de salud"
+            ]
+          }
         ]
       }
-    ]
+    ],
+    "education_link": "Ver formación y certificaciones",
+    "education_link_hint": "Másteres en Data Science & IA, Bioinformática y Microbiología · ICH-GCP · GDPR · Power BI"
   },
   "experience_section": {
     "title": "Experiencia",

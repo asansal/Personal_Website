@@ -1709,11 +1709,11 @@ iframe[src*="public.tableau.com"] {
 }
 
 /* Enlace al stack técnico bajo "Qué aporto": tarjeta horizontal con icono y flecha */
-.st-key-stack-link {
+[class*="st-key-link-card"] {
     margin-top: 1rem;
 }
 
-.st-key-stack-link div.stButton > button {
+[class*="st-key-link-card"] div.stButton > button {
     width: 100%;
     min-height: 92px;
     padding: 1rem 1.4rem;
@@ -1733,35 +1733,35 @@ iframe[src*="public.tableau.com"] {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.st-key-stack-link div.stButton > button > div {
+[class*="st-key-link-card"] div.stButton > button > div {
     flex: 1 1 auto;
     justify-content: flex-start;
 }
 
-.st-key-stack-link div.stButton > button [data-testid="stMarkdownContainer"] {
+[class*="st-key-link-card"] div.stButton > button [data-testid="stMarkdownContainer"] {
     text-align: left;
 }
 
-.st-key-stack-link div.stButton > button p {
+[class*="st-key-link-card"] div.stButton > button p {
     margin: 0;
     white-space: normal;
 }
 
-.st-key-stack-link div.stButton > button p:first-child {
+[class*="st-key-link-card"] div.stButton > button p:first-child {
     font-size: 1.15rem !important;
     font-weight: 600;
     color: #ffffff !important;
 }
 
-.st-key-stack-link div.stButton > button p:last-child {
+[class*="st-key-link-card"] div.stButton > button p:last-child {
     font-size: 0.88rem !important;
     color: rgba(255, 255, 255, 0.6) !important;
     margin-top: 0.2rem;
 }
 
 /* Icono a la izquierda */
-.st-key-stack-link div.stButton > button::before {
-    content: "terminal";
+[class*="st-key-link-card"] div.stButton > button::before {
+    content: var(--link-icon, "terminal");
     position: static;
     left: auto;
     flex: 0 0 48px;
@@ -1782,7 +1782,7 @@ iframe[src*="public.tableau.com"] {
 }
 
 /* Flecha a la derecha */
-.st-key-stack-link div.stButton > button::after {
+[class*="st-key-link-card"] div.stButton > button::after {
     content: "arrow_forward";
     flex: 0 0 auto;
     font-family: 'Material Symbols Rounded';
@@ -1794,15 +1794,78 @@ iframe[src*="public.tableau.com"] {
     transition: transform 0.3s ease;
 }
 
-.st-key-stack-link div.stButton > button:hover {
+[class*="st-key-link-card"] div.stButton > button:hover {
     transform: translateY(-3px);
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
 }
 
-.st-key-stack-link div.stButton > button:hover::after {
+[class*="st-key-link-card"] div.stButton > button:hover::after {
     transform: translateX(6px);
 }
 
 @media (max-width: 768px) {
     .tl-item { padding-bottom: 0.2rem; min-height: auto; }
 }
+
+.st-key-link-card-education { --link-icon: "school"; }
+
+/* ============================================================
+   STACK TÉCNICO: grupos con color
+   ============================================================ */
+.st-key-stack-group-analysis    { --group-color: #f4b860; }
+.st-key-stack-group-datascience { --group-color: #5b9bff; }
+.st-key-stack-group-llm         { --group-color: #b07cf0; }
+.st-key-stack-group-life        { --group-color: #00d4aa; }
+
+[class*="st-key-stack-group-"] {
+    margin-bottom: 1.4rem;
+}
+
+[class*="st-key-stack-group-"] .vp-header {
+    background: var(--group-color);
+}
+
+.stack-card {
+    height: 100%;
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 3px solid var(--group-color);
+}
+
+.stack-card p { margin: 0 !important; line-height: 1.4 !important; }
+
+.stack-card-title {
+    font-weight: 600;
+    font-size: 1.02rem !important;
+    color: #ffffff !important;
+}
+
+.stack-card-why {
+    font-size: 0.84rem !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+    margin: 0.2rem 0 0.7rem 0 !important;
+}
+
+.stack-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.stack-chip {
+    padding: 5px 11px;
+    border-radius: 10px;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.9);
+    background: color-mix(in srgb, var(--group-color) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--group-color) 35%, transparent);
+}
+
+/* Etiquetas clave coloreadas por grupo */
+.keyword-pill.group-analysis    { color: #f4b860; background: rgba(244, 184, 96, 0.10);  border-color: rgba(244, 184, 96, 0.4); }
+.keyword-pill.group-datascience { color: #5b9bff; background: rgba(91, 155, 255, 0.10);  border-color: rgba(91, 155, 255, 0.4); }
+.keyword-pill.group-llm         { color: #b07cf0; background: rgba(176, 124, 240, 0.10); border-color: rgba(176, 124, 240, 0.4); }
+.keyword-pill.group-life        { color: #00d4aa; background: rgba(0, 212, 170, 0.10);   border-color: rgba(0, 212, 170, 0.4); }

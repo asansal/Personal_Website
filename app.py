@@ -197,6 +197,21 @@ def scroll_to_top(view: str) -> None:
     )
 
 
+def render_link_card(view: str, title: str, hint: str, key: str) -> None:
+    """Horizontal card-style button that jumps to another section.
+    Styled in style.css via [class*="st-key-link-card"]; the icon depends on `key`."""
+    if view not in VIEWS:
+        return
+    with st.container(key=f"link-card-{key}"):
+        st.button(
+            f"{title}\n\n{hint}",
+            key=f"go_{key}",
+            width="stretch",
+            on_click=go_to,
+            args=(view,),
+        )
+
+
 def tech_badges(items: list) -> str:
     return f"`{'`, `'.join(items)}`" if items else ""
 
@@ -327,16 +342,7 @@ def render_experience() -> None:
                 for point in column.get("points", []):
                     with st.expander(point.get("title", "")):
                         st.write(point.get("description", ""))
-    if "skills" in VIEWS:
-        with st.container(key="stack-link"):
-            # Two-line label (title + main technologies) styled as a card in style.css
-            st.button(
-                f"{value_prop.get('stack_link', 'Tech stack')}\n\n{value_prop.get('stack_link_hint', '')}",
-                key="go_to_skills",
-                width="stretch",
-                on_click=go_to,
-                args=("skills",),
-            )
+    render_link_card("skills", value_prop.get("stack_link", "Tech stack"), value_prop.get("stack_link_hint", ""), key="stack")
 
     st.divider()
 
@@ -494,28 +500,49 @@ def render_tableau() -> None:
     components.iframe(tableau_embed_url(dashboard["url"]), height=dashboard.get("height", 800), scrolling=True)
 
 
+STACK_GROUP_ICONS = {"analysis": "bar_chart", "datascience": "model_training", "llm": "smart_toy", "life": "genetics"}
+
+
 def render_skills() -> None:
     skills_data = texts.get("skills_section", {})
-    st.header(skills_data.get("title", "Technical Skills"))
+    st.header(skills_data.get("title", "Tech Stack"))
     section_intro(skills_data.get("intro", ""))
 
+    # Key tools, coloured by the group they belong to
     highlights = skills_data.get("highlights", [])
     if highlights:
         st.markdown(f"#### {skills_data.get('highlights_title', '')}")
-        pills = "".join(f'<span class="keyword-pill">{_html.escape(h)}</span>' for h in highlights)
+        pills = "".join(
+            f'<span class="keyword-pill group-{h.get("group", "")}">{_html.escape(h.get("label", ""))}</span>'
+            for h in highlights
+        )
         st.markdown(f'<div class="keyword-pills">{pills}</div>', unsafe_allow_html=True)
 
-    categories = skills_data.get("categories", [])
-    if categories:
-        num_cols = min(len(categories), 2)
-        cols = st.columns(num_cols)
-        for i, category in enumerate(categories):
-            with cols[i % num_cols]:
-                with st.container(border=True):
-                    st.subheader(category.get("name", ""))
-                    st.caption(category.get("why", ""))
-                    for item in category.get("items", []):
-                        st.markdown(f"- {item}")
+    # One colour per group (analysis / data science / LLMs / life sciences); colours in style.css
+    for group in skills_data.get("groups", []):
+        with st.container(key=f"stack-group-{group['id']}"):
+            st.markdown(
+                f'<div class="vp-header"><span class="ms-icon">{STACK_GROUP_ICONS.get(group["id"], "star")}</span>'
+                f'{group.get("title", "")}</div>',
+                unsafe_allow_html=True,
+            )
+            categories = group.get("categories", [])
+            for col, category in zip(st.columns(max(len(categories), 2), gap="medium"), categories):
+                with col:
+                    chips = "".join(f'<span class="stack-chip">{_html.escape(item)}</span>' for item in category.get("items", []))
+                    st.markdown(
+                        f'<div class="stack-card"><p class="stack-card-title">{_html.escape(category.get("name", ""))}</p>'
+                        f'<p class="stack-card-why">{_html.escape(category.get("why", ""))}</p>'
+                        f'<div class="stack-chips">{chips}</div></div>',
+                        unsafe_allow_html=True,
+                    )
+
+    render_link_card(
+        "education",
+        skills_data.get("education_link", "Education & certifications"),
+        skills_data.get("education_link_hint", ""),
+        key="education",
+    )
 
 
 CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"]
@@ -554,6 +581,8 @@ def render_education() -> None:
                     f'{category.get("title", "")}</div><div class="cert-list">{cards}</div>',
                     unsafe_allow_html=True,
                 )
+        value_prop = texts.get("value_proposition", {})
+        render_link_card("skills", value_prop.get("stack_link", "Tech stack"), value_prop.get("stack_link_hint", ""), key="stack-edu")
 
     # ── 3. Languages: CEFR level as 6 dots (A1 = 1 … C2 = 6) ──
     lang_data = cert_data.get("languages", {})
