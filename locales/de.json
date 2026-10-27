@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Data Scientist · Bioinformatik & KI für Pharma, Gesundheit und Life Sciences",
-    "tagline": "Biomedizinische Daten in Entscheidungen verwandeln – mit Data Science und KI",
+    "role": "Data Scientist · Bioinformatik & KI",
+    "tagline": "Data Science & KI",
     "subtitle": "Über 4 Jahre Analyse genomischer Daten am CBM-CSIC und an der Universität Konstanz, mit 3 Publikationen und einem Master in Data Science & KI. Ich habe Bioinformatik-Pipelines, Machine-Learning-Modelle, klinische Dashboards und Sextant IA gebaut, eine LLM-Anwendung in Produktion. Heute entwerfe ich Bioinformatik-Aufgaben zum Training von KI-Modellen.",
     "location": "Madrid, Spanien",
     "availability": "Offen für Vollzeitstellen · Remote, hybrid oder vor Ort · Umzugsbereit",
@@ -13,7 +13,8 @@
     },
     "kicker": "Data Science · Bioinformatik · KI",
     "explore_hint": "Entdecken Sie meine Erfahrung, Projekte und meinen Tech-Stack in den Bereichen unten oder fragen Sie direkt meinen KI-Assistenten.",
-    "ask_ai": "Frag meine KI"
+    "ask_ai": "Frag meine KI",
+    "specialization": "Spezialisiert auf Pharma, Gesundheit und Life Sciences"
   },
   "navigation": {
     "back_home": "Zurück zur Startseite",

@@ -1,8 +1,8 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Data Scientist · Bioinformática e IA para Pharma, Salud y Life Sciences",
-    "tagline": "Convierto datos biomédicos en decisiones con Ciencia de Datos e IA",
+    "role": "Data Scientist · Bioinformática & IA",
+    "tagline": "Ciencia de Datos & IA",
     "subtitle": "Más de 4 años analizando datos genómicos en el CBM-CSIC y la Universität Konstanz, con 3 publicaciones y un Máster en Data Science e IA. He construido pipelines bioinformáticos, modelos de Machine Learning, dashboards clínicos y Sextant IA, una aplicación con LLMs en producción. Hoy diseño problemas de bioinformática para entrenar modelos de IA.",
     "location": "Madrid, España",
     "availability": "Abierto a tiempo completo · Remoto, híbrido o presencial · Disponible para reubicarme",
@@ -13,7 +13,8 @@
     },
     "kicker": "Data Science · Bioinformática · IA",
     "explore_hint": "Explora mi experiencia, proyectos y stack técnico en las secciones de abajo, o pregúntale directamente a mi asistente de IA.",
-    "ask_ai": "Pregunta a mi IA"
+    "ask_ai": "Pregunta a mi IA",
+    "specialization": "Especialización en Pharma, Salud y Life Sciences"
   },
   "navigation": {
     "back_home": "Volver al Inicio",

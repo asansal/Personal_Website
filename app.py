@@ -149,7 +149,7 @@ with st.sidebar:
         f'<div>'
         f'<p class="profile-name">{profile_data.get("name", "")}</p>'
         f'<p class="profile-role">{profile_data.get("role", "")}</p>'
-        f'<p class="profile-location">{profile_data.get("location", "")}</p>'
+        f'<p class="profile-specialization">{profile_data.get("specialization", "")}</p>'
         f'</div>'
         f'<div class="social-icons">{social_links_html}</div>'
         f'{availability_html}'

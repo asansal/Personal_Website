@@ -1311,7 +1311,7 @@ hr {
     color: rgba(255, 255, 255, 0.8) !important;
 }
 
-[data-testid="stSidebar"] .profile-location {
+[data-testid="stSidebar"] .profile-specialization {
     font-size: 0.85rem !important;
     color: rgba(255, 255, 255, 0.55) !important;
     margin-top: 0.2rem !important;
