@@ -100,77 +100,40 @@
   },
   "skills_section": {
     "title": "Tech-Stack",
-    "intro": "Nach Bereich gruppiert: Datenanalyse, Data Science und Engineering, generative KI und Life Sciences.",
-    "highlights_title": "Unverzichtbar in Gesundheit & Life Sciences",
-    "highlights": [
-      {
-        "label": "Python",
-        "group": "analysis"
-      },
-      {
-        "label": "R",
-        "group": "analysis"
-      },
-      {
-        "label": "Bioconductor",
-        "group": "life"
-      },
-      {
-        "label": "SQL",
-        "group": "analysis"
-      },
-      {
-        "label": "Statistische Validierung",
-        "group": "analysis"
-      },
-      {
-        "label": "NGS & Genomik",
-        "group": "life"
-      },
-      {
-        "label": "Reproduzierbarkeit (Git, Docker)",
-        "group": "datascience"
-      },
-      {
-        "label": "ICH-GCP & DSGVO",
-        "group": "life"
-      },
-      {
-        "label": "Tableau",
-        "group": "analysis"
-      },
-      {
-        "label": "CI/CD & Cloud",
-        "group": "datascience"
-      }
-    ],
     "groups": [
       {
         "id": "analysis",
         "title": "Datenanalyse",
         "categories": [
           {
-            "name": "Analyse & Statistik",
             "icon": "health",
-            "why": "Der Kern meiner Arbeit: biomedizinische Daten sorgfältig analysieren.",
-            "items": [
-              "Python (Pandas, NumPy, Scikit-learn)",
-              "R & Bioconductor",
-              "SQL (PostgreSQL, MySQL)",
-              "Statistische Validierung, multivariate Statistik und A/B-Tests"
-            ]
+            "name": "Analyse & Statistik",
+            "tools": [
+              "Python",
+              "Pandas",
+              "NumPy",
+              "R",
+              "SQL",
+              "PostgreSQL",
+              "MySQL",
+              "Statistische Validierung",
+              "Multivariate Statistik",
+              "A/B-Tests"
+            ],
+            "note": ""
           },
           {
-            "name": "Visualisierung & Kommunikation",
             "icon": "visualization",
-            "why": "Ein Ergebnis wirkt, wenn man es versteht.",
-            "items": [
+            "name": "Visualisierung & Kommunikation",
+            "tools": [
               "Tableau",
-              "Power BI und DAX",
+              "Power BI",
+              "DAX",
               "R Shiny",
-              "Streamlit (wie diese Website)",
+              "Streamlit",
               "Data Storytelling"
-            ]
+            ],
+            "note": ""
           }
         ]
       },
@@ -179,35 +142,47 @@
         "title": "Data Science & Engineering",
         "categories": [
           {
-            "name": "Machine Learning & Modellierung",
             "icon": "chart",
-            "why": "Prognosemodelle, gegen eine Baseline validiert.",
-            "items": [
-              "Scikit-learn, XGBoost, TensorFlow/Keras",
-              "Lasso-/Ridge-Regression, K-Means-Clustering, Tuning mit Optuna",
-              "Zeitreihen und Forecasting mit Zeitreihen-Kreuzvalidierung (Prophet, ARIMA)"
-            ]
+            "name": "Machine Learning & Modellierung",
+            "tools": [
+              "Scikit-learn",
+              "XGBoost",
+              "TensorFlow",
+              "Keras",
+              "Optuna",
+              "Lasso-/Ridge-Regression",
+              "K-Means",
+              "Zeitreihen",
+              "Prophet",
+              "ARIMA"
+            ],
+            "note": "Modelle gegen eine Baseline validiert; zeitbasierte Kreuzvalidierung beim Forecasting."
           },
           {
-            "name": "Data Engineering & Reproduzierbarkeit",
             "icon": "database",
-            "why": "Saubere, nachvollziehbare und reproduzierbare Daten.",
-            "items": [
-              "ETL-Pipelines & Data Wrangling",
-              "Linux & Bash",
-              "Git & Docker"
-            ]
+            "name": "Data Engineering & Reproduzierbarkeit",
+            "tools": [
+              "ETL-Pipelines",
+              "Data Wrangling",
+              "Linux",
+              "Bash",
+              "Git",
+              "Docker"
+            ],
+            "note": ""
           },
           {
-            "name": "Deployment, Cloud & CI/CD",
             "icon": "cloud",
-            "why": "Was ich baue, in Produktion bringen und betreiben.",
-            "items": [
-              "CI/CD mit GitHub Actions: Jeder Push auf main wird automatisch deployt",
-              "Linux-Server in Oracle Cloud (systemd, virtuelle Umgebungen)",
-              "Nginx als Reverse Proxy mit HTTPS",
-              "Sextant IA und dieses Portfolio, in Produktion deployt und gewartet"
-            ]
+            "name": "Deployment, Cloud & CI/CD",
+            "tools": [
+              "CI/CD",
+              "GitHub Actions",
+              "Oracle Cloud",
+              "Nginx",
+              "HTTPS",
+              "systemd"
+            ],
+            "note": "Jeder Push auf main wird automatisch deployt. Sextant IA und dieses Portfolio laufen in Produktion."
           }
         ]
       },
@@ -216,15 +191,20 @@
         "title": "Generative KI & LLMs",
         "categories": [
           {
-            "name": "Generative KI & Produkt",
             "icon": "ai",
-            "why": "Modelle in nutzbare Produkte verwandeln.",
-            "items": [
-              "LLM-Orchestrierung und Prompt Engineering",
-              "Python und Django (Full-Stack)",
-              "REST-APIs und Automatisierung (n8n, Make)",
-              "Evaluation und Training von KI-Modellen (Telus, Mercor)"
-            ]
+            "name": "Generative KI & Produkt",
+            "tools": [
+              "LLMs",
+              "LLM-Orchestrierung",
+              "Prompt Engineering",
+              "Django",
+              "REST-APIs",
+              "n8n",
+              "Make",
+              "RLHF",
+              "Evaluation von KI-Modellen"
+            ],
+            "note": "Training und Evaluation von KI-Modellen (Telus, Mercor)."
           }
         ]
       },
@@ -233,25 +213,47 @@
         "title": "Life Sciences",
         "categories": [
           {
-            "name": "Bioinformatik & Genomik",
             "icon": "dna",
-            "why": "Meine Basis: die Biologie hinter jedem Datensatz verstehen.",
-            "items": [
-              "NGS (Illumina, Oxford Nanopore, Sanger): RNA-seq, Ribo-Seq und WGS",
-              "Differenzielle Expression (DESeq2), Transkriptomik und Proteogenomik",
-              "De-novo-Assemblierung und Genomannotation (Trinity, BUSCO)",
-              "HPC (Slurm) und GNU Parallel",
-              "Laborerfahrung: CRISPR-Cas9, qPCR, Zellkultur"
-            ]
+            "name": "Bioinformatik & Genomik",
+            "tools": [
+              "Bioconductor",
+              "NGS",
+              "Illumina",
+              "Oxford Nanopore",
+              "Sanger",
+              "RNA-seq",
+              "Ribo-Seq",
+              "WGS",
+              "DESeq2",
+              "Transkriptomik",
+              "Proteogenomik",
+              "De-novo-Assemblierung",
+              "Genomannotation",
+              "Trinity",
+              "BUSCO",
+              "HPC (Slurm)",
+              "GNU Parallel"
+            ],
+            "note": ""
+          },
+          {
+            "icon": "lab",
+            "name": "Labor",
+            "tools": [
+              "CRISPR-Cas9",
+              "qPCR",
+              "Zellkultur"
+            ],
+            "note": ""
           },
           {
             "icon": "practice",
             "name": "Gute Praxis im Gesundheitswesen",
-            "why": "Die Arbeit mit Patientendaten erfordert Sorgfalt und regulatorische Compliance.",
-            "items": [
-              "ICH-GCP E6 (R3): Good Clinical Practice",
-              "DSGVO für Gesundheitsdaten"
-            ]
+            "tools": [
+              "ICH-GCP E6 (R3)",
+              "DSGVO"
+            ],
+            "note": "Patientendaten mit Sorgfalt und regulatorischer Compliance."
           }
         ]
       }

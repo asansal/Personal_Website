@@ -1825,27 +1825,36 @@ iframe[src*="public.tableau.com"] {
     background: var(--group-color);
 }
 
-.stack-card {
+/* Bloque de un grupo: ocupa su cuarto de pantalla */
+.stack-block {
     height: 100%;
-    padding: 1rem 1.1rem;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 3px solid var(--group-color);
+    padding: 0.6rem 0.6rem 0.4rem 0.6rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid color-mix(in srgb, var(--group-color) 35%, transparent);
 }
 
-.stack-card p { margin: 0 !important; line-height: 1.4 !important; }
+.stack-category {
+    padding: 0.7rem 0.6rem 0.8rem 0.6rem;
+}
+
+.stack-category + .stack-category {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.stack-block p { margin: 0 !important; line-height: 1.4 !important; }
 
 .stack-card-title {
     font-weight: 600;
-    font-size: 1.02rem !important;
+    font-size: 0.98rem !important;
     color: #ffffff !important;
+    margin-bottom: 0.55rem !important;
 }
 
-.stack-card-why {
-    font-size: 0.84rem !important;
+.stack-note {
+    font-size: 0.82rem !important;
     color: rgba(255, 255, 255, 0.55) !important;
-    margin: 0.2rem 0 0.7rem 0 !important;
+    margin-top: 0.55rem !important;
 }
 
 .stack-chips {

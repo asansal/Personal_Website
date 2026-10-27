@@ -503,39 +503,35 @@ def render_tableau() -> None:
 STACK_GROUP_ICONS = {"analysis": "bar_chart", "datascience": "model_training", "llm": "smart_toy", "life": "genetics"}
 
 
+def render_stack_group(group: dict) -> None:
+    """One coloured block: header, then each category as a title + one chip per tool (+ optional note)."""
+    cards = ""
+    for category in group.get("categories", []):
+        chips = "".join(f'<span class="stack-chip">{_html.escape(tool)}</span>' for tool in category.get("tools", []))
+        note = f'<p class="stack-note">{_html.escape(category["note"])}</p>' if category.get("note") else ""
+        cards += (
+            f'<div class="stack-category"><p class="stack-card-title">{_html.escape(category.get("name", ""))}</p>'
+            f'<div class="stack-chips">{chips}</div>{note}</div>'
+        )
+    with st.container(key=f"stack-group-{group['id']}"):
+        st.markdown(
+            f'<div class="stack-block">'
+            f'<div class="vp-header"><span class="ms-icon">{STACK_GROUP_ICONS.get(group["id"], "star")}</span>{group.get("title", "")}</div>'
+            f'{cards}</div>',
+            unsafe_allow_html=True,
+        )
+
+
 def render_skills() -> None:
     skills_data = texts.get("skills_section", {})
     st.header(skills_data.get("title", "Tech Stack"))
-    section_intro(skills_data.get("intro", ""))
 
-    # Key tools, coloured by the group they belong to
-    highlights = skills_data.get("highlights", [])
-    if highlights:
-        st.markdown(f"#### {skills_data.get('highlights_title', '')}")
-        pills = "".join(
-            f'<span class="keyword-pill group-{h.get("group", "")}">{_html.escape(h.get("label", ""))}</span>'
-            for h in highlights
-        )
-        st.markdown(f'<div class="keyword-pills">{pills}</div>', unsafe_allow_html=True)
-
-    # One colour per group (analysis / data science / LLMs / life sciences); colours in style.css
-    for group in skills_data.get("groups", []):
-        with st.container(key=f"stack-group-{group['id']}"):
-            st.markdown(
-                f'<div class="vp-header"><span class="ms-icon">{STACK_GROUP_ICONS.get(group["id"], "star")}</span>'
-                f'{group.get("title", "")}</div>',
-                unsafe_allow_html=True,
-            )
-            categories = group.get("categories", [])
-            for col, category in zip(st.columns(max(len(categories), 2), gap="medium"), categories):
-                with col:
-                    chips = "".join(f'<span class="stack-chip">{_html.escape(item)}</span>' for item in category.get("items", []))
-                    st.markdown(
-                        f'<div class="stack-card"><p class="stack-card-title">{_html.escape(category.get("name", ""))}</p>'
-                        f'<p class="stack-card-why">{_html.escape(category.get("why", ""))}</p>'
-                        f'<div class="stack-chips">{chips}</div></div>',
-                        unsafe_allow_html=True,
-                    )
+    # The screen is split into a 2 x 2 grid: one block per group
+    groups = skills_data.get("groups", [])
+    for start in range(0, len(groups), 2):
+        for col, group in zip(st.columns(2, gap="medium"), groups[start:start + 2]):
+            with col:
+                render_stack_group(group)
 
     render_link_card(
         "education",
