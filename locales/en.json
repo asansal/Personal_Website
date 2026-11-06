@@ -350,6 +350,23 @@
           "Consistent ratings of search results and AI model outputs.",
           "Detailed case documentation to improve accuracy."
         ]
+      },
+      {
+        "period": "September 2018 - March 2020",
+        "role": "Science & English Tutor",
+        "company": "Private academy and freelance",
+        "location": "Madrid, Spain",
+        "type": "Teaching",
+        "story": "I taught science and English to primary, secondary and upper-secondary students. This is where I learned to explain complex concepts to any audience.",
+        "stack": [
+          "Communication",
+          "Teaching",
+          "Science communication"
+        ],
+        "impact": [
+          "Science and English classes from primary to upper-secondary school.",
+          "Explanations adapted to each student's level."
+        ]
       }
     ],
     "summary": "Data Scientist with 4+ years analysing genomic and biomedical data in research, trained in bioinformatics, biostatistics and Data Science, and now bringing that rigor to AI.",
@@ -717,6 +734,13 @@
     "certifications": {
       "title": "Certifications",
       "items": [
+        {
+          "name": "SQL (Advanced)",
+          "issuer": "HackerRank",
+          "year": "2026",
+          "type": "Technical Certification",
+          "category": "data"
+        },
         {
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",

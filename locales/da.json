@@ -350,6 +350,23 @@
           "Konsistente vurderinger af søgeresultater og output fra AI-modeller.",
           "Detaljeret dokumentation af cases for at forbedre præcisionen."
         ]
+      },
+      {
+        "period": "September 2018 - marts 2020",
+        "role": "Underviser i naturvidenskab og engelsk",
+        "company": "Privat akademi og freelance",
+        "location": "Madrid, Spanien",
+        "type": "Undervisning",
+        "story": "Jeg underviste elever fra indskoling til gymnasieniveau i naturvidenskab og engelsk. Her lærte jeg at forklare komplekse begreber for ethvert publikum.",
+        "stack": [
+          "Kommunikation",
+          "Undervisning",
+          "Formidling af naturvidenskab"
+        ],
+        "impact": [
+          "Undervisning i naturvidenskab og engelsk fra indskoling til gymnasieniveau.",
+          "Forklaringer tilpasset hver elevs niveau."
+        ]
       }
     ],
     "summary": "Data Scientist med over 4 års analyse af genomiske og biomedicinske data i forskning, uddannet i bioinformatik, biostatistik og Data Science, som nu bringer den grundighed ind i AI.",
@@ -717,6 +734,13 @@
     "certifications": {
       "title": "Certificeringer",
       "items": [
+        {
+          "name": "SQL (Advanced)",
+          "issuer": "HackerRank",
+          "year": "2026",
+          "type": "Teknisk certificering",
+          "category": "data"
+        },
         {
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",

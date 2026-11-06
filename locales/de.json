@@ -350,6 +350,23 @@
           "Konsistente Bewertungen von Suchergebnissen und KI-Modellausgaben.",
           "Detaillierte Dokumentation von Fällen zur Verbesserung der Genauigkeit."
         ]
+      },
+      {
+        "period": "September 2018 - März 2020",
+        "role": "Nachhilfelehrer für Naturwissenschaften & Englisch",
+        "company": "Private Akademie und freiberuflich",
+        "location": "Madrid, Spanien",
+        "type": "Lehre",
+        "story": "Ich unterrichtete Naturwissenschaften und Englisch für Schüler von der Grundschule bis zur Oberstufe. Dort lernte ich, komplexe Konzepte für jedes Publikum verständlich zu erklären.",
+        "stack": [
+          "Kommunikation",
+          "Lehre",
+          "Wissenschaftskommunikation"
+        ],
+        "impact": [
+          "Unterricht in Naturwissenschaften und Englisch von der Grundschule bis zur Oberstufe.",
+          "Erklärungen angepasst an das Niveau jedes Schülers."
+        ]
       }
     ],
     "summary": "Data Scientist mit über 4 Jahren Analyse genomischer und biomedizinischer Forschungsdaten, ausgebildet in Bioinformatik, Biostatistik und Data Science, und heute mit derselben Sorgfalt in der KI tätig.",
@@ -717,6 +734,13 @@
     "certifications": {
       "title": "Zertifikate",
       "items": [
+        {
+          "name": "SQL (Advanced)",
+          "issuer": "HackerRank",
+          "year": "2026",
+          "type": "Technisches Zertifikat",
+          "category": "data"
+        },
         {
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",

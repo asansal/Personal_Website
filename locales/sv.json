@@ -350,6 +350,23 @@
           "Konsekventa bedömningar av sökresultat och svar från AI-modeller.",
           "Detaljerad dokumentation av fall för att förbättra precisionen."
         ]
+      },
+      {
+        "period": "September 2018 - mars 2020",
+        "role": "Lärare i naturvetenskap och engelska",
+        "company": "Privat akademi och frilans",
+        "location": "Madrid, Spanien",
+        "type": "Undervisning",
+        "story": "Jag undervisade elever från lågstadiet till gymnasiet i naturvetenskap och engelska. Där lärde jag mig att förklara komplexa begrepp för vilken publik som helst.",
+        "stack": [
+          "Kommunikation",
+          "Undervisning",
+          "Vetenskapskommunikation"
+        ],
+        "impact": [
+          "Lektioner i naturvetenskap och engelska från lågstadiet till gymnasiet.",
+          "Förklaringar anpassade till varje elevs nivå."
+        ]
       }
     ],
     "summary": "Data Scientist med över 4 års analys av genomiska och biomedicinska data inom forskning, utbildad i bioinformatik, biostatistik och Data Science, som nu tar med sig den noggrannheten till AI.",
@@ -717,6 +734,13 @@
     "certifications": {
       "title": "Certifieringar",
       "items": [
+        {
+          "name": "SQL (Advanced)",
+          "issuer": "HackerRank",
+          "year": "2026",
+          "type": "Teknisk certifiering",
+          "category": "data"
+        },
         {
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",

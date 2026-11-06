@@ -350,6 +350,23 @@
           "Consistente beoordelingen van zoekresultaten en output van AI-modellen.",
           "Gedetailleerde casusdocumentatie om de nauwkeurigheid te verbeteren."
         ]
+      },
+      {
+        "period": "September 2018 - maart 2020",
+        "role": "Docent natuurwetenschappen en Engels",
+        "company": "Privé-academie en freelance",
+        "location": "Madrid, Spanje",
+        "type": "Onderwijs",
+        "story": "Ik gaf les in natuurwetenschappen en Engels aan leerlingen van basisschool tot bovenbouw. Daar leerde ik complexe concepten uit te leggen aan elk publiek.",
+        "stack": [
+          "Communicatie",
+          "Onderwijs",
+          "Wetenschapscommunicatie"
+        ],
+        "impact": [
+          "Lessen natuurwetenschappen en Engels van basisschool tot bovenbouw.",
+          "Uitleg afgestemd op het niveau van elke leerling."
+        ]
       }
     ],
     "summary": "Data Scientist met ruim 4 jaar ervaring in de analyse van genomische en biomedische onderzoeksdata, opgeleid in bio-informatica, biostatistiek en Data Science, en nu met diezelfde nauwkeurigheid actief in AI.",
@@ -717,6 +734,13 @@
     "certifications": {
       "title": "Certificeringen",
       "items": [
+        {
+          "name": "SQL (Advanced)",
+          "issuer": "HackerRank",
+          "year": "2026",
+          "type": "Technische certificering",
+          "category": "data"
+        },
         {
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",

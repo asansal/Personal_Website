@@ -350,6 +350,23 @@
           "Valoraciones consistentes sobre resultados de búsqueda y modelos de IA.",
           "Documentación detallada de los casos para mejorar la precisión."
         ]
+      },
+      {
+        "period": "Septiembre 2018 - Marzo 2020",
+        "role": "Profesor de ciencias e inglés",
+        "company": "Academia privada y freelance",
+        "location": "Madrid, España",
+        "type": "Docencia",
+        "story": "Di clases de ciencias e inglés a alumnos de primaria, secundaria y bachillerato. Aquí aprendí a explicar conceptos complejos a cualquier público.",
+        "stack": [
+          "Comunicación",
+          "Docencia",
+          "Divulgación científica"
+        ],
+        "impact": [
+          "Clases de ciencias e inglés de primaria a bachillerato.",
+          "Explicaciones adaptadas al nivel de cada alumno."
+        ]
       }
     ],
     "summary": "Data Scientist con más de 4 años analizando datos genómicos y biomédicos en investigación, formado en bioinformática, bioestadística y Data Science, y hoy aplicando ese rigor a la IA.",
@@ -717,6 +734,13 @@
     "certifications": {
       "title": "Certificaciones",
       "items": [
+        {
+          "name": "SQL (Advanced)",
+          "issuer": "HackerRank",
+          "year": "2026",
+          "type": "Certificación Técnica",
+          "category": "data"
+        },
         {
           "name": "ICH Good Clinical Practice (GCP) E6 (R3)",
           "issuer": "The Global Health Network",

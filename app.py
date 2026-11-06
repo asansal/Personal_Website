@@ -386,8 +386,8 @@ def render_experience() -> None:
         other_items = exp_data.get("other_items", [])
         if other_items:
             st.markdown(f"#### {exp_data.get('other_title', 'Other experience')}")
-            for item in other_items:
-                render_job(item, key="job-other")
+            for n, item in enumerate(other_items):
+                render_job(item, key=f"job-other-{n}")
 
     st.divider()
 
