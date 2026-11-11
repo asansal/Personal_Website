@@ -953,5 +953,49 @@
         "url": "https://lab.asansal.com"
       }
     ]
+  },
+  "privacy": {
+    "footer_link": "Privacidad",
+    "title": "Privacidad",
+    "updated": "Última actualización: 11 de noviembre de 2026",
+    "intro": "Qué datos trata esta web, para qué y durante cuánto tiempo. En resumen: sin cookies de seguimiento ni de publicidad, sin perfiles y sin guardar direcciones IP.",
+    "sections": [
+      {
+        "title": "Responsable",
+        "body": "Alejandro Sánchez Salvador, titular de asansal.com. Contacto: asansal@outlook.es."
+      },
+      {
+        "title": "Estadísticas de visitas",
+        "body": "Para saber cómo se usa la web, registro eventos anónimos: la visita, el idioma de la página, el país (lo indica Cloudflare), el tipo de dispositivo, las secciones que abres, los clics en enlaces a otras webs, las descargas del CV y la web desde la que llegas.\n\nCada visitante recibe un identificador anónimo, calculado a partir de la dirección IP y el navegador junto con una clave aleatoria que cambia cada día y se borra a los dos días. A partir de ese momento nadie, tampoco yo, puede relacionar el identificador con una dirección IP. La dirección IP no se guarda nunca. Estas estadísticas se conservan un máximo de 13 meses."
+      },
+      {
+        "title": "Asistente de IA",
+        "body": "Las preguntas que escribes al asistente se envían a la API de Google Gemini para generar la respuesta. Esta web usa la API de pago de Google, cuyas condiciones no permiten a Google usarlas para entrenar sus modelos.\n\nTambién guardo el texto de cada pregunta, con su idioma, su tema y el identificador anónimo, para saber qué interesa a los visitantes y mejorar el asistente. Por favor, no incluyas datos personales en tus preguntas. Las preguntas se conservan un máximo de 13 meses."
+      },
+      {
+        "title": "Protección frente a abusos",
+        "body": "Para evitar el uso automatizado del asistente, el número de preguntas al día se cuenta con un identificador anónimo derivado de la dirección IP, que se borra a los dos días. A partir de 5 preguntas, Cloudflare Turnstile puede pedirte que confirmes que no eres un robot. Cloudflare trata los datos necesarios para esa comprobación según su propia política de privacidad."
+      },
+      {
+        "title": "Alojamiento y seguridad",
+        "body": "La web se sirve a través de Cloudflare, que la protege frente a ataques y bots y, para ello, trata datos técnicos como tu dirección IP. El servidor está alojado en Oracle Cloud. Como cualquier servidor web, puede guardar registros técnicos de acceso, con direcciones IP, durante un tiempo limitado por motivos de seguridad."
+      },
+      {
+        "title": "Cookies",
+        "body": "Esta web no usa cookies de seguimiento ni de publicidad. Cloudflare puede usar cookies técnicas estrictamente necesarias para la seguridad, por ejemplo para distinguir personas de bots."
+      },
+      {
+        "title": "Contenido externo",
+        "body": "Las tipografías y los iconos se sirven desde este servidor, sin conectar con Google. La sección de Tableau carga vistas previas y paneles desde Tableau Public (Salesforce), que recibe tu dirección IP cuando abres esa sección. Los enlaces a otras webs (LinkedIn, GitHub, revistas científicas, Sextant IA, lab.asansal.com) se rigen por sus propias políticas de privacidad."
+      },
+      {
+        "title": "Base legal",
+        "body": "Las estadísticas, la seguridad, la protección frente a abusos y la respuesta a las preguntas que envías al asistente se basan en el interés legítimo (artículo 6.1.f del RGPD): conocer cómo se usa la web y mantenerla segura, con datos que no te identifican."
+      },
+      {
+        "title": "Tus derechos",
+        "body": "Puedes solicitar el acceso a tus datos, su rectificación o supresión, u oponerte a su tratamiento, escribiendo a asansal@outlook.es. Como los datos son anónimos, puede que necesite detalles para localizarlos, por ejemplo el texto exacto y la fecha de una pregunta. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es)."
+      }
+    ]
   }
 }

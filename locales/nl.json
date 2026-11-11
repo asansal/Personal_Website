@@ -952,5 +952,49 @@
         "url": "https://lab.asansal.com"
       }
     ]
+  },
+  "privacy": {
+    "footer_link": "Privacy",
+    "title": "Privacy",
+    "updated": "Laatst bijgewerkt: 11 november 2026",
+    "intro": "Welke gegevens deze website verwerkt, waarom en hoe lang. Kort gezegd: geen tracking- of advertentiecookies, geen profielen, en IP-adressen worden niet opgeslagen.",
+    "sections": [
+      {
+        "title": "Verantwoordelijke",
+        "body": "Alejandro Sánchez Salvador, eigenaar van asansal.com. Contact: asansal@outlook.es."
+      },
+      {
+        "title": "Bezoekstatistieken",
+        "body": "Om te begrijpen hoe de site wordt gebruikt, registreer ik anonieme gebeurtenissen: het bezoek, de taal van de pagina, het land (doorgegeven door Cloudflare), het type apparaat, de onderdelen die je opent, klikken op links naar andere websites, downloads van het cv en de website waar je vandaan komt.\n\nElke bezoeker krijgt een anonieme identificatiecode, berekend uit het IP-adres en de browser samen met een willekeurige sleutel die elke dag verandert en na twee dagen wordt verwijderd. Daarna kan niemand, ook ik niet, de code nog aan een IP-adres koppelen. Het IP-adres zelf wordt nooit opgeslagen. Deze statistieken worden maximaal 13 maanden bewaard."
+      },
+      {
+        "title": "AI-assistent",
+        "body": "De vragen die je aan de assistent stelt, worden naar de Google Gemini API gestuurd om het antwoord te maken. Deze site gebruikt de betaalde API van Google, waarvan de voorwaarden Google niet toestaan ze te gebruiken om zijn modellen te trainen.\n\nIk sla ook de tekst van elke vraag op, met taal, onderwerp en de anonieme code, om te zien wat bezoekers willen weten en de assistent te verbeteren. Zet geen persoonsgegevens in je vragen. Vragen worden maximaal 13 maanden bewaard."
+      },
+      {
+        "title": "Bescherming tegen misbruik",
+        "body": "Om geautomatiseerd misbruik van de assistent te voorkomen, wordt het aantal vragen per dag geteld met een anonieme code die is afgeleid van het IP-adres en na twee dagen wordt verwijderd. Na 5 vragen kan Cloudflare Turnstile je vragen te bevestigen dat je geen robot bent. Cloudflare verwerkt de gegevens die daarvoor nodig zijn volgens zijn eigen privacybeleid."
+      },
+      {
+        "title": "Hosting en beveiliging",
+        "body": "De site wordt geleverd via Cloudflare, dat hem beschermt tegen aanvallen en bots en daarvoor technische gegevens zoals je IP-adres verwerkt. De server draait bij Oracle Cloud. Zoals elke webserver kan hij om veiligheidsredenen gedurende beperkte tijd technische toegangslogs met IP-adressen bewaren."
+      },
+      {
+        "title": "Cookies",
+        "body": "Deze site gebruikt geen tracking- of advertentiecookies. Cloudflare kan strikt noodzakelijke beveiligingscookies plaatsen, bijvoorbeeld om mensen en bots van elkaar te onderscheiden."
+      },
+      {
+        "title": "Externe inhoud",
+        "body": "Lettertypen en iconen worden vanaf deze server geladen, zonder contact met Google. Het Tableau-onderdeel laadt voorbeelden en dashboards van Tableau Public (Salesforce), dat je IP-adres ontvangt wanneer je dat onderdeel opent. Voor links naar andere websites (LinkedIn, GitHub, wetenschappelijke tijdschriften, Sextant IA, lab.asansal.com) geldt hun eigen privacybeleid."
+      },
+      {
+        "title": "Rechtsgrond",
+        "body": "Statistieken, beveiliging, bescherming tegen misbruik en het beantwoorden van de vragen die je aan de assistent stuurt, berusten op gerechtvaardigd belang (artikel 6, lid 1, onder f AVG): weten hoe de site wordt gebruikt en hem veilig houden, met gegevens die jou niet identificeren."
+      },
+      {
+        "title": "Je rechten",
+        "body": "Je kunt inzage, correctie of verwijdering van je gegevens vragen, of bezwaar maken tegen de verwerking, door te schrijven naar asansal@outlook.es. Omdat de gegevens anoniem zijn, heb ik mogelijk details nodig om ze te vinden, bijvoorbeeld de exacte tekst en datum van een vraag. Je kunt ook een klacht indienen bij een toezichthouder, zoals de Autoriteit Persoonsgegevens of de Spaanse AEPD (www.aepd.es)."
+      }
+    ]
   }
 }

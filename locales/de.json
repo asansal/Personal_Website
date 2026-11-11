@@ -952,5 +952,49 @@
         "url": "https://lab.asansal.com"
       }
     ]
+  },
+  "privacy": {
+    "footer_link": "Datenschutz",
+    "title": "Datenschutz",
+    "updated": "Zuletzt aktualisiert: 11. November 2026",
+    "intro": "Welche Daten diese Website verarbeitet, wozu und wie lange. Kurz gesagt: keine Tracking- oder Werbe-Cookies, keine Profile, und IP-Adressen werden nicht gespeichert.",
+    "sections": [
+      {
+        "title": "Verantwortlicher",
+        "body": "Alejandro Sánchez Salvador, Inhaber von asansal.com. Kontakt: asansal@outlook.es."
+      },
+      {
+        "title": "Besuchsstatistiken",
+        "body": "Um zu verstehen, wie die Website genutzt wird, erfasse ich anonyme Ereignisse: den Besuch, die Sprache der Seite, das Land (von Cloudflare übermittelt), den Gerätetyp, die geöffneten Bereiche, Klicks auf Links zu anderen Websites, CV-Downloads und die Website, von der Sie kommen.\n\nJeder Besucher erhält eine anonyme Kennung, die aus der IP-Adresse und dem Browser zusammen mit einem zufälligen Schlüssel berechnet wird, der sich täglich ändert und nach zwei Tagen gelöscht wird. Danach kann niemand, auch ich nicht, die Kennung einer IP-Adresse zuordnen. Die IP-Adresse selbst wird nie gespeichert. Diese Statistiken werden höchstens 13 Monate aufbewahrt."
+      },
+      {
+        "title": "KI-Assistent",
+        "body": "Die Fragen, die Sie an den Assistenten richten, werden zur Beantwortung an die Google-Gemini-API gesendet. Diese Website nutzt die kostenpflichtige API von Google, deren Bedingungen es Google nicht erlauben, sie zum Training seiner Modelle zu verwenden.\n\nAußerdem speichere ich den Text jeder Frage mit Sprache, Thema und anonymer Kennung, um zu sehen, was Besucher wissen möchten, und den Assistenten zu verbessern. Bitte geben Sie in Ihren Fragen keine personenbezogenen Daten an. Fragen werden höchstens 13 Monate aufbewahrt."
+      },
+      {
+        "title": "Schutz vor Missbrauch",
+        "body": "Um eine automatisierte Nutzung des Assistenten zu verhindern, wird die Zahl der Fragen pro Tag mit einer anonymen, aus der IP-Adresse abgeleiteten Kennung gezählt, die nach zwei Tagen gelöscht wird. Nach 5 Fragen kann Cloudflare Turnstile Sie bitten, zu bestätigen, dass Sie kein Roboter sind. Cloudflare verarbeitet die dafür nötigen Daten gemäß seiner eigenen Datenschutzerklärung."
+      },
+      {
+        "title": "Hosting und Sicherheit",
+        "body": "Die Website wird über Cloudflare ausgeliefert, das sie vor Angriffen und Bots schützt und dafür technische Daten wie Ihre IP-Adresse verarbeitet. Der Server wird bei Oracle Cloud gehostet. Wie jeder Webserver kann er aus Sicherheitsgründen für begrenzte Zeit technische Zugriffsprotokolle mit IP-Adressen speichern."
+      },
+      {
+        "title": "Cookies",
+        "body": "Diese Website verwendet keine Tracking- oder Werbe-Cookies. Cloudflare kann unbedingt erforderliche Sicherheits-Cookies setzen, zum Beispiel um Menschen von Bots zu unterscheiden."
+      },
+      {
+        "title": "Externe Inhalte",
+        "body": "Schriften und Symbole werden von diesem Server geladen, ohne Verbindung zu Google. Der Tableau-Bereich lädt Vorschauen und Dashboards von Tableau Public (Salesforce), das Ihre IP-Adresse erhält, wenn Sie diesen Bereich öffnen. Für Links zu anderen Websites (LinkedIn, GitHub, Fachzeitschriften, Sextant IA, lab.asansal.com) gelten deren eigene Datenschutzerklärungen."
+      },
+      {
+        "title": "Rechtsgrundlage",
+        "body": "Statistiken, Sicherheit, Schutz vor Missbrauch und die Beantwortung Ihrer Fragen an den Assistenten beruhen auf berechtigtem Interesse (Art. 6 Abs. 1 lit. f DSGVO): zu wissen, wie die Website genutzt wird, und sie sicher zu halten, mit Daten, die Sie nicht identifizieren."
+      },
+      {
+        "title": "Ihre Rechte",
+        "body": "Sie können Auskunft über Ihre Daten, deren Berichtigung oder Löschung verlangen oder der Verarbeitung widersprechen, indem Sie an asansal@outlook.es schreiben. Da die Daten anonym sind, benötige ich möglicherweise Angaben, um sie zu finden, zum Beispiel den genauen Text und das Datum einer Frage. Sie können sich außerdem bei einer Datenschutzaufsichtsbehörde beschweren, etwa bei der spanischen Agencia Española de Protección de Datos (www.aepd.es)."
+      }
+    ]
   }
 }

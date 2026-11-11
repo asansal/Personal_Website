@@ -952,5 +952,49 @@
         "url": "https://lab.asansal.com"
       }
     ]
+  },
+  "privacy": {
+    "footer_link": "Privatliv",
+    "title": "Privatliv",
+    "updated": "Senest opdateret: 11. november 2026",
+    "intro": "Hvilke oplysninger dette website behandler, hvorfor og hvor længe. Kort sagt: ingen sporings- eller reklamecookies, ingen profiler, og IP-adresser gemmes ikke.",
+    "sections": [
+      {
+        "title": "Dataansvarlig",
+        "body": "Alejandro Sánchez Salvador, ejer af asansal.com. Kontakt: asansal@outlook.es."
+      },
+      {
+        "title": "Besøgsstatistik",
+        "body": "For at forstå, hvordan websitet bruges, registrerer jeg anonyme hændelser: besøget, sidens sprog, landet (oplyst af Cloudflare), enhedstypen, de afsnit, du åbner, klik på links til andre websites, downloads af CV'et og det website, du kom fra.\n\nHver besøgende får en anonym identifikator, der beregnes ud fra IP-adressen og browseren sammen med en tilfældig nøgle, som skifter hver dag og slettes efter to dage. Derefter kan ingen, heller ikke jeg, koble identifikatoren til en IP-adresse. Selve IP-adressen gemmes aldrig. Statistikken opbevares i højst 13 måneder."
+      },
+      {
+        "title": "AI-assistent",
+        "body": "De spørgsmål, du skriver til assistenten, sendes til Google Gemini API for at lave svaret. Websitet bruger Googles betalte API, hvis vilkår ikke tillader Google at bruge dem til at træne sine modeller.\n\nJeg gemmer også teksten i hvert spørgsmål med sprog, emne og den anonyme identifikator for at se, hvad besøgende vil vide, og forbedre assistenten. Skriv ikke personoplysninger i dine spørgsmål. Spørgsmål opbevares i højst 13 måneder."
+      },
+      {
+        "title": "Beskyttelse mod misbrug",
+        "body": "For at forhindre automatiseret misbrug af assistenten tælles antallet af spørgsmål pr. dag med en anonym identifikator afledt af IP-adressen, som slettes efter to dage. Efter 5 spørgsmål kan Cloudflare Turnstile bede dig bekræfte, at du ikke er en robot. Cloudflare behandler de oplysninger, der kræves til kontrollen, efter sin egen privatlivspolitik."
+      },
+      {
+        "title": "Hosting og sikkerhed",
+        "body": "Websitet leveres via Cloudflare, som beskytter det mod angreb og bots og derfor behandler tekniske oplysninger som din IP-adresse. Serveren hostes hos Oracle Cloud. Som enhver webserver kan den af sikkerhedshensyn gemme tekniske adgangslogs med IP-adresser i en begrænset periode."
+      },
+      {
+        "title": "Cookies",
+        "body": "Websitet bruger ingen sporings- eller reklamecookies. Cloudflare kan sætte strengt nødvendige sikkerhedscookies, for eksempel for at skelne mennesker fra bots."
+      },
+      {
+        "title": "Eksternt indhold",
+        "body": "Skrifttyper og ikoner leveres fra denne server uden kontakt til Google. Tableau-afsnittet indlæser forhåndsvisninger og dashboards fra Tableau Public (Salesforce), som modtager din IP-adresse, når du åbner afsnittet. Links til andre websites (LinkedIn, GitHub, videnskabelige tidsskrifter, Sextant IA, lab.asansal.com) er omfattet af deres egne privatlivspolitikker."
+      },
+      {
+        "title": "Retsgrundlag",
+        "body": "Statistik, sikkerhed, beskyttelse mod misbrug og svar på de spørgsmål, du sender til assistenten, bygger på legitim interesse (artikel 6, stk. 1, litra f, i GDPR): at vide, hvordan websitet bruges, og holde det sikkert, med oplysninger, der ikke identificerer dig."
+      },
+      {
+        "title": "Dine rettigheder",
+        "body": "Du kan anmode om indsigt i dine oplysninger, berigtigelse eller sletning, eller gøre indsigelse mod behandlingen, ved at skrive til asansal@outlook.es. Da oplysningerne er anonyme, kan jeg få brug for detaljer for at finde dem, for eksempel den præcise tekst og dato for et spørgsmål. Du kan også klage til en tilsynsmyndighed, for eksempel Datatilsynet eller den spanske AEPD (www.aepd.es)."
+      }
+    ]
   }
 }

@@ -81,7 +81,11 @@ def _connect() -> sqlite3.Connection:
         conn.execute("PRAGMA journal_mode=WAL")
         conn.executescript(SCHEMA)
         cutoff = (date.today() - timedelta(days=EVENT_RETENTION_DAYS)).isoformat()
+        # Retention promised on the privacy page: events and questions ~13 months,
+        # per-IP chatbot counters two days (like the salts)
         conn.execute("DELETE FROM events WHERE day < ?", (cutoff,))
+        conn.execute("DELETE FROM chat_questions WHERE day < ?", (cutoff,))
+        conn.execute("DELETE FROM chat_usage WHERE day < ?", ((date.today() - timedelta(days=2)).isoformat(),))
         conn.commit()
         _initialized = True
     return conn
@@ -99,7 +103,12 @@ def _salt(conn: sqlite3.Connection, day: str) -> str:
     salt = secrets.token_hex(32)
     conn.execute("INSERT OR IGNORE INTO salts (day, salt) VALUES (?, ?)", (day, salt))
     old = (date.fromisoformat(day) - timedelta(days=1)).isoformat()
+    # Once a day (when the new salt is created): apply the retention periods
     conn.execute("DELETE FROM salts WHERE day < ?", (old,))
+    conn.execute("DELETE FROM chat_usage WHERE day < ?", (old,))
+    cutoff = (date.fromisoformat(day) - timedelta(days=EVENT_RETENTION_DAYS)).isoformat()
+    conn.execute("DELETE FROM events WHERE day < ?", (cutoff,))
+    conn.execute("DELETE FROM chat_questions WHERE day < ?", (cutoff,))
     conn.commit()
     return conn.execute("SELECT salt FROM salts WHERE day = ?", (day,)).fetchone()[0]
 

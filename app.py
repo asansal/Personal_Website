@@ -762,6 +762,18 @@ def render_contact() -> None:
         st.markdown(f'<div class="channel-grid">{cards}</div>', unsafe_allow_html=True)
 
 
+def render_privacy() -> None:
+    privacy = texts.get("privacy", {})
+    st.header(privacy.get("title", "Privacy"))
+    st.caption(privacy.get("updated", ""))
+    section_intro(privacy.get("intro", ""))
+    with st.container(key="privacy-page"):
+        for section in privacy.get("sections", []):
+            st.subheader(section.get("title", ""))
+            for paragraph in section.get("body", "").split("\n\n"):
+                st.markdown(_html.escape(paragraph))
+
+
 VIEWS = {
     "experience": render_experience,
     "projects": render_projects,
@@ -769,6 +781,7 @@ VIEWS = {
     "skills": render_skills,
     "education": render_education,
     "contact": render_contact,
+    "privacy": render_privacy,
 }
 if not HAS_TABLEAU:
     del VIEWS["tableau"]
@@ -788,6 +801,12 @@ else:
     VIEWS[current_view]()
     st.divider()
     render_back_button("bottom")
+
+# Discreet footer on every page
+if current_view != "privacy":
+    with st.container(key="site-footer"):
+        st.button(texts.get("privacy", {}).get("footer_link", "Privacy"), key="footer_privacy",
+                  type="tertiary", on_click=go_to, args=("privacy",))
 
 # --- ANALYTICS BRIDGE: clicks on external links and the referrer, sent by the browser ---
 def handle_client_event() -> None:

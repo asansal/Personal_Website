@@ -51,7 +51,8 @@ st.markdown(
 
 LANG_NAMES = {"es": "Español", "en": "English", "de": "Deutsch", "sv": "Svenska", "nl": "Nederlands", "da": "Dansk"}
 VIEW_NAMES = {"home": "Inicio", "experience": "Experiencia", "projects": "Proyectos", "tableau": "Tableau",
-              "skills": "Tech stack", "education": "Formación", "contact": "Contacto"}
+              "skills": "Tech stack", "education": "Formación", "contact": "Contacto",
+              "privacy": "Privacidad"}
 CATEGORY_NAMES = {"ai": "IA y LLMs", "data": "Data", "bio": "Bioinformática"}
 TOPIC_NAMES = {"experience": "Experiencia", "projects": "Proyectos", "ai_llm": "IA y LLMs", "skills": "Habilidades",
                "education": "Formación", "languages": "Idiomas", "availability": "Disponibilidad / reubicación",

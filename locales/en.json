@@ -952,5 +952,49 @@
         "url": "https://lab.asansal.com"
       }
     ]
+  },
+  "privacy": {
+    "footer_link": "Privacy",
+    "title": "Privacy",
+    "updated": "Last updated: 11 November 2026",
+    "intro": "What data this website processes, why, and for how long. In short: no tracking or advertising cookies, no profiles, and IP addresses are not stored.",
+    "sections": [
+      {
+        "title": "Who is responsible",
+        "body": "Alejandro Sánchez Salvador, owner of asansal.com. Contact: asansal@outlook.es."
+      },
+      {
+        "title": "Visit statistics",
+        "body": "To understand how the site is used, I record anonymous events: the visit, the page language, the country (provided by Cloudflare), the type of device, the sections you open, clicks on links to other websites, CV downloads and the website you came from.\n\nEach visitor gets an anonymous identifier calculated from the IP address and the browser together with a random key that changes every day and is deleted after two days. After that, nobody, including me, can link the identifier to an IP address. The IP address itself is never stored. These statistics are kept for up to 13 months."
+      },
+      {
+        "title": "AI assistant",
+        "body": "The questions you write to the assistant are sent to the Google Gemini API to generate the answer. This site uses Google's paid API, whose terms do not allow Google to use them to train its models.\n\nI also store the text of each question, with its language, its topic and the anonymous identifier, to see what visitors want to know and to improve the assistant. Please do not include personal data in your questions. Questions are kept for up to 13 months."
+      },
+      {
+        "title": "Protection against abuse",
+        "body": "To prevent automated abuse of the assistant, the number of questions per day is counted with an anonymous identifier derived from the IP address, which is deleted after two days. After 5 questions, Cloudflare Turnstile may ask you to confirm that you are not a robot. Cloudflare processes the data needed for that check under its own privacy policy."
+      },
+      {
+        "title": "Hosting and security",
+        "body": "The site is served through Cloudflare, which protects it against attacks and bots and, to do so, processes technical data such as your IP address. The server is hosted on Oracle Cloud. Like any web server, it may keep technical access logs, including IP addresses, for a limited time for security purposes."
+      },
+      {
+        "title": "Cookies",
+        "body": "This site does not use tracking or advertising cookies. Cloudflare may set strictly necessary security cookies, for example to tell people and bots apart."
+      },
+      {
+        "title": "External content",
+        "body": "Fonts and icons are served from this server, without contacting Google. The Tableau section loads previews and dashboards from Tableau Public (Salesforce), which receives your IP address when you open that section. Links to other websites (LinkedIn, GitHub, scientific journals, Sextant IA, lab.asansal.com) are governed by their own privacy policies."
+      },
+      {
+        "title": "Legal basis",
+        "body": "Statistics, security, abuse protection and answering the questions you send to the assistant are based on legitimate interest (Article 6(1)(f) GDPR): knowing how the site is used and keeping it safe, with data that do not identify you."
+      },
+      {
+        "title": "Your rights",
+        "body": "You can request access to your data, its rectification or erasure, or object to its processing, by writing to asansal@outlook.es. As the data are anonymous, I may need details to find them, for example the exact text and date of a question. You can also lodge a complaint with the Spanish Data Protection Agency (www.aepd.es)."
+      }
+    ]
   }
 }
