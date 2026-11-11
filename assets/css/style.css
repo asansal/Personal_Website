@@ -2280,3 +2280,24 @@ iframe[src*="public.tableau.com"] {
 /* Página de privacidad: texto cómodo de leer */
 .st-key-privacy-page { max-width: 760px; }
 .st-key-privacy-page h3 { font-size: 1.15rem !important; margin-top: 1.2rem !important; }
+
+/* Avatar del asistente: icono de IA (no la foto), para que se entienda que habla el chatbot */
+.chatbot-avatar,
+.chatbot-welcome-avatar,
+.chat-message.bot .message-avatar {
+    background: linear-gradient(135deg, #00d4aa 0%, #3d9bff 100%) !important;
+    color: #0a0e27 !important;
+    border: none !important;
+}
+
+/* Sugerencias de seguimiento dentro de la conversación */
+.followup-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+.chat-followup .message-bubble { white-space: normal; }
+.chat-followup .suggestion-chip { font-size: 0.8rem; padding: 6px 11px; }
+/* El icono del asistente, junto a la primera línea (las respuestas se leen desde arriba) */
+.chat-message.bot { align-items: flex-start; }

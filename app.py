@@ -15,6 +15,8 @@ st.set_page_config(
 
 
 from logic.chatbot import (
+    build_context,
+    pregenerated_answer,
     load_knowledge_base,
     initialize_chatbot,
     inject_chatbot_popup,
@@ -871,7 +873,8 @@ if GENAI_API_KEY:
     bot_config = texts.get("chatbot_config", {})
 
     def chatbot_reply(user_query: str) -> tuple[str, str]:
-        """(reply text, action for the popup JS: '' or 'captcha')."""
+        """(reply text, action for the popup JS): '' = answer (follow-up suggestions are
+        shown), 'captcha' = show Turnstile, 'notice' = limits, errors and verification."""
         cfg = bot_config
         extra = analytics.VERIFIED_LIMIT - analytics.TYPED_LIMIT
         turnstile_on = bool(analytics.turnstile_site_key())
@@ -881,26 +884,26 @@ if GENAI_API_KEY:
             if analytics.verify_turnstile(user_query.split(":", 1)[1]):
                 analytics.mark_verified()
                 analytics.track("captcha_ok")
-                return cfg.get("captcha_ok", "").format(extra=extra), ""
+                return cfg.get("captcha_ok", "").format(extra=extra), "notice"
             analytics.track("captcha_fail")
             return cfg.get("captcha_failed", ""), "captcha"
 
         if len(user_query) > analytics.MAX_QUESTION_CHARS:
-            return cfg.get("too_long", "").format(max=analytics.MAX_QUESTION_CHARS), ""
+            return cfg.get("too_long", "").format(max=analytics.MAX_QUESTION_CHARS), "notice"
 
-        kb_text = load_knowledge_base() + (
-            f"\n\n[INSTRUCCIÓN DINÁMICA DE LA INTERFAZ]: La página está actualmente "
-            f"en el idioma '{st.session_state.lang}'. Si el usuario te solicita mi CV o currículum, "
-            f"NO intentes generar enlaces. En su lugar, indícale amablemente que puede descargarlo "
-            f"haciendo clic en el botón 'Descargar CV' que se encuentra en el menú lateral izquierdo de la pantalla. "
-            f"Ese botón ya le proporcionará automáticamente el CV en el idioma correcto."
-        )
+        kb_text = build_context(st.session_state.lang)
         status = analytics.chat_status()
 
-        # Suggested questions: answered once per language and knowledge base, then served
-        # from the cache. They never count towards the visitor's limit.
-        predefined = user_query in {s.get("msg") for s in cfg.get("suggestions", [])}
+        # Suggested questions (top chips and follow-ups): pre-generated answers from
+        # data/chat_answers.json; if the knowledge base changed since, answered once and
+        # cached. They never count towards the visitor's limit.
+        suggestions = cfg.get("suggestions", []) + cfg.get("more_suggestions", [])
+        predefined = user_query in {s.get("msg") for s in suggestions}
         if predefined:
+            pre = pregenerated_answer(st.session_state.lang, user_query)
+            if pre:
+                analytics.log_question(user_query, pre.get("topic", "other"), True, "predefined", cached=True)
+                return pre["answer"], ""
             key = analytics.cache_key(st.session_state.lang, user_query, kb_text)
             hit = analytics.cached_answer(key)
             if hit:
@@ -912,16 +915,16 @@ if GENAI_API_KEY:
                 analytics.track("chat_limit", "verified" if status["verified"] else "free")
                 if not status["verified"] and turnstile_on:
                     return cfg.get("limit_captcha", "").format(limit=analytics.TYPED_LIMIT, extra=extra), "captcha"
-                return cfg.get("limit_final", ""), ""
+                return cfg.get("limit_final", ""), "notice"
 
         if status["global_calls"] >= analytics.GLOBAL_DAILY_CAP:
             analytics.track("chat_daily_cap")
-            return cfg.get("daily_cap", ""), ""
+            return cfg.get("daily_cap", ""), "notice"
 
         result = query_gemini(user_query, kb_text, lang=st.session_state.lang)
         if result is None or not result["answer"]:
             analytics.track("chat_error")
-            return cfg.get("error_generic", "Error"), ""
+            return cfg.get("error_generic", "Error"), "notice"
 
         if predefined:
             analytics.store_answer(key, st.session_state.lang, user_query, result["answer"], result["topic"])
@@ -966,7 +969,6 @@ if GENAI_API_KEY:
         bot_config=bot_config,
         kb_text=load_knowledge_base(),
         api_key=GENAI_API_KEY,
-        avatar_src=f"data:image/jpeg;base64,{img_b64}",
         turnstile_site_key=analytics.turnstile_site_key(),
         lang=st.session_state.lang,
     )

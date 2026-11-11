@@ -6,7 +6,9 @@ import json
 import html as _html
 import os
 import csv
+import hashlib
 import logging
+from pathlib import Path
 from typing import Literal
 
 import streamlit.components.v1 as components
@@ -83,6 +85,48 @@ def load_knowledge_base(file_path: str = "data/personal_knowledge.csv") -> str:
     except Exception as e:
         st.error(f"Error cargando la base de conocimiento: {e}")
         return ""
+
+
+# --- CONTEXT SENT WITH EVERY QUESTION ---
+def build_context(lang: str) -> str:
+    """Knowledge base plus the instruction about the CV button. Shared by the site and
+    scripts/pregenerate_answers.py, so pre-generated answers match live ones."""
+    return load_knowledge_base() + (
+        f"\n\n[INSTRUCCIÓN DINÁMICA DE LA INTERFAZ]: La página está actualmente "
+        f"en el idioma '{lang}'. Si el usuario te solicita mi CV o currículum, "
+        f"NO intentes generar enlaces. En su lugar, indícale amablemente que puede descargarlo "
+        f"haciendo clic en el botón 'Descargar CV' que se encuentra en el menú lateral izquierdo de la pantalla. "
+        f"Ese botón ya le proporcionará automáticamente el CV en el idioma correcto."
+    )
+
+
+def knowledge_hash() -> str:
+    """Fingerprint of the knowledge base: pre-generated answers are only served while it matches."""
+    return hashlib.sha256(load_knowledge_base().encode("utf-8")).hexdigest()[:16]
+
+
+# --- PRE-GENERATED ANSWERS FOR THE SUGGESTED QUESTIONS ---
+ANSWERS_PATH = Path(__file__).resolve().parent.parent / "data" / "chat_answers.json"
+
+
+@st.cache_data
+def _load_answers(mtime: float) -> dict:
+    try:
+        return json.loads(ANSWERS_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        logger.warning("Could not read %s: %s", ANSWERS_PATH, exc)
+        return {}
+
+
+def pregenerated_answer(lang: str, question: str) -> dict | None:
+    """{answer, topic} written by scripts/pregenerate_answers.py, or None if missing or
+    if the knowledge base changed since (then the live answer is used and cached)."""
+    if not ANSWERS_PATH.exists():
+        return None
+    data = _load_answers(ANSWERS_PATH.stat().st_mtime)
+    if data.get("kb_hash") != knowledge_hash():
+        return None
+    return data.get("answers", {}).get(lang, {}).get(question)
 
 
 # --- SYSTEM PROMPT ---
@@ -176,7 +220,7 @@ def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> d
 
 
 # --- CHATBOT POPUP INJECTION ---
-def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_src: str = "",
+def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str,
                          turnstile_site_key: str = "", lang: str = "en") -> None:
     # Separate variables for initial HTML rendering (HTML-escaped)
     # and for dynamic JS updates (JSON-encoded for safety).
@@ -204,14 +248,19 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
     trigger_label_js       = json.dumps(bot_config.get("trigger_label", "Ask my AI"))
     disclaimer_js          = json.dumps(bot_config.get("disclaimer", ""))
 
-    # Bot avatar: the profile photo when available, otherwise a sparkle icon
-    sparkle_svg = ('<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">'
-                   '<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>')
-    avatar_html = f'<img src="{_html.escape(avatar_src)}" alt="">' if avatar_src else sparkle_svg
-    avatar_js   = json.dumps(avatar_html)
+    # Bot avatar: an AI sparkle, never the owner's photo, so visitors know they talk to the assistant
+    def sparkle(size: int) -> str:
+        return (f'<svg viewBox="0 0 24 24" width="{size}" height="{size}" fill="currentColor" aria-hidden="true">'
+                '<path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>')
+    avatar_html = sparkle(20)
+    welcome_avatar_html = sparkle(30)
+    avatar_js = json.dumps(sparkle(15))
 
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
+    # Every suggested question (top chips first): all have pre-generated answers
+    pool_json = json.dumps(raw_suggestions + bot_config.get("more_suggestions", []), ensure_ascii=False)
+    followup_js = json.dumps(bot_config.get("followup_prompt", ""))
     turnstile_key_js = json.dumps(turnstile_site_key)
     lang_js = json.dumps(lang)
 
@@ -252,7 +301,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
 
                     <div class="chatbot-body" id="chatbotBody">
                         <div class="chatbot-welcome" id="chatbotWelcome">
-                            <div class="chatbot-welcome-avatar">{avatar_html}</div>
+                            <div class="chatbot-welcome-avatar">{welcome_avatar_html}</div>
                             <h4 id="chatbotWelcomeTitle">{welcome_title_html}</h4>
                             <p id="chatbotWelcomeMsg">{welcome_message_html}</p>
                         </div>
@@ -334,6 +383,12 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
             sendMessage();
         }});
 
+        const bodyEl = doc.getElementById('chatbotBody');
+        if (bodyEl) bodyEl.onclick = function (e) {{
+            const chip = e.target.closest('.chat-followup .suggestion-chip');
+            if (chip) sendMessage(chip.dataset.msg);
+        }};
+
         reattach('chatbotSuggestions', 'click', function(e) {{
             const chip = e.target.closest('.suggestion-chip');
             if (chip) sendMessage(chip.dataset.msg);
@@ -380,7 +435,11 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
             const message = (suggestion !== undefined ? suggestion : activeInput.value).trim();
             if (!message) return;
 
-            if (!silent) addMessage(message, 'user');
+            if (!silent) {{
+                asked[message] = true;
+                doc.querySelectorAll('.chat-followup').forEach(function (el) {{ el.remove(); }});
+                addMessage(message, 'user');
+            }}
             activeInput.value    = '';
             activeInput.disabled = true;
             showTypingIndicator();
@@ -412,7 +471,9 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
                         addMessage(botReply.trim(), 'bot');
                         activeInput.disabled = false;
                         activeInput.focus();
-                        if (rd.getAttribute('data-action') === 'captcha') showCaptcha();
+                        const action = rd.getAttribute('data-action') || '';
+                        if (action === 'captcha') showCaptcha();
+                        else if (action === '') showFollowups();
                         return;
                     }}
                 }}
@@ -444,7 +505,61 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
             messageDiv.appendChild(avatar);
             messageDiv.appendChild(bubble);
             chatBody.appendChild(messageDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
+            if (type === 'bot') scrollToMessage(messageDiv);   // read the answer from the top
+            else chatBody.scrollTop = chatBody.scrollHeight;
+            return messageDiv;
+        }}
+
+        function scrollToMessage(el) {{
+            const chatBody = doc.getElementById('chatbotBody');
+            const offset = el.getBoundingClientRect().top - chatBody.getBoundingClientRect().top;
+            chatBody.scrollTop += offset - 12;
+        }}
+
+        // --- Follow-up suggestions after each answer (pre-generated, no tokens) ---
+        const POOL = {pool_json};
+        const FOLLOWUP_TEXT = {followup_js};
+        const P0 = window.parent;
+        const asked = P0.__cbAsked = P0.__cbAsked || {{}};
+        const shown = P0.__cbShown = P0.__cbShown || {{}};
+
+        function showFollowups() {{
+            const top = POOL.slice(0, 3).map(function (s) {{ return s.msg; }});
+            const candidates = POOL.filter(function (s) {{ return !asked[s.msg]; }});
+            // Prefer questions that are not already visible at the top, then the least shown
+            candidates.sort(function (a, b) {{
+                const ta = top.indexOf(a.msg) >= 0 ? 1 : 0, tb = top.indexOf(b.msg) >= 0 ? 1 : 0;
+                if (ta !== tb) return ta - tb;
+                return (shown[a.msg] || 0) - (shown[b.msg] || 0);
+            }});
+            const picks = candidates.slice(0, 3);
+            if (!picks.length || !FOLLOWUP_TEXT) return;
+
+            const chatBody = doc.getElementById('chatbotBody');
+            const row = doc.createElement('div');
+            row.className = 'chat-message bot chat-followup';
+            const avatar = doc.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = BOT_ICON;
+            const bubble = doc.createElement('div');
+            bubble.className = 'message-bubble';
+            const text = doc.createElement('div');
+            text.textContent = FOLLOWUP_TEXT;
+            const chips = doc.createElement('div');
+            chips.className = 'followup-chips';
+            picks.forEach(function (s) {{
+                shown[s.msg] = (shown[s.msg] || 0) + 1;
+                const btn = doc.createElement('button');
+                btn.className = 'suggestion-chip';
+                btn.dataset.msg = s.msg;
+                btn.textContent = s.label;
+                chips.appendChild(btn);
+            }});
+            bubble.appendChild(text);
+            bubble.appendChild(chips);
+            row.appendChild(avatar);
+            row.appendChild(bubble);
+            chatBody.appendChild(row);   // no scroll: the answer above stays in view
         }}
 
         function showTypingIndicator() {{

@@ -891,7 +891,38 @@
     "captcha_failed": "Verifieringen kunde inte slutföras. Försök igen.",
     "daily_cap": "Assistenten har nått dagens användningsgräns. Du kan kontakta Alejandro på LinkedIn eller på asansal@outlook.es.",
     "too_long": "Frågan är för lång. Håll den under {max} tecken.",
-    "error_generic": "Ett fel uppstod när din fråga behandlades. Försök igen senare."
+    "error_generic": "Ett fel uppstod när din fråga behandlades. Försök igen senare.",
+    "followup_prompt": "Vill du veta något mer?",
+    "more_suggestions": [
+      {
+        "label": "Sextant IA",
+        "msg": "Vad är Sextant IA och hur fungerar det?"
+      },
+      {
+        "label": "Bioinformatik",
+        "msg": "Vilken erfarenhet har han av bioinformatik och genomik?"
+      },
+      {
+        "label": "Teknikstack",
+        "msg": "Vilka verktyg och programmeringsspråk arbetar han med?"
+      },
+      {
+        "label": "Tillgänglighet",
+        "msg": "Är han öppen för att flytta eller arbeta på distans?"
+      },
+      {
+        "label": "Språk",
+        "msg": "Vilka språk talar han?"
+      },
+      {
+        "label": "Utbildning",
+        "msg": "Vilken utbildning och vilka certifieringar har han?"
+      },
+      {
+        "label": "Publikationer",
+        "msg": "Vad handlar hans vetenskapliga publikationer om?"
+      }
+    ]
   },
   "cv_download_text": "CV på engelska",
   "contact_section": {

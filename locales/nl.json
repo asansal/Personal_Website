@@ -891,7 +891,38 @@
     "captcha_failed": "De verificatie is niet gelukt. Probeer het opnieuw.",
     "daily_cap": "De assistent heeft de gebruikslimiet voor vandaag bereikt. Je kunt Alejandro bereiken via LinkedIn of via asansal@outlook.es.",
     "too_long": "De vraag is te lang. Houd hem onder de {max} tekens.",
-    "error_generic": "Er is een fout opgetreden bij het verwerken van je vraag. Probeer het later opnieuw."
+    "error_generic": "Er is een fout opgetreden bij het verwerken van je vraag. Probeer het later opnieuw.",
+    "followup_prompt": "Wil je nog iets anders weten?",
+    "more_suggestions": [
+      {
+        "label": "Sextant IA",
+        "msg": "Wat is Sextant IA en hoe werkt het?"
+      },
+      {
+        "label": "Bio-informatica",
+        "msg": "Welke ervaring heeft hij in bio-informatica en genomica?"
+      },
+      {
+        "label": "Techstack",
+        "msg": "Met welke tools en programmeertalen werkt hij?"
+      },
+      {
+        "label": "Beschikbaarheid",
+        "msg": "Staat hij open voor verhuizen of op afstand werken?"
+      },
+      {
+        "label": "Talen",
+        "msg": "Welke talen spreekt hij?"
+      },
+      {
+        "label": "Opleiding",
+        "msg": "Welke opleiding en certificeringen heeft hij?"
+      },
+      {
+        "label": "Publicaties",
+        "msg": "Waar gaan zijn wetenschappelijke publicaties over?"
+      }
+    ]
   },
   "cv_download_text": "Cv in het Engels",
   "contact_section": {

@@ -891,7 +891,38 @@
     "captcha_failed": "No se pudo completar la verificación. Inténtalo de nuevo.",
     "daily_cap": "El asistente ha llegado a su límite de uso de hoy. Puedes escribir a Alejandro por LinkedIn o a asansal@outlook.es.",
     "too_long": "La pregunta es demasiado larga. Resúmela en menos de {max} caracteres.",
-    "error_generic": "Lo siento, hubo un error al procesar tu pregunta. Inténtalo más tarde."
+    "error_generic": "Lo siento, hubo un error al procesar tu pregunta. Inténtalo más tarde.",
+    "followup_prompt": "¿Quieres saber algo más?",
+    "more_suggestions": [
+      {
+        "label": "Sextant IA",
+        "msg": "¿Qué es Sextant IA y cómo funciona?"
+      },
+      {
+        "label": "Bioinformática",
+        "msg": "¿Qué experiencia tiene en bioinformática y genómica?"
+      },
+      {
+        "label": "Stack técnico",
+        "msg": "¿Con qué herramientas y lenguajes de programación trabaja?"
+      },
+      {
+        "label": "Disponibilidad",
+        "msg": "¿Está abierto a reubicarse o a trabajar en remoto?"
+      },
+      {
+        "label": "Idiomas",
+        "msg": "¿Qué idiomas habla?"
+      },
+      {
+        "label": "Formación",
+        "msg": "¿Qué formación y certificaciones tiene?"
+      },
+      {
+        "label": "Publicaciones",
+        "msg": "¿De qué tratan sus publicaciones científicas?"
+      }
+    ]
   },
   "cv_download_text": "Descargar CV",
   "contact_section": {

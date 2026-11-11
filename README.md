@@ -63,6 +63,12 @@ GENAI_API_KEY = "YOUR_API_KEY_HERE"
 
 Without a key the site works normally and only the chatbot is disabled. Optional keys: `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` (the "not a robot" check after 5 questions) and `PANEL_ALLOWED_EMAIL` (the command center).
 
+The answers to the suggested chatbot questions (in all six languages) are pre-generated in [`data/chat_answers.json`](data/chat_answers.json), so the suggestion buttons never spend tokens. After editing the knowledge base or the suggestions, regenerate them (only changed entries call Gemini):
+
+```bash
+python scripts/pregenerate_answers.py
+```
+
 To open the command center locally:
 
 ```bash
