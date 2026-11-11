@@ -20,6 +20,7 @@ from logic.chatbot import (
     inject_chatbot_popup,
     query_gemini,
 )
+from logic import analytics
 from logic.utils import (
     load_css,
     load_localization,
@@ -66,6 +67,8 @@ if "chatbot_response" not in st.session_state:
     st.session_state.chatbot_response = ""
 if "cb_input" not in st.session_state:
     st.session_state.cb_input = ""
+if "chatbot_action" not in st.session_state:
+    st.session_state.chatbot_action = ""
 
 texts = load_localization(st.session_state.lang)
 if not texts:
@@ -74,6 +77,9 @@ if not texts:
 
 # --- STYLES ---
 load_css("assets/css/style.css")
+
+# --- ANALYTICS: one "visit" per session (cookieless, see logic/analytics.py) ---
+analytics.track_visit()
 
 # --- CHATBOT INITIALIZATION ---
 GENAI_API_KEY = initialize_chatbot()
@@ -94,7 +100,9 @@ if meta_desc:
 
 # --- LANGUAGE PICKER (top-right corner) ---
 def set_language(code: str) -> None:
-    st.session_state.lang = code
+    if code != st.session_state.lang:
+        st.session_state.lang = code
+        analytics.track("lang_change", code)
 
 
 with st.container(key="lang-corner"):
@@ -130,7 +138,7 @@ with st.sidebar:
     )
 
     if selected_lang_code != st.session_state.lang:
-        st.session_state.lang = selected_lang_code
+        set_language(selected_lang_code)
         st.rerun()
 
     # ── Profile card: photo, name, socials and availability in one block ──
@@ -186,6 +194,8 @@ with st.sidebar:
             file_name=os.path.basename(cv_path),
             mime="application/pdf",
             width='stretch',
+            on_click=analytics.track,
+            args=("cv_download", cv_lang),
         )
 
 
@@ -196,6 +206,7 @@ nav_data = texts.get("navigation", {})
 def go_to(view: str) -> None:
     """on_click callback: changes the active view before the rerun, so a single click is enough."""
     st.session_state.current_view = view
+    analytics.track("view", view)
 
 
 def render_back_button(position: str) -> None:
@@ -501,6 +512,7 @@ def render_project(item: dict, labels: dict) -> None:
 
 def select_project_category(category_id: str) -> None:
     st.session_state.project_category = category_id
+    analytics.track("project_category", category_id)
 
 
 def render_projects() -> None:
@@ -777,30 +789,141 @@ else:
     st.divider()
     render_back_button("bottom")
 
+# --- ANALYTICS BRIDGE: clicks on external links and the referrer, sent by the browser ---
+def handle_client_event() -> None:
+    raw = st.session_state.ev_input
+    st.session_state.ev_input = ""
+    if raw:
+        analytics.handle_client_event(raw)
+
+
+st.text_input("__ev_input__", key="ev_input", on_change=handle_client_event, label_visibility="collapsed")
+
+# The listener is added to the main document once per page load (it lives there, not in
+# this iframe, so it keeps working when Streamlit re-creates the iframe).
+components.html(
+    r"""<script>
+    (function () {
+      const doc = window.parent.document;
+      if (doc.getElementById('asansal-tracker')) return;
+      const tracker = function () {
+        let n = 0;
+        function send(payload, tries) {
+          const input = document.querySelector('input[aria-label="__ev_input__"]');
+          if (!input) {
+            if ((tries || 0) < 20) setTimeout(function () { send(payload, (tries || 0) + 1); }, 300);
+            return;
+          }
+          const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+          setter.call(input, payload + '|' + (++n));
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+          ['keydown', 'keypress', 'keyup'].forEach(function (type) {
+            input.dispatchEvent(new KeyboardEvent(type, { key: 'Enter', code: 'Enter', keyCode: 13, charCode: 13, which: 13, bubbles: true }));
+          });
+        }
+        function onClick(e) {
+          if (e.type === 'auxclick' && e.button !== 1) return;
+          const a = e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          if (a.href.indexOf('mailto:') === 0) { send('link\tmailto'); return; }
+          let url;
+          try { url = new URL(a.href); } catch (err) { return; }
+          if (url.host === location.host) return;
+          send('link\t' + url.host + url.pathname.replace(/\/$/, ''));
+        }
+        document.addEventListener('click', onClick, true);
+        document.addEventListener('auxclick', onClick, true);
+        if (document.referrer) {
+          try {
+            const ref = new URL(document.referrer);
+            if (ref.host !== location.host) send('ref\t' + ref.host);
+          } catch (err) {}
+        }
+      };
+      const script = doc.createElement('script');
+      script.id = 'asansal-tracker';
+      script.textContent = '(' + tracker.toString() + ')();';
+      doc.head.appendChild(script);
+    })();
+    </script>""",
+    height=0,
+)
+
 # --- CHATBOT BACKEND BRIDGE & POPUP ---
 if GENAI_API_KEY:
-    # This section handles the logic for receiving a query from the frontend JS,
-    # calling the Gemini backend, and storing the response for the JS to poll.
+    bot_config = texts.get("chatbot_config", {})
+
+    def chatbot_reply(user_query: str) -> tuple[str, str]:
+        """(reply text, action for the popup JS: '' or 'captcha')."""
+        cfg = bot_config
+        extra = analytics.VERIFIED_LIMIT - analytics.TYPED_LIMIT
+        turnstile_on = bool(analytics.turnstile_site_key())
+
+        # "Not a robot" token sent by the Turnstile widget
+        if user_query.startswith("__turnstile__:"):
+            if analytics.verify_turnstile(user_query.split(":", 1)[1]):
+                analytics.mark_verified()
+                analytics.track("captcha_ok")
+                return cfg.get("captcha_ok", "").format(extra=extra), ""
+            analytics.track("captcha_fail")
+            return cfg.get("captcha_failed", ""), "captcha"
+
+        if len(user_query) > analytics.MAX_QUESTION_CHARS:
+            return cfg.get("too_long", "").format(max=analytics.MAX_QUESTION_CHARS), ""
+
+        kb_text = load_knowledge_base() + (
+            f"\n\n[INSTRUCCIÓN DINÁMICA DE LA INTERFAZ]: La página está actualmente "
+            f"en el idioma '{st.session_state.lang}'. Si el usuario te solicita mi CV o currículum, "
+            f"NO intentes generar enlaces. En su lugar, indícale amablemente que puede descargarlo "
+            f"haciendo clic en el botón 'Descargar CV' que se encuentra en el menú lateral izquierdo de la pantalla. "
+            f"Ese botón ya le proporcionará automáticamente el CV en el idioma correcto."
+        )
+        status = analytics.chat_status()
+
+        # Suggested questions: answered once per language and knowledge base, then served
+        # from the cache. They never count towards the visitor's limit.
+        predefined = user_query in {s.get("msg") for s in cfg.get("suggestions", [])}
+        if predefined:
+            key = analytics.cache_key(st.session_state.lang, user_query, kb_text)
+            hit = analytics.cached_answer(key)
+            if hit:
+                analytics.log_question(user_query, hit[1], True, "predefined", cached=True)
+                return hit[0], ""
+        else:
+            limit = analytics.VERIFIED_LIMIT if status["verified"] else analytics.TYPED_LIMIT
+            if status["typed"] >= limit:
+                analytics.track("chat_limit", "verified" if status["verified"] else "free")
+                if not status["verified"] and turnstile_on:
+                    return cfg.get("limit_captcha", "").format(limit=analytics.TYPED_LIMIT, extra=extra), "captcha"
+                return cfg.get("limit_final", ""), ""
+
+        if status["global_calls"] >= analytics.GLOBAL_DAILY_CAP:
+            analytics.track("chat_daily_cap")
+            return cfg.get("daily_cap", ""), ""
+
+        result = query_gemini(user_query, kb_text, lang=st.session_state.lang)
+        if result is None or not result["answer"]:
+            analytics.track("chat_error")
+            return cfg.get("error_generic", "Error"), ""
+
+        if predefined:
+            analytics.store_answer(key, st.session_state.lang, user_query, result["answer"], result["topic"])
+        else:
+            analytics.register_typed_question()
+        analytics.log_question(
+            user_query, result["topic"], result["answered"], "predefined" if predefined else "typed",
+            cached=False, input_tokens=result["input_tokens"], output_tokens=result["output_tokens"],
+        )
+        return result["answer"], ""
+
     def handle_chatbot_query():
         if st.session_state.cb_input:
-            user_query = st.session_state.cb_input
+            user_query = st.session_state.cb_input.strip()
             st.session_state.cb_input = ""
-
-            kb_text = load_knowledge_base()
-
-            # --- NUEVO: Inyectar contexto dinámico sobre el CV ---
-            kb_text += (
-                f"\n\n[INSTRUCCIÓN DINÁMICA DE LA INTERFAZ]: La página está actualmente "
-                f"en el idioma '{st.session_state.lang}'. Si el usuario te solicita mi CV o currículum, "
-                f"NO intentes generar enlaces. En su lugar, indícale amablemente que puede descargarlo "
-                f"haciendo clic en el botón 'Descargar CV' que se encuentra en el menú lateral izquierdo de la pantalla. "
-                f"Ese botón ya le proporcionará automáticamente el CV en el idioma correcto."
-            )
-
-            response = query_gemini(user_query, kb_text, lang=st.session_state.lang)
-
+            response, action = chatbot_reply(user_query)
             st.session_state.chatbot_query_id += 1
             st.session_state.chatbot_response = response
+            st.session_state.chatbot_action = action
 
     # Hidden input widget that the JS popup writes to. The on_change callback
     # triggers the Python logic to run.
@@ -815,19 +938,18 @@ if GENAI_API_KEY:
     # for changes to its 'data-id' attribute to know when a new response is ready.
     # We use html.escape to prevent potential XSS issues from the LLM response.
     st.markdown(
-        f'<div id="cb-py-response" data-id="{st.session_state.chatbot_query_id}">'
+        f'<div id="cb-py-response" data-id="{st.session_state.chatbot_query_id}" '
+        f'data-action="{st.session_state.chatbot_action}">'
         f'{_html.escape(st.session_state.chatbot_response)}</div>',
         unsafe_allow_html=True,
     )
 
-    # Load knowledge base and bot config
-    knowledge_base_text = load_knowledge_base()
-    bot_config = texts.get("chatbot_config", {})
-
     # Inject chatbot popup HTML/JS
     inject_chatbot_popup(
         bot_config=bot_config,
-        kb_text=knowledge_base_text,
+        kb_text=load_knowledge_base(),
         api_key=GENAI_API_KEY,
         avatar_src=f"data:image/jpeg;base64,{img_b64}",
+        turnstile_site_key=analytics.turnstile_site_key(),
+        lang=st.session_state.lang,
     )

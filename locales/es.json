@@ -884,7 +884,14 @@
     "error_timeout": "Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.",
     "error_connection": "Error interno: no se pudo conectar con el servidor.",
     "trigger_label": "Pregunta a mi IA",
-    "disclaimer": "Respuestas generadas por IA a partir de mi CV; pueden contener errores."
+    "disclaimer": "Respuestas generadas por IA a partir de mi CV; pueden contener errores. Las preguntas se guardan de forma anónima para mejorar el asistente.",
+    "limit_captcha": "Has llegado al límite de {limit} preguntas. Confirma que no eres un robot y podrás hacer {extra} más.",
+    "limit_final": "Has llegado al límite de preguntas de hoy. Para seguir, escribe a Alejandro por LinkedIn o a asansal@outlook.es.",
+    "captcha_ok": "Verificado. Puedes hacer {extra} preguntas más.",
+    "captcha_failed": "No se pudo completar la verificación. Inténtalo de nuevo.",
+    "daily_cap": "El asistente ha llegado a su límite de uso de hoy. Puedes escribir a Alejandro por LinkedIn o a asansal@outlook.es.",
+    "too_long": "La pregunta es demasiado larga. Resúmela en menos de {max} caracteres.",
+    "error_generic": "Lo siento, hubo un error al procesar tu pregunta. Inténtalo más tarde."
   },
   "cv_download_text": "Descargar CV",
   "contact_section": {

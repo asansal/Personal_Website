@@ -2169,3 +2169,22 @@ iframe[src*="public.tableau.com"] {
     .st-key-home-hero h1 { font-size: 1.85rem !important; }
     .home-subtitle { font-size: 1rem !important; }
 }
+
+/* Campo puente de analítica (clics en enlaces externos): existe en el DOM pero no se ve */
+.st-key-ev_input {
+    position: absolute !important;
+    left: -9999px !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Verificación "no soy un robot" (Cloudflare Turnstile) dentro del chat */
+.chatbot-captcha {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 12px;
+    min-height: 65px;
+}
+
+/* Última respuesta del chatbot: el JS la lee de aquí, no debe verse en la página */
+#cb-py-response { display: none !important; }

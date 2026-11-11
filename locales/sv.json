@@ -884,7 +884,14 @@
     "error_timeout": "Tyvärr tog svaret för lång tid. Försök igen.",
     "error_connection": "Internt fel: kunde inte ansluta till servern.",
     "trigger_label": "Fråga min AI",
-    "disclaimer": "AI-genererade svar baserade på mitt CV; de kan innehålla fel."
+    "disclaimer": "AI-genererade svar baserade på mitt CV; de kan innehålla fel. Frågorna sparas anonymt för att förbättra assistenten.",
+    "limit_captcha": "Du har nått gränsen på {limit} frågor. Bekräfta att du inte är en robot för att ställa {extra} till.",
+    "limit_final": "Du har nått dagens gräns för frågor. Kontakta Alejandro på LinkedIn eller på asansal@outlook.es för att fortsätta.",
+    "captcha_ok": "Verifierat. Du kan ställa {extra} frågor till.",
+    "captcha_failed": "Verifieringen kunde inte slutföras. Försök igen.",
+    "daily_cap": "Assistenten har nått dagens användningsgräns. Du kan kontakta Alejandro på LinkedIn eller på asansal@outlook.es.",
+    "too_long": "Frågan är för lång. Håll den under {max} tecken.",
+    "error_generic": "Ett fel uppstod när din fråga behandlades. Försök igen senare."
   },
   "cv_download_text": "CV på engelska",
   "contact_section": {

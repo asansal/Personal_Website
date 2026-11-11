@@ -1,0 +1,14 @@
+# Cloudflare Tunnel: /etc/cloudflared/config.yml
+# The server opens an outbound connection to Cloudflare; no web port needs to be open.
+tunnel: TUNNEL_ID
+credentials-file: /etc/cloudflared/TUNNEL_ID.json
+
+ingress:
+  - hostname: panel.asansal.com
+    service: http://127.0.0.1:8502
+  # Step 2 (after the panel works): move the public site to the tunnel too
+  # - hostname: asansal.com
+  #   service: http://127.0.0.1:8501
+  # - hostname: www.asansal.com
+  #   service: http://127.0.0.1:8501
+  - service: http_status:404

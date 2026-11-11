@@ -1,0 +1,17 @@
+# Command center (panel.asansal.com). Copy to /etc/systemd/system/panel.service
+# Same user and Python as miweb.service. Listens only on 127.0.0.1: reachable only through the tunnel.
+[Unit]
+Description=asansal.com command center (Streamlit)
+After=network.target
+
+[Service]
+User=opc
+WorkingDirectory=/opt/Personal_Website
+Environment="PYTHONPATH=/opt/Personal_Website/venv/lib/python3.11/site-packages"
+ExecStart=/usr/bin/python3.11 -m streamlit run panel/panel_app.py --server.port 8502 --server.address 127.0.0.1 --server.headless true
+Restart=on-failure
+RestartSec=5
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target

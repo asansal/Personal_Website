@@ -27,3 +27,5 @@ Thumbs.db
 *.tmp
 .aider*
 .streamlit/config.toml
+# --- Analytics database (visits, chatbot questions) ---
+data/analytics.db*

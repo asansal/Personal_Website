@@ -13,7 +13,7 @@
     },
     "kicker": "AI Engineering · Data Science · Bioinformatik",
     "explore_hint": "Entdecken Sie meine Erfahrung, Projekte und meinen Tech-Stack in den Bereichen unten oder fragen Sie direkt meinen KI-Assistenten.",
-    "ask_ai": "Frag meine KI",
+    "ask_ai": "Fragen Sie meine KI",
     "specialization": "Idealerweise Pharma, Gesundheit und Life Sciences · Offen für andere Branchen"
   },
   "navigation": {
@@ -883,8 +883,15 @@
     ],
     "error_timeout": "Entschuldigung, die Antwort hat zu lange gedauert. Bitte versuchen Sie es erneut.",
     "error_connection": "Interner Fehler: Verbindung zum Server konnte nicht hergestellt werden.",
-    "trigger_label": "Frag meine KI",
-    "disclaimer": "KI-generierte Antworten auf Basis meines Lebenslaufs; sie können Fehler enthalten."
+    "trigger_label": "Fragen Sie meine KI",
+    "disclaimer": "KI-generierte Antworten auf Basis meines Lebenslaufs; sie können Fehler enthalten. Fragen werden anonym gespeichert, um den Assistenten zu verbessern.",
+    "limit_captcha": "Sie haben das Limit von {limit} Fragen erreicht. Bestätigen Sie, dass Sie kein Roboter sind, um {extra} weitere Fragen zu stellen.",
+    "limit_final": "Sie haben das heutige Fragenlimit erreicht. Sie erreichen Alejandro über LinkedIn oder unter asansal@outlook.es.",
+    "captcha_ok": "Bestätigt. Sie können {extra} weitere Fragen stellen.",
+    "captcha_failed": "Die Überprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut.",
+    "daily_cap": "Der Assistent hat sein heutiges Nutzungslimit erreicht. Sie erreichen Alejandro über LinkedIn oder unter asansal@outlook.es.",
+    "too_long": "Die Frage ist zu lang. Bitte fassen Sie sie in weniger als {max} Zeichen zusammen.",
+    "error_generic": "Bei der Verarbeitung Ihrer Frage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
   },
   "cv_download_text": "Lebenslauf herunterladen",
   "contact_section": {

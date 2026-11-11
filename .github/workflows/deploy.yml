@@ -31,3 +31,6 @@ jobs:
             
             # 4. Reiniciar el servicio de la web para aplicar los cambios
             sudo systemctl restart miweb.service
+
+            # 5. Centro de mando (panel.asansal.com), si ya está instalado
+            sudo -n systemctl restart panel.service 2>/dev/null || true

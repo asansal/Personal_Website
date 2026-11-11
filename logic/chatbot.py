@@ -6,7 +6,13 @@ import json
 import html as _html
 import os
 import csv
+import logging
+from typing import Literal
+
 import streamlit.components.v1 as components
+from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -110,25 +116,66 @@ def get_system_instruction(context_data: str, lang: str = "es") -> str:
 
 
 # --- SERVER-SIDE CHAT ---
-def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> str:
+# Topic of each question, chosen by the model in the same call (no extra cost).
+# The command center groups the questions by these ids.
+TOPICS = ("experience", "projects", "ai_llm", "skills", "education", "languages",
+          "availability", "cv_contact", "personal", "other")
+
+
+class ChatReply(BaseModel):
+    # Decided before writing the answer: without it the model drifts to the page language
+    question_language: str
+    answer: str
+    topic: Literal[TOPICS]  # type: ignore[valid-type]
+    answered: bool  # False when the knowledge base did not contain the answer
+
+
+def query_gemini(user_input: str, knowledge_context: str, lang: str = "es") -> dict | None:
+    """Returns {answer, topic, answered, input_tokens, output_tokens}, or None on error."""
     try:
         client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-        system_instruction = get_system_instruction(knowledge_context, lang)
+        response_lang = {"es": "Spanish", "en": "English", "de": "German", "nl": "Dutch",
+                         "sv": "Swedish", "da": "Danish"}.get(lang, "English")
+        system_instruction = get_system_instruction(knowledge_context, lang) + f"""
+    ### OUTPUT FORMAT:
+    Reply with JSON. "question_language" is the language the visitor's question is written in
+    (e.g. "English"), judged only from the question. "answer" is your reply to the visitor
+    (plain text, no Markdown), written in question_language, even when it differs from the
+    website language ({response_lang}).
+    "topic" classifies the visitor's question: experience (jobs, roles, companies), projects,
+    ai_llm (AI, LLMs, generative AI), skills (tools, languages, tech stack), education
+    (degrees, certifications, publications), languages (spoken languages), availability
+    (relocation, remote work, start date, salary), cv_contact (CV, contact details, links),
+    personal (hobbies, background), other.
+    "answered" is false if the context did not contain the information requested.
+    """
         response = client.models.generate_content(
             model="gemini-2.5-flash",
             contents=user_input,
             config=genai.types.GenerateContentConfig(
                 system_instruction=system_instruction,
-            )
+                response_mime_type="application/json",
+                response_schema=ChatReply,
+            ),
         )
-        return response.text
-    except Exception as e:
-        st.error(f"Chatbot Gemini Error: {e}")
-        return "Lo siento, hubo un error al procesar tu pregunta. Por favor intenta más tarde."
+        usage = getattr(response, "usage_metadata", None)
+        tokens = {
+            "input_tokens": getattr(usage, "prompt_token_count", None),
+            "output_tokens": getattr(usage, "candidates_token_count", None),
+        }
+        reply = response.parsed
+        if isinstance(reply, ChatReply):
+            return {"answer": reply.answer.strip(), "topic": reply.topic, "answered": reply.answered, **tokens}
+        # Structured output failed: keep the raw text rather than losing the answer
+        return {"answer": (response.text or "").strip(), "topic": "other", "answered": True, **tokens}
+    except Exception as exc:
+        logger.warning("Chatbot Gemini error: %s", exc)
+        return None
 
 
 # --- CHATBOT POPUP INJECTION ---
-def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_src: str = "") -> None:
+def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_src: str = "",
+                         turnstile_site_key: str = "", lang: str = "en") -> None:
     # Separate variables for initial HTML rendering (HTML-escaped)
     # and for dynamic JS updates (JSON-encoded for safety).
 
@@ -163,6 +210,8 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
 
     raw_suggestions = bot_config.get("suggestions", [])
     suggestions_json = json.dumps(raw_suggestions, ensure_ascii=False)
+    turnstile_key_js = json.dumps(turnstile_site_key)
+    lang_js = json.dumps(lang)
 
     components.html(f"""
     <script>
@@ -323,12 +372,13 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
             return true;
         }}
 
-        function sendMessage(suggestion) {{
+        // silent: internal messages (the Turnstile token) are not shown as a user bubble
+        function sendMessage(suggestion, silent) {{
             const activeInput = doc.getElementById('chatbot-text-input');
             const message = (suggestion !== undefined ? suggestion : activeInput.value).trim();
             if (!message) return;
 
-            addMessage(message, 'user');
+            if (!silent) addMessage(message, 'user');
             activeInput.value    = '';
             activeInput.disabled = true;
             showTypingIndicator();
@@ -360,6 +410,7 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
                         addMessage(botReply.trim(), 'bot');
                         activeInput.disabled = false;
                         activeInput.focus();
+                        if (rd.getAttribute('data-action') === 'captcha') showCaptcha();
                         return;
                     }}
                 }}
@@ -413,6 +464,45 @@ def inject_chatbot_popup(bot_config: dict, kb_text: str, api_key: str, avatar_sr
             chatBody.appendChild(messageDiv);
             typingElement      = messageDiv;
             chatBody.scrollTop = chatBody.scrollHeight;
+        }}
+
+        // --- Cloudflare Turnstile: shown when the free question limit is reached ---
+        const TURNSTILE_KEY = {turnstile_key_js};
+        const PAGE_LANG = {lang_js};
+
+        function showCaptcha() {{
+            if (!TURNSTILE_KEY) return;
+            const P = window.parent;
+            const old = doc.getElementById('chatbot-captcha');
+            if (old) old.remove();
+            const box = doc.createElement('div');
+            box.id = 'chatbot-captcha';
+            box.className = 'chatbot-captcha';
+            const chatBody = doc.getElementById('chatbotBody');
+            chatBody.appendChild(box);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            function render() {{
+                P.turnstile.render(box, {{
+                    sitekey: TURNSTILE_KEY,
+                    theme: 'dark',
+                    language: PAGE_LANG,
+                    callback: function (token) {{
+                        box.remove();
+                        sendMessage('__turnstile__:' + token, true);
+                    }},
+                }});
+            }}
+            if (P.turnstile) {{ render(); return; }}
+            let script = doc.getElementById('turnstile-api');
+            if (!script) {{
+                script = doc.createElement('script');
+                script.id = 'turnstile-api';
+                script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+                script.async = true;
+                doc.head.appendChild(script);
+            }}
+            script.addEventListener('load', render);
         }}
 
         function hideTypingIndicator() {{
