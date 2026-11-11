@@ -82,10 +82,8 @@ load_css("assets/css/style.css")
 analytics.track_visit()
 
 # --- CHATBOT INITIALIZATION ---
+# Without a key the chatbot is simply not shown (the reason goes to the server log)
 GENAI_API_KEY = initialize_chatbot()
-if not GENAI_API_KEY:
-    st.warning("Chatbot no disponible: API key no configurada. El resto de la web funciona con normalidad.")
-    # App is not stopped — the chatbot is a secondary feature
 
 # --- SEO META DESCRIPTION ---
 seo_data = texts.get("seo", {})

@@ -24,11 +24,13 @@ def initialize_chatbot() -> str | None:
     """
     try:
         api_key = st.secrets["GOOGLE_API_KEY"]
-    except (FileNotFoundError, KeyError):
+    except Exception as exc:  # missing file or key, or a malformed secrets.toml
+        logger.warning("GOOGLE_API_KEY not readable from secrets.toml: %s", exc)
         api_key = os.getenv("GOOGLE_API_KEY", "")
 
     if not api_key:
-        st.error("Google API Key no encontrada. Configura .streamlit/secrets.toml con GOOGLE_API_KEY.")
+        # Only in the server log: visitors simply don't see the chatbot
+        logger.error("Chatbot disabled: no GOOGLE_API_KEY. Check .streamlit/secrets.toml")
         return None
 
     os.environ['GOOGLE_API_KEY'] = api_key
