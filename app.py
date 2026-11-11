@@ -494,7 +494,9 @@ def render_project(item: dict, labels: dict) -> None:
 
         if image_col is not None:
             with image_col:
-                st.image(item["image"], width="stretch")
+                # Square logos (SVG) stay icon-sized; screenshots fill the column.
+                is_logo = item["image"].endswith(".svg")
+                st.image(item["image"], width=200 if is_logo else "stretch")
 
 
 def select_project_category(category_id: str) -> None:

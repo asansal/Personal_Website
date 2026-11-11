@@ -408,6 +408,7 @@
         "title": "Job Matcher: AI-assistent för jobbansökningar",
         "type": "Eget projekt · LLM engineering",
         "year": "2026",
+        "image": "assets/images/job-matcher-icon-2.svg",
         "challenge": "Generiska AI-verktyg hittar på erfarenhet och ger inkonsekventa råd. Jag ville ha en assistent vars rekommendationer går att lita på och förklara.",
         "approach": "Hybridarkitektur. Gemini extraherar annonsens krav med strukturerad output; filtrering, matchningsprocent och slutlig rekommendation är deterministisk kod som är förklarbar och testbar.",
         "result": "Jag valde modellen med en utvärdering på 20 verkliga jobbannonser som granskats för hand: korrekt identifierade krav gick från 82/140 till 97/140 (59 % → 69 %) utan att någon rekommendation ändrades.",

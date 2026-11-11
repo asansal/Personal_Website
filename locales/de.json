@@ -408,6 +408,7 @@
         "title": "Job Matcher: KI-Assistent für Bewerbungen",
         "type": "Eigenes Projekt · LLM Engineering",
         "year": "2026",
+        "image": "assets/images/job-matcher-icon-2.svg",
         "challenge": "Generische KI-Tools erfinden Erfahrung und geben widersprüchliche Ratschläge. Ich wollte einen Assistenten, dessen Empfehlungen nachvollziehbar und vertrauenswürdig sind.",
         "approach": "Hybride Architektur. Gemini extrahiert die Anforderungen des Angebots mit strukturiertem Output; Filterung, Match-Prozentsatz und finale Empfehlung sind deterministischer Code, erklärbar und testbar.",
         "result": "Das Modell habe ich mit einer Evaluation auf 20 echten, manuell geprüften Stellenangeboten ausgewählt: Die korrekt erkannten Anforderungen stiegen von 82/140 auf 97/140 (59 % → 69 %), ohne dass sich eine Empfehlung änderte.",

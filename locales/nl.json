@@ -408,6 +408,7 @@
         "title": "Job Matcher: AI-assistent voor sollicitaties",
         "type": "Eigen project · LLM engineering",
         "year": "2026",
+        "image": "assets/images/job-matcher-icon-2.svg",
         "challenge": "Generieke AI-tools verzinnen ervaring en geven inconsistent advies. Ik wilde een assistent waarvan de aanbevelingen betrouwbaar en uitlegbaar zijn.",
         "approach": "Hybride architectuur. Gemini haalt de eisen uit de vacature met gestructureerde output; filtering, matchpercentage en de uiteindelijke aanbeveling zijn deterministische code, uitlegbaar en testbaar.",
         "result": "Ik koos het model met een evaluatie op 20 echte, handmatig gecontroleerde vacatures: correct herkende eisen gingen van 82/140 naar 97/140 (59% → 69%) zonder dat er een aanbeveling veranderde.",

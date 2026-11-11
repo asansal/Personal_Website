@@ -408,6 +408,7 @@
         "title": "Job Matcher: AI job application assistant",
         "type": "Own project · LLM engineering",
         "year": "2026",
+        "image": "assets/images/job-matcher-icon-2.svg",
         "challenge": "Generic AI tools invent experience and give inconsistent advice. I wanted an assistant whose recommendations can be trusted and explained.",
         "approach": "Hybrid architecture. Gemini extracts the offer's requirements with structured output; filtering, match percentage and the final recommendation are deterministic code that is explainable and testable.",
         "result": "I chose the model with an evaluation on 20 real job offers reviewed by hand: correct requirements went from 82/140 to 97/140 (59% → 69%) with no recommendation changed.",

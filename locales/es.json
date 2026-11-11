@@ -408,6 +408,7 @@
         "title": "Job Matcher: asistente de IA para candidaturas",
         "type": "Proyecto propio · Ingeniería de LLMs",
         "year": "2026",
+        "image": "assets/images/job-matcher-icon-2.svg",
         "challenge": "Las herramientas de IA genéricas inventan experiencia y dan consejos incoherentes. Quería un asistente cuyas recomendaciones se pudieran explicar y fueran fiables.",
         "approach": "Arquitectura híbrida. Gemini extrae los requisitos de la oferta con salida estructurada; el filtrado, el porcentaje de encaje y la recomendación final son código determinista, explicable y testeable.",
         "result": "Elegí el modelo con una evaluación sobre 20 ofertas reales revisadas a mano: los requisitos correctos pasaron de 82/140 a 97/140 (59% → 69%) sin que cambiara ninguna recomendación.",
