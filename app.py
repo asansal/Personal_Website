@@ -7,8 +7,8 @@ import html as _html
 # --- PAGE CONFIGURATION ---
 # ¡IMPORTANTE! set_page_config DEBE ser el primer comando de Streamlit.
 st.set_page_config(
-    page_title="Alejandro Sánchez | Portfolio",
-    page_icon="assets/images/profile_avatar.jpg",
+    page_title="Alejandro Sánchez | AI Engineer & Data Scientist",
+    page_icon="assets/images/app-icon-A.png",
     layout="wide",
     initial_sidebar_state="auto",  # expanded on desktop, collapsed on mobile
 )
@@ -172,11 +172,7 @@ with st.sidebar:
 
     # ── CV Download ────────────────────────────────────────────────
     # Map languages to their respective CV files
-    cv_files = {
-        "es": "assets/files/CV_ES_Alejandro_Sanchez.pdf",
-        "en": "assets/files/CV_EN_Alejandro_Sanchez.pdf",
-        "de": "assets/files/CV_DE_Alejandro_Sanchez.pdf",
-    }
+    cv_files = {code: f"assets/files/CV_Alejandro_Sanchez_{code.upper()}.pdf" for code in ("es", "en", "de", "sv", "nl", "da")}
 
     # Use the selected language; if not available in the mapping, fallback to English
     cv_lang = st.session_state.lang if st.session_state.lang in cv_files else "en"
@@ -188,7 +184,7 @@ with st.sidebar:
             label=texts.get("cv_download_text", "Download CV"),
             data=pdf_bytes,
             file_name=os.path.basename(cv_path),
-            mime="application/octet-stream",
+            mime="application/pdf",
             width='stretch',
         )
 
@@ -337,6 +333,24 @@ def render_home() -> None:
                         args=(view,),
                         width="stretch",
                     )
+
+    # ── Live products outside this site (Sextant IA, lab.asansal.com) ──
+    home_links = texts.get("home_links", {})
+    if home_links.get("items"):
+        cards = "".join(
+            f'<a class="channel-card home-link home-link-{_html.escape(item.get("id", ""))}" href="{_html.escape(item["url"])}" '
+            f'target="_blank" rel="noopener">'
+            f'<span class="channel-icon"><span class="ms-icon">{_html.escape(item.get("icon", "open_in_new"))}</span></span>'
+            f'<span class="channel-text"><span class="channel-name">{_html.escape(item.get("title", ""))}</span>'
+            f'<span class="channel-desc">{_html.escape(item.get("description", ""))}</span></span>'
+            f'<span class="ms-icon channel-arrow">open_in_new</span></a>'
+            for item in home_links["items"]
+        )
+        st.markdown(
+            f'<p class="home-links-title">{_html.escape(home_links.get("title", ""))}</p>'
+            f'<div class="channel-grid">{cards}</div>',
+            unsafe_allow_html=True,
+        )
 
 
 def timeline_entry(key: str, period: str, kind: str, label: str):

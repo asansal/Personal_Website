@@ -3,6 +3,7 @@
 #sslKeyFile = "key.pem"
 headless = true
 fileWatcherType = "none" # Mantenemos esto del arreglo anterior
+enableStaticServing = true # sirve ./static en /app/static (imagen de vista previa y favicon)
 
 [client]
 showSidebarNavigation = false

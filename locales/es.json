@@ -1,20 +1,20 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Data Scientist · Bioinformática & IA",
-    "tagline": "Ciencia de Datos & IA",
-    "subtitle": "Más de 4 años analizando datos genómicos en el CBM-CSIC y la Universität Konstanz, con 3 publicaciones y un Máster en Data Science e IA. He construido pipelines bioinformáticos, modelos de Machine Learning, dashboards clínicos y Sextant IA, una aplicación con LLMs en producción. Hoy diseño problemas de bioinformática para entrenar modelos de IA.",
+    "role": "AI Engineer & Data Scientist · Bioinformática & Life Sciences",
+    "tagline": "Data Science e ingeniería de IA, del análisis a producción.",
+    "subtitle": "Biólogo y bioinformático. Desarrollo modelos de Machine Learning y aplicaciones con LLMs, y los llevo hasta producción.",
     "location": "Madrid, España",
-    "availability": "Abierto a tiempo completo · Remoto, híbrido o presencial · Disponible para reubicarme",
+    "availability": "Abierto a tiempo completo · Híbrido, presencial o remoto · Disponible para reubicarme en Europa",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
       "email": "asansal@outlook.es"
     },
-    "kicker": "Data Science · Bioinformática · IA",
+    "kicker": "AI Engineering · Data Science · Bioinformática",
     "explore_hint": "Explora mi experiencia, proyectos y stack técnico en las secciones de abajo, o pregúntale directamente a mi asistente de IA.",
     "ask_ai": "Pregunta a mi IA",
-    "specialization": "Especialización en Pharma, Salud y Life Sciences"
+    "specialization": "Preferentemente Pharma, Salud y Life Sciences · Abierto a otros sectores"
   },
   "navigation": {
     "back_home": "Volver al Inicio",
@@ -41,7 +41,7 @@
     }
   },
   "about": {
-    "text_short": "Data Scientist con formación en biología, bioinformática y bioestadística. Más de 4 años de investigación en el CBM Severo Ochoa (CSIC-UAM) y la Universität Konstanz, 3 publicaciones y un Máster en Data Science e IA. Aplico Machine Learning e IA generativa a datos biomédicos y llevo las soluciones a producción, como Sextant IA."
+    "text_short": "AI Engineer y Data Scientist con formación en biología, bioinformática y bioestadística. Más de 4 años de investigación en el CBM Severo Ochoa (CSIC-UAM) y la Universität Konstanz, 3 publicaciones con revisión por pares (2 como primer autor) y un Máster en Data Science e IA. Desarrollo aplicaciones con LLMs y modelos de ML con el mismo rigor que en el laboratorio: validados frente a un baseline, evaluados con datos reales y desplegados en producción, como Job Matcher y Sextant IA."
   },
   "value_proposition": {
     "title": "Qué aporto a tu equipo",
@@ -52,23 +52,13 @@
         "points": [
           {
             "icon": "rocket",
-            "title": "Data Science e IA de extremo a extremo",
-            "description": "Del análisis y el Machine Learning a la IA generativa y el despliegue. Sextant IA, mi proyecto propio, está en producción."
+            "title": "Ingeniería de IA en producción",
+            "description": "Dos aplicaciones con LLMs en producción (Job Matcher y Sextant IA), con salida estructurada, salvaguardas de fiabilidad, control de costes, Docker y CI/CD."
           },
           {
-            "icon": "chart",
-            "title": "Machine Learning y estadística aplicada",
-            "description": "Regresión, clustering, series temporales y validación estadística con Python y R, con métricas y supuestos explícitos."
-          },
-          {
-            "icon": "ai",
-            "title": "IA generativa y LLMs",
-            "description": "Orquestación de LLMs, prompt engineering y evaluación de modelos (RLHF). Hoy diseño problemas de bioinformática para entrenar modelos de IA."
-          },
-          {
-            "icon": "cloud",
-            "title": "Ingeniería y despliegue",
-            "description": "Pipelines reproducibles, HPC, CI/CD y servidores en la nube: mis soluciones llegan a producción y se mantienen."
+            "icon": "collaboration",
+            "title": "De los datos a las decisiones",
+            "description": "He supervisado a 8 estudiantes y técnicos, he presentado resultados a responsables de investigación y creo dashboards en Power BI, Tableau y R Shiny."
           }
         ]
       },
@@ -79,136 +69,129 @@
           {
             "icon": "dna",
             "title": "Conocimiento del dominio biomédico",
-            "description": "Biología molecular, genómica y laboratorio: sé de dónde sale cada dato biomédico y qué limitaciones tiene antes de modelarlo."
-          },
-          {
-            "icon": "genetics",
-            "title": "Bioinformática y genómica",
-            "description": "NGS, transcriptómica, proteogenómica y Ribo-Seq: más de 1 TB de datos genómicos analizados y 3 publicaciones peer-reviewed."
+            "description": "Biología molecular, genómica y laboratorio: sé de dónde salen los datos biomédicos y qué limitaciones tienen antes de modelarlos."
           },
           {
             "icon": "analytics",
-            "title": "Rigor, reproducibilidad y cumplimiento",
-            "description": "Validación estadística, trazabilidad y reproducibilidad, con formación en ICH-GCP E6 (R3) y GDPR en salud."
-          },
-          {
-            "icon": "collaboration",
-            "title": "Puente entre ciencia y negocio",
-            "description": "He supervisado a 8 estudiantes y técnicos, he gestionado proveedores y traduzco resultados en decisiones con dashboards en Tableau y Power BI."
+            "title": "Rigor y evaluación",
+            "description": "Modelos comparados con baselines, salida de los LLMs revisada con validadores y conjuntos de evaluación etiquetados a mano, pipelines reproducibles. Formación en ICH-GCP E6 (R3) y GDPR en salud."
           }
         ]
       }
     ],
     "stack_link": "Ver stack técnico",
-    "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
+    "stack_link_hint": "Gemini API · FastAPI · Docker · Python · SQL · R · Machine Learning · Bioinformática"
   },
   "skills_section": {
     "title": "Stack Técnico",
     "groups": [
       {
-        "id": "analysis",
-        "title": "Análisis de datos",
+        "id": "llm",
+        "title": "IA Generativa & ingeniería de LLMs",
         "categories": [
           {
-            "icon": "health",
-            "name": "Análisis & Estadística",
+            "icon": "ai",
+            "name": "Aplicaciones con LLMs",
             "tools": [
-              "Python",
-              "Pandas",
-              "NumPy",
-              "R",
-              "SQL",
-              "PostgreSQL",
-              "MySQL",
-              "Validación estadística",
-              "Estadística multivariante",
-              "A/B testing"
+              "Google Gemini API",
+              "Pipelines de LLMs en varias fases",
+              "Prompt engineering",
+              "Salida estructurada",
+              "Reparación de JSON",
+              "Validadores de alucinaciones",
+              "Evaluación de LLMs con datos etiquetados a mano",
+              "RAG con Google Search grounding",
+              "Human-in-the-loop",
+              "Control de costes de LLMs"
             ],
-            "note": ""
+            "note": "Dos aplicaciones con LLMs en producción: Job Matcher y Sextant IA. Evaluación de modelos de IA en Telus y Mercor."
           },
           {
-            "icon": "visualization",
-            "name": "Visualización & Comunicación",
+            "icon": "chart",
+            "name": "Automatización",
             "tools": [
-              "Tableau",
-              "Power BI",
-              "DAX",
-              "R Shiny",
-              "Streamlit",
-              "Storytelling con datos"
+              "n8n",
+              "Make"
             ],
-            "note": ""
+            "note": "Flujos personales con n8n; Make en el hackathon (2º premio)."
           }
         ]
       },
       {
         "id": "datascience",
-        "title": "Ciencia de Datos & Ingeniería",
+        "title": "Machine Learning & Backend",
         "categories": [
           {
             "icon": "chart",
-            "name": "Machine Learning & Modelado",
+            "name": "Machine Learning & Estadística",
             "tools": [
-              "Scikit-learn",
+              "scikit-learn",
               "XGBoost",
-              "TensorFlow",
-              "Keras",
-              "Optuna",
-              "Regresión Lasso/Ridge",
+              "Lasso/Ridge",
               "K-Means",
-              "Series temporales",
-              "Prophet",
-              "ARIMA"
+              "Optuna",
+              "Forecasting de series temporales",
+              "Validación cruzada temporal",
+              "Contraste de hipótesis",
+              "Estadística bayesiana",
+              "Estadística multivariante",
+              "Diseño experimental",
+              "TensorFlow/Keras (nociones)",
+              "PyTorch (nociones)"
             ],
-            "note": "Modelos validados frente a un baseline; validación cruzada temporal en forecasting."
-          },
-          {
-            "icon": "database",
-            "name": "Ingeniería de datos & Reproducibilidad",
-            "tools": [
-              "Pipelines ETL",
-              "Data wrangling",
-              "Linux",
-              "Bash",
-              "Git",
-              "Docker"
-            ],
-            "note": ""
+            "note": "Modelos validados frente a un baseline."
           },
           {
             "icon": "cloud",
-            "name": "Despliegue, Cloud & CI/CD",
+            "name": "Backend, despliegue y bases de MLOps",
             "tools": [
-              "CI/CD",
-              "GitHub Actions",
-              "Oracle Cloud",
+              "Python",
+              "FastAPI",
+              "Pydantic",
+              "SQLAlchemy",
+              "PostgreSQL",
+              "Django",
+              "Docker",
               "Nginx",
-              "HTTPS",
+              "Gunicorn",
+              "GitHub Actions (CI/CD)",
+              "Git",
+              "Servidores Linux en Oracle Cloud",
               "systemd"
             ],
-            "note": "Cada push a main se despliega solo. Sextant IA y este portfolio, en producción."
+            "note": "Cada push a main se despliega automáticamente."
           }
         ]
       },
       {
-        "id": "llm",
-        "title": "IA Generativa & LLMs",
+        "id": "analysis",
+        "title": "Análisis & visualización de datos",
         "categories": [
           {
-            "icon": "ai",
-            "name": "IA Generativa & Producto",
+            "icon": "health",
+            "name": "Análisis",
             "tools": [
-              "LLMs",
-              "Orquestación de LLMs",
-              "Prompt engineering",
-              "Django",
-              "APIs REST",
-              "n8n",
-              "Make",
-              "RLHF",
-              "Evaluación de modelos de IA"
+              "SQL",
+              "pandas",
+              "NumPy",
+              "R",
+              "Matplotlib",
+              "Seaborn",
+              "ggplot2"
             ],
-            "note": "Entrenamiento y evaluación de modelos de IA (Telus, Mercor)."
+            "note": "Certificado SQL (Advanced) de HackerRank."
+          },
+          {
+            "icon": "visualization",
+            "name": "Dashboards",
+            "tools": [
+              "Power BI",
+              "DAX",
+              "Tableau",
+              "R Shiny",
+              "Streamlit"
+            ],
+            "note": ""
           }
         ]
       },
@@ -218,52 +201,41 @@
         "categories": [
           {
             "icon": "dna",
-            "name": "Bioinformática & Genómica",
+            "name": "Bioinformática & genómica",
             "tools": [
-              "Bioconductor",
               "NGS",
-              "Illumina",
-              "Oxford Nanopore",
-              "Sanger",
               "RNA-seq",
               "Ribo-Seq",
               "WGS",
+              "Illumina",
+              "Oxford Nanopore",
               "DESeq2",
-              "Transcriptómica",
               "Proteogenómica",
-              "Ensamblaje de novo",
+              "Ensamblaje genómico",
               "Anotación genómica",
               "Trinity",
               "BUSCO",
               "HPC (Slurm)",
-              "GNU Parallel"
-            ],
-            "note": ""
-          },
-          {
-            "icon": "lab",
-            "name": "Laboratorio",
-            "tools": [
-              "CRISPR-Cas9",
-              "qPCR",
-              "Cultivo celular"
+              "GNU Parallel",
+              "Bash",
+              "R/Bioconductor"
             ],
             "note": ""
           },
           {
             "icon": "practice",
-            "name": "Buenas prácticas en salud",
+            "name": "Cumplimiento normativo en datos de salud",
             "tools": [
               "ICH-GCP E6 (R3)",
-              "GDPR"
+              "GDPR en salud"
             ],
-            "note": "Datos de pacientes con rigor y cumplimiento normativo."
+            "note": ""
           }
         ]
       }
     ],
     "education_link": "Ver formación y certificaciones",
-    "education_link_hint": "Másteres en Data Science & IA, Bioinformática y Microbiología · ICH-GCP · GDPR · Power BI"
+    "education_link_hint": "Másteres en Data Science & IA, Bioinformática y Microbiología · SQL (Advanced) · ICH-GCP · GDPR"
   },
   "experience_section": {
     "title": "Experiencia",
@@ -304,11 +276,28 @@
         ],
         "impact": [
           "Análisis de Ribo-Seq, RNA-seq, WGS y proteómica; expresión diferencial (DESeq2) y ensamblaje genómico.",
-          "3 publicaciones con revisión por pares (2 como primer autor).",
-          "Rescate de un dataset de Oxford Nanopore degradado mediante corrección híbrida con lecturas Illumina.",
+          "Análisis estadístico de 2 publicaciones con revisión por pares sobre anotación genómica y proteogenómica (1 como primer autor).",
+          "Rescate de un dataset de Oxford Nanopore degradado mediante corrección híbrida con lecturas Illumina (no publicado).",
           "Menos tiempo de cómputo gracias a la paralelización con GNU Parallel.",
           "Supervisión de 5 estudiantes (TFG, TFM) y técnicos.",
           "Gestión de proveedores de secuenciación (Novogene, Illumina)."
+        ]
+      },
+      {
+        "period": "Marzo 2025 - Junio 2025",
+        "role": "Online Data Analyst (evaluación de IA)",
+        "company": "Telus International AI",
+        "location": "Remoto",
+        "type": "Media jornada",
+        "story": "Evalué resultados de buscadores y modelos de IA según guías de calidad estrictas, generando datos de referencia ('ground truth') para mejorar su precisión.",
+        "stack": [
+          "Calidad de datos",
+          "Evaluación de modelos de IA",
+          "Feedback humano (RLHF)"
+        ],
+        "impact": [
+          "Valoraciones consistentes sobre resultados de búsqueda y modelos de IA.",
+          "Documentación detallada de los casos para mejorar la precisión."
         ]
       },
       {
@@ -333,59 +322,24 @@
       }
     ],
     "other_title": "Otra experiencia",
-    "other_items": [
-      {
-        "period": "Marzo 2025 - Junio 2025",
-        "role": "Online Data Analyst (evaluación de IA)",
-        "company": "Telus International AI",
-        "location": "Remoto",
-        "type": "Media jornada",
-        "story": "Evalué resultados de buscadores y modelos de IA según guías de calidad estrictas, generando datos de referencia ('ground truth') para mejorar su precisión.",
-        "stack": [
-          "Calidad de datos",
-          "Evaluación de modelos de IA",
-          "Feedback humano (RLHF)"
-        ],
-        "impact": [
-          "Valoraciones consistentes sobre resultados de búsqueda y modelos de IA.",
-          "Documentación detallada de los casos para mejorar la precisión."
-        ]
-      },
-      {
-        "period": "Septiembre 2018 - Marzo 2020",
-        "role": "Profesor de ciencias e inglés",
-        "company": "Academia privada y freelance",
-        "location": "Madrid, España",
-        "type": "Docencia",
-        "story": "Di clases de ciencias e inglés a alumnos de primaria, secundaria y bachillerato. Aquí aprendí a explicar conceptos complejos a cualquier público.",
-        "stack": [
-          "Comunicación",
-          "Docencia",
-          "Divulgación científica"
-        ],
-        "impact": [
-          "Clases de ciencias e inglés de primaria a bachillerato.",
-          "Explicaciones adaptadas al nivel de cada alumno."
-        ]
-      }
-    ],
-    "summary": "Data Scientist con más de 4 años analizando datos genómicos y biomédicos en investigación, formado en bioinformática, bioestadística y Data Science, y hoy aplicando ese rigor a la IA.",
+    "other_items": [],
+    "summary": "En la investigación aprendí que un resultado solo cuenta si es reproducible. La ciencia de datos y la IA me dieron mejores herramientas para responder preguntas a escala, y ahora quiero aplicar ese rigor a productos que la gente usa.",
     "stats": [
       {
         "value": "4+",
-        "label": "años trabajando con datos en investigación"
-      },
-      {
-        "value": "1 TB+",
-        "label": "de datos genómicos analizados"
+        "label": "años trabajando con datos de investigación"
       },
       {
         "value": "3",
-        "label": "publicaciones peer-reviewed"
+        "label": "publicaciones con revisión por pares"
+      },
+      {
+        "value": "2",
+        "label": "aplicaciones con LLMs en producción"
       },
       {
         "value": "8",
-        "label": "investigadores mentorizados"
+        "label": "estudiantes y técnicos supervisados"
       }
     ]
   },
@@ -441,7 +395,7 @@
   },
   "projects_section": {
     "title": "Proyectos",
-    "intro": "Proyectos de análisis biomédico, de negocio y de IA generativa llevada a producción.",
+    "intro": "Aplicaciones con LLMs en producción, Machine Learning validado y análisis de datos biomédicos.",
     "labels": {
       "challenge": "El reto",
       "approach": "Cómo lo abordé",
@@ -450,71 +404,93 @@
     },
     "items": [
       {
-        "id": "leishmania-data-rescue",
-        "title": "Reanotación del genoma de Leishmania con Ribo-Seq",
-        "type": "Análisis de datos genómicos & Bioinformática",
-        "year": "2023",
-        "challenge": "La anotación del genoma de Leishmania donovani no recogía todas las regiones que el parásito traduce realmente a proteína.",
-        "approach": "Diseñé y analicé datos de Ribo-Seq (fragmentos de ARNm protegidos por ribosomas) con scripts en Python y Bash, paralelizados con GNU Parallel, para detectar marcos de lectura traducidos.",
-        "result": "Anotación del genoma refinada, publicada en Genes (2023) como primer autor. DOI 10.3390/genes14081637.",
+        "id": "job-matcher",
+        "title": "Job Matcher: asistente de IA para candidaturas",
+        "type": "Proyecto propio · Ingeniería de LLMs",
+        "year": "2026",
+        "challenge": "Las herramientas de IA genéricas inventan experiencia y dan consejos incoherentes. Quería un asistente cuyas recomendaciones se pudieran explicar y fueran fiables.",
+        "approach": "Arquitectura híbrida. Gemini extrae los requisitos de la oferta con salida estructurada; el filtrado, el porcentaje de encaje y la recomendación final son código determinista, explicable y testeable.",
+        "result": "Elegí el modelo con una evaluación sobre 20 ofertas reales revisadas a mano: los requisitos correctos pasaron de 82/140 a 97/140 (59% → 69%) sin que cambiara ninguna recomendación.",
         "tech": [
           "Python",
-          "Bash",
-          "GNU Parallel",
-          "Linux",
-          "Ribo-Seq"
+          "FastAPI",
+          "Pydantic",
+          "SQLAlchemy",
+          "PostgreSQL",
+          "Streamlit",
+          "Google Gemini API",
+          "Docker",
+          "nginx",
+          "GitHub Actions",
+          "Oracle Cloud"
         ],
-        "link": "https://github.com/CBMSO-L302",
-        "category": "bio"
+        "link": "https://lab.asansal.com/job-matcher",
+        "link_label": "Abrir Job Matcher",
+        "featured": true,
+        "badge": "En producción",
+        "story": "Aplicación web multiusuario que diseñé, desarrollé y desplegué. Analiza ofertas de empleo en más de 5 idiomas y genera CVs y cartas de presentación a medida sin inventar datos.",
+        "production_note": "Job Matcher funciona en producción en lab.asansal.com, donde publico mis proyectos personales.",
+        "impact": [
+          "Validadores que comprueban cifras, referencias y skills frente a alucinaciones y reintentan automáticamente.",
+          "RAG con Google Search grounding y fuentes citadas para estudios de mercado, notas sobre empresas y planes de aprendizaje, con caché compartida.",
+          "Unas 3 llamadas al LLM por candidatura completa, con cuotas por usuario y registro de costes."
+        ],
+        "category": "ai"
       },
       {
         "id": "sextant-ia",
         "title": "Sextant IA",
-        "type": "Proyecto propio · IA Generativa & Producto",
-        "year": "2025",
+        "type": "Proyecto propio · Ingeniería de LLMs",
+        "year": "2026",
         "challenge": "Planificar un viaje a medida lleva horas de búsqueda y rara vez incluye el contexto histórico o cultural de cada lugar.",
-        "approach": "Backend que orquesta LLMs en varias fases: preselecciona lugares según las preferencias del viajero, le deja elegir, crea un esqueleto día a día y genera cada día en paralelo, con contexto cultural. Frontend en Django.",
-        "result": "Web pública en producción, con HTTPS y despliegue continuo.",
+        "approach": "Pipeline en varias fases con la API de Google Gemini (Flash o Pro según la fase). Un motor de prompts divide el trabajo en descubrimiento, esqueleto día a día, planes diarios, alojamiento y detalles, con llamadas encadenadas y en paralelo (ThreadPoolExecutor). Human-in-the-loop: el usuario elige entre las propuestas de descubrimiento antes de generar el viaje completo.",
+        "result": "Aplicación Django completa (vistas, sesiones, modelos, admin, tests), tareas en segundo plano con página de progreso, exportación a PDF (ReportLab), mapas y traducción con LLM a 8 idiomas.",
         "tech": [
           "Python",
           "Django",
-          "LLMs",
+          "Google Gemini API",
           "Prompt Engineering",
-          "API REST",
+          "ThreadPoolExecutor",
+          "ReportLab",
+          "Gunicorn",
+          "Nginx",
           "Oracle Cloud",
-          "Nginx & HTTPS",
           "CI/CD"
         ],
         "link": "https://sextantia.eu",
         "link_label": "Visitar sextantia.eu",
         "featured": true,
         "badge": "En producción",
-        "story": "Sextant IA une dos aficiones: viajar y la historia. Lo diseñé, desarrollé y desplegué yo solo: arquitectura, backend con LLMs, frontend en Django y puesta en producción.",
+        "story": "Proyecto en solitario, 245 commits desde febrero de 2026. Une dos aficiones mías: viajar y la historia.",
         "production_note": "Sextant IA está publicada y funcionando en producción en sextantia.eu.",
         "impact": [
-          "Convierte las preferencias del usuario en un itinerario completo, desglosado en planes diarios.",
-          "Añade automáticamente contexto cultural e histórico a cada lugar.",
-          "Servidor propio en Oracle Cloud con Nginx y HTTPS; cada cambio en main se publica automáticamente."
+          "Salida JSON estructurada con un proceso de reparación en 7 pasos, timeouts por modelo, reintentos y detección de tareas huérfanas.",
+          "Servidor propio en Oracle Cloud (Gunicorn, Nginx, Certbot, systemd, SELinux) con despliegue continuo desde GitHub Actions.",
+          "Privacidad desde el diseño: sin cuentas de usuario, sin perfiles guardados, con reCAPTCHA."
         ],
-        "image": "assets/images/SextantIA.png",
+        "image": "assets/images/SextantIA.webp",
         "category": "ai"
       },
       {
-        "id": "leishmania-proteogenomics",
-        "title": "Proteogenómica de Leishmania donovani",
-        "type": "Bioinformática & Proteómica",
-        "year": "2024",
-        "challenge": "El genoma de referencia de Leishmania donovani no recogía todas las proteínas que el parásito realmente produce.",
-        "approach": "Integré datos de espectrometría de masas con la anotación genómica y validé estadísticamente las secuencias codificantes candidatas.",
-        "result": "Identificación de proteínas no anotadas, publicada en Genes (2024). DOI 10.3390/genes15060775.",
+        "id": "dsmarket",
+        "title": "DSMarket: Retail Forecasting",
+        "type": "Data Science & Business Intelligence · Proyecto final de máster, en equipo",
+        "year": "2025",
+        "challenge": "Una cadena con 3.049 productos y 10 tiendas necesitaba anticipar la demanda semanal para planificar el stock.",
+        "approach": "Me encargué del forecasting de series temporales. Preparamos 5 años de ventas (6,7 millones de filas, ~30.000 series producto-tienda) con variables de precio, calendario, clima y eventos, segmentamos los productos con K-Means y comparamos Lasso y XGBoost con validación cruzada temporal y Optuna.",
+        "result": "El modelo Lasso final mejoró a un baseline naive (última semana) un 10% en RMSE y un 13% en WMAPE en un test reservado de 9 semanas, con un dashboard en Power BI por región, tienda y segmento. No se desplegó en producción.",
         "tech": [
           "Python",
-          "R",
-          "Proteómica computacional",
-          "Validación estadística"
+          "Scikit-learn",
+          "XGBoost",
+          "Optuna",
+          "SQL",
+          "Power BI",
+          "Series temporales",
+          "Clustering"
         ],
-        "link": "",
-        "category": "bio"
+        "link": "https://github.com/asansal/DS_market_Capstone",
+        "category": "data"
       },
       {
         "id": "clinical-trial-dashboard",
@@ -537,44 +513,39 @@
         "category": "data"
       },
       {
-        "id": "dsmarket",
-        "title": "DSMarket: Retail Forecasting",
-        "type": "Data Science & Business Intelligence",
-        "year": "2025",
-        "challenge": "Una cadena con 3.049 productos y 10 tiendas necesitaba anticipar la demanda semanal para planificar el stock.",
-        "approach": "Preparé 5 años de ventas (6,7 millones de filas) con variables de precio, calendario, clima y eventos; segmenté los productos con K-Means y comparé Lasso y XGBoost con validación cruzada temporal y Optuna.",
-        "result": "El modelo final mejoró un 10% el RMSE y un 13% el WMAPE frente a un baseline naive en un test de 9 semanas, con un dashboard en Power BI por región, tienda y segmento.",
+        "id": "leishmania-data-rescue",
+        "title": "Reanotación del genoma de Leishmania con Ribo-Seq",
+        "type": "Análisis de datos genómicos & Bioinformática",
+        "year": "2023",
+        "challenge": "La anotación del genoma de Leishmania donovani no recogía todas las regiones que el parásito traduce realmente a proteína.",
+        "approach": "Diseñé y analicé datos de Ribo-Seq (fragmentos de ARNm protegidos por ribosomas) con scripts en Python y Bash, paralelizados con GNU Parallel, para detectar marcos de lectura traducidos.",
+        "result": "Anotación del genoma refinada, publicada en Genes (2023) como primer autor. DOI 10.3390/genes14081637.",
         "tech": [
           "Python",
-          "Scikit-learn",
-          "XGBoost",
-          "Optuna",
-          "SQL",
-          "Power BI",
-          "Series temporales",
-          "Clustering"
+          "Bash",
+          "GNU Parallel",
+          "Linux",
+          "Ribo-Seq"
         ],
-        "link": "https://github.com/asansal/DS_market_Capstone",
-        "category": "data"
+        "link": "https://github.com/CBMSO-L302",
+        "category": "bio"
       },
       {
-        "id": "portfolio-web",
-        "year": "2026",
-        "link": "https://github.com/asansal/Personal_Website",
-        "title": "Este portfolio: web con asistente IA y despliegue continuo",
-        "type": "IA Generativa & MLOps · Proyecto propio",
-        "challenge": "Quería un portfolio multilingüe con un asistente que respondiera sobre mi trayectoria y que se actualizara solo.",
-        "approach": "Streamlit y un chatbot con Google Gemini que responde a partir de mi propia base de conocimiento. Servidor Linux en Oracle Cloud y despliegue con GitHub Actions en cada push.",
-        "result": "Web en producción en seis idiomas, con despliegue continuo y sin pasos manuales.",
+        "id": "leishmania-proteogenomics",
+        "title": "Proteogenómica de Leishmania donovani",
+        "type": "Bioinformática & Proteómica",
+        "year": "2024",
+        "challenge": "El genoma de referencia de Leishmania donovani no recogía todas las proteínas que el parásito realmente produce.",
+        "approach": "Integré datos de espectrometría de masas con la anotación genómica y validé estadísticamente las secuencias codificantes candidatas.",
+        "result": "Identificación de proteínas no anotadas, publicada en Genes (2024). DOI 10.3390/genes15060775.",
         "tech": [
           "Python",
-          "Streamlit",
-          "Google Gemini API",
-          "GitHub Actions",
-          "Oracle Cloud",
-          "Linux & systemd"
+          "R",
+          "Proteómica computacional",
+          "Validación estadística"
         ],
-        "category": "ai"
+        "link": "",
+        "category": "bio"
       },
       {
         "id": "transcriptomics-algae",
@@ -594,6 +565,25 @@
         "category": "bio"
       },
       {
+        "id": "portfolio-web",
+        "year": "2026",
+        "link": "https://github.com/asansal/Personal_Website",
+        "title": "Este portfolio: web con asistente IA y despliegue continuo",
+        "type": "IA Generativa & CI/CD · Proyecto propio",
+        "challenge": "Quería un portfolio multilingüe con un asistente que respondiera sobre mi trayectoria y que se actualizara solo.",
+        "approach": "Streamlit y un chatbot con Google Gemini que responde a partir de mi propia base de conocimiento. Servidor Linux en Oracle Cloud y despliegue con GitHub Actions en cada push.",
+        "result": "Web en producción en seis idiomas, con despliegue continuo y sin pasos manuales.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Google Gemini API",
+          "GitHub Actions",
+          "Oracle Cloud",
+          "Linux & systemd"
+        ],
+        "category": "ai"
+      },
+      {
         "id": "hackathon-parking",
         "title": "Asistente de aparcamiento urbano (Hackathon)",
         "type": "Automatización & Chatbots · 2º Premio, No-Code Automation Hackathon Madrid",
@@ -608,23 +598,23 @@
           "Integración de APIs",
           "Chatbot"
         ],
-        "image": "assets/images/Hackathon.png",
+        "image": "assets/images/Hackathon.webp",
         "link": "",
         "category": "ai"
       }
     ],
     "categories": [
       {
-        "id": "bio",
-        "title": "Bioinformática & Genómica"
+        "id": "ai",
+        "title": "Ingeniería de IA & Automatización"
       },
       {
         "id": "data",
-        "title": "Datos clínicos & Analítica"
+        "title": "Data Science & Analítica"
       },
       {
-        "id": "ai",
-        "title": "IA, Producto & Automatización"
+        "id": "bio",
+        "title": "Bioinformática & Genómica"
       }
     ],
     "projects_word": [
@@ -722,12 +712,17 @@
           "language": "Alemán",
           "level": "Intermedio",
           "proficiency": "B1",
-          "certification": "Uso diario profesional (2 años en Alemania)"
+          "certification": "Escuela Oficial de Idiomas · dos años trabajando en Alemania"
         },
         {
           "language": "Francés",
           "level": "Básico",
           "proficiency": "A2"
+        },
+        {
+          "language": "Sueco",
+          "level": "Principiante (desde noviembre de 2026)",
+          "proficiency": "A1"
         }
       ]
     },
@@ -756,16 +751,16 @@
           "category": "life"
         },
         {
-          "name": "Power BI - Data Analytics & Visualization",
-          "issuer": "Banco Santander | Santander Open Academy",
-          "year": "2025",
+          "name": "Data Analytics Job Simulation",
+          "issuer": "Deloitte (Forage)",
+          "year": "2026",
           "type": "Certificación Profesional",
           "category": "data"
         },
         {
-          "name": "Data Analytics Job Simulation",
-          "issuer": "Deloitte - Forage",
-          "year": "2026",
+          "name": "Power BI - Data Analytics & Visualization",
+          "issuer": "Santander Open Academy",
+          "year": "2025",
           "type": "Certificación Profesional",
           "category": "data"
         },
@@ -777,9 +772,16 @@
           "category": "data"
         },
         {
-          "name": "Big Data in the Transportation Sector",
+          "name": "Big Data in the Transportation Sector (150 h)",
           "issuer": "Fundación Maude",
           "year": "2025",
+          "type": "Curso Especializado",
+          "category": "data"
+        },
+        {
+          "name": "AI Agents with n8n",
+          "issuer": "LinkedIn Learning",
+          "year": "2026",
           "type": "Curso Especializado",
           "category": "data"
         }
@@ -861,21 +863,21 @@
   "chatbot_config": {
     "title": "Asistente Virtual IA",
     "status_text": "En línea",
-    "welcome_title": "¡Bienvenido!",
-    "welcome_message": "Soy el asistente de Alejandro. Pregúntame por su experiencia, sus proyectos o su portfolio de Tableau.",
+    "welcome_title": "Bienvenido",
+    "welcome_message": "Soy el asistente de Alejandro. Pregúntame por su experiencia, sus proyectos de IA (Job Matcher, Sextant IA) o su trabajo en ciencia de datos.",
     "input_placeholder": "Escribe tu pregunta...",
     "suggestions": [
       {
-        "label": "Su perfil",
-        "msg": "¿Qué puedes aportar a una empresa de Pharma, Salud o Life Sciences?"
+        "label": "Proyectos con LLMs",
+        "msg": "¿Qué ha construido con LLMs?"
       },
       {
-        "label": "Sextant IA",
-        "msg": "Cuéntame sobre Sextant IA"
+        "label": "Job Matcher",
+        "msg": "¿Cómo evita Job Matcher las alucinaciones?"
       },
       {
-        "label": "Tableau",
-        "msg": "¿Qué dashboards tienes en Tableau?"
+        "label": "Life Sciences",
+        "msg": "¿Qué puede aportar a un equipo de Pharma o Life Sciences?"
       }
     ],
     "error_timeout": "Lo siento, la respuesta tardó demasiado. Por favor intenta de nuevo.",
@@ -886,9 +888,9 @@
   "cv_download_text": "Descargar CV",
   "contact_section": {
     "title": "Hablemos",
-    "cta": "¿Te encaja mi perfil?",
-    "description": "Si te ha gustado lo que has visto, o mi perfil encaja con un proyecto o un puesto que estás buscando, no dudes en escribirme. Me interesan especialmente Data Science e IA en Pharma, Salud y Life Sciences, aunque estoy abierto a otros sectores.",
-    "availability": "Abierto a tiempo completo · Remoto, híbrido o presencial.",
+    "cta": "¿Buscas a alguien que lleve la ciencia de datos y la IA del análisis a producción?",
+    "description": "Busco un puesto de Data Scientist o AI Engineer, preferentemente en Pharma, Salud y Life Sciences, y abierto a otros sectores. En España o en el resto de Europa. La mejor forma de contactarme es LinkedIn o el email.",
+    "availability": "Abierto a tiempo completo · Híbrido, presencial o remoto · Disponible para reubicarme en Europa",
     "contact_methods": {
       "email": "asansal@outlook.es",
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
@@ -902,8 +904,8 @@
     "github_desc": "El código de mis proyectos"
   },
   "seo": {
-    "meta_title": "Alejandro Sánchez | Data Scientist · Bioinformática e IA para Pharma, Salud y Life Sciences",
-    "meta_description": "Data Scientist con formación en biología y bioinformática (CBM-CSIC, Universität Konstanz). Machine Learning, IA generativa y análisis de datos biomédicos para Pharma, Salud y Life Sciences.",
+    "meta_title": "Alejandro Sánchez | AI Engineer & Data Scientist · Bioinformática & Life Sciences",
+    "meta_description": "AI Engineer y Data Scientist con formación en bioinformática (CBM-CSIC, Universität Konstanz). Aplicaciones con LLMs en producción, Machine Learning y análisis de datos biomédicos.",
     "keywords": [
       "Data Scientist",
       "AI Engineer",
@@ -920,7 +922,28 @@
       "Genomics",
       "Bioinformática",
       "Data Analyst",
-      "R Shiny"
+      "R Shiny",
+      "FastAPI",
+      "RAG"
+    ]
+  },
+  "home_links": {
+    "title": "Proyectos en vivo",
+    "items": [
+      {
+        "id": "sextant",
+        "icon": "travel_explore",
+        "title": "Sextant IA",
+        "description": "Planificador de viajes con IA: itinerarios día a día con la historia y la cultura de cada lugar. En producción.",
+        "url": "https://sextantia.eu"
+      },
+      {
+        "id": "lab",
+        "icon": "experiment",
+        "title": "lab.asansal.com",
+        "description": "Mi laboratorio de ideas, donde publico proyectos personales. El primero es Job Matcher, un asistente de IA para candidaturas.",
+        "url": "https://lab.asansal.com"
+      }
     ]
   }
 }

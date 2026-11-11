@@ -1,89 +1,67 @@
-# Data Science & AI Portfolio
+# asansal.com – portfolio with an AI assistant
 
-Hello! Welcome to the source code of my professional portfolio. I designed this space not just as a digital resume to showcase my career path, but as an interactive project in itself. Here, I apply my knowledge in Python, data application development, and the use of Large Language Models (LLMs) to create a dynamic user experience.
+Source code of my portfolio website, live at **[asansal.com](https://asansal.com)**.
 
-You can visit the live version of this portfolio here [missing link]
+I am an AI Engineer and Data Scientist with a background in bioinformatics. This site is a small production project of its own: a multilingual Streamlit app with a Gemini chatbot that answers questions about my experience from a closed knowledge base, deployed automatically to my own server.
 
-## Key Features
+## Features
 
-This project goes a step beyond a traditional static page. I have implemented several features focused on usability and AI integration:
+- **AI assistant (Google Gemini API):** answers only from [`data/personal_knowledge.csv`](data/personal_knowledge.csv), in the visitor's language. If the answer is not in the knowledge base, it says so and points to LinkedIn or email instead of guessing.
+- **Six languages:** Spanish, English, German, Swedish, Dutch and Danish. The language is detected from the browser and can be changed with the flag selector. All texts live in [`locales/`](locales/), one JSON file per language with identical keys. The CV download follows the selected language.
+- **Single-page navigation:** home grid, experience, projects by category, Tableau dashboards, tech stack, education and contact, with custom CSS and a floating chatbot.
+- **Social previews:** [`scripts/inject_meta.py`](scripts/inject_meta.py) writes Open Graph and Twitter tags into the HTML that Streamlit serves, so links shared on LinkedIn or WhatsApp show a preview image.
+- **Continuous deployment:** every push to `main` runs a GitHub Actions workflow that updates the server over SSH and restarts the service.
 
-- **Virtual Assistant (Gemini Chatbot)**: The website integrates a custom conversational agent using the Google Gemini API. This bot reads from a closed context (my knowledge base) and answers questions about my experience, projects, and skills, preventing hallucinations or out-of-context responses.
+## Tech stack
 
-- **Multilingual Support (i18n)**: All website content is centralized in .json files within the locales/ folder. This allows for seamless, real-time interface language switching, while also adapting resume downloads to the active language.
+Python · Streamlit · Google Gemini API (`google-genai`) · JSON (i18n) · CSV (knowledge base) · GitHub Actions · Linux server on Oracle Cloud (systemd)
 
-- **Responsive Design and CSS/JS Injection**: Although Streamlit is excellent for rapid prototyping, I have injected custom CSS and JavaScript to achieve advanced UI components (such as the floating chatbot pop-up) and improve the mobile experience.
-
-## Tech Stack
-
-- **Backend & Frontend**: Python 3.10+, Streamlit
-
-- **Artificial Intelligence**: Google GenAI SDK (Gemini 2.5 Flash)
-
-- **Data Processing (Bot Context)**: Pandas
-
-- **Data Structure**: JSON (Localization), CSV (Knowledge Base)
-
-## Project Structure
-
-The repository is organized as follows to maintain a clean separation between the interface, logic, and data:
+## Project structure
 
 ```
-├── app.py                  # Main entry point for the Streamlit application
+├── app.py                      # Streamlit app: layout, navigation and sections
 ├── logic/
-│   ├── chatbot.py          # Connection logic for the Gemini API and prompting
-│   └── utils.py            # Helper functions (image encoding, PDF reading, JSON loading)
-├── locales/
-│   ├── es.json             # Texts and translations in Spanish
-│   ├── en.json             # Texts and translations in English
-│   └── de.json             # Texts and translations in German
-├── data/
-│   └── personal_knowledge.csv # Knowledge base feeding the Chatbot
+│   ├── chatbot.py              # Knowledge base loading, system prompt and Gemini calls
+│   └── utils.py                # Helpers (CSS, JSON, images, PDFs)
+├── locales/                    # es, en, de, sv, nl, da: all site texts
+├── config/languages.json       # Available languages and flags
+├── data/personal_knowledge.csv # Knowledge base for the chatbot
 ├── assets/
-│   ├── css/                # Custom stylesheets
-│   ├── images/             # Photographs and icons
-│   └── files/              # PDF documents (Resumes in different languages)
-└── requirements.txt        # Project dependencies
+│   ├── css/style.css           # Custom styles
+│   ├── images/                 # Photos, project images, app icon
+│   └── files/                  # CV in each language (CV_Alejandro_Sanchez_XX.pdf)
+├── static/                     # Served at /app/static/ (preview image, favicon)
+├── scripts/
+│   ├── inject_meta.py          # SEO / Open Graph tags (run on every deploy)
+│   └── generate_locales.py     # Machine translation helper for new languages
+└── .github/workflows/deploy.yml
 ```
 
-## Local Installation and Deployment
+## Run it locally
 
-If you want to clone this repository and run it locally to see how it works under the hood, follow these steps:
-
-Clone the repository:
-
-```
-git clone [https://github.com/asansal/Personal_Website.git](https://github.com/asansal/Personal_Website.git)
-cd portfolio-streamlit
-```
-
-Create a virtual environment and install dependencies:
-
-```
+```bash
+git clone https://github.com/asansal/Personal_Website.git
+cd Personal_Website
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-Configure the Google Gemini API key:
-The chatbot requires a Google API Key to function. For security reasons, it is not included in the code. You must create a file at .streamlit/secrets.toml in the root of the project and add your key:
-
-```
-# .streamlit/secrets.toml
-GOOGLE_API_KEY = "YOUR_API_KEY_HERE"
-GENAI_API_KEY =  "YOUR_API_KEY_HERE"
-```
-
-(Note: If you do not configure the API Key, the website will still work perfectly; the chatbot will simply display a friendly warning that it is unavailable).
-
-Run the application:
-
-```
 streamlit run app.py
 ```
 
-#### About Me
+The chatbot needs a Google Gemini API key in `.streamlit/secrets.toml` (this file is git-ignored):
 
-After more than 4 years managing terabytes of data in high-level research environments (CSIC-UAM, Universität Konstanz), I have formalized my transition to the tech and business sector with a Master's degree in Data Science & AI. I am accustomed to ensuring data integrity, continuously seeking process efficiency, and translating complex analyses into strategic business decisions.
+```toml
+GOOGLE_API_KEY = "YOUR_API_KEY_HERE"
+GENAI_API_KEY = "YOUR_API_KEY_HERE"
+```
 
-If you are interested in my profile or want to discuss technology, data science, or potential collaborations, feel free to contact me via LinkedIn or email at asansal@outlook.es.
+Without a key the site works normally and only the chatbot is disabled.
+
+## Other projects
+
+- **[Job Matcher](https://lab.asansal.com/job-matcher):** AI job application assistant with structured output, hallucination validators and RAG with Google Search grounding.
+- **[Sextant IA](https://sextantia.eu):** multi-stage LLM travel planner built with Django, in production.
+
+## Contact
+
+[LinkedIn](https://www.linkedin.com/in/alejandro-sanchez-salvador) · asansal@outlook.es

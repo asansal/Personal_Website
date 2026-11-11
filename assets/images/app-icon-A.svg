@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="230" ry="230" fill="#5B2A86"/>
+  <!-- Flat halo behind the dot (solid color at reduced opacity, no gradient) -->
+  <circle cx="512" cy="670" r="70" fill="#C9B6E4" fill-opacity="0.28"/>
+  <!-- Geometric "A" without crossbar, uniform thick strokes -->
+  <path d="M432 232 H592 L780 792 H640 L512 411 L384 792 H244 Z" fill="#FFFFFF"/>
+  <!-- Data-point dot replacing the crossbar -->
+  <circle cx="512" cy="670" r="46" fill="#C9B6E4"/>
+</svg>

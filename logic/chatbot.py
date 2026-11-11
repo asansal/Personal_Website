@@ -95,7 +95,7 @@ def get_system_instruction(context_data: str, lang: str = "es") -> str:
 
     ### INSTRUCTIONS:
     1. **Strict Grounding:** Answer ONLY using the information provided in the CONTEXT above.
-    2. **No Hallucinations:** If the answer is not in the context, do NOT make it up. Instead, politely say: "Lo siento, no tengo esa información específica en mi base de datos actual. ¿Te gustaría contactar directamente por email para preguntar?"
+    2. **No Hallucinations:** If the answer is not in the context, do NOT make it up. Instead, say politely, in the user's language, that you do not have that specific information and that the best option is to contact Alejandro directly on LinkedIn (https://www.linkedin.com/in/alejandro-sanchez-salvador) or by email (asansal@outlook.es).
     3. **Tone:** Be friendly, humble, but professional and structured. Avoid being overly enthusiastic or robotic.
     4. **Language:** You MUST respond in the same language as the user's question. The website's current language is {response_lang}, but the user's language has absolute priority.
     5. **CVs & Links:** If the context contains a URL (e.g., for a CV), present it clearly to the user.

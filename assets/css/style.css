@@ -2053,6 +2053,21 @@ iframe[src*="public.tableau.com"] {
 .channel-desc { font-size: 0.86rem; color: rgba(255, 255, 255, 0.6); }
 .channel-arrow { color: rgba(255, 255, 255, 0.5); font-size: 20px; }
 
+/* Portada: enlaces a productos en vivo (Sextant IA, lab.asansal.com) */
+.home-links-title {
+    margin: 1.6rem 0 0.7rem 0 !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+.home-link .channel-icon .ms-icon { font-size: 26px; }
+.home-link-sextant .channel-icon { background: linear-gradient(135deg, #00d4aa 0%, #3d9bff 100%); color: #0a0e27; }
+.home-link-lab .channel-icon     { background: #5B2A86; }
+.home-link-sextant:hover { border-color: #00d4aa; }
+.home-link-lab:hover     { border-color: #C9B6E4; }
+
 /* ============================================================
    PORTADA: cabecera con resumen e invitación a explorar
    ============================================================ */

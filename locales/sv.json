@@ -1,20 +1,20 @@
 {
   "profile": {
     "name": "Alejandro Sánchez",
-    "role": "Data Scientist · Bioinformatik & AI",
-    "tagline": "Data Science & AI",
-    "subtitle": "Över 4 års analys av genomiska data vid CBM-CSIC och Universität Konstanz, 3 publikationer och en master i Data Science & AI. Jag har byggt bioinformatiska pipelines, Machine Learning-modeller, kliniska dashboards och Sextant IA, en LLM-applikation i produktion. Idag utformar jag bioinformatiska problem för att träna AI-modeller.",
+    "role": "AI Engineer & Data Scientist · Bioinformatik & Life Sciences",
+    "tagline": "Data Science och AI engineering, från analys till produktion.",
+    "subtitle": "Biolog och bioinformatiker. Jag bygger Machine Learning-modeller och LLM-applikationer och tar dem hela vägen till produktion.",
     "location": "Madrid, Spanien",
-    "availability": "Öppen för heltidstjänster · På distans, hybrid eller på plats · Öppen för flytt",
+    "availability": "Öppen för heltidstjänster · Hybrid, på plats eller på distans · Öppen för att flytta inom Europa",
     "socials": {
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
       "github": "https://github.com/asansal",
       "email": "asansal@outlook.es"
     },
-    "kicker": "Data Science · Bioinformatik · AI",
+    "kicker": "AI Engineering · Data Science · Bioinformatik",
     "explore_hint": "Utforska min erfarenhet, mina projekt och min tech stack i avsnitten nedan, eller fråga min AI-assistent direkt.",
     "ask_ai": "Fråga min AI",
-    "specialization": "Specialiserad på läkemedel, hälsa och Life Sciences"
+    "specialization": "Helst läkemedel, hälsa och Life Sciences · Öppen för andra branscher"
   },
   "navigation": {
     "back_home": "Tillbaka till start",
@@ -41,7 +41,7 @@
     }
   },
   "about": {
-    "text_short": "Data Scientist med bakgrund inom biologi, bioinformatik och biostatistik. Över 4 års forskning vid CBM Severo Ochoa (CSIC-UAM) och Universität Konstanz, 3 publikationer och en master i Data Science & AI. Jag tillämpar Machine Learning och generativ AI på biomedicinska data och tar lösningar till produktion, som Sextant IA."
+    "text_short": "AI Engineer och Data Scientist med bakgrund i biologi, bioinformatik och biostatistik. Över 4 års forskning vid CBM Severo Ochoa (CSIC-UAM) och Universität Konstanz, 3 referentgranskade publikationer (2 som förstaförfattare) och en master i Data Science & AI. Jag bygger LLM-applikationer och ML-modeller med samma noggrannhet som i labbet: validerade mot en baseline, utvärderade på verkliga data och driftsatta i produktion, som Job Matcher och Sextant IA."
   },
   "value_proposition": {
     "title": "Vad jag tillför ditt team",
@@ -52,23 +52,13 @@
         "points": [
           {
             "icon": "rocket",
-            "title": "Data Science och AI från början till slut",
-            "description": "Från analys och Machine Learning till generativ AI och driftsättning. Sextant IA, mitt eget projekt, är i produktion."
+            "title": "AI engineering i produktion",
+            "description": "Två LLM-applikationer i produktion (Job Matcher och Sextant IA), med strukturerad output, tillförlitlighetsskydd, kostnadskontroll, Docker och CI/CD."
           },
           {
-            "icon": "chart",
-            "title": "Machine Learning och tillämpad statistik",
-            "description": "Regression, klustring, tidsserier och statistisk validering med Python och R, med tydliga mått och antaganden."
-          },
-          {
-            "icon": "ai",
-            "title": "Generativ AI och LLM:er",
-            "description": "Orkestrering av LLM:er, prompt engineering och modellutvärdering (RLHF). Idag utformar jag bioinformatiska problem för att träna AI-modeller."
-          },
-          {
-            "icon": "cloud",
-            "title": "Engineering och driftsättning",
-            "description": "Reproducerbara pipelines, HPC, CI/CD och molnservrar: mina lösningar når produktion och fortsätter att fungera."
+            "icon": "collaboration",
+            "title": "Från data till beslut",
+            "description": "Jag har handlett 8 studenter och tekniker, presenterat resultat för forskningsledare och bygger dashboards i Power BI, Tableau och R Shiny."
           }
         ]
       },
@@ -79,136 +69,129 @@
           {
             "icon": "dna",
             "title": "Biomedicinsk domänkunskap",
-            "description": "Molekylärbiologi, genomik och laboratoriearbete: jag vet var varje biomedicinsk datapunkt kommer ifrån och vilka begränsningar den har innan jag modellerar den."
-          },
-          {
-            "icon": "genetics",
-            "title": "Bioinformatik och genomik",
-            "description": "NGS, transkriptomik, proteogenomik och Ribo-Seq: över 1 TB genomiska data analyserade och 3 referentgranskade publikationer."
+            "description": "Molekylärbiologi, genomik och labbarbete: jag vet var biomedicinska data kommer ifrån och vilka begränsningar de har innan jag modellerar dem."
           },
           {
             "icon": "analytics",
-            "title": "Noggrannhet, reproducerbarhet och regelefterlevnad",
-            "description": "Statistisk validering, spårbarhet och reproducerbarhet, med utbildning i ICH-GCP E6 (R3) och GDPR inom vården."
-          },
-          {
-            "icon": "collaboration",
-            "title": "En bro mellan vetenskap och affärer",
-            "description": "Jag har handlett 8 studenter och tekniker, hanterat leverantörer och omsätter resultat till beslut med dashboards i Tableau och Power BI."
+            "title": "Noggrannhet och utvärdering",
+            "description": "Modeller jämförda med baselines, LLM-output kontrollerad med validatorer och handmärkta utvärderingsset, reproducerbara pipelines. Utbildning i ICH-GCP E6 (R3) och GDPR inom vården."
           }
         ]
       }
     ],
     "stack_link": "Se tech stack",
-    "stack_link_hint": "Python · R · Bioconductor · SQL · Machine Learning · Tableau · CI/CD"
+    "stack_link_hint": "Gemini API · FastAPI · Docker · Python · SQL · R · Machine Learning · Bioinformatik"
   },
   "skills_section": {
     "title": "Tech stack",
     "groups": [
       {
-        "id": "analysis",
-        "title": "Dataanalys",
+        "id": "llm",
+        "title": "Generativ AI & LLM engineering",
         "categories": [
           {
-            "icon": "health",
-            "name": "Analys & statistik",
+            "icon": "ai",
+            "name": "LLM-applikationer",
             "tools": [
-              "Python",
-              "Pandas",
-              "NumPy",
-              "R",
-              "SQL",
-              "PostgreSQL",
-              "MySQL",
-              "Statistisk validering",
-              "Multivariat statistik",
-              "A/B-testning"
+              "Google Gemini API",
+              "LLM-pipelines i flera steg",
+              "Prompt engineering",
+              "Strukturerad output",
+              "JSON-reparation",
+              "Hallucinationsvalidatorer",
+              "LLM-utvärdering med handmärkta data",
+              "RAG med Google Search grounding",
+              "Human-in-the-loop",
+              "Kostnadskontroll för LLM:er"
             ],
-            "note": ""
+            "note": "Två LLM-applikationer i produktion: Job Matcher och Sextant IA. Utvärdering av AI-modeller på Telus och Mercor."
           },
           {
-            "icon": "visualization",
-            "name": "Visualisering & kommunikation",
+            "icon": "chart",
+            "name": "Automatisering",
             "tools": [
-              "Tableau",
-              "Power BI",
-              "DAX",
-              "R Shiny",
-              "Streamlit",
-              "Data storytelling"
+              "n8n",
+              "Make"
             ],
-            "note": ""
+            "note": "Egna arbetsflöden med n8n; Make på hackathonet (2:a pris)."
           }
         ]
       },
       {
         "id": "datascience",
-        "title": "Data Science & Engineering",
+        "title": "Machine Learning & backend",
         "categories": [
           {
             "icon": "chart",
-            "name": "Machine Learning & modellering",
+            "name": "Machine Learning & statistik",
             "tools": [
-              "Scikit-learn",
+              "scikit-learn",
               "XGBoost",
-              "TensorFlow",
-              "Keras",
-              "Optuna",
-              "Lasso-/Ridge-regression",
+              "Lasso/Ridge",
               "K-Means",
-              "Tidsserier",
-              "Prophet",
-              "ARIMA"
+              "Optuna",
+              "Tidsserieprognoser",
+              "Tidsseriekorsvalidering",
+              "Hypotesprövning",
+              "Bayesiansk statistik",
+              "Multivariat statistik",
+              "Försöksplanering",
+              "TensorFlow/Keras (grunder)",
+              "PyTorch (grunder)"
             ],
-            "note": "Modeller validerade mot en baseline; tidsbaserad korsvalidering vid prognoser."
-          },
-          {
-            "icon": "database",
-            "name": "Data engineering & reproducerbarhet",
-            "tools": [
-              "ETL-pipelines",
-              "Data wrangling",
-              "Linux",
-              "Bash",
-              "Git",
-              "Docker"
-            ],
-            "note": ""
+            "note": "Modeller validerade mot en baseline."
           },
           {
             "icon": "cloud",
-            "name": "Driftsättning, moln & CI/CD",
+            "name": "Backend, driftsättning & grundläggande MLOps",
             "tools": [
-              "CI/CD",
-              "GitHub Actions",
-              "Oracle Cloud",
+              "Python",
+              "FastAPI",
+              "Pydantic",
+              "SQLAlchemy",
+              "PostgreSQL",
+              "Django",
+              "Docker",
               "Nginx",
-              "HTTPS",
+              "Gunicorn",
+              "GitHub Actions (CI/CD)",
+              "Git",
+              "Linuxservrar i Oracle Cloud",
               "systemd"
             ],
-            "note": "Varje push till main driftsätts automatiskt. Sextant IA och den här portfolion körs i produktion."
+            "note": "Varje push till main driftsätts automatiskt."
           }
         ]
       },
       {
-        "id": "llm",
-        "title": "Generativ AI & LLM:er",
+        "id": "analysis",
+        "title": "Dataanalys & visualisering",
         "categories": [
           {
-            "icon": "ai",
-            "name": "Generativ AI & produkt",
+            "icon": "health",
+            "name": "Analys",
             "tools": [
-              "LLMs",
-              "Orkestrering av LLM:er",
-              "Prompt engineering",
-              "Django",
-              "REST-API:er",
-              "n8n",
-              "Make",
-              "RLHF",
-              "Utvärdering av AI-modeller"
+              "SQL",
+              "pandas",
+              "NumPy",
+              "R",
+              "Matplotlib",
+              "Seaborn",
+              "ggplot2"
             ],
-            "note": "Träning och utvärdering av AI-modeller (Telus, Mercor)."
+            "note": "HackerRank-certifikat i SQL (Advanced)."
+          },
+          {
+            "icon": "visualization",
+            "name": "Dashboards",
+            "tools": [
+              "Power BI",
+              "DAX",
+              "Tableau",
+              "R Shiny",
+              "Streamlit"
+            ],
+            "note": ""
           }
         ]
       },
@@ -220,50 +203,39 @@
             "icon": "dna",
             "name": "Bioinformatik & genomik",
             "tools": [
-              "Bioconductor",
               "NGS",
-              "Illumina",
-              "Oxford Nanopore",
-              "Sanger",
               "RNA-seq",
               "Ribo-Seq",
               "WGS",
+              "Illumina",
+              "Oxford Nanopore",
               "DESeq2",
-              "Transkriptomik",
               "Proteogenomik",
-              "De novo-assemblering",
+              "Genomassemblering",
               "Genomannotering",
               "Trinity",
               "BUSCO",
               "HPC (Slurm)",
-              "GNU Parallel"
-            ],
-            "note": ""
-          },
-          {
-            "icon": "lab",
-            "name": "Våtlabb",
-            "tools": [
-              "CRISPR-Cas9",
-              "qPCR",
-              "Cellodling"
+              "GNU Parallel",
+              "Bash",
+              "R/Bioconductor"
             ],
             "note": ""
           },
           {
             "icon": "practice",
-            "name": "God praxis inom vården",
+            "name": "Regelefterlevnad för hälsodata",
             "tools": [
               "ICH-GCP E6 (R3)",
-              "GDPR"
+              "GDPR inom vården"
             ],
-            "note": "Patientdata hanterade med noggrannhet och regelefterlevnad."
+            "note": ""
           }
         ]
       }
     ],
     "education_link": "Se utbildning och certifieringar",
-    "education_link_hint": "Master i Data Science & AI, bioinformatik och mikrobiologi · ICH-GCP · GDPR · Power BI"
+    "education_link_hint": "Master i Data Science & AI, bioinformatik och mikrobiologi · SQL (Advanced) · ICH-GCP · GDPR"
   },
   "experience_section": {
     "title": "Erfarenhet",
@@ -304,11 +276,28 @@
         ],
         "impact": [
           "Analys av Ribo-Seq-, RNA-seq-, WGS- och proteomikdata; differentiell expression (DESeq2) och genomassemblering.",
-          "3 referentgranskade publikationer (2 som förstaförfattare).",
-          "Räddade ett degraderat Oxford Nanopore-dataset genom hybridkorrigering med Illumina-läsningar.",
+          "Statistisk analys i 2 referentgranskade publikationer om genomannotering och proteogenomik (1 som förstaförfattare).",
+          "Räddade ett degraderat Oxford Nanopore-dataset genom hybridkorrigering med Illumina-läsningar (opublicerat).",
           "Kortare beräkningstider genom parallellisering med GNU Parallel.",
           "Handledde 5 studenter (kandidat- och masteruppsatser) och tekniker.",
           "Hanterade sekvenseringsleverantörer (Novogene, Illumina)."
+        ]
+      },
+      {
+        "period": "Mars 2025 - juni 2025",
+        "role": "Online Data Analyst (AI-utvärdering)",
+        "company": "Telus International AI",
+        "location": "På distans",
+        "type": "Deltid",
+        "story": "Jag utvärderade sökresultat och svar från AI-modeller enligt strikta kvalitetsriktlinjer och tog fram referensdata för att förbättra deras precision.",
+        "stack": [
+          "Datakvalitet",
+          "Utvärdering av AI-modeller",
+          "Mänsklig feedback (RLHF)"
+        ],
+        "impact": [
+          "Konsekventa bedömningar av sökresultat och svar från AI-modeller.",
+          "Detaljerad dokumentation av fall för att förbättra precisionen."
         ]
       },
       {
@@ -333,59 +322,24 @@
       }
     ],
     "other_title": "Annan erfarenhet",
-    "other_items": [
-      {
-        "period": "Mars 2025 - juni 2025",
-        "role": "Online Data Analyst (AI-utvärdering)",
-        "company": "Telus International AI",
-        "location": "På distans",
-        "type": "Deltid",
-        "story": "Jag utvärderade sökresultat och svar från AI-modeller enligt strikta kvalitetsriktlinjer och tog fram referensdata för att förbättra deras precision.",
-        "stack": [
-          "Datakvalitet",
-          "Utvärdering av AI-modeller",
-          "Mänsklig feedback (RLHF)"
-        ],
-        "impact": [
-          "Konsekventa bedömningar av sökresultat och svar från AI-modeller.",
-          "Detaljerad dokumentation av fall för att förbättra precisionen."
-        ]
-      },
-      {
-        "period": "September 2018 - mars 2020",
-        "role": "Lärare i naturvetenskap och engelska",
-        "company": "Privat akademi och frilans",
-        "location": "Madrid, Spanien",
-        "type": "Undervisning",
-        "story": "Jag undervisade elever från lågstadiet till gymnasiet i naturvetenskap och engelska. Där lärde jag mig att förklara komplexa begrepp för vilken publik som helst.",
-        "stack": [
-          "Kommunikation",
-          "Undervisning",
-          "Vetenskapskommunikation"
-        ],
-        "impact": [
-          "Lektioner i naturvetenskap och engelska från lågstadiet till gymnasiet.",
-          "Förklaringar anpassade till varje elevs nivå."
-        ]
-      }
-    ],
-    "summary": "Data Scientist med över 4 års analys av genomiska och biomedicinska data inom forskning, utbildad i bioinformatik, biostatistik och Data Science, som nu tar med sig den noggrannheten till AI.",
+    "other_items": [],
+    "summary": "I forskningen lärde jag mig att ett resultat bara räknas om det är reproducerbart. Data science och AI gav mig bättre verktyg för att besvara frågor i stor skala, och nu vill jag använda den noggrannheten i produkter som människor använder.",
     "stats": [
       {
         "value": "4+",
         "label": "års arbete med forskningsdata"
       },
       {
-        "value": "1 TB+",
-        "label": "genomiska data analyserade"
-      },
-      {
         "value": "3",
         "label": "referentgranskade publikationer"
       },
       {
+        "value": "2",
+        "label": "LLM-applikationer i produktion"
+      },
+      {
         "value": "8",
-        "label": "handledda forskare"
+        "label": "handledda studenter och tekniker"
       }
     ]
   },
@@ -441,7 +395,7 @@
   },
   "projects_section": {
     "title": "Projekt",
-    "intro": "Projekt inom biomedicinsk analys, affärsanalys och generativ AI i produktion.",
+    "intro": "LLM-applikationer i produktion, validerad Machine Learning och biomedicinsk dataanalys.",
     "labels": {
       "challenge": "Utmaningen",
       "approach": "Hur jag angrep det",
@@ -450,71 +404,93 @@
     },
     "items": [
       {
-        "id": "leishmania-data-rescue",
-        "title": "Omannotering av Leishmanias genom med Ribo-Seq",
-        "type": "Analys av genomiska data & bioinformatik",
-        "year": "2023",
-        "challenge": "Annoteringen av Leishmania donovanis genom missade regioner som parasiten faktiskt översätter till protein.",
-        "approach": "Jag utformade och analyserade Ribo-Seq-experiment (ribosomskyddade mRNA-fragment) med Python- och Bash-skript, parallelliserade med GNU Parallel, för att hitta översatta läsramar.",
-        "result": "Förfinad genomannotering, publicerad i Genes (2023) som förstaförfattare. DOI 10.3390/genes14081637.",
+        "id": "job-matcher",
+        "title": "Job Matcher: AI-assistent för jobbansökningar",
+        "type": "Eget projekt · LLM engineering",
+        "year": "2026",
+        "challenge": "Generiska AI-verktyg hittar på erfarenhet och ger inkonsekventa råd. Jag ville ha en assistent vars rekommendationer går att lita på och förklara.",
+        "approach": "Hybridarkitektur. Gemini extraherar annonsens krav med strukturerad output; filtrering, matchningsprocent och slutlig rekommendation är deterministisk kod som är förklarbar och testbar.",
+        "result": "Jag valde modellen med en utvärdering på 20 verkliga jobbannonser som granskats för hand: korrekt identifierade krav gick från 82/140 till 97/140 (59 % → 69 %) utan att någon rekommendation ändrades.",
         "tech": [
           "Python",
-          "Bash",
-          "GNU Parallel",
-          "Linux",
-          "Ribo-Seq"
+          "FastAPI",
+          "Pydantic",
+          "SQLAlchemy",
+          "PostgreSQL",
+          "Streamlit",
+          "Google Gemini API",
+          "Docker",
+          "nginx",
+          "GitHub Actions",
+          "Oracle Cloud"
         ],
-        "link": "https://github.com/CBMSO-L302",
-        "category": "bio"
+        "link": "https://lab.asansal.com/job-matcher",
+        "link_label": "Öppna Job Matcher",
+        "featured": true,
+        "badge": "I produktion",
+        "story": "Webbapplikation för flera användare som jag har designat, byggt och driftsatt. Den analyserar jobbannonser på över 5 språk och skapar skräddarsydda CV:n och personliga brev utan att hitta på uppgifter.",
+        "production_note": "Job Matcher körs i produktion på lab.asansal.com, där jag publicerar mina personliga projekt.",
+        "impact": [
+          "Validatorer kontrollerar siffror, referenser och kompetenser mot hallucinationer och försöker igen automatiskt.",
+          "RAG med Google Search grounding och citerade källor för marknadsanalys, företagsanteckningar och lärandeplaner, med delad cache.",
+          "Cirka 3 LLM-anrop per fullständig ansökan, med kvoter per användare och kostnadsloggning."
+        ],
+        "category": "ai"
       },
       {
         "id": "sextant-ia",
         "title": "Sextant IA",
-        "type": "Eget projekt · Generativ AI & produkt",
-        "year": "2025",
+        "type": "Eget projekt · LLM engineering",
+        "year": "2026",
         "challenge": "Att planera en skräddarsydd resa tar timmar av research och inkluderar sällan den historiska eller kulturella kontexten för varje plats.",
-        "approach": "En backend som orkestrerar LLM:er i steg: den väljer ut platser utifrån resenärens preferenser, låter hen välja, bygger ett dag-för-dag-skelett och genererar varje dag parallellt med kulturell kontext. Frontend i Django.",
-        "result": "Publik webbplats i produktion, med HTTPS och kontinuerlig driftsättning.",
+        "approach": "Pipeline i flera steg med Google Gemini API (Flash eller Pro beroende på steg). En promptmotor delar upp arbetet i upptäckt, dag-för-dag-skelett, dagsplaner, boende och detaljer, med kedjade och parallella anrop (ThreadPoolExecutor). Human-in-the-loop: användaren väljer bland förslagen från upptäcktsfasen innan hela resan genereras.",
+        "result": "Komplett Django-app (vyer, sessioner, modeller, admin, tester), bakgrundsjobb med förloppssida, PDF-export (ReportLab), kartor och LLM-baserad översättning till 8 språk.",
         "tech": [
           "Python",
           "Django",
-          "LLMs",
+          "Google Gemini API",
           "Prompt Engineering",
-          "REST API",
+          "ThreadPoolExecutor",
+          "ReportLab",
+          "Gunicorn",
+          "Nginx",
           "Oracle Cloud",
-          "Nginx & HTTPS",
           "CI/CD"
         ],
         "link": "https://sextantia.eu",
         "link_label": "Besök sextantia.eu",
         "featured": true,
         "badge": "I produktion",
-        "story": "Sextant IA förenar två av mina intressen: resor och historia. Jag har utformat, byggt och driftsatt den på egen hand: arkitektur, LLM-backend, Django-frontend och lansering i produktion.",
+        "story": "Soloprojekt, 245 commits sedan februari 2026. Det förenar två av mina intressen: resor och historia.",
         "production_note": "Sextant IA är publicerad och körs i produktion på sextantia.eu.",
         "impact": [
-          "Omvandlar användarens preferenser till en komplett resplan, uppdelad i dagsplaner.",
-          "Lägger automatiskt till kulturell och historisk kontext för varje plats.",
-          "Egen server på Oracle Cloud med Nginx och HTTPS; varje ändring i main publiceras automatiskt."
+          "Strukturerad JSON-output med en reparationsprocess i 7 steg, timeouts per modell, omförsök och upptäckt av övergivna jobb.",
+          "Egen server i Oracle Cloud (Gunicorn, Nginx, Certbot, systemd, SELinux) med kontinuerlig driftsättning från GitHub Actions.",
+          "Integritet genom design: inga användarkonton, inga sparade profiler, reCAPTCHA."
         ],
-        "image": "assets/images/SextantIA.png",
+        "image": "assets/images/SextantIA.webp",
         "category": "ai"
       },
       {
-        "id": "leishmania-proteogenomics",
-        "title": "Proteogenomik hos Leishmania donovani",
-        "type": "Bioinformatik & proteomik",
-        "year": "2024",
-        "challenge": "Referensgenomet för Leishmania donovani fångade inte alla proteiner som parasiten faktiskt producerar.",
-        "approach": "Jag integrerade masspektrometridata med genomannoteringen och validerade de kandidatkodande sekvenserna statistiskt.",
-        "result": "Identifiering av tidigare oannoterade proteiner, publicerad i Genes (2024). DOI 10.3390/genes15060775.",
+        "id": "dsmarket",
+        "title": "DSMarket: prognoser för detaljhandeln",
+        "type": "Data Science & Business Intelligence · Masterns slutprojekt, i team",
+        "year": "2025",
+        "challenge": "En kedja med 3 049 produkter och 10 butiker behövde förutse veckoefterfrågan för att planera lagret.",
+        "approach": "Jag ansvarade för tidsserieprognoserna. Vi förberedde 5 års försäljning (6,7 miljoner rader, ~30 000 serier per produkt och butik) med variabler för pris, kalender, väder och evenemang, segmenterade produkterna med K-Means och jämförde Lasso och XGBoost med tidsseriekorsvalidering och Optuna.",
+        "result": "Den slutliga Lasso-modellen slog en naiv baseline (förra veckan) med 10 % (RMSE) och 13 % (WMAPE) på ett reserverat testset på 9 veckor, med en Power BI-dashboard per region, butik och segment. Den driftsattes inte i produktion.",
         "tech": [
           "Python",
-          "R",
-          "Beräkningsproteomik",
-          "Statistisk validering"
+          "Scikit-learn",
+          "XGBoost",
+          "Optuna",
+          "SQL",
+          "Power BI",
+          "Tidsserier",
+          "Klustring"
         ],
-        "link": "",
-        "category": "bio"
+        "link": "https://github.com/asansal/DS_market_Capstone",
+        "category": "data"
       },
       {
         "id": "clinical-trial-dashboard",
@@ -537,44 +513,39 @@
         "category": "data"
       },
       {
-        "id": "dsmarket",
-        "title": "DSMarket: prognoser för detaljhandeln",
-        "type": "Data Science & Business Intelligence",
-        "year": "2025",
-        "challenge": "En kedja med 3 049 produkter och 10 butiker behövde förutse veckoefterfrågan för att planera lagret.",
-        "approach": "Jag förberedde 5 års försäljning (6,7 miljoner rader) med variabler för pris, kalender, väder och evenemang, segmenterade produkterna med K-Means och jämförde Lasso och XGBoost med korsvalidering för tidsserier och Optuna.",
-        "result": "Den slutliga modellen förbättrade RMSE med 10 % och WMAPE med 13 % jämfört med en naiv baseline på en testperiod om 9 veckor, med en Power BI-dashboard per region, butik och segment.",
+        "id": "leishmania-data-rescue",
+        "title": "Omannotering av Leishmanias genom med Ribo-Seq",
+        "type": "Analys av genomiska data & bioinformatik",
+        "year": "2023",
+        "challenge": "Annoteringen av Leishmania donovanis genom missade regioner som parasiten faktiskt översätter till protein.",
+        "approach": "Jag utformade och analyserade Ribo-Seq-experiment (ribosomskyddade mRNA-fragment) med Python- och Bash-skript, parallelliserade med GNU Parallel, för att hitta översatta läsramar.",
+        "result": "Förfinad genomannotering, publicerad i Genes (2023) som förstaförfattare. DOI 10.3390/genes14081637.",
         "tech": [
           "Python",
-          "Scikit-learn",
-          "XGBoost",
-          "Optuna",
-          "SQL",
-          "Power BI",
-          "Tidsserier",
-          "Klustring"
+          "Bash",
+          "GNU Parallel",
+          "Linux",
+          "Ribo-Seq"
         ],
-        "link": "https://github.com/asansal/DS_market_Capstone",
-        "category": "data"
+        "link": "https://github.com/CBMSO-L302",
+        "category": "bio"
       },
       {
-        "id": "portfolio-web",
-        "year": "2026",
-        "link": "https://github.com/asansal/Personal_Website",
-        "title": "Den här portfolion: AI-assisterad webbplats med kontinuerlig driftsättning",
-        "type": "Generativ AI & MLOps · Eget projekt",
-        "challenge": "Jag ville ha en flerspråkig portfolio med en assistent som svarar på frågor om min karriär och uppdaterar sig själv.",
-        "approach": "Streamlit och en chattbot med Google Gemini som svarar utifrån min egen kunskapsbas. Linux-server på Oracle Cloud, driftsatt med GitHub Actions vid varje push.",
-        "result": "Webbplats i produktion på sex språk, kontinuerligt driftsatt utan manuella steg.",
+        "id": "leishmania-proteogenomics",
+        "title": "Proteogenomik hos Leishmania donovani",
+        "type": "Bioinformatik & proteomik",
+        "year": "2024",
+        "challenge": "Referensgenomet för Leishmania donovani fångade inte alla proteiner som parasiten faktiskt producerar.",
+        "approach": "Jag integrerade masspektrometridata med genomannoteringen och validerade de kandidatkodande sekvenserna statistiskt.",
+        "result": "Identifiering av tidigare oannoterade proteiner, publicerad i Genes (2024). DOI 10.3390/genes15060775.",
         "tech": [
           "Python",
-          "Streamlit",
-          "Google Gemini API",
-          "GitHub Actions",
-          "Oracle Cloud",
-          "Linux & systemd"
+          "R",
+          "Beräkningsproteomik",
+          "Statistisk validering"
         ],
-        "category": "ai"
+        "link": "",
+        "category": "bio"
       },
       {
         "id": "transcriptomics-algae",
@@ -594,6 +565,25 @@
         "category": "bio"
       },
       {
+        "id": "portfolio-web",
+        "year": "2026",
+        "link": "https://github.com/asansal/Personal_Website",
+        "title": "Den här portfolion: AI-assisterad webbplats med kontinuerlig driftsättning",
+        "type": "Generativ AI & CI/CD · Eget projekt",
+        "challenge": "Jag ville ha en flerspråkig portfolio med en assistent som svarar på frågor om min karriär och uppdaterar sig själv.",
+        "approach": "Streamlit och en chattbot med Google Gemini som svarar utifrån min egen kunskapsbas. Linux-server på Oracle Cloud, driftsatt med GitHub Actions vid varje push.",
+        "result": "Webbplats i produktion på sex språk, kontinuerligt driftsatt utan manuella steg.",
+        "tech": [
+          "Python",
+          "Streamlit",
+          "Google Gemini API",
+          "GitHub Actions",
+          "Oracle Cloud",
+          "Linux & systemd"
+        ],
+        "category": "ai"
+      },
+      {
         "id": "hackathon-parking",
         "title": "Parkeringsassistent för staden (hackathon)",
         "type": "Automatisering & chattbotar · 2:a pris, No-Code Automation Hackathon Madrid",
@@ -608,23 +598,23 @@
           "API-integrationer",
           "Chattbot"
         ],
-        "image": "assets/images/Hackathon.png",
+        "image": "assets/images/Hackathon.webp",
         "link": "",
         "category": "ai"
       }
     ],
     "categories": [
       {
-        "id": "bio",
-        "title": "Bioinformatik & genomik"
+        "id": "ai",
+        "title": "AI engineering & automatisering"
       },
       {
         "id": "data",
-        "title": "Kliniska data & analys"
+        "title": "Data Science & analys"
       },
       {
-        "id": "ai",
-        "title": "AI, produkt & automatisering"
+        "id": "bio",
+        "title": "Bioinformatik & genomik"
       }
     ],
     "projects_word": [
@@ -722,12 +712,17 @@
           "language": "Tyska",
           "level": "Medelnivå",
           "proficiency": "B1",
-          "certification": "Dagligt professionellt bruk (2 år i Tyskland)"
+          "certification": "Escuela Oficial de Idiomas · två års arbete i Tyskland"
         },
         {
           "language": "Franska",
           "level": "Grundläggande",
           "proficiency": "A2"
+        },
+        {
+          "language": "Svenska",
+          "level": "Nybörjare (sedan november 2026)",
+          "proficiency": "A1"
         }
       ]
     },
@@ -756,16 +751,16 @@
           "category": "life"
         },
         {
-          "name": "Power BI - Data Analytics & Visualization",
-          "issuer": "Banco Santander | Santander Open Academy",
-          "year": "2025",
+          "name": "Data Analytics Job Simulation",
+          "issuer": "Deloitte (Forage)",
+          "year": "2026",
           "type": "Yrkescertifiering",
           "category": "data"
         },
         {
-          "name": "Data Analytics Job Simulation",
-          "issuer": "Deloitte - Forage",
-          "year": "2026",
+          "name": "Power BI - Data Analytics & Visualization",
+          "issuer": "Santander Open Academy",
+          "year": "2025",
           "type": "Yrkescertifiering",
           "category": "data"
         },
@@ -777,9 +772,16 @@
           "category": "data"
         },
         {
-          "name": "Big Data in the Transportation Sector",
+          "name": "Big Data in the Transportation Sector (150 h)",
           "issuer": "Fundación Maude",
           "year": "2025",
+          "type": "Specialistkurs",
+          "category": "data"
+        },
+        {
+          "name": "AI Agents with n8n",
+          "issuer": "LinkedIn Learning",
+          "year": "2026",
           "type": "Specialistkurs",
           "category": "data"
         }
@@ -861,21 +863,21 @@
   "chatbot_config": {
     "title": "Virtuell AI-assistent",
     "status_text": "Online",
-    "welcome_title": "Välkommen!",
-    "welcome_message": "Jag är Alejandros assistent. Fråga mig om hans erfarenhet, hans projekt eller hans Tableau-portfolio.",
+    "welcome_title": "Välkommen",
+    "welcome_message": "Jag är Alejandros assistent. Fråga mig om hans erfarenhet, hans AI-projekt (Job Matcher, Sextant IA) eller hans arbete inom data science.",
     "input_placeholder": "Skriv din fråga...",
     "suggestions": [
       {
-        "label": "Hans profil",
-        "msg": "Vad kan du tillföra ett företag inom läkemedel, hälsa eller Life Sciences?"
+        "label": "LLM-projekt",
+        "msg": "Vad har han byggt med LLM:er?"
       },
       {
-        "label": "Sextant IA",
-        "msg": "Berätta om Sextant IA"
+        "label": "Job Matcher",
+        "msg": "Hur undviker Job Matcher hallucinationer?"
       },
       {
-        "label": "Tableau",
-        "msg": "Vilka dashboards har du på Tableau?"
+        "label": "Life Sciences",
+        "msg": "Vad kan han bidra med i ett team inom läkemedel eller Life Sciences?"
       }
     ],
     "error_timeout": "Tyvärr tog svaret för lång tid. Försök igen.",
@@ -886,9 +888,9 @@
   "cv_download_text": "CV på engelska",
   "contact_section": {
     "title": "Hör av dig",
-    "cta": "Passar min profil?",
-    "description": "Om du gillade det du såg, eller om min profil passar ett projekt eller en roll du söker, tveka inte att höra av dig. Jag är särskilt intresserad av Data Science och AI inom läkemedel, hälsa och Life Sciences, men även öppen för andra branscher.",
-    "availability": "Öppen för heltidstjänster · På distans, hybrid eller på plats.",
+    "cta": "Letar du efter någon som kan ta Data Science och AI från analys till produktion?",
+    "description": "Jag söker en tjänst som Data Scientist eller AI Engineer, helst inom läkemedel, hälsa och Life Sciences, och är öppen för andra branscher. I Spanien eller någon annanstans i Europa. Enklast når du mig via LinkedIn eller e-post.",
+    "availability": "Öppen för heltidstjänster · Hybrid, på plats eller på distans · Öppen för att flytta inom Europa",
     "contact_methods": {
       "email": "asansal@outlook.es",
       "linkedin": "https://www.linkedin.com/in/alejandro-sanchez-salvador",
@@ -902,8 +904,8 @@
     "github_desc": "Koden bakom mina projekt"
   },
   "seo": {
-    "meta_title": "Alejandro Sánchez | Data Scientist · Bioinformatik & AI för läkemedel, hälsa och Life Sciences",
-    "meta_description": "Data Scientist med bakgrund inom biologi och bioinformatik (CBM-CSIC, Universität Konstanz). Machine Learning, generativ AI och analys av biomedicinska data för läkemedel, hälsa och Life Sciences.",
+    "meta_title": "Alejandro Sánchez | AI Engineer & Data Scientist · Bioinformatik & Life Sciences",
+    "meta_description": "AI Engineer och Data Scientist med bakgrund i bioinformatik (CBM-CSIC, Universität Konstanz). LLM-applikationer i produktion, Machine Learning och biomedicinsk dataanalys.",
     "keywords": [
       "Data Scientist",
       "AI Engineer",
@@ -919,7 +921,28 @@
       "Tableau",
       "Genomik",
       "Data Analyst",
-      "R Shiny"
+      "R Shiny",
+      "FastAPI",
+      "RAG"
+    ]
+  },
+  "home_links": {
+    "title": "Projekt i drift",
+    "items": [
+      {
+        "id": "sextant",
+        "icon": "travel_explore",
+        "title": "Sextant IA",
+        "description": "AI-baserad reseplanerare: dag-för-dag-planer med historien och kulturen på varje plats. I produktion.",
+        "url": "https://sextantia.eu"
+      },
+      {
+        "id": "lab",
+        "icon": "experiment",
+        "title": "lab.asansal.com",
+        "description": "Mitt idélabb, där jag publicerar personliga projekt. Det första är Job Matcher, en AI-assistent för jobbansökningar.",
+        "url": "https://lab.asansal.com"
+      }
     ]
   }
 }

@@ -25,6 +25,9 @@ jobs:
             # 3. Activar el entorno virtual e instalar si hay dependencias nuevas
             source venv/bin/activate
             pip install -r requirements.txt
+
+            # 3b. Etiquetas SEO / vista previa (Open Graph) en el index.html de Streamlit
+            python scripts/inject_meta.py
             
             # 4. Reiniciar el servicio de la web para aplicar los cambios
             sudo systemctl restart miweb.service
